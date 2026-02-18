@@ -1,0 +1,135 @@
+.app-header {
+    background-color: #1a4a9e;
+    /* Dark blue matching the screenshot */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    /* Fixed height */
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-logo {
+    height: 50px;
+    background-color: white;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.header-dropdown .dropdown-btn {
+    background-color: #0f3066;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.facility-select {
+    background-color: #0f3066;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.facility-select option {
+    background-color: white;
+    color: #333;
+}
+
+.no-facilities {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.user-info {
+    background-color: #2b5cb3;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.nav-link-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+
+.nav-link-btn:hover {
+    text-decoration: underline;
+}
+
+.action-btn {
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.sync-btn {
+    background-color: #0f3066;
+    color: white;
+    border: 1px solid #2b5cb3;
+}
+
+.logout-btn {
+    background-color: #000c1f;
+    color: white;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+}
