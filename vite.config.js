@@ -12,7 +12,6 @@ export default defineConfig({
     allowedHosts: true, // Allow ALL hosts (simplest for dev tunnels/proxies)
     hmr: {
       clientPort: 443, // The port the browser sees (HTTPS)
-      path: '/pwa-survey/', // Explicit path for HMR socket
     },
     proxy: {
       '/pwa-survey/api': {
