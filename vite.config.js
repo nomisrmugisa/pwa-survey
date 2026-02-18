@@ -33,6 +33,24 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 5173,
-    allowedHosts: true
+    allowedHosts: true,
+    proxy: {
+      '/pwa-survey/api': {
+        target: 'https://qimsdev.5am.co.bw/qims',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/pwa-survey\/api/, '/api'), // Strip prefix
+        configure: (proxy, options) => {
+          proxy.on('error', (err, req, res) => {
+            console.log('proxy error', err);
+          });
+        }
+      },
+      '/api': {
+        target: 'https://qimsdev.5am.co.bw/qims',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   }
 })
