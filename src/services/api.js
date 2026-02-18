@@ -1,4 +1,6 @@
-const BASE_URL = ''; // Relative path because of proxy
+// Use the configured base path from Vite (e.g., '/pwa-survey/') for the proxy
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL;
+const BASE_URL = base;
 
 const getHeaders = (username, password) => {
     const headers = {

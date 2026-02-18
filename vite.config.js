@@ -9,10 +9,10 @@ export default defineConfig({
     host: '0.0.0.0', // Expose to network
     port: 5173,
     strictPort: true, // Fail if port is busy
-    allowedHosts: ['qimsdev.5am.co.bw', 'localhost', '127.0.0.1', '.5am.co.bw'],
+    allowedHosts: true, // Allow ALL hosts (simplest for dev tunnels/proxies)
     hmr: {
-      clientPort: 443, // Force client to use standard HTTPS port for WSS
-      // protocol: 'wss' // implicit with clientPort 443 usually, but let's leave default first
+      clientPort: 443, // The port the browser sees (HTTPS)
+      path: '/pwa-survey/', // Explicit path for HMR socket
     },
     proxy: {
       '/pwa-survey/api': {
