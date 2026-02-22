@@ -13,14 +13,14 @@ export default defineConfig({
     hmr: {
       clientPort: 443,
       host: 'qimsdev.5am.co.bw',
-      path: '/pwa-survey/hmr/',
+      path: 'hmr/',
     },
     proxy: {
       '/pwa-survey/api': {
-        target: 'https://qimsdev.5am.co.bw/qims/api',
+        target: 'https://qimsdev.5am.co.bw/qims',
         changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/pwa-survey\/api/, ''),
+        secure: true,
+        rewrite: (path) => path.replace(/^\/pwa-survey/, ''),
         configure: (proxy, options) => {
           proxy.on('error', (err, req, res) => {
             console.log('🚨 Proxy error:', err);
@@ -46,10 +46,10 @@ export default defineConfig({
     allowedHosts: true,
     proxy: {
       '/pwa-survey/api': {
-        target: 'https://qimsdev.5am.co.bw/qims/api',
+        target: 'https://qimsdev.5am.co.bw/qims',
         changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/pwa-survey\/api/, ''),
+        secure: true,
+        rewrite: (path) => path.replace(/^\/pwa-survey/, ''),
         configure: (proxy, options) => {
           proxy.on('error', (err, req, res) => {
             console.log('🚨 Proxy error:', err);
