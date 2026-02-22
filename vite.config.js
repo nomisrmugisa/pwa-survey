@@ -12,14 +12,14 @@ export default defineConfig({
     allowedHosts: true,
     hmr: false,
     proxy: {
-      '/pwa-survey/api': {
+      '/qims/api': {
         target: 'https://qimsdev.5am.co.bw/qims/api',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/pwa-survey\/api/, ''),
+        rewrite: (path) => path.replace(/^\/qims\/api/, ''),
         configure: (proxy, options) => {
           proxy.on('error', (err, req, res) => {
-            console.log('🚨 Proxy error:', err);
+            console.log('🚨 Proxy error:', err, req.url);
           });
           proxy.on('proxyReq', (proxyReq, req, res) => {
             console.log('📤 Proxying request:', req.method, req.url);
@@ -33,14 +33,6 @@ export default defineConfig({
         target: 'https://qimsdev.5am.co.bw/qims',
         changeOrigin: true,
         secure: false,
-        configure: (proxy, options) => {
-          proxy.on('error', (err, req, res) => {
-            console.log('🚨 API Proxy error:', err);
-          });
-          proxy.on('proxyReq', (proxyReq, req, res) => {
-            console.log('📤 API Proxying request:', req.method, req.url);
-          });
-        }
       }
     }
   },

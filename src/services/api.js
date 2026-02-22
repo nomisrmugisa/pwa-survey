@@ -1,8 +1,5 @@
-// Use the configured base path from Vite (e.g., '/pwa-survey/') for the proxy
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL;
-
-// In PRODUCTION, we are on the same domain as DHIS2, so we hit /qims directly.
-const BASE_URL = import.meta.env.PROD ? '/qims' : '/pwa-survey';
+// Consistent base URL for DHIS2 API (points to the /qims context on the server)
+const BASE_URL = '/qims';
 
 const getHeaders = (username, password) => {
     const headers = {
