@@ -9,14 +9,19 @@ export default defineConfig({
     host: '0.0.0.0', // Expose to network
     port: 5173,
     strictPort: true, // Fail if port is busy
-    allowedHosts: true, // Allow ALL hosts (simplest for dev tunnels/proxies)
-    hmr: false, // Disable HMR to prevent WebSocket errors behind restrictive proxy
+    allowedHosts: true,
+    hmr: {
+      host: 'qimsdev.5am.co.bw',
+      protocol: 'wss',
+      clientPort: 443,
+      path: 'pwa-survey', // No trailing slash
+    },
     proxy: {
       '/pwa-survey/api': {
         target: 'https://qimsdev.5am.co.bw/qims',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/pwa-survey\/api/, '/api'), // Strip prefix
+        rewrite: (path) => path.replace(/^\/pwa-survey\/api/, '/api'),
         configure: (proxy, options) => {
           proxy.on('error', (err, req, res) => {
             console.log('proxy error', err);
