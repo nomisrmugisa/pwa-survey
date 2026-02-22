@@ -2,8 +2,7 @@
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL;
 
 // In PRODUCTION, we are on the same domain as DHIS2, so we hit /qims directly.
-// In DEVELOPMENT, we use an empty BASE_URL to let Vite proxy handle it.
-const BASE_URL = import.meta.env.PROD ? '/qims' : '';
+const BASE_URL = import.meta.env.PROD ? '/qims' : '/pwa-survey';
 
 const getHeaders = (username, password) => {
     const headers = {

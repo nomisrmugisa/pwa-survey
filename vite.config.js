@@ -10,11 +10,7 @@ export default defineConfig({
     port: 5173,
     strictPort: true, // Fail if port is busy
     allowedHosts: true,
-    hmr: {
-      clientPort: 443,
-      host: 'qimsdev.5am.co.bw',
-      path: 'hmr/',
-    },
+    hmr: false,
     proxy: {
       '/pwa-survey/api': {
         target: 'https://qimsdev.5am.co.bw/qims/api',
