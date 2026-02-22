@@ -10,14 +10,10 @@ export default defineConfig({
     port: 5173,
     strictPort: true, // Fail if port is busy
     allowedHosts: true,
-    hmr: {
-      host: 'qimsdev.5am.co.bw',
-      protocol: 'wss',
-      clientPort: 443,
-    },
+    hmr: false,
     proxy: {
       '/pwa-survey/api': {
-        target: 'https://qimsdev.5am.co.bw/qims',
+        target: 'https://qimsdev.5am.co.bw',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/pwa-survey\/api/, '/api'),
@@ -28,7 +24,7 @@ export default defineConfig({
         }
       },
       '/api': {
-        target: 'https://qimsdev.5am.co.bw/qims',
+        target: 'https://qimsdev.5am.co.bw',
         changeOrigin: true,
         secure: false,
       }
@@ -40,7 +36,7 @@ export default defineConfig({
     allowedHosts: true,
     proxy: {
       '/pwa-survey/api': {
-        target: 'https://qimsdev.5am.co.bw/qims',
+        target: 'https://qimsdev.5am.co.bw',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/pwa-survey\/api/, '/api'), // Strip prefix
