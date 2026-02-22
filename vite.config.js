@@ -14,7 +14,6 @@ export default defineConfig({
       host: 'qimsdev.5am.co.bw',
       protocol: 'wss',
       clientPort: 443,
-      path: 'pwa-survey', // No trailing slash
     },
     proxy: {
       '/pwa-survey/api': {
