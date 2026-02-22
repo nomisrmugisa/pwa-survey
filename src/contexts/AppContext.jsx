@@ -33,12 +33,25 @@ export const AppProvider = ({ children }) => {
         };
     }, []);
 
-    // Load initial user session
+    // Load initial user session and their facility assignments
     useEffect(() => {
         const checkAuth = async () => {
             try {
                 const currentUser = await api.getCurrentUser();
                 setUser(currentUser);
+
+                // Fetch facility assignments for this user:
+                // Filter enrollments in program K9O5fdoBmKf where
+                // attribute Rh87cVTZ8b6 (Inspection Final List) contains this user's ID,
+                // then extract attribute R0e1pnpjkaW (Inspection Facility ID) as the assigned facility.
+                if (currentUser?.id) {
+                    try {
+                        const assignments = await api.getAssignments('K9O5fdoBmKf', currentUser.id);
+                        setUserAssignments(assignments);
+                    } catch (assignErr) {
+                        console.warn('Could not load user assignments:', assignErr);
+                    }
+                }
             } catch (error) {
                 console.warn("No active session", error);
             }

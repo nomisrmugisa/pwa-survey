@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useApp } from '../contexts/AppContext';
 import { useStorage } from '../hooks/useStorage';
+import { useUserAssessments } from '../hooks/useUserAssessments';
 import { SurveyPreview } from '../components/SurveyPreview.jsx';
 import indexedDBService from '../services/indexedDBService';
 import {
@@ -41,6 +42,17 @@ export function Dashboard() {
     const [showSuccessDialog, setShowSuccessDialog] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [showClearConfirm, setShowClearConfirm] = useState(false);
+    const [isAssessmentsCollapsed, setIsAssessmentsCollapsed] = useState(true);
+
+    // Integrated Hook
+    const assessmentHook = useUserAssessments();
+    const {
+        upcoming: upcomingAssessments,
+        pending: pendingAssessments,
+        stats: assessmentStats,
+        loading: assessmentsLoading,
+        respondToAssignment
+    } = assessmentHook;
 
     const handleConfirmClear = async () => {
         const success = await clearAllSurveys();
@@ -197,6 +209,84 @@ export function Dashboard() {
                         <p>Drafts</p>
                     </div>
                 </div>
+                <div className="stat-card upcoming">
+                    <div className="stat-icon">📅</div>
+                    <div className="stat-content">
+                        <h3>{assessmentStats.upcoming}</h3>
+                        <p>Upcoming Assessments</p>
+                    </div>
+                </div>
+                <div className="stat-card urgent">
+                    <div className="stat-icon">🔔</div>
+                    <div className="stat-content">
+                        <h3>{assessmentStats.pending}</h3>
+                        <p>Pending Actions</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Assessments List */}
+            <div className="forms-section assessments-section">
+                <div
+                    className="section-header"
+                    onClick={() => setIsAssessmentsCollapsed(prev => !prev)}
+                    style={{ cursor: 'pointer', userSelect: 'none' }}
+                >
+                    <h3>
+                        <span style={{ marginRight: '8px', fontSize: '0.75em' }}>
+                            {isAssessmentsCollapsed ? '▶' : '▼'}
+                        </span>
+                        Assigned Assessments
+                    </h3>
+                </div>
+                {!isAssessmentsCollapsed && (
+                    <div className="forms-list">
+                        {assessmentsLoading ? (
+                            <div className="loading">Loading Assessments...</div>
+                        ) : (upcomingAssessments.length === 0 && pendingAssessments.length === 0) ? (
+                            <div className="empty-state">No assessments assigned</div>
+                        ) : (
+                            [...pendingAssessments, ...upcomingAssessments].map(assessment => (
+                                <div key={assessment.eventId} className="form-item assessment-item">
+                                    <div className="form-info">
+                                        <div className="form-header-row">
+                                            <h4>{assessment.orgUnitName}</h4>
+                                            <div className={`form-status ${assessment.requiresResponse ? 'error' : 'success'}`}>
+                                                {assessment.requiresResponse ? 'ACTION REQUIRED' : 'CONFIRMED'}
+                                            </div>
+                                        </div>
+                                        <p>Date: {assessment.sortDate} | ID: {assessment.eventId}</p>
+                                    </div>
+                                    <div className="form-actions">
+                                        {assessment.requiresResponse ? (
+                                            <>
+                                                <button
+                                                    className="btn btn-primary btn-sm"
+                                                    onClick={() => respondToAssignment(assessment.eventId, 'FAC_ASS_ASSIGN_ACCEPTED')}
+                                                >
+                                                    Accept
+                                                </button>
+                                                <button
+                                                    className="btn btn-danger btn-sm"
+                                                    onClick={() => respondToAssignment(assessment.eventId, 'FAC_ASS_ASSIGN_DECLINED')}
+                                                >
+                                                    Decline
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <button
+                                                className="btn btn-primary btn-sm"
+                                                onClick={() => navigate(`/form?assessmentId=${assessment.eventId}`)}
+                                            >
+                                                Open Form
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                )}
             </div>
 
             {/* Forms List */}

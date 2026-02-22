@@ -1,4 +1,4 @@
-// Consistent base URL for DHIS2 API (points to the /qims context on the server)
+// Consistent base URL for DHIS2 AP// Consistent base URL for DHIS2 API (points to the /qims context on the server)
 const BASE_URL = '/qims';
 
 const getHeaders = (username, password) => {
@@ -67,13 +67,44 @@ export const api = {
         return await response.json();
     },
 
-    getAssignments: async (programId = 'wyQbzZAaJJa') => {
-        const response = await fetch(`${BASE_URL}/api/enrollments?paging=false&ouMode=ALL&program=${programId}&fields=trackedEntityInstance,orgUnit,orgUnitName,status`, {
-            headers: getHeaders()
-        });
+    getAssignments: async (programId = 'K9O5fdoBmKf', userId = null) => {
+        const fields = [
+            'enrollment',
+            'trackedEntityInstance',
+            'orgUnit',
+            'orgUnitName',
+            'status',
+            'enrollmentDate',
+            'incidentDate',
+            'attributes[attribute,value]',
+            'events[event,eventDate,status,dataValues[dataElement,value]]'
+        ].join(',');
+
+        // Attribute UIDs
+        const INSPECTOR_LIST_ATTR = 'Rh87cVTZ8b6'; // "Inspection Final List" — contains inspector user IDs
+        const FACILITY_ID_ATTR = 'R0e1pnpjkaW'; // "Inspection Facility ID"
+
+        // Build the filter: only enrollments where the inspector list contains this user's ID
+        const userFilter = userId ? `&filter=${INSPECTOR_LIST_ATTR}:like:${userId}` : '';
+
+        const response = await fetch(
+            `${BASE_URL}/api/enrollments?paging=false&ouMode=ALL&program=${programId}&fields=${fields}${userFilter}`,
+            { headers: getHeaders() }
+        );
         if (!response.ok) throw new Error('Failed to fetch assignments');
-        const enrollments = await response.json();
-        return enrollments.enrollments || [];
+        const data = await response.json();
+        const enrollments = data.enrollments || [];
+
+        // Extract the facility ID attribute from each enrollment
+        return enrollments.map(enrollment => {
+            const facilityIdAttr = (enrollment.attributes || []).find(
+                a => a.attribute === FACILITY_ID_ATTR
+            );
+            return {
+                ...enrollment,
+                facilityId: facilityIdAttr?.value || null,
+            };
+        });
     },
 
     getTrackedEntityInstances: async (teiIds) => {

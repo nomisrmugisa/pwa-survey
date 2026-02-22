@@ -12,14 +12,13 @@ export default defineConfig({
     allowedHosts: true,
     hmr: false,
     proxy: {
-      '/qims/api': {
-        target: 'https://qimsdev.5am.co.bw/qims/api',
+      '/qims': {
+        target: 'https://qimsdev.5am.co.bw',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/qims\/api/, ''),
         configure: (proxy, options) => {
           proxy.on('error', (err, req, res) => {
-            console.log('🚨 Proxy error:', err, req.url);
+            console.log('🚨 Proxy error:', err.message, req.url);
           });
           proxy.on('proxyReq', (proxyReq, req, res) => {
             console.log('📤 Proxying request:', req.method, req.url);

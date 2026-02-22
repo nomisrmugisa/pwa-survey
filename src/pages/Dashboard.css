@@ -137,3 +137,58 @@
     background: #f8d7da;
     color: #721c24;
 }
+
+.stat-card.upcoming {
+    border-bottom: 4px solid #4caf50;
+}
+
+.stat-card.urgent {
+    border-bottom: 4px solid #f44336;
+}
+
+.assessments-section {
+    margin-bottom: 3rem;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 2rem;
+}
+
+.assessment-item {
+    border-left: 5px solid #2b3a8e;
+}
+
+.assessment-item .form-status.error {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #888;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px dashed #ddd;
+}
