@@ -6,6 +6,7 @@ const BASE_URL = import.meta.env.PROD ? '/qims' : '/pwa-survey';
 
 const getHeaders = (username, password) => {
     const headers = {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
     };
     if (username && password) {
