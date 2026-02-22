@@ -1,56 +1,70 @@
 export const transformMetadata = (metadata) => {
-    if (!metadata || !metadata.programStageSections) return [];
+    if (!metadata || !metadata.programStageSections) {
+        console.warn("Transform: No programStageSections found in metadata");
+        return [];
+    }
 
-    return metadata.programStageSections.map(section => {
-        const subsections = [];
-        let currentSubsection = {
-            id: `default-${section.id}`,
-            name: section.displayName, // Use Category name instead of 'General'
-            fields: []
-        };
+    // 1. Map Program Stage Data Elements for quick lookup
+    const deMap = {};
+    if (metadata.programStageDataElements) {
+        metadata.programStageDataElements.forEach(psde => {
+            const de = psde.dataElement || psde;
+            if (de && de.id) {
+                deMap[de.id] = de;
+            }
+        });
+    }
+    console.log(`Transform: Hydrated ${Object.keys(deMap).length} data elements from programStageDataElements`);
 
-        // Access nested dataElements correctly based on API response structure
-        // The prompt implied programStageSections has dataElements directly.
-        // If it's the raw API response from previous step, it might be section.dataElements
-        const elements = section.dataElements || [];
+    // Sort Sections by sortOrder
+    const sortedSections = [...metadata.programStageSections].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
 
-        elements.forEach(element => {
-            const de = element;
-            const name = de.formName || de.displayName;
+    const transformedSections = sortedSections.map(section => {
+        const fields = [];
+        // DHIS2 usually has programStageDataElements on the stage, but sections have dataElements
+        let elements = section.dataElements || section.programStageDataElements || [];
 
-            // Check if this is a header marker
-            // User originally said "(--)", but screenshot shows "Name--"
+        // Sort elements by sortOrder if they have it
+        elements = [...elements].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+
+        elements.forEach(rawDe => {
+            // Robust lookup: handle object with ID, direct ID, or nested dataElement object
+            let deId = rawDe.id;
+            if (!deId && rawDe.dataElement) deId = rawDe.dataElement.id;
+            if (!deId && typeof rawDe === 'string') deId = rawDe;
+
+            const de = deMap[deId] || rawDe.dataElement || rawDe;
+
+            if (!de || (!de.id && !de.displayName)) {
+                console.warn("Transform: Could not resolve data element details for:", rawDe);
+                return;
+            }
+
+            const name = de.formName || de.displayName || de.name || de.shortName;
             const isHeader = name && (name.includes('(--)') || name.trim().endsWith('--'));
 
             if (isHeader) {
-                console.log("Found Subsection Header:", name); // Debug Log
-
-                // Push previous subsection if valid
-                if (currentSubsection.fields.length > 0) {
-                    subsections.push(currentSubsection);
-                }
-
-                // Clean name: remove "(--)" or trailing "--"
                 const cleanName = name.replace(/\(--\)/g, '').replace(/--$/, '').trim();
-
-                // Start new subsection
-                currentSubsection = {
-                    id: de.id,
-                    name: cleanName,
-                    fields: []
-                };
+                fields.push({
+                    id: de.id || deId || Math.random().toString(),
+                    label: cleanName,
+                    type: 'header'
+                });
             } else {
-                // Regular field
-
                 let options = [];
-                if (de.optionSet && de.optionSet.options) {
-                    options = de.optionSet.options.map(opt => ({
-                        value: opt.code,
-                        label: opt.displayName
-                    }));
+                // Check multiple locations for optionSet
+                const optionSet = de.optionSet || (deMap[deId] ? deMap[deId].optionSet : null);
+
+                if (optionSet && optionSet.options) {
+                    options = [...optionSet.options]
+                        .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
+                        .map(opt => ({
+                            value: opt.code || opt.id,
+                            label: opt.displayName || opt.name
+                        }));
                 }
 
-                // Auto-generate options for Boolean types if no OptionSet exists
+                // Fallback for Booleans
                 if (options.length === 0 && (de.valueType === 'BOOLEAN' || de.valueType === 'TRUE_ONLY')) {
                     options = [
                         { value: 'true', label: 'Yes' },
@@ -58,32 +72,75 @@ export const transformMetadata = (metadata) => {
                     ];
                 }
 
-                currentSubsection.fields.push({
-                    id: de.id,
+                const finalType = mapValueTypeToInputType(de.valueType, options.length > 0);
+
+                if (options.length > 0) {
+                    console.log(`  Dropdown Found: ${name} (${options.length} options)`);
+                }
+
+                fields.push({
+                    id: de.id || deId,
                     label: name.endsWith('-comment') || name.endsWith('comment') ? 'Comment' : name,
-                    type: mapValueTypeToInputType(de.valueType, options.length > 0),
+                    type: finalType,
                     options: options,
-                    compulsory: de.compulsory
+                    compulsory: section.displayName === 'Assessment Details' ? true : de.compulsory
                 });
             }
         });
 
-        // Push the final subsection
-        if (currentSubsection.fields.length > 0) {
-            subsections.push(currentSubsection);
-        }
-
-        // Fallback if no fields found at all
-        if (subsections.length === 0) {
-            subsections.push({ id: `empty-${section.id}`, name: 'No Fields', fields: [] });
-        }
-
         return {
             id: section.id,
             name: section.displayName,
-            subsections: subsections
+            code: section.code || '',
+            fields: fields
         };
     });
+
+    // 1. Identify General vs Prefix sections
+    const generalSections = [];
+    const prefixSectionsByPrefix = {};
+
+    transformedSections.forEach(sec => {
+        const isGeneral = !sec.code || !sec.code.includes('_') ||
+            sec.name === 'Assessment Details' ||
+            sec.code.startsWith('GENERAL_');
+
+        if (isGeneral) {
+            // Force mandatory for general/global sections
+            sec.fields.forEach(f => {
+                if (f.type !== 'header') f.compulsory = true;
+            });
+            generalSections.push(sec);
+        } else {
+            const prefix = sec.code.split('_')[0];
+            if (!prefixSectionsByPrefix[prefix]) prefixSectionsByPrefix[prefix] = [];
+            prefixSectionsByPrefix[prefix].push(sec);
+        }
+    });
+
+    // 2. Create groups for each prefix, injecting general sections as defaults
+    const finalGroups = Object.keys(prefixSectionsByPrefix).map(prefix => {
+        return {
+            id: prefix,
+            name: prefix,
+            // Prepend general sections to every category
+            sections: [...generalSections, ...prefixSectionsByPrefix[prefix]]
+        };
+    });
+
+    // 3. Sort groups alphabetically
+    const sortedGroups = finalGroups.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Fallback: If no categorized sections exist, show general sections in a default group
+    if (sortedGroups.length === 0 && generalSections.length > 0) {
+        return [{
+            id: 'SURVEY',
+            name: 'SURVEY',
+            sections: generalSections
+        }];
+    }
+
+    return sortedGroups;
 };
 
 const mapValueTypeToInputType = (valueType, hasOptions) => {
@@ -97,7 +154,7 @@ const mapValueTypeToInputType = (valueType, hasOptions) => {
             return 'number';
         case 'BOOLEAN':
         case 'TRUE_ONLY':
-            return 'select'; // Often better as Yes/No select or checkbox
+            return 'select';
         case 'DATE':
             return 'date';
         case 'LONG_TEXT':

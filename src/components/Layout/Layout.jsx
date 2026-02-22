@@ -4,11 +4,11 @@ import Header from '../Header/Header';
 import './Layout.css';
 
 const Layout = ({
-    categories,
-    activeCategory,
-    onSelectCategory,
-    activeSubsection,
-    onSelectSubsection,
+    groups,
+    activeGroup,
+    onSelectGroup,
+    activeSection,
+    onSelectSection,
     children,
     assignments,
     selectedFacility,
@@ -23,11 +23,11 @@ const Layout = ({
             />
             <div className="layout-body">
                 <Sidebar
-                    categories={categories}
-                    activeCategory={activeCategory}
-                    onSelectCategory={onSelectCategory}
-                    activeSubsection={activeSubsection}
-                    onSelectSubsection={onSelectSubsection}
+                    groups={groups}
+                    activeGroup={activeGroup}
+                    onSelectGroup={onSelectGroup}
+                    activeSection={activeSection}
+                    onSelectSection={onSelectSection}
                 />
                 <main className="main-content">
                     {children}

@@ -1,21 +1,21 @@
 import React from 'react';
 import './Sidebar.css';
 
-const Sidebar = ({ categories, activeCategory, onSelectCategory, activeSubsection, onSelectSubsection }) => {
+const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSection }) => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <h3>Category</h3>
+        <h3>Group</h3>
         <select
           className="category-select"
-          value={activeCategory?.id || ''}
+          value={activeGroup?.id || ''}
           onChange={(e) => {
-            const selected = categories.find(c => c.id === e.target.value);
-            onSelectCategory(selected);
+            const selected = groups.find(g => g.id === e.target.value);
+            onSelectGroup(selected);
           }}
         >
-          {categories.map(cat => (
-            <option key={cat.id} value={cat.id}>{cat.name}</option>
+          {groups.map(group => (
+            <option key={group.id} value={group.id}>{group.name}</option>
           ))}
         </select>
       </div>
@@ -23,14 +23,14 @@ const Sidebar = ({ categories, activeCategory, onSelectCategory, activeSubsectio
         <h4>Sections</h4>
       </div>
       <ul className="section-list">
-        {activeCategory?.subsections?.map(sub => (
+        {activeGroup?.sections?.map((sec, index) => (
           <li
-            key={sub.id}
-            className={`section-item ${activeSubsection?.id === sub.id ? 'active' : ''}`}
-            onClick={() => onSelectSubsection(sub)}
+            key={sec.id}
+            className={`section-item ${activeSection?.id === sec.id ? 'active' : ''}`}
+            onClick={() => onSelectSection(sec)}
           >
-            <span>{sub.name}</span>
-            <span className="status">{sub.fields.length}</span>
+            <span>{`${index + 1}. ${sec.name}`}</span>
+            <span className="status">{sec.fields.length}</span>
           </li>
         ))}
       </ul>

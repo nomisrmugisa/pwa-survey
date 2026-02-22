@@ -7,6 +7,7 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
     // DEBUG: Validate props on render
     React.useEffect(() => {
         if (!activeSection) console.warn("FormArea: No active section provided");
+        if (activeSection) console.log(`FormArea Rendering Section: ${activeSection.name}, fields:`, activeSection.fields.map(f => ({ id: f.id, label: f.label, type: f.type, options: f.options?.length })));
         if (!selectedFacility) console.warn("FormArea: No facility selected");
         if (!user) console.warn("FormArea: No user provided");
     }, [activeSection, selectedFacility, user]);
@@ -57,16 +58,28 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
             return <div className="empty-fields-message">No fields in this section.</div>;
         }
 
-        return activeSection.fields.map(field => {
+        let questionNumber = 0;
+
+        return activeSection.fields.map((field) => {
             // Safety check for field
             if (!field || !field.id) {
                 console.warn("FormArea: Invalid field in section:", field);
                 return null;
             }
 
+            if (field.type === 'header') {
+                return (
+                    <div key={field.id} className="form-header-separator">
+                        <h3>{field.label}</h3>
+                    </div>
+                );
+            }
+
+            questionNumber++;
+
             return (
                 <div key={field.id} className="form-field">
-                    <label>{field.label || 'Unnamed Field'}</label>
+                    <label>{`${questionNumber}. ${field.label || 'Unnamed Field'}`}</label>
                     {field.type === 'select' ? (
                         <select
                             className="form-control"
@@ -75,15 +88,58 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
                             id={`field-${field.id}`} // Helper for testing
                         >
                             <option value="">Select...</option>
-                            {(field.options || []).map((opt, idx) => {
-                                const val = typeof opt === 'object' ? opt.value : opt;
-                                const label = typeof opt === 'object' ? opt.label : opt;
+                            {(() => {
+                                const options = field.options || [];
+                                const groups = {};
+                                const ungrouped = [];
+
+                                options.forEach(opt => {
+                                    const val = typeof opt === 'object' ? opt.value : opt;
+                                    const label = typeof opt === 'object' ? opt.label : opt;
+
+                                    if (typeof val === 'string' && val.includes('_')) {
+                                        const prefix = val.split('_')[0];
+                                        if (!groups[prefix]) groups[prefix] = [];
+                                        groups[prefix].push({ val, label });
+                                    } else {
+                                        ungrouped.push({ val, label });
+                                    }
+                                });
+
+                                const groupKeys = Object.keys(groups);
+                                if (groupKeys.length === 0) {
+                                    // No grouped options, render normally
+                                    return options.map((opt, idx) => {
+                                        const val = typeof opt === 'object' ? opt.value : opt;
+                                        const label = typeof opt === 'object' ? opt.label : opt;
+                                        return (
+                                            <option key={`${val}-${idx}`} value={val}>
+                                                {label}
+                                            </option>
+                                        );
+                                    });
+                                }
+
+                                // Render grouped options
                                 return (
-                                    <option key={`${val}-${idx}`} value={val}>
-                                        {label}
-                                    </option>
+                                    <>
+                                        {ungrouped.map((opt, idx) => (
+                                            <option key={`ungrouped-${opt.val}-${idx}`} value={opt.val}>
+                                                {opt.label}
+                                            </option>
+                                        ))}
+                                        {groupKeys.map(group => (
+                                            <optgroup key={group} label={group}>
+                                                {groups[group].map((opt, idx) => (
+                                                    <option key={`${group}-${opt.val}-${idx}`} value={opt.val}>
+                                                        {opt.label}
+                                                    </option>
+                                                ))}
+                                            </optgroup>
+                                        ))}
+                                    </>
                                 );
-                            })}
+                            })()}
                         </select>
                     ) : (
                         <input

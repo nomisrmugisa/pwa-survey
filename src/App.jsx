@@ -14,9 +14,9 @@ const AppContent = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // Navigation State
-  const [categories, setCategories] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [activeSubsection, setActiveSubsection] = useState(null);
+  const [groups, setGroups] = useState([]);
+  const [activeGroup, setActiveGroup] = useState(null);
+  const [activeSection, setActiveSection] = useState(null);
 
   // Data State
   const [assignments, setAssignments] = useState([]);
@@ -39,8 +39,8 @@ const AppContent = () => {
         api.getAssignments()
       ]);
 
-      const transformedCategories = transformMetadata(metadata);
-      setCategories(transformedCategories);
+      const transformedGroups = transformMetadata(metadata);
+      setGroups(transformedGroups);
       setConfiguration({
         programStage: metadata,
         program: { displayName: 'MOH Survey Dashboard' },
@@ -48,11 +48,11 @@ const AppContent = () => {
       });
 
       // Set Defaults
-      if (transformedCategories.length > 0) {
-        const firstCat = transformedCategories[0];
-        setActiveCategory(firstCat);
-        if (firstCat.subsections.length > 0) {
-          setActiveSubsection(firstCat.subsections[0]);
+      if (transformedGroups.length > 0) {
+        const firstGroup = transformedGroups[0];
+        setActiveGroup(firstGroup);
+        if (firstGroup.sections.length > 0) {
+          setActiveSection(firstGroup.sections[0]);
         }
       }
 
@@ -70,13 +70,13 @@ const AppContent = () => {
     }
   };
 
-  const handleCategoryChange = (category) => {
-    setActiveCategory(category);
-    // Auto-select first subsection
-    if (category.subsections && category.subsections.length > 0) {
-      setActiveSubsection(category.subsections[0]);
+  const handleGroupChange = (group) => {
+    setActiveGroup(group);
+    // Auto-select first section of the new group
+    if (group.sections && group.sections.length > 0) {
+      setActiveSection(group.sections[0]);
     } else {
-      setActiveSubsection(null);
+      setActiveSection(null);
     }
   };
 
@@ -106,11 +106,11 @@ const AppContent = () => {
             ) : (
               <Layout
                 // Navigation Props
-                categories={categories}
-                activeCategory={activeCategory}
-                onSelectCategory={handleCategoryChange}
-                activeSubsection={activeSubsection}
-                onSelectSubsection={setActiveSubsection}
+                groups={groups}
+                activeGroup={activeGroup}
+                onSelectGroup={handleGroupChange}
+                activeSection={activeSection}
+                onSelectSection={setActiveSection}
 
                 // Header Props
                 assignments={assignments}
@@ -118,7 +118,7 @@ const AppContent = () => {
                 onSelectFacility={setSelectedFacility}
               >
                 <FormArea
-                  activeSection={activeSubsection}
+                  activeSection={activeSection}
                   selectedFacility={selectedFacility}
                   user={user}
                 />
