@@ -13,9 +13,9 @@ const getHeaders = (username, password) => {
     if (username && password) {
         headers['Authorization'] = 'Basic ' + btoa(username + ':' + password);
     } else {
-        const storedAuth = localStorage.getItem('dhis2_auth');
-        if (storedAuth) {
-            headers['Authorization'] = storedAuth;
+        const auth = localStorage.getItem('dhis2_auth');
+        if (auth) {
+            headers['Authorization'] = auth;
         }
     }
     return headers;

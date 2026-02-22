@@ -13,7 +13,7 @@ export default defineConfig({
     hmr: {
       clientPort: 443,
       host: 'qimsdev.5am.co.bw',
-      path: '/pwa-survey/hmr/',
+      path: 'hmr/',
     },
     proxy: {
       '/pwa-survey/api': {
@@ -40,6 +40,9 @@ export default defineConfig({
         configure: (proxy, options) => {
           proxy.on('error', (err, req, res) => {
             console.log('🚨 API Proxy error:', err);
+          });
+          proxy.on('proxyReq', (proxyReq, req, res) => {
+            console.log('📤 API Proxying request:', req.method, req.url);
           });
         }
       }
