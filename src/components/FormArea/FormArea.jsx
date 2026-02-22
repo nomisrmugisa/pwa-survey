@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FormArea.css';
-
 import { useIncrementalSave } from '../../hooks/useIncrementalSave';
+import { useApp } from '../../contexts/AppContext';
+import { api } from '../../services/api';
+import indexedDBService from '../../services/indexedDBService';
 
 const FormArea = ({ activeSection, selectedFacility, user }) => {
     // DEBUG: Validate props on render
@@ -17,6 +19,12 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
         if (!selectedFacility || !selectedFacility.trackedEntityInstance) return null;
         return `draft-${selectedFacility.trackedEntityInstance}`;
     }, [selectedFacility]);
+
+    const { configuration } = useApp();
+
+    // Submit state
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitResult, setSubmitResult] = useState(null); // { success, message }
 
     const {
         formData,
@@ -167,6 +175,35 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
         saveField(fieldId, value);
     };
 
+    const handleSubmit = async () => {
+        if (!configuration) {
+            setSubmitResult({ success: false, message: 'Form configuration not loaded yet.' });
+            return;
+        }
+        const orgUnit = selectedFacility?.orgUnit || selectedFacility?.facilityId || selectedFacility?.trackedEntityInstance;
+        if (!orgUnit) {
+            setSubmitResult({ success: false, message: 'No facility selected.' });
+            return;
+        }
+
+        setIsSubmitting(true);
+        setSubmitResult(null);
+        try {
+            const payload = api.formatEventData(formData, configuration, orgUnit, null);
+            await api.submitEvent(payload);
+            if (eventId) {
+                await indexedDBService.markAsSynced(eventId, payload.event);
+            }
+            setSubmitResult({ success: true, message: '✅ Submitted to DHIS2 successfully!' });
+        } catch (err) {
+            console.error('Submit failed:', err);
+            if (eventId) await indexedDBService.markAsFailed(eventId, err.message);
+            setSubmitResult({ success: false, message: `❌ Submit failed: ${err.message}` });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className="form-area">
             <div className="form-header">
@@ -193,9 +230,42 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
                 {renderFields()}
             </div>
             <div className="form-footer">
-                <button className="nav-btn prev">Previous</button>
-                <span>Page 1 of 1</span>
-                <button className="nav-btn next">Next</button>
+                {submitResult && (
+                    <div style={{
+                        padding: '8px 12px',
+                        marginBottom: '8px',
+                        borderRadius: '4px',
+                        background: submitResult.success ? '#d4edda' : '#f8d7da',
+                        color: submitResult.success ? '#155724' : '#721c24',
+                        fontSize: '0.9em'
+                    }}>
+                        {submitResult.message}
+                    </div>
+                )}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <button className="nav-btn prev">Previous</button>
+                    <span>Page 1 of 1</span>
+                    <button className="nav-btn next">Next</button>
+                </div>
+                <button
+                    className="nav-btn"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting || isSaving}
+                    style={{
+                        marginTop: '12px',
+                        width: '100%',
+                        background: isSubmitting ? '#6c757d' : '#28a745',
+                        color: '#fff',
+                        border: 'none',
+                        padding: '10px',
+                        borderRadius: '4px',
+                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                        fontWeight: 600,
+                        fontSize: '1em'
+                    }}
+                >
+                    {isSubmitting ? '⏳ Submitting...' : '🚀 Submit to DHIS2'}
+                </button>
             </div>
         </div>
     );

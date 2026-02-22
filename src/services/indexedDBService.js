@@ -137,6 +137,9 @@ class IndexedDBService {
                     userId: userId,
                     userDisplayName: currentUser?.displayName || userId,
                     formData: {},
+                    syncStatus: 'pending',   // 'pending' | 'synced' | 'error'
+                    syncError: null,
+                    syncedAt: null,
                     metadata: {
                         isDraft: true,
                         completedSections: [],
@@ -342,7 +345,67 @@ class IndexedDBService {
             };
         });
     }
+
+    /**
+     * Mark a draft as successfully synced to DHIS2
+     */
+    async markAsSynced(eventId, dhis2EventId = null) {
+        if (!this.db) await this.init();
+        return new Promise((resolve, reject) => {
+            const tx = this.db.transaction([this.storeName], 'readwrite');
+            const store = tx.objectStore(this.storeName);
+            const getReq = store.get(eventId);
+            getReq.onsuccess = () => {
+                const record = getReq.result;
+                if (!record) { resolve(); return; }
+                const updated = {
+                    ...record,
+                    syncStatus: 'synced',
+                    syncError: null,
+                    syncedAt: new Date().toISOString(),
+                    dhis2EventId: dhis2EventId || record.dhis2EventId,
+                    metadata: { ...record.metadata, isDraft: false }
+                };
+                const putReq = store.put(updated);
+                putReq.onsuccess = () => {
+                    console.log(`✅ Marked ${eventId} as synced`);
+                    resolve(updated);
+                };
+                putReq.onerror = () => reject(putReq.error);
+            };
+            getReq.onerror = () => reject(getReq.error);
+        });
+    }
+
+    /**
+     * Mark a draft as failed to sync, storing the error message
+     */
+    async markAsFailed(eventId, errorMessage) {
+        if (!this.db) await this.init();
+        return new Promise((resolve, reject) => {
+            const tx = this.db.transaction([this.storeName], 'readwrite');
+            const store = tx.objectStore(this.storeName);
+            const getReq = store.get(eventId);
+            getReq.onsuccess = () => {
+                const record = getReq.result;
+                if (!record) { resolve(); return; }
+                const updated = {
+                    ...record,
+                    syncStatus: 'error',
+                    syncError: errorMessage,
+                };
+                const putReq = store.put(updated);
+                putReq.onsuccess = () => {
+                    console.warn(`⚠️ Marked ${eventId} as failed: ${errorMessage}`);
+                    resolve(updated);
+                };
+                putReq.onerror = () => reject(putReq.error);
+            };
+            getReq.onerror = () => reject(getReq.error);
+        });
+    }
 }
+
 
 // Create singleton instance
 const indexedDBService = new IndexedDBService();

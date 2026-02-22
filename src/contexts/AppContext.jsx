@@ -70,31 +70,115 @@ export const AppProvider = ({ children }) => {
         // Implement actual toast UI here if needed
     };
 
+    const refreshStats = useCallback(async () => {
+        try {
+            const drafts = await indexedDBService.getAllDrafts(user);
+            const all = await indexedDBService.getAllDrafts(user);
+            // getAllDrafts only returns isDraft=true; get synced count separately
+            setStats({
+                totalEvents: drafts.length,
+                pendingEvents: drafts.filter(d => d.syncStatus !== 'synced').length,
+                syncedEvents: drafts.filter(d => d.syncStatus === 'synced').length,
+                errorEvents: drafts.filter(d => d.syncStatus === 'error').length,
+            });
+            setPendingEvents(drafts.filter(d => d.syncStatus !== 'synced'));
+        } catch (err) {
+            console.warn('Could not refresh stats:', err);
+        }
+    }, [user]);
+
+    // Refresh stats whenever user changes
+    useEffect(() => {
+        if (user) refreshStats();
+    }, [user, refreshStats]);
+
     const syncEvents = async () => {
         if (!isOnline) {
-            showToast("You are offline. Cannot sync.", "warning");
-            return;
+            showToast('You are offline. Cannot sync.', 'warning');
+            return { synced: 0, failed: 0 };
         }
-        // Placeholder for sync logic
-        console.log("Syncing events...");
-        showToast("Sync logic to be implemented", "info");
+        if (!configuration) {
+            showToast('Configuration not loaded yet.', 'warning');
+            return { synced: 0, failed: 0 };
+        }
+
+        let synced = 0, failed = 0;
+        try {
+            const drafts = await indexedDBService.getAllDrafts(user);
+            const pending = drafts.filter(d => d.syncStatus !== 'synced');
+            console.log(`🔄 Syncing ${pending.length} pending draft(s) to DHIS2...`);
+
+            for (const draft of pending) {
+                try {
+                    const orgUnit = draft.formData?.orgUnit || draft.orgUnit;
+                    const payload = api.formatEventData(
+                        draft.formData,
+                        configuration,
+                        orgUnit,
+                        draft.dhis2EventId || null
+                    );
+                    const result = await api.submitEvent(payload);
+                    // Extract the DHIS2 event ID from the response if available
+                    const dhis2Id = result?.response?.importSummaries?.[0]?.reference || payload.event;
+                    await indexedDBService.markAsSynced(draft.eventId, dhis2Id);
+                    synced++;
+                } catch (err) {
+                    console.error(`❌ Failed to sync draft ${draft.eventId}:`, err);
+                    await indexedDBService.markAsFailed(draft.eventId, err.message);
+                    failed++;
+                }
+            }
+
+            showToast(`Sync complete: ${synced} synced, ${failed} failed.`, synced > 0 ? 'success' : 'warning');
+            await refreshStats();
+        } catch (err) {
+            console.error('❌ syncEvents error:', err);
+            showToast('Sync failed: ' + err.message, 'error');
+        }
+        return { synced, failed };
     };
 
     const retryEvent = async (eventId) => {
-        console.log("Retrying event", eventId);
-        return true;
+        if (!isOnline) { showToast('You are offline.', 'warning'); return false; }
+        if (!configuration) { showToast('Configuration not loaded.', 'warning'); return false; }
+        try {
+            const draft = await indexedDBService.getFormData(eventId);
+            if (!draft) throw new Error('Draft not found');
+            const orgUnit = draft.formData?.orgUnit || draft.orgUnit;
+            const payload = api.formatEventData(draft.formData, configuration, orgUnit, draft.dhis2EventId || null);
+            const result = await api.submitEvent(payload);
+            const dhis2Id = result?.response?.importSummaries?.[0]?.reference || payload.event;
+            await indexedDBService.markAsSynced(eventId, dhis2Id);
+            await refreshStats();
+            showToast('Event synced successfully.', 'success');
+            return true;
+        } catch (err) {
+            await indexedDBService.markAsFailed(eventId, err.message);
+            showToast('Retry failed: ' + err.message, 'error');
+            return false;
+        }
     };
 
     const deleteEvent = async (eventId) => {
-        console.log("Deleting event", eventId);
-        // Implement deletion logic (IndexedDB)
+        try {
+            await indexedDBService.deleteDraft(eventId);
+            await refreshStats();
+        } catch (err) {
+            console.error('Failed to delete draft:', err);
+        }
     };
 
     const clearAllInspections = async () => {
-        console.log("Clearing all inspections");
-        // Implement clear all logic
-        return true;
+        try {
+            await indexedDBService.clearStore();
+            await refreshStats();
+            return true;
+        } catch (err) {
+            console.error('Failed to clear inspections:', err);
+            return false;
+        }
     };
+
 
     const value = useMemo(() => ({
         user,

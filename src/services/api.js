@@ -55,7 +55,8 @@ export const api = {
 
     getFormMetadata: async (programStageId = 'HpHD6u6MV37') => {
         const params = [
-            'fields=id,name,displayName,description,sortOrder,repeatable',
+            // Include program[id] so we can use it when submitting events
+            'fields=id,name,displayName,description,sortOrder,repeatable,program[id,displayName]',
             'programStageSections[id,name,displayName,code,sortOrder,dataElements[id,formName,displayFormName,name,displayName,shortName,code,description,valueType,compulsory,allowProvidedElsewhere,lastUpdated,optionSet[id,displayName,options[id,displayName,code,sortOrder]]]]',
             'programStageDataElements[id,displayName,sortOrder,compulsory,allowProvidedElsewhere,dataElement[id,formName,displayFormName,name,displayName,shortName,code,description,valueType,aggregationType,lastUpdated,optionSet[id,displayName,options[id,displayName,code,sortOrder]]]]'
         ].join(',');
@@ -122,5 +123,73 @@ export const api = {
         });
         if (!response.ok) throw new Error('Failed to fetch facility details');
         return await response.json();
+    },
+
+    /**
+     * Generate a valid DHIS2 event ID (11 alphanumeric chars, must start with a letter)
+     */
+    generateDHIS2Id: () => {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const chars = letters + '0123456789';
+        let id = letters[Math.floor(Math.random() * letters.length)];
+        for (let i = 1; i < 11; i++) id += chars[Math.floor(Math.random() * chars.length)];
+        return id;
+    },
+
+    /**
+     * Format collected form data into a DHIS2 event payload.
+     *
+     * @param {object} formData     - key/value map of dataElement IDs to values
+     * @param {object} configuration - { programStage: { id }, program: { id } }
+     * @param {string} orgUnit      - DHIS2 org unit ID of the selected facility
+     * @param {string} [existingEventId] - reuse an existing event ID if provided
+     */
+    formatEventData: (formData, configuration, orgUnit, existingEventId = null) => {
+        const eventId = existingEventId || api.generateDHIS2Id();
+        const today = new Date().toISOString().slice(0, 10);
+
+        const payload = {
+            event: eventId,
+            program: configuration?.program?.id,
+            programStage: configuration?.programStage?.id,
+            orgUnit: orgUnit,
+            eventDate: formData.eventDate || today,
+            status: 'COMPLETED',
+            dataValues: []
+        };
+
+        // Map every formData key that is a data element ID to dataValues
+        Object.entries(formData || {}).forEach(([key, value]) => {
+            // Skip meta fields
+            if (['eventDate', 'orgUnit', 'syncStatus'].includes(key)) return;
+            if (value === '' || value === null || value === undefined) return;
+            payload.dataValues.push({ dataElement: key, value: String(value) });
+        });
+
+        console.log(`📋 Formatted DHIS2 event ${eventId} with ${payload.dataValues.length} data values`);
+        return payload;
+    },
+
+    /**
+     * Submit a formatted event to DHIS2.
+     * POST /api/events   { "events": [ payload ] }
+     */
+    submitEvent: async (eventPayload) => {
+        console.log('📤 Submitting event to DHIS2:', eventPayload);
+        const response = await fetch(`${BASE_URL}/api/events`, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify({ events: [eventPayload] })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error('❌ DHIS2 event submission failed:', data);
+            throw new Error(data?.message || `Event submission failed: ${response.status}`);
+        }
+
+        console.log('✅ Event submitted successfully to DHIS2:', data);
+        return data;
     }
 };
