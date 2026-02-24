@@ -1,0 +1,1187 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 21 Page 1 of
+ 21 Page 1 of
+ 21 Page 1 of
+ 21 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Page 2 of
+ 21 Page 2 of
+ 21 Page 2 of
+ 21 Page 2 of
+ 21 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+6.1  Planning
+6.1.1 Standard
+The organisation plans and implements processes to meet the information needs of
+those who carry out dispatch activities or provide clinical services, those who
+manage the organisation and those outside the organisation who require data and
+information from the organisation.
+Standard Intent: Information is generated and used during patient care and for safely and
+effectively managing an organisation. The ability to capture and provide information requires
+effective planning. Planning incorporates input from a variety of sources:
+•                                 the care providers
+•                                 the organisation's managers and leaders, and
+•                     those outside the organisation who need or require data or information about the
+organisation's operational and care processes.
+  
+The most urgent information needs of those sources influence the organisation's information
+management strategies and its ability to implement those strategies. The strategies are
+appropriate for the organisation's size, complexity of services, availability of trained staff and
+other human and technical resources.
+  
+The plan is comprehensive and includes all the departments and services of the
+organisation.
+Criterion Comments
+Recommendations
+Criterion  6.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation has a plan
+to meet information needs.
+Criterion  6.1.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The plan is based on an
+assessment of the needs of
+those within and outside the
+organisation.
+Page 3 of
+ 21 Page 3 of
+ 21 Page 3 of
+ 21 Page 3 of
+ 21 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.1.1.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The information needs of
+those who carry out dispatch
+activities are considered in
+the planning process.
+Criterion  6.1.1.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The information needs of
+those who provide clinical
+services are considered in the
+planning process.
+Criterion  6.1.1.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The information needs of
+those who manage the
+organisation are considered
+in the planning process.
+Criterion  6.1.1.6
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The information needs and
+requirements of individuals
+and agencies outside the
+organisation are considered
+in the planning process.
+Criterion  6.1.1.7
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The information plan includes
+how the confidentiality,
+security and integrity of data
+and information will be
+maintained.
+Page 4 of
+ 21 Page 4 of
+ 21 Page 4 of
+ 21 Page 4 of
+ 21 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.1.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Medical direction participates
+in information technology
+decisions.
+Criterion  6.1.1.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Senior managers participate
+in information technology
+decisions.
+6.1.2 Standard
+The organisation has a policy on the retention time of records, data and information.
+Standard Intent: Dispatch records, recorded calls, patient records and other data are retained
+for a sufficient period to comply with laws and regulations and are then destroyed in a
+manner that retains confidentiality.
+Criterion Comments
+Recommendations
+Criterion  6.1.2.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has a policy
+on the retention of dispatch
+records, dispatch calls,
+patient records and other
+data and information.
+Criterion  6.1.2.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The retention process
+provides expected
+confidentiality and security.
+Page 5 of
+ 21 Page 5 of
+ 21 Page 5 of
+ 21 Page 5 of
+ 21 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.1.2.3
+Critical: þ
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Records, data and
+information are retained
+according to policy or laws
+and regulations.
+Criterion  6.1.2.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Records, data and
+information are destroyed
+appropriately.
+Page 6 of
+ 21 Page 6 of
+ 21 Page 6 of
+ 21 Page 6 of
+ 21 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+6.1.3 Standard
+The information plan is implemented and supported by sufficient staff and other
+resources.
+Standard Intent: The organisation's information management plan, once complete and
+approved as necessary, is implemented. The organisation provides the staff, technology and
+other resources necessary to implement the plan and meet the identified information needs
+of the healthcare providers, managers and others.
+ 
+Individuals in the organisation who generate, collect, analyse and use data and information
+are educated and trained to effectively participate in managing information. Such education
+and training enables these individuals to:
+  
+•                understand the security and confidentiality of data and information
+•                use measurement instruments, statistical tools and data analysis  
+          methods
+•                assist in interpreting data
+•                use data and information to help in decision making
+•                educate and support the participation of patients and families in care processes, and
+           use indicators to assess and improve care and work processes.
+  
+Individuals are appropriately educated and trained in regard to their responsibilities, job
+descriptions and data and information needs.
+  
+Information management technology represents a major investment of resources for a
+health organisation. For this reason, technology is carefully matched to the current and
+future needs of the organisation and the organisation's resources. Available technology
+needs to be integrated with existing information management processes and serves to
+integrate the activities of all the departments and services of the organisation. This level of
+coordination requires that key clinical and managerial staff participate in the selection
+process. The management of the organisation ensures that staff members have the required
+supplies, registers, check lists, forms, etc. required for data management.
+Criterion Comments
+Recommendations
+Criterion  6.1.3.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Sufficient staff members
+support the implementation.
+Criterion  6.1.3.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Required technology and
+other resources support the
+implementation.
+Page 7 of
+ 21 Page 7 of
+ 21 Page 7 of
+ 21 Page 7 of
+ 21 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.1.3.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Strategies are implemented
+to meet the information needs
+of those who carry out
+dispatch activities.
+Criterion  6.1.3.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Strategies are implemented
+to meet the information needs
+of those who provide clinical
+services.
+Criterion  6.1.3.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Strategies are implemented
+to meet the information needs
+of those who manage the
+organisation.
+Criterion  6.1.3.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Strategies are implemented
+to meet the information needs
+of individuals and agencies
+outside the organisation.
+Page 8 of
+ 21 Page 8 of
+ 21 Page 8 of
+ 21 Page 8 of
+ 21 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+6.2 Aggregate Data and Information
+6.2.1 Standard
+Aggregate data and information support patient care, organisation management
+and the quality management programme.
+Standard Intent: Individual facilities submit statistical data on a regular basis but this must be
+aggregated and analysed to produce a profile of the organisation over time, to allow
+comparison between facilities in the same organisation and to allow the organisation to
+compare its performance with other organisations regionally, nationally and internationally.
+Criterion Comments
+Recommendations
+Criterion  6.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has a
+process to aggregate data
+and has determined what
+data and information are to
+be regularly aggregated to
+meet the needs of medical
+direction and managerial staff
+in the organisation and
+agencies outside the
+organisation.
+Criterion  6.2.1.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Aggregate data and
+information support patient
+care.
+Criterion  6.2.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Aggregate data and
+information support
+organisation management.
+Criterion  6.2.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Aggregate data and
+information support the
+quality management
+programme.
+Page 9 of
+ 21 Page 9 of
+ 21 Page 9 of
+ 21 Page 9 of
+ 21 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.2.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation provides
+needed data to agencies
+outside the organisation.
+Criterion  6.2.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The organisation contributes
+data or information to external
+databases in accordance with
+laws or regulations.
+Criterion  6.2.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The organisation compares
+its performance using
+external databases.
+Criterion  6.2.1.8
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Security and confidentiality of
+patient-specific data and
+information are maintained
+when contributing to or using
+external databases.
+Page 10 of
+ 21 Page 10 of
+ 21 Page 10 of
+ 21 Page 10 of
+ 21 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+6.3 EMS Dispatch Records
+6.3.1 Standard
+The organisation initiates and maintains dispatch records for each request for
+service.
+Criterion Comments
+Recommendations
+Criterion  6.3.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation maintains a
+dispatch record for each
+request for service.
+Criterion  6.3.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The record includes the
+location of the incident.
+Criterion  6.3.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The record includes call-back
+information.
+Criterion  6.3.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The record includes the type
+and nature of the request.
+Page 11 of
+ 21 Page 11 of
+ 21 Page 11 of
+ 21 Page 11 of
+ 21 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.3.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The record includes any pre-
+arrival information, if needed.
+Criterion  6.3.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The record includes
+identification of the vehicle
+responding to the request.
+Criterion  6.3.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The record includes
+assistance from any other
+agency, if needed.
+Criterion  6.3.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+All voice calls are recorded
+for recovery at a later stage.
+Criterion  6.3.1.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+All voice calls are backed up
+at a remote site.
+Page 12 of
+ 21 Page 12 of
+ 21 Page 12 of
+ 21 Page 12 of
+ 21 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+6.4 Clinical Records
+6.4.1 Standard
+The organisation initiates and maintains a clinical record for every patient assessed
+or treated which is protected from loss, destruction, tampering and un-prescribed
+access or use.
+Criterion Comments
+Recommendations
+Criterion  6.4.1.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A clinical record is initiated for
+every patient assessed or
+treated by the organisation.
+Criterion  6.4.1.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Patient clinical records are
+maintained through the use of
+an identifier unique to the
+patient, or some other
+effective method.
+Criterion  6.4.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Records and information are
+protected from loss or
+destruction according to
+documented policies and
+procedures.
+Criterion  6.4.1.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is provision for
+authorised access to patient
+records at all times.
+Page 13 of
+ 21 Page 13 of
+ 21 Page 13 of
+ 21 Page 13 of
+ 21 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.4.1.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Storage space for health
+records is secured against
+unauthorised entry.
+Criterion  6.4.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Records and information are
+protected from tampering and
+un-prescribed access or use
+according to documented
+policies and procedures.
+Criterion  6.4.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Access is consistent with
+organisation confidentiality
+and security policies.
+Criterion  6.4.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Records, data and
+information are destroyed
+appropriately.
+Page 14 of
+ 21 Page 14 of
+ 21 Page 14 of
+ 21 Page 14 of
+ 21 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+6.4.2 Standard
+Organisation policy identifies those authorised to make entries in the patient record
+and determines the record's content and format.
+Standard Intent: Each organisation has a process to assess the quality and completeness of
+patient records. That process is a part of the organisation's performance improvement
+activities and is carried out regularly. Clinical record review is based on a representative
+sample (a sample representing the practitioners providing care and the types of care
+provided).The medical staff, nursing staff and other relevant clinical professionals who are
+authorised to make entries in the patient record conduct the review process. The focus of
+the review is on the quality of the record and clinical information available during the care
+process. Thus, the organisation's record review process includes the review of the records
+of patients currently receiving care as well as the records of discharged patients.
+Criterion Comments
+Recommendations
+Criterion  6.4.2.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The specific content of patient
+records has been determined
+by the organisation.
+Criterion  6.4.2.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Those prescribed to make
+entries in the patient record
+are identified in organisation
+policy.
+Criterion  6.4.2.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The format and location of
+entries are determined by
+organisation policy.
+Page 15 of
+ 21 Page 15 of
+ 21 Page 15 of
+ 21 Page 15 of
+ 21 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.4.2.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a process to ensure
+that only authorised
+individuals make entries in
+patient records.
+6.4.3 Standard
+Record content is sufficient to meet clinical needs.
+Criterion Comments
+Recommendations
+Criterion  6.4.3.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patient records contain
+adequate information to
+identify the patient.
+Criterion  6.4.3.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patient records contain
+adequate information to
+determine the patient's
+medical needs.
+Criterion  6.4.3.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patient records contain
+adequate information to
+justify the care and treatment.
+Criterion  6.4.3.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patient records contain
+adequate information to
+document the course and
+results of treatment.
+Page 16 of
+ 21 Page 16 of
+ 21 Page 16 of
+ 21 Page 16 of
+ 21 
+--- Page 17 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.4.3.5
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patient records contain
+adequate information about
+the patient's disposition.
+Criterion  6.4.3.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The author of each patient
+record entry can be identified.
+Criterion  6.4.3.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The date of each patient
+record entry can be identified.
+Criterion  6.4.3.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+When required by the
+organisation, the time of an
+entry can be identified.
+Criterion  6.4.3.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Standardised diagnosis
+codes, according to national
+guidelines, are used.
+Page 17 of
+ 21 Page 17 of
+ 21 Page 17 of
+ 21 Page 17 of
+ 21 
+--- Page 18 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.4.3.10
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Procedures are noted in
+standardised format.
+Criterion  6.4.3.11
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Standardised symbols,
+definitions and abbreviations
+are used.
+6.4.4 Standard
+Treat and release and non-treat, non-transport occurrences are documented.
+Criterion Comments
+Recommendations
+Criterion  6.4.4.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Treat and release and non-
+treat, non-transport
+occurrences are documented.
+Criterion  6.4.4.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The clinical record contains a
+description of the patient's
+physical and clinical status.
+Criterion  6.4.4.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The clinical record contains
+the criteria used to determine
+the patient's competence.
+Page 18 of
+ 21 Page 18 of
+ 21 Page 18 of
+ 21 Page 18 of
+ 21 
+--- Page 19 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.4.4.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The clinical record contains a
+description of the treatment
+rendered.
+Criterion  6.4.4.5
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The clinical record contains a
+description of options for
+follow-up care, including re-
+contacting the medical
+transport provider.
+Criterion  6.4.4.6
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The clinical record contains
+verification and signature of
+the competent patient
+indicating that he or she
+understands his or her right to
+refuse treatment or transport,
+any treatment received and
+any follow-up care needed.
+Criterion  6.4.4.7
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The clinical record contains
+the reason for incomplete or
+non-treatment and non-
+transport.
+Page 19 of
+ 21 Page 19 of
+ 21 Page 19 of
+ 21 Page 19 of
+ 21 
+--- Page 20 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+6.4.5 Standard
+As part of its performance improvement activities, the organisation regularly
+assesses patient record content and the completeness of patient records.
+Criterion Comments
+Recommendations
+Criterion  6.4.5.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patient records are reviewed
+regularly.
+Criterion  6.4.5.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The review uses a
+representative sample.
+Criterion  6.4.5.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The review is conducted by
+clinical professionals.
+Criterion  6.4.5.4
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The review focuses on the
+timeliness, legibility and
+completeness of the clinical
+record.
+Page 20 of
+ 21 Page 20 of
+ 21 Page 20 of
+ 21 Page 20 of
+ 21 
+--- Page 21 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+6.Management of Information
+Criterion  6.4.5.5
+Critical: ¨
+Catg: Evaluation + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Record contents required by
+law or regulation are included
+in the review process.
+Page 21 of
+ 21 Page 21 of
+ 21 Page 21 of
+ 21 Page 21 of
+ 21 

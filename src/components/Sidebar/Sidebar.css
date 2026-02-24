@@ -64,6 +64,28 @@
     font-weight: bold;
 }
 
+.section-item.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f7fafc;
+    border-left: 4px solid #cbd5e0 !important;
+}
+
+.section-item.locked:hover {
+    background-color: #f7fafc;
+}
+
+.section-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lock-badge {
+    font-size: 0.8rem;
+    filter: grayscale(100%);
+}
+
 .status {
     font-size: 0.8rem;
     color: #6c757d;

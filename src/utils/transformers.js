@@ -48,7 +48,8 @@ export const transformMetadata = (metadata) => {
                 fields.push({
                     id: de.id || deId || Math.random().toString(),
                     label: cleanName,
-                    type: 'header'
+                    type: 'header',
+                    code: de.code
                 });
             } else {
                 let options = [];
@@ -78,12 +79,16 @@ export const transformMetadata = (metadata) => {
                     console.log(`  Dropdown Found: ${name} (${options.length} options)`);
                 }
 
+                const isComment = name.toLowerCase().endsWith('-comments') || name.toLowerCase().endsWith('-comment');
+
                 fields.push({
                     id: de.id || deId,
-                    label: name.endsWith('-comment') || name.endsWith('comment') ? 'Comment' : name,
+                    label: isComment ? 'Comment' : name,
                     type: finalType,
                     options: options,
-                    compulsory: section.displayName === 'Assessment Details' ? true : de.compulsory
+                    compulsory: section.displayName === 'Assessment Details' ? true : de.compulsory,
+                    isComment: isComment,
+                    code: de.code // Added code property
                 });
             }
         });
@@ -91,7 +96,7 @@ export const transformMetadata = (metadata) => {
         return {
             id: section.id,
             name: section.displayName,
-            code: section.code || '',
+            code: (section.code || '').replace(/^EMS_/, 'SE '),
             fields: fields
         };
     });
@@ -101,7 +106,9 @@ export const transformMetadata = (metadata) => {
     const prefixSectionsByPrefix = {};
 
     transformedSections.forEach(sec => {
-        const isGeneral = !sec.code || !sec.code.includes('_') ||
+        // Updated: Recognize both '_' and ' ' as prefix separators
+        const hasPrefix = sec.code && (sec.code.includes('_') || sec.code.startsWith('SE '));
+        const isGeneral = !sec.code || !hasPrefix ||
             sec.name === 'Assessment Details' ||
             sec.code.startsWith('GENERAL_');
 
@@ -112,7 +119,8 @@ export const transformMetadata = (metadata) => {
             });
             generalSections.push(sec);
         } else {
-            const prefix = sec.code.split('_')[0];
+            // Extract prefix handling both space and underscore
+            const prefix = sec.code.includes('_') ? sec.code.split('_')[0] : sec.code.split(' ')[0];
             if (!prefixSectionsByPrefix[prefix]) prefixSectionsByPrefix[prefix] = [];
             prefixSectionsByPrefix[prefix].push(sec);
         }
@@ -120,11 +128,20 @@ export const transformMetadata = (metadata) => {
 
     // 2. Create groups for each prefix, injecting general sections as defaults
     const finalGroups = Object.keys(prefixSectionsByPrefix).map(prefix => {
+        // Sort sections numerically within the group
+        const groupSections = [...prefixSectionsByPrefix[prefix]].sort((a, b) => {
+            const extractNum = (code) => {
+                const match = code.match(/\d+/);
+                return match ? parseInt(match[0], 10) : 0;
+            };
+            return extractNum(a.code) - extractNum(b.code);
+        });
+
         return {
             id: prefix,
             name: prefix,
             // Prepend general sections to every category
-            sections: [...generalSections, ...prefixSectionsByPrefix[prefix]]
+            sections: [...generalSections, ...groupSections]
         };
     });
 
@@ -139,6 +156,20 @@ export const transformMetadata = (metadata) => {
             sections: generalSections
         }];
     }
+
+    // 4. Post-process to link questions to their associated comment fields
+    sortedGroups.forEach(group => {
+        group.sections.forEach(section => {
+            const fields = section.fields;
+            for (let i = 0; i < fields.length - 1; i++) {
+                // If this is a question (not a header or comment) and the next field is a comment
+                if (!fields[i].isComment && fields[i].type !== 'header' && fields[i + 1].isComment) {
+                    fields[i].commentFieldId = fields[i + 1].id;
+                    fields[i + 1].questionFieldId = fields[i].id; // Link comment back to question
+                }
+            }
+        });
+    });
 
     return sortedGroups;
 };

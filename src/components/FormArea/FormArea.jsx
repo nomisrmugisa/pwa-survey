@@ -1,11 +1,74 @@
 import React, { useState } from 'react';
 import './FormArea.css';
-import { useIncrementalSave } from '../../hooks/useIncrementalSave';
 import { useApp } from '../../contexts/AppContext';
 import { api } from '../../services/api';
 import indexedDBService from '../../services/indexedDBService';
+import emsConfig from '../../assets/ems_config.json';
 
-const FormArea = ({ activeSection, selectedFacility, user }) => {
+// Build a fast lookup from EMS criterion ID (e.g. "1.2.1.3") to its
+// standard statement and intent text.
+const buildCriterionIndex = () => {
+    const index = {};
+    try {
+        const config = emsConfig?.ems_full_configuration || [];
+        config.forEach(se => {
+            (se.sections || []).forEach(section => {
+                (section.standards || []).forEach(standard => {
+                    (standard.criteria || []).forEach(crit => {
+                        if (!crit || !crit.id) return;
+                        index[crit.id] = {
+                            statement: standard.statement || '',
+                            intent: standard.intent_tooltip || ''
+                        };
+                    });
+                });
+            });
+        });
+    } catch (e) {
+        console.error('FormArea: Failed to build EMS criterion index', e);
+    }
+    return index;
+};
+
+const EMS_CRITERION_INDEX = buildCriterionIndex();
+
+const normalizeCriterionCode = (rawCode) => {
+    if (!rawCode) return '';
+    let code = String(rawCode).trim();
+    // Strip known prefixes like "EMS_" or "SE " if present
+    code = code.replace(/^EMS_/, '');
+    if (code.startsWith('SE ')) {
+        code = code.slice(3).trim();
+    }
+    // If any spaces remain, take the first token (e.g. "1.1.1.1 extra" -> "1.1.1.1")
+    code = code.split(/\s+/)[0];
+    return code;
+};
+
+const getCriterionTooltip = (code) => {
+	    const normalized = normalizeCriterionCode(code);
+	    if (!normalized) return '';
+	    const info = EMS_CRITERION_INDEX[normalized];
+	    if (!info) return '';
+
+	    const parts = [];
+	    if (info.statement) parts.push(`Statement:\n${info.statement.trim()}`);
+	    if (info.intent) parts.push(`Intent:\n${info.intent.trim()}`);
+	    return parts.join('\n\n');
+	};
+
+const FormArea = ({
+    activeSection,
+    selectedFacility,
+    user,
+    groups,
+    formData,
+    saveField,
+    isSaving,
+    lastSaved,
+    isADComplete,
+    activeEventId
+}) => {
     // DEBUG: Validate props on render
     React.useEffect(() => {
         if (!activeSection) console.warn("FormArea: No active section provided");
@@ -14,43 +77,14 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
         if (!user) console.warn("FormArea: No user provided");
     }, [activeSection, selectedFacility, user]);
 
-    // Generate Event ID safely
-    const eventId = React.useMemo(() => {
-        if (!selectedFacility || !selectedFacility.trackedEntityInstance) return null;
-        return `draft-${selectedFacility.trackedEntityInstance}`;
-    }, [selectedFacility]);
-
     const { configuration } = useApp();
 
     // Submit state
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitResult, setSubmitResult] = useState(null); // { success, message }
 
-    const {
-        formData,
-        saveField,
-        loadFormData,
-        isSaving,
-        lastSaved
-    } = useIncrementalSave(eventId, {
-        user,
-        onSaveSuccess: (details) => console.log('✅ FormArea: Saved field:', details),
-        onSaveError: (error) => console.error('❌ FormArea: Save failed:', error)
-    });
-    // DUMMY DATA FOR DEBUGGING
-    // const formData = {};
-    // const saveField = (k, v) => console.log("Dummy Save:", k, v);
-    // const loadFormData = () => { };
-    // const isSaving = false;
-    // const lastSaved = null;
-
-    // Load data when eventId changes
-    React.useEffect(() => {
-        if (eventId) {
-            console.log("FormArea: Loading data for event:", eventId);
-            loadFormData();
-        }
-    }, [eventId, loadFormData]);
+    const isADSection = activeSection?.name === "Assessment Details";
+    const isLocked = !isADSection && !isADComplete;
 
     // Render Logic Helpers
     const renderFields = () => {
@@ -66,7 +100,6 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
             return <div className="empty-fields-message">No fields in this section.</div>;
         }
 
-        let questionNumber = 0;
 
         return activeSection.fields.map((field) => {
             // Safety check for field
@@ -78,22 +111,76 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
             if (field.type === 'header') {
                 return (
                     <div key={field.id} className="form-header-separator">
-                        <h3>{field.label}</h3>
+                        <h3>{field.code ? `${field.code} ${field.label}` : field.label}</h3>
                     </div>
                 );
             }
 
-            questionNumber++;
+            const isCommentField = field.isComment || field.label === 'Comment' || field.id?.endsWith('-comments') || field.id?.endsWith('-comment');
 
-            return (
-                <div key={field.id} className="form-field">
-                    <label>{`${questionNumber}. ${field.label || 'Unnamed Field'}`}</label>
+            const associatedCommentId = field.commentFieldId;
+            const currentCommentValue = associatedCommentId ? (formData[associatedCommentId] || '') : '';
+            const isCritical = currentCommentValue.includes('[CRITICAL]');
+            const questionValue = formData[field.id];
+            const isQuestionAnswered = questionValue !== undefined && questionValue !== null && questionValue !== '';
+
+            // Check if comment field is disabled (parent question not answered)
+            const parentQuestionId = field.questionFieldId;
+            const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
+
+            // Look up EMS standard/intent tooltip for this data element code
+            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code) : '';
+
+                return (
+                    <div
+                        key={field.id}
+                        className={`form-field ${isCritical ? 'is-critical' : ''} ${(!isParentAnswered && isCommentField) ? 'field-disabled' : ''}`}
+                        data-tooltip={(!isParentAnswered && isCommentField) ? "Please answer the main question first" : ""}
+                    >
+                        <div className="field-label-container">
+                            <div className="field-label-main">
+                                <label>
+                                    {isCommentField
+                                        ? (field.label || 'Unnamed Field')
+                                        : (field.code ? `${field.code} ${field.label || 'Unnamed Field'}` : field.label || 'Unnamed Field')}
+                                </label>
+                                {criterionTooltip && (
+                                    <button
+                                        type="button"
+                                        className="ems-info-icon"
+                                        data-ems-tooltip={criterionTooltip}
+                                        aria-label="View EMS standard and intent"
+                                    >
+                                        ?
+                                    </button>
+                                )}
+                            </div>
+                            {isCritical && <span className="critical-badge">CRITICAL</span>}
+                        {associatedCommentId && !isCommentField && (
+                            <div
+                                className={`critical-toggle-container ${!isQuestionAnswered ? 'disabled' : ''}`}
+                                data-tooltip={!isQuestionAnswered ? "Please answer the main question first" : ""}
+                            >
+                                <span className="toggle-label">Critical?</span>
+                                <label className="switch">
+                                    <input
+                                        type="checkbox"
+                                        checked={isCritical}
+                                        onChange={(e) => handleCriticalToggle(field.id, associatedCommentId, e.target.checked)}
+                                        disabled={!isQuestionAnswered}
+                                    />
+                                    <span className="slider round"></span>
+                                </label>
+                            </div>
+                        )}
+                    </div>
                     {field.type === 'select' ? (
                         <select
                             className="form-control"
                             value={formData[field.id] || ''}
                             onChange={(e) => handleInputChange(e, field.id)}
                             id={`field-${field.id}`} // Helper for testing
+                            disabled={!isParentAnswered && isCommentField}
                         >
                             <option value="">Select...</option>
                             {(() => {
@@ -156,6 +243,7 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
                             value={formData[field.id] || ''}
                             onChange={(e) => handleInputChange(e, field.id)}
                             id={`field-${field.id}`} // Helper for testing
+                            disabled={!isParentAnswered && isCommentField}
                         />
                     )}
                 </div>
@@ -175,6 +263,21 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
         saveField(fieldId, value);
     };
 
+    const handleCriticalToggle = (fieldId, commentFieldId, isChecked) => {
+        const currentComment = formData[commentFieldId] || '';
+        let newComment = currentComment;
+
+        if (isChecked) {
+            if (!currentComment.includes('[CRITICAL]')) {
+                newComment = currentComment ? `${currentComment} [CRITICAL]` : '[CRITICAL]';
+            }
+        } else {
+            newComment = currentComment.replace(/\s?\[CRITICAL\]/g, '').trim();
+        }
+
+        saveField(commentFieldId, newComment);
+    };
+
     const handleSubmit = async () => {
         if (!configuration) {
             setSubmitResult({ success: false, message: 'Form configuration not loaded yet.' });
@@ -191,13 +294,13 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
         try {
             const payload = api.formatEventData(formData, configuration, orgUnit, null);
             await api.submitEvent(payload);
-            if (eventId) {
-                await indexedDBService.markAsSynced(eventId, payload.event);
+            if (activeEventId) {
+                await indexedDBService.markAsSynced(activeEventId, payload.event);
             }
             setSubmitResult({ success: true, message: '✅ Submitted to DHIS2 successfully!' });
         } catch (err) {
             console.error('Submit failed:', err);
-            if (eventId) await indexedDBService.markAsFailed(eventId, err.message);
+            if (activeEventId) await indexedDBService.markAsFailed(activeEventId, err.message);
             setSubmitResult({ success: false, message: `❌ Submit failed: ${err.message}` });
         } finally {
             setIsSubmitting(false);
@@ -208,8 +311,8 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
         <div className="form-area">
             <div className="form-header">
                 <div className="header-content">
-                    <h2>{activeSection.name}</h2>
-                    {eventId && (
+                    <h2>{activeSection.code ? `${activeSection.code} ${activeSection.name}` : activeSection.name}</h2>
+                    {activeEventId && (
                         <div className="save-status-container">
                             {isSaving ? (
                                 <span className="save-status saving">
@@ -227,7 +330,15 @@ const FormArea = ({ activeSection, selectedFacility, user }) => {
                 </div>
             </div>
             <div className="form-content">
-                {renderFields()}
+                {isLocked ? (
+                    <div className="blocking-overlay">
+                        <div className="overlay-message">
+                            <span className="lock-icon">🔒</span>
+                            <h3>Section Locked</h3>
+                            <p>Please complete <strong>"Assessment Details"</strong> questions first to proceed.</p>
+                        </div>
+                    </div>
+                ) : renderFields()}
             </div>
             <div className="form-footer">
                 {submitResult && (

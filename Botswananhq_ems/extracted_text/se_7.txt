@@ -1,0 +1,1581 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 25 Page 1 of
+ 25 Page 1 of
+ 25 Page 1 of
+ 25 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Page 2 of
+ 25 Page 2 of
+ 25 Page 2 of
+ 25 Page 2 of
+ 25 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+7.1 Risk Management Programme
+7.1.1 Standard
+Managers and leaders work collaboratively to develop, implement and maintain
+effective risk management systems in the organisation.
+Standard Intent: To plan effectively, the organisation must be aware of all relevant risks. The
+goal is to prevent accidents and injuries, maintain safe and secure conditions for patients,
+families, staff, volunteers and visitors, and reduce and control hazards and risks.
+  
+Risk management includes:
+  
+•                Comprehensive inspection of the facility
+•                Planning all aspects of the risk management programme
+•                Implementation of the programme
+•                Education of staff
+•                Testing and monitoring the programme,  and
+•                Periodic review and revision of the programme.
+  
+Monitoring of all aspects of the programme provides valuable data to make improvements in
+the programme and further reduce risks within the organisation.
+Criterion Comments
+Recommendations
+Criterion  7.1.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Managers and leaders
+formulate a comprehensive
+risk management programme
+for the organisation.
+Criterion  7.1.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+One or more qualified and/or
+skilled and/or experienced
+individuals supervise the
+implementation of the risk
+management programme.
+Criterion  7.1.1.3
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The risk management
+programme includes
+documented processes for
+the identification of all risks
+(physical, environmental,
+medico-legal, operational,
+etc.) relating to organisational
+processes and systems, staff,
+patients, visitors and physical
+facilities.
+Page 3 of
+ 25 Page 3 of
+ 25 Page 3 of
+ 25 Page 3 of
+ 25 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.1.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The risk management
+programme includes
+documented plans and
+actions to eliminate or reduce
+the identified risks.
+Criterion  7.1.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The risk management
+programme includes the on-
+going monitoring of risks
+through documented risk
+assessments.
+Criterion  7.1.1.6
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Analysed data on negative
+incidents is used to monitor
+the effectiveness of the risk
+management programme.
+Criterion  7.1.1.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The risk management
+programme is reviewed and
+updated whenever there are
+changes in organisational
+systems and processes or
+physical facilities.
+Criterion  7.1.1.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Management and leaders
+ensure the development and
+implementation of written
+policies and procedures for all
+risk management processes
+and activities.
+Page 4 of
+ 25 Page 4 of
+ 25 Page 4 of
+ 25 Page 4 of
+ 25 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.1.1.9
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+On-going in-service training
+of all staff in these policies,
+procedures and risk
+management principles is
+documented.
+7.2 Occupational Health and Safety
+7.2.1 Standard
+As part of the risk management programme an occupational health and safety
+system is implemented in accordance with current legislation.
+Standard Intent: Legislation describes the health and safety measures to be implemented by
+organisations. In Botswana this is covered by the various legislation.
+In terms of this Act, committee members and representatives must be appointed or
+nominated in order to ensure the safety of staff, patients and visitors. Where the staff
+establishment is less than fifty (50), the requirement for a committee falls away, but the
+functions must continue. This could possibly be included in the management activities and
+be included on the agenda of the management team.
+Criterion Comments
+Recommendations
+Criterion  7.2.1.1
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A health and safety
+committee, where applicable,
+is constituted in terms of
+current legislation.
+Criterion  7.2.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The responsibilities of
+committee members and
+health and safety
+representatives are
+documented with signed
+acceptance.
+Page 5 of
+ 25 Page 5 of
+ 25 Page 5 of
+ 25 Page 5 of
+ 25 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.2.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Health and safety meetings
+are held at a frequency
+determined by legislation, and
+when requested by staff or
+management.
+Criterion  7.2.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Written policies and
+procedures on all aspects of
+health and safety guide staff
+in maintaining a safe work
+environment.
+Criterion  7.2.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Staff and key volunteers are
+formally consulted via health
+and safety representatives on
+matters relating to health and
+safety.
+7.2.2 Standard
+Management makes provision for occupational health services according to a
+documented policy framework.
+Standard Intent: The provision of health and safety services, emergency planning and other
+aspects of providing a safe environment all require staff to have the necessary knowledge
+and skills for their implementation.
+Criterion Comments
+Recommendations
+Criterion  7.2.2.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The organisation has access
+to the services of a
+knowledgeable and
+experienced person in the
+field of occupational health.
+Page 6 of
+ 25 Page 6 of
+ 25 Page 6 of
+ 25 Page 6 of
+ 25 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.2.2.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation provides it
+staff with written policies and
+procedures on its provisioning
+of occupational health
+services.
+Criterion  7.2.2.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The occupational health
+service includes the provision
+of information and training on
+risks specific to the
+healthcare workers (e.g.
+manual handling, needle stick
+injuries).
+7.3 Security
+7.3.1 Standard
+As part of the risk management programme, the organisation makes provision for
+the safety and security of staff, volunteers, patients, visitors and buildings.
+Standard Intent: The organisation has a responsibility to ensure that staff, volunteers, patients
+and visitors are safe from attacks or theft by intruders. The health and safety committee
+identifies areas and groups that are vulnerable and require added security.
+  
+Plans are developed and implemented to provide protection. The loss of organisation
+property must be prevented.
+Criterion Comments
+Recommendations
+Criterion  7.3.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Management ensures the
+safety of staff, patients,
+visitors and buildings.
+Page 7 of
+ 25 Page 7 of
+ 25 Page 7 of
+ 25 Page 7 of
+ 25 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.3.1.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Security systems provide for
+internal and external security.
+Criterion  7.3.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Management of the
+organisation has identified
+those areas of the buildings
+where secure locks and
+intruder alarms should be
+fitted.
+Criterion  7.3.1.4
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a mechanism known
+to staff for summoning the
+assistance of
+security/police/protection
+service in the case of an
+emergency.
+Page 8 of
+ 25 Page 8 of
+ 25 Page 8 of
+ 25 Page 8 of
+ 25 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+7.4 Fire Safety
+7.4.1 Standard
+As part of the risk management programme, the organisation implements structured
+systems to ensure fire safety.
+Standard Intent: Fire is an ever-present risk in a healthcare organisation. An organisation needs
+to plan for:
+  
+•                The prevention of fires through the reduction of risks, such as the safe storage and
+handling of potentially flammable materials
+•                Safe and unobstructed means of exit in the event of fire
+•                Clearly depicted fire escape routes
+•                Inspection reports from the local fire departments,  and
+•                Suppression mechanisms such as water hoses, chemical suppressants or sprinkler
+systems. These actions when combined give patients, families, staff and visitors adequate
+time to safely exit the facility in the event of a fire or smoke. These actions are effective no
+matter what the age, size or construction of the facility.
+  
+The organisation's fire safety plan identifies the:
+  
+•                Frequency of inspection, testing and maintenance of fire protection and safety
+•                systems, consistent with requirements
+•                Process for testing, at least twice per year, the plan for the safe evacuation of the
+facility in the event of a fire or smoke
+•                Necessary education of staff to effectively protect and evacuate patients when an
+emergency occurs,  and
+•                Participation of each staff member in at least one emergency preparedness test per
+year.
+  
+All inspections, testing and maintenance are documented.
+The organisation develops and implements a policy and plan to eliminate smoking in the
+organisation's facilities, or to limit smoking to designated non-patient care areas.
+Criterion Comments
+Recommendations
+Criterion  7.4.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are structured systems
+and processes in place to
+ensure that all occupants of
+the organisation's facilities
+are safe from fire or smoke.
+Criterion  7.4.1.2
+Critical: þ
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Documented certification (e.g.
+fire clearance certificate) is
+available from the relevant
+authority that the facility
+complies with applicable laws
+and regulations in relation to
+fire safety.
+Page 9 of
+ 25 Page 9 of
+ 25 Page 9 of
+ 25 Page 9 of
+ 25 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.4.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Fire-fighting equipment is
+available in each ambulance
+or other patient transport
+vehicle.
+Criterion  7.4.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Documentation is available
+that fire detection and
+abatement systems, as
+required, are inspected,
+tested and maintained at a
+frequency determined by the
+organisation.
+Criterion  7.4.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Fire fighting equipment is
+regularly inspected and
+serviced at least annually with
+the date of service recorded
+on the apparatus.
+Criterion  7.4.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Flammable materials are
+clearly labelled and stored
+separately in fireproof
+cupboards.
+Criterion  7.4.1.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Easily recognised and
+understood signs prohibiting
+smoking are displayed in
+areas where flammable
+materials and combustible
+gases are stored.
+Page 10 of
+ 25 Page 10 of
+ 25 Page 10 of
+ 25 Page 10 of
+ 25 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.4.1.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A floor plan is displayed
+which shows the location of
+fire fighting equipment,
+evacuation routes and
+emergency exits.
+Criterion  7.4.1.9
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Annual staff training in fire
+prevention and evacuation
+procedures is documented.
+7.5 Emergency Planning and Disaster Response
+7.5.1 Standard
+The organisation develops a plan to respond to likely community emergencies,
+epidemics, and natural or other disasters.
+Standard Intent: There are two elements to a disaster plan. Firstly, individual facilities must
+have emergency preparedness. Secondly, the capabilities of these individual facilities must
+be catalogued and integrated into a coordinated disaster plan, which involves other facilities
+and organisations within the community. It is this integration and coordination, which is the
+responsibility of senior management. The disaster plan must address closure of individual
+facilities.
+  
+Criterion Comments
+Recommendations
+Criterion  7.5.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation plans its
+response to likely community
+emergencies, epidemics and
+natural or other disasters.
+Page 11 of
+ 25 Page 11 of
+ 25 Page 11 of
+ 25 Page 11 of
+ 25 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.5.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation participates
+in disaster planning at local or
+national level as appropriate
+to the scope of the
+organisation.
+Criterion  7.5.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation
+communicates with allied
+services to ensure
+coordination at different
+levels.
+Criterion  7.5.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The disaster preparedness
+plan ensures that disaster
+response employees are well
+trained.
+Criterion  7.5.1.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The plan provides for the
+provision of disaster response
+supplies and equipment.
+Criterion  7.5.1.6
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Communication equipment is
+available in emergencies.
+Page 12 of
+ 25 Page 12 of
+ 25 Page 12 of
+ 25 Page 12 of
+ 25 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.5.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The plan is tested at least
+once a year.
+7.5.2 Standard
+The organisation has a plan for continued operation and communication for the
+dispatch centre in the event of service disruption.
+Criterion Comments
+Recommendations
+Criterion  7.5.2.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The plan for providing
+continued communication in
+the event of a service
+disruption addresses
+equipment failures at the
+dispatch centre or in the
+vehicle.
+Criterion  7.5.2.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The plan addresses power or
+telephone line
+(incoming/outbound) failures.
+Criterion  7.5.2.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The plan addresses
+inaccessibility to the dispatch
+centre.
+Page 13 of
+ 25 Page 13 of
+ 25 Page 13 of
+ 25 Page 13 of
+ 25 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.5.2.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The plan addresses vehicle
+failure.
+Criterion  7.5.2.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan addresses failure or
+closure of the facility.
+Criterion  7.5.2.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The plan is executed at least
+annually.
+Page 14 of
+ 25 Page 14 of
+ 25 Page 14 of
+ 25 Page 14 of
+ 25 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+7.6 Exposure to Hazardous Materials
+7.6.1 Standard
+The organisation has a plan for the inventory, handling, storage and use of stocked
+hazardous materials and the control and disposal of self-generated hazardous
+materials and waste.
+Standard Intent: Hazardous materials and wastes used and generated by the organisation are
+identified and safely controlled according to a plan. Such materials and wastes include
+chemicals, medical gases, vehicle fuel, hazardous gases and vapours, and other regulated
+medical and infectious wastes.
+Criterion Comments
+Recommendations
+Criterion  7.6.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Hazardous materials and
+wastes are identified by the
+organisation and managed
+according to a plan.
+Criterion  7.6.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan includes safe
+handling, segregation,
+storage and use.
+Criterion  7.6.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan includes the proper
+disposal of hazardous
+wastes.
+Page 15 of
+ 25 Page 15 of
+ 25 Page 15 of
+ 25 Page 15 of
+ 25 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.6.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan includes the proper
+protective equipment and
+procedures during use, spill
+or exposure.
+Criterion  7.6.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan includes the
+provision of material safety
+data sheets (MSDS) for those
+hazardous materials used by
+the organisation
+Criterion  7.6.1.6
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan identifies
+documentation requirements,
+including any permits,
+licences or other regulatory
+requirements.
+Criterion  7.6.1.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan includes labelling of
+hazardous materials and
+wastes.
+Page 16 of
+ 25 Page 16 of
+ 25 Page 16 of
+ 25 Page 16 of
+ 25 
+--- Page 17 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+7.6.2 Standard
+There is a programme for the early detection and management of events caused by
+biological and chemical agents.
+Standard Intent: The public health system must be able to respond to the deliberate release of
+biological and chemical agents. A Biological and Chemical Agent (BCA) plan is usually
+nationally or is regionally based and must address early detection and containment of such
+events.
+ 
+Each organisation will assess the relevance of their involvement in a Biological and
+Chemical Agents plan and will assess this as a risk for exclusion or inclusion.  The
+organisation has liaised with public or governmental entities to understand their expectations
+in this regard.
+Criterion Comments
+Recommendations
+Criterion  7.6.2.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+One or more individuals
+oversee the infection, biologic
+and chemical agent control
+programme.
+Criterion  7.6.2.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The individuals are qualified
+for the scope and complexity
+of the programme.
+Criterion  7.6.2.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The Biologic and Chemical
+Agents (BCA) control
+programme is based on
+accepted practice guidelines.
+Page 17 of
+ 25 Page 17 of
+ 25 Page 17 of
+ 25 Page 17 of
+ 25 
+--- Page 18 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.6.2.4
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The BCA control programme
+is based on applicable laws
+and regulations.
+Criterion  7.6.2.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Information management
+systems support the BCA
+control programme.
+Criterion  7.6.2.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All staff members receive
+orientation to the
+organisation's BCA control
+procedures and practices.
+Criterion  7.6.2.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All staff members are
+educated in BCA control
+when new procedures are
+implemented.
+Criterion  7.6.2.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All staff members are
+educated in BCA control
+when significant trends are
+noted in surveillance data.
+Page 18 of
+ 25 Page 18 of
+ 25 Page 18 of
+ 25 Page 18 of
+ 25 
+--- Page 19 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+7.6.3 Standard
+The organisation develops and implements a plan for response and mitigation of
+hazardous materials incidents.
+Criterion Comments
+Recommendations
+Criterion  7.6.3.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has a plan
+for responding to and
+mitigating hazardous
+materials incidents.
+Criterion  7.6.3.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan addresses protocols
+for identifying potential and
+actual hazardous materials
+incidents.
+Criterion  7.6.3.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan addresses defined
+roles and responsibilities for
+managing communications,
+triage, medical response,
+treatment, transport and
+hazardous substance(s).
+Criterion  7.6.3.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan addresses protocols
+for identifying the hazardous
+substance(s).
+Page 19 of
+ 25 Page 19 of
+ 25 Page 19 of
+ 25 Page 19 of
+ 25 
+--- Page 20 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.6.3.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan addresses criteria
+for responding to and
+containing the incident.
+Criterion  7.6.3.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan addresses protocols
+for identifying, isolating and
+initiating early treatment of
+contaminated victims.
+Criterion  7.6.3.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan addresses roles and
+responsibilities of other local
+and regional agencies that
+are involved in the hazardous
+materials response in order to
+ensure coordinated response.
+7.6.4 Standard
+The organisation develops and implements a plan that protects rescue staff and
+minimises their exposure to hazardous materials.
+Standard Intent: Personnel responding to service requests may be exposed to hazardous
+materials, typically following motor vehicle accidents involving carriers. It is the responsibility
+of the leaders to make sure that staff members are not exposed to personal risk when
+attending these incidents.
+Criterion Comments
+Recommendations
+Criterion  7.6.4.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation identifies
+personnel tasked with
+hazardous materials duties.
+Page 20 of
+ 25 Page 20 of
+ 25 Page 20 of
+ 25 Page 20 of
+ 25 
+--- Page 21 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.6.4.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation provides the
+necessary equipment for the
+personnel as appropriate for
+their assigned duties.
+Criterion  7.6.4.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation provides the
+necessary training to
+personnel as appropriate for
+their assigned tasks.
+Criterion  7.6.4.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Responding personnel have
+been trained to operate or
+appropriately use assigned
+equipment.
+Criterion  7.6.4.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation develops
+guidelines and criteria for
+monitoring hazardous
+materials personnel.
+Criterion  7.6.4.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation develops
+protocols for treatment of ill or
+injured hazardous materials
+personnel.
+Page 21 of
+ 25 Page 21 of
+ 25 Page 21 of
+ 25 Page 21 of
+ 25 
+--- Page 22 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.6.4.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Rescue personnel are
+monitored during and after a
+hazardous materials incident.
+Criterion  7.6.4.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation keeps
+records of all exposure of
+personnel and/or volunteers
+to hazardous materials.
+Criterion  7.6.4.9
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation keeps
+records of all exposure of
+personnel and/or volunteers
+to hazardous materials.
+Page 22 of
+ 25 Page 22 of
+ 25 Page 22 of
+ 25 Page 22 of
+ 25 
+--- Page 23 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+7.7 Prevention and Control of Infections
+7.7.1 Standard
+As part of the risk management programme the organisation designs and
+implements a coordinated programme to reduce the risk of infections in patients
+and healthcare workers.
+Standard Intent: For an infection prevention and control programme to be effective, it must be
+comprehensive, encompassing both patient care and employee health. The programme is
+appropriate to the size and geographic location of the organisation, the services offered by
+the organisation and the patients seen by the organisation.
+  
+One or more individuals, acting on a full-time or part-time basis, direct the programme. Their
+qualifications depend on the activities they will carry out and may be met through education,
+training and experience. Coordination involves communication with all parts of the
+organisation to ensure that the programme is continuous and proactive.
+  
+Information is essential to an infection control programme. Information supports the tracking
+of risks, rates and trends in nosocomial infections, data analysis, interpretation and
+presentation of findings.
+  
+In addition, infection control programme data and information are managed with those of the
+organisation's quality management and improvement programme.
+  
+Criterion Comments
+Recommendations
+Criterion  7.7.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+An individual member of staff
+is identified to be responsible
+for infection control in the
+organisation.
+Criterion  7.7.1.2
+Critical: þ
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All patient, staff and visitor
+areas of the organisation are
+included in the documented
+infection control programme.
+Page 23 of
+ 25 Page 23 of
+ 25 Page 23 of
+ 25 Page 23 of
+ 25 
+--- Page 24 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.7.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Disposal of infectious waste
+and body fluids is included in
+the programme.
+Criterion  7.7.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Disposal of other clinical
+waste including sharps and
+needles is included in the
+programme.
+Criterion  7.7.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The handling and disposal of
+blood and blood components
+are included in the
+programme.
+Criterion  7.7.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Kitchen hygiene as well as
+food preparation and handling
+are included in the
+programme.
+Criterion  7.7.1.7
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Written policies and
+procedures guide staff in the
+implementation of the
+infection control programme.
+Page 24 of
+ 25 Page 24 of
+ 25 Page 24 of
+ 25 Page 24 of
+ 25 
+--- Page 25 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+7.Risk Management
+Criterion  7.7.1.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Regular in-service training to
+staff in the field of infection
+control is documented.
+7.7.2 Standard
+The organisation has a written plan for the handling, storage and disposal of waste.
+Standard Intent: Regulated medical and infectious waste, are identified by the organisation and
+are safely controlled according to a plan. All clinical waste is regarded as hazardous or
+potentially hazardous.
+Criterion Comments
+Recommendations
+Criterion  7.7.2.1
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Waste is managed according
+to a written plan consistent
+with current local by-laws and
+regulations.
+Criterion  7.7.2.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a colour-coding
+system of bags to be used for
+the segregation of different
+types of waste.
+Criterion  7.7.2.3
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The plan includes safe
+handling, storage and
+disposal of waste.
+Page 25 of
+ 25 Page 25 of
+ 25 Page 25 of
+ 25 Page 25 of
+ 25 

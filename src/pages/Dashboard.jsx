@@ -5,13 +5,19 @@ import { useStorage } from '../hooks/useStorage';
 import { useUserAssessments } from '../hooks/useUserAssessments';
 import { SurveyPreview } from '../components/SurveyPreview.jsx';
 import indexedDBService from '../services/indexedDBService';
+import emsConfig from '../assets/ems_config.json';
 import {
     Dialog,
     DialogTitle,
     DialogContent,
     DialogActions,
-    Button
+    Button,
+    IconButton,
+    Tooltip
 } from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
+import CloudSyncIcon from '@mui/icons-material/CloudSync';
 import './Dashboard.css';
 
 export function Dashboard() {
@@ -43,6 +49,12 @@ export function Dashboard() {
     const [successMessage, setSuccessMessage] = useState('');
     const [showClearConfirm, setShowClearConfirm] = useState(false);
     const [isAssessmentsCollapsed, setIsAssessmentsCollapsed] = useState(true);
+    const [showSettings, setShowSettings] = useState(false);
+    const [selectedSE, setSelectedSE] = useState(null);
+    const [isEditingJson, setIsEditingJson] = useState(false);
+    const [editedJson, setEditedJson] = useState('');
+    const [jsonError, setJsonError] = useState(null);
+    const [customEmsConfig, setCustomEmsConfig] = useState(null);
 
     // Integrated Hook
     const assessmentHook = useUserAssessments();
@@ -127,7 +139,21 @@ export function Dashboard() {
 
     useEffect(() => {
         loadEvents();
+        // Load custom config from localStorage
+        const savedConfig = localStorage.getItem('custom_ems_config');
+        if (savedConfig) {
+            try {
+                setCustomEmsConfig(JSON.parse(savedConfig));
+            } catch (e) {
+                console.error('Failed to parse saved custom config');
+            }
+        }
     }, [storage.isReady, user]);
+
+    // Use custom config if available, otherwise fallback to imported JSON
+    const currentConfig = useMemo(() => {
+        return customEmsConfig || emsConfig;
+    }, [customEmsConfig]);
 
     // Filter events
     const filteredEvents = useMemo(() => {
@@ -187,6 +213,16 @@ export function Dashboard() {
                     <h1 className="program-title">{configuration?.program?.displayName || 'MOH Survey Dashboard'}</h1>
                 </div>
                 <div className="quick-actions">
+                    <Tooltip title="Refresh/Sync Data">
+                        <IconButton onClick={handleSync} color="primary" className="action-icon-btn">
+                            <CloudSyncIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="App Settings">
+                        <IconButton onClick={() => setShowSettings(true)} color="primary" className="action-icon-btn">
+                            <SettingsIcon />
+                        </IconButton>
+                    </Tooltip>
                     <button className="btn btn-primary btn-large new-form-btn" onClick={handleNewForm}>
                         New Survey
                     </button>
@@ -226,18 +262,16 @@ export function Dashboard() {
             </div>
 
             {/* Assessments List */}
-            <div className="forms-section assessments-section">
-                <div
-                    className="section-header"
-                    onClick={() => setIsAssessmentsCollapsed(prev => !prev)}
-                    style={{ cursor: 'pointer', userSelect: 'none' }}
-                >
-                    <h3>
-                        <span style={{ marginRight: '8px', fontSize: '0.75em' }}>
-                            {isAssessmentsCollapsed ? '▶' : '▼'}
-                        </span>
-                        Assigned Assessments
-                    </h3>
+            <div className={`forms-section assessments-section ${isAssessmentsCollapsed ? 'collapsed' : ''}`}>
+                <div className="section-header" onClick={() => setIsAssessmentsCollapsed(!isAssessmentsCollapsed)} style={{ cursor: 'pointer' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{
+                            transform: isAssessmentsCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)',
+                            transition: 'transform 0.2s ease',
+                            display: 'inline-block'
+                        }}>▼</span>
+                        <h3>Assigned Assessments</h3>
+                    </div>
                 </div>
                 {!isAssessmentsCollapsed && (
                     <div className="forms-list">
@@ -341,6 +375,176 @@ export function Dashboard() {
                 <DialogActions>
                     <Button onClick={() => setShowClearConfirm(false)}>Cancel</Button>
                     <Button onClick={handleConfirmClear} color="error">Delete All</Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Settings Dialog */}
+            <Dialog
+                open={showSettings}
+                onClose={() => { setShowSettings(false); setSelectedSE(null); }}
+                maxWidth="md"
+                fullWidth
+            >
+                <DialogTitle>
+                    {selectedSE ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <Button onClick={() => setSelectedSE(null)} size="small">← Back</Button>
+                            <span>SE {selectedSE.se_id}: {selectedSE.se_name}</span>
+                        </div>
+                    ) : 'App Settings'}
+                </DialogTitle>
+                <DialogContent dividers>
+                    <div className="settings-content">
+                        {!selectedSE ? (
+                            <>
+                                <div className="settings-section">
+                                    <h4>Service Element Configuration</h4>
+                                    <p className="settings-subtitle">EMS Standards (SE 1 - SE 10)</p>
+                                    <div className="se-config-list">
+                                        {currentConfig.ems_full_configuration.map(se => (
+                                            <div
+                                                key={se.se_id}
+                                                className="se-config-item clickable"
+                                                onClick={() => {
+                                                    setSelectedSE(se);
+                                                    setEditedJson(JSON.stringify(se, null, 2));
+                                                    setIsEditingJson(false);
+                                                }}
+                                            >
+                                                <span className="se-id-badge">SE {se.se_id}</span>
+                                                <span className="se-name-text">{se.se_name}</span>
+                                                <span className="chevron-right">›</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="config-status-tag success">STABLE</div>
+                                </div>
+                                <div className="settings-section">
+                                    <h4>User Info</h4>
+                                    <p>Logged in as: <strong>{user?.username || 'Guest'}</strong></p>
+                                </div>
+                                <div className="settings-section">
+                                    <h4>Troubleshooting</h4>
+                                    <Button
+                                        variant="outlined"
+                                        color="error"
+                                        onClick={() => { setShowSettings(false); setShowClearConfirm(true); }}
+                                        size="small"
+                                        style={{ marginTop: '10px' }}
+                                    >
+                                        Reset Local Data
+                                    </Button>
+                                </div>
+                            </>
+                        ) : (
+                            <div className="se-details-view raw-json-container">
+                                <div className="json-header-actions">
+                                    {isEditingJson ? (
+                                        <>
+                                            {jsonError && <span className="error-text json-error-msg">{jsonError}</span>}
+                                            <Button
+                                                size="small"
+                                                variant="contained"
+                                                color="success"
+                                                onClick={() => {
+                                                    try {
+                                                        const parsed = JSON.parse(editedJson);
+                                                        // Update full config
+                                                        const newConfig = { ...currentConfig };
+                                                        const index = newConfig.ems_full_configuration.findIndex(se => se.se_id === selectedSE.se_id);
+                                                        if (index !== -1) {
+                                                            newConfig.ems_full_configuration[index] = parsed;
+                                                            setCustomEmsConfig(newConfig);
+                                                            localStorage.setItem('custom_ems_config', JSON.stringify(newConfig));
+                                                            setSelectedSE(parsed);
+                                                            setIsEditingJson(false);
+                                                            setJsonError(null);
+                                                            showToast('Configuration saved successfully!', 'success');
+                                                        }
+                                                    } catch (e) {
+                                                        setJsonError('Invalid JSON format');
+                                                    }
+                                                }}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Save Changes
+                                            </Button>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => {
+                                                    setIsEditingJson(false);
+                                                    setEditedJson(JSON.stringify(selectedSE, null, 2));
+                                                    setJsonError(null);
+                                                }}
+                                            >
+                                                Cancel
+                                            </Button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => setIsEditingJson(true)}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Edit Mode
+                                            </Button>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText(JSON.stringify(selectedSE, null, 2));
+                                                    showToast('JSON copied to clipboard!', 'success');
+                                                }}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Copy JSON
+                                            </Button>
+                                            {customEmsConfig && (
+                                                <Button
+                                                    size="small"
+                                                    variant="outlined"
+                                                    color="error"
+                                                    onClick={() => {
+                                                        if (window.confirm('Are you sure you want to reset this SE to default?')) {
+                                                            const defaultConfig = emsConfig.ems_full_configuration.find(se => se.se_id === selectedSE.se_id);
+                                                            const newCustomConfig = { ...customEmsConfig };
+                                                            newCustomConfig.ems_full_configuration = newCustomConfig.ems_full_configuration.map(se =>
+                                                                se.se_id === selectedSE.se_id ? defaultConfig : se
+                                                            );
+                                                            setCustomEmsConfig(newCustomConfig);
+                                                            localStorage.setItem('custom_ems_config', JSON.stringify(newCustomConfig));
+                                                            setSelectedSE(defaultConfig);
+                                                            showToast('Reset to default', 'info');
+                                                        }
+                                                    }}
+                                                >
+                                                    Reset
+                                                </Button>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+                                {isEditingJson ? (
+                                    <textarea
+                                        className="raw-json-editor"
+                                        value={editedJson}
+                                        onChange={(e) => setEditedJson(e.target.value)}
+                                        spellCheck="false"
+                                    />
+                                ) : (
+                                    <pre className="raw-json-viewer">
+                                        {JSON.stringify(selectedSE, null, 2)}
+                                    </pre>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => { setShowSettings(false); setSelectedSE(null); }}>Close</Button>
                 </DialogActions>
             </Dialog>
 

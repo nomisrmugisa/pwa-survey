@@ -1,0 +1,972 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 16 Page 1 of
+ 16 Page 1 of
+ 16 Page 1 of
+ 16 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Page 2 of
+ 16 Page 2 of
+ 16 Page 2 of
+ 16 Page 2 of
+ 16 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+10.1  Assessment Process
+10.1.1 Standard
+All patients cared for by the organisation have their healthcare needs identified
+through an established assessment process.
+Criterion Comments
+Recommendations
+Criterion  10.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Organisation policy and
+procedure define the
+information to  be obtained for
+different types of patients.
+Criterion  10.1.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Priority categories are
+defined.
+Criterion  10.1.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The patient is assessed in
+accordance with the relevant
+patient report form.
+Criterion  10.1.1.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Assessment findings are
+documented in the patient's
+record.
+Page 3 of
+ 16 Page 3 of
+ 16 Page 3 of
+ 16 Page 3 of
+ 16 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.1.1.5
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The initial assessment results
+in selecting the best setting
+and destination for the care
+(for example, burn unit or
+trauma unit).
+10.1.2 Standard
+All patients are reassessed at appropriate intervals to determine their response to
+treatment and to plan for continued treatment or release.
+Criterion Comments
+Recommendations
+Criterion  10.1.2.1
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Only those individuals
+permitted by licensure,
+applicable laws and
+regulations or certification
+perform the assessments.
+Criterion  10.1.2.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patients are reassessed to
+determine their response to
+treatment.
+Criterion  10.1.2.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patients are reassessed at
+intervals appropriate to their
+condition.
+Criterion  10.1.2.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Reassessments are
+documented in the patient's
+record.
+Page 4 of
+ 16 Page 4 of
+ 16 Page 4 of
+ 16 Page 4 of
+ 16 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+10.2 Point of Care Testing
+10.2.1 Standard
+The medical transport organisation identifies any point of care (POC) testing that
+will be conducted and the extent to which such test results are used in patient care
+(definitive or used only as a screen).
+Standard Intent: This standard refers to biochemical or haematological assessment which takes
+place outside the laboratory, for example glucose or haemoglobin testing.
+  
+Criterion Comments
+Recommendations
+Criterion  10.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation identifies
+any point of care tests to be
+conducted.
+Criterion  10.2.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation identifies
+how the results will be used.
+Criterion  10.2.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Staff members have had
+specific training in the tests
+they perform.
+Page 5 of
+ 16 Page 5 of
+ 16 Page 5 of
+ 16 Page 5 of
+ 16 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.2.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Staff members are oriented to
+the tests performed by the
+organisation.
+Criterion  10.2.1.5
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Staff members have shown
+current competence in
+performing
+tests.
+Criterion  10.2.1.6
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Staff skills are assessed at
+defined intervals.
+10.3 Delivery of Care for All Patients
+10.3.1 Standard
+Policies and procedures and applicable laws and regulations guide the uniform care
+of all patients.
+Criterion Comments
+Recommendations
+Criterion  10.3.1.1
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures
+guide uniform care and reflect
+relevant laws and regulations.
+Page 6 of
+ 16 Page 6 of
+ 16 Page 6 of
+ 16 Page 6 of
+ 16 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.3.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Response times are
+monitored, using single or
+regularly synchronised
+clocks.
+Criterion  10.3.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a process to
+communicate patient
+assessments and other
+clinical data to hospital
+providers.
+10.3.2 Standard
+Care is planned and documented in the patient's record.
+Criterion Comments
+Recommendations
+Criterion  10.3.2.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The care of each patient is
+planned.
+Criterion  10.3.2.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The patient's plan of care is
+modified as the patient's
+needs change.
+Criterion  10.3.2.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The care is documented in
+the patient's record.
+Page 7 of
+ 16 Page 7 of
+ 16 Page 7 of
+ 16 Page 7 of
+ 16 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.3.2.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The interventions performed
+are entered in the patient's
+record.
+10.4 Sedation and Induced Paralysis
+10.4.1 Standard
+Sedation is provided by qualified individuals.
+Criterion Comments
+Recommendations
+Criterion  10.4.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Individuals administering or
+causing sedation are trained
+to monitor patients carefully in
+order to maintain them at the
+desired level of sedation.
+Criterion  10.4.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Individuals administering or
+causing sedation can
+demonstrate competence in
+the use of sedation and
+resuscitation equipment and
+monitoring vital signs
+(including heart and
+respiratory rates, pulse-
+oximetry [for all but minimal
+sedation] and blood
+pressure).
+Criterion  10.4.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Sedative care provided to
+each patient is recorded in
+the patient's clinical record.
+Page 8 of
+ 16 Page 8 of
+ 16 Page 8 of
+ 16 Page 8 of
+ 16 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+10.4.2 Standard
+Each patient's physiological status is monitored during and following administration
+of sedation.
+Criterion Comments
+Recommendations
+Criterion  10.4.2.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Appropriate equipment for
+care and resuscitation is
+available for monitoring vital
+signs, including heart rate
+and rhythm, respiratory rate,
+capnography, and/or pulse
+oximetry.
+6
+Criterion  10.4.2.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Heart rate and rhythm and
+pulse oximetry (for all but
+minimal
+sedation) are continuously
+monitored.
+Criterion  10.4.2.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Respiratory frequency and
+adequacy of pulmonary
+ventilation are continually
+monitored.
+Criterion  10.4.2.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Blood pressure is measured
+in accordance with
+guidelines.
+Page 9 of
+ 16 Page 9 of
+ 16 Page 9 of
+ 16 Page 9 of
+ 16 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.4.2.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The results of monitoring are
+documented.
+10.5 Invasive Procedures
+10.5.1 Standard
+Invasive procedures are based on the results of a patient's assessment.
+Criterion Comments
+Recommendations
+Criterion  10.5.1.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Patient assessment
+information is the basis for
+determining the need for
+invasive procedures.
+Criterion  10.5.1.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The patient's diagnosis is
+recorded in the patient's
+record.
+Criterion  10.5.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A description of the invasive
+procedure and any findings is
+recorded.
+Page 10 of
+ 16 Page 10 of
+ 16 Page 10 of
+ 16 Page 10 of
+ 16 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.5.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The names of those
+performing or assisting the
+procedure are recorded.
+10.5.2 Standard
+Each patient's physiological status is continuously monitored during and
+immediately after the invasive procedure and written in the patient's record.
+Criterion Comments
+Recommendations
+Criterion  10.5.2.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The patient's physiological
+status is monitored
+appropriately during the
+procedure.
+Criterion  10.5.2.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The patient's physiological
+status is monitored during the
+immediate post-procedure
+period.
+Criterion  10.5.2.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Findings are entered into the
+patient's record.
+Criterion  10.5.2.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Each patient's post-procedure
+care is planned.
+Page 11 of
+ 16 Page 11 of
+ 16 Page 11 of
+ 16 Page 11 of
+ 16 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.5.2.5
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The care provided is
+documented in the patient's
+record.
+10.6 Medication Use
+10.6.1 Standard
+Medications are properly stored, used and recalled when appropriate.
+Criterion Comments
+Recommendations
+Criterion  10.6.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medications are protected
+from loss, theft or damage.
+Criterion  10.6.1.2
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medication use complies with
+applicable laws and
+regulations.
+Criterion  10.6.1.3
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Only those permitted by the
+organisation and by relevant
+licensure, laws and
+regulations prescribe and
+administer
+medications.
+Page 12 of
+ 16 Page 12 of
+ 16 Page 12 of
+ 16 Page 12 of
+ 16 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.6.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medications are labelled
+properly.
+Criterion  10.6.1.5
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medication storage complies
+with laws, regulations and
+professional standards of
+practice.
+Criterion  10.6.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a medication recall
+system in place.
+Criterion  10.6.1.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures
+address any use of any
+known expired or out-dated
+medications.
+Criterion  10.6.1.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures
+address the destruction of
+any known
+expired or out-dated
+medications.
+Page 13 of
+ 16 Page 13 of
+ 16 Page 13 of
+ 16 Page 13 of
+ 16 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.6.1.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures are
+implemented.
+10.6.2 Standard
+Medication effects on patients are monitored.
+Criterion Comments
+Recommendations
+Criterion  10.6.2.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Medications prescribed and
+administered are written in
+the
+patient's record.
+Criterion  10.6.2.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Medication administration is
+recorded for each dose.
+Criterion  10.6.2.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Monitoring includes observing
+adverse medication effects.
+Criterion  10.6.2.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Adverse effects are
+documented in the patient's
+record.
+Page 14 of
+ 16 Page 14 of
+ 16 Page 14 of
+ 16 Page 14 of
+ 16 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.6.2.5
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Adverse effects are reported
+as required.
+10.7 Non-Treatment and Non-Transport
+10.7.1 Standard
+There is a process to treat and release patients.
+Criterion Comments
+Recommendations
+Criterion  10.7.1.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a process to treat
+and release patients.
+Criterion  10.7.1.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The process addresses
+verification of the patient's
+mental competency.
+Criterion  10.7.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The process addresses
+criteria for transporting a
+patient against his or her will.
+Page 15 of
+ 16 Page 15 of
+ 16 Page 15 of
+ 16 Page 15 of
+ 16 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+10.Patient Care
+Criterion  10.7.1.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation informs
+patients about the
+consequences of their
+decisions.
+Criterion  10.7.1.5
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation informs
+patients and families about
+their responsibilities related to
+such decisions.
+Criterion  10.7.1.6
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Written criteria are used to
+determine when the medical
+transport provider can decline
+to treat or transport a patient.
+Criterion  10.7.1.7
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+When the medical transport
+provider decides not to treat
+or transport a patient, there is
+a process to ensure that the
+patient is physically and
+clinically safe.
+Criterion  10.7.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Personnel are trained in all
+protocols and can verbalise
+the process to follow when
+these situations arise.
+Page 16 of
+ 16 Page 16 of
+ 16 Page 16 of
+ 16 Page 16 of
+ 16 

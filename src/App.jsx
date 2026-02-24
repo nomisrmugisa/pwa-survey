@@ -7,6 +7,7 @@ import { Dashboard } from './pages/Dashboard';
 import { AppProvider, useApp } from './contexts/AppContext';
 import { api } from './services/api';
 import { transformMetadata } from './utils/transformers';
+import { useIncrementalSave } from './hooks/useIncrementalSave';
 import './App.css';
 
 const AppContent = () => {
@@ -21,6 +22,32 @@ const AppContent = () => {
   // Data State
   const [assignments, setAssignments] = useState([]);
   const [selectedFacility, setSelectedFacility] = useState(null);
+
+  // Generate Event ID safely (Moved from FormArea)
+  const activeEventId = React.useMemo(() => {
+    if (!selectedFacility || !selectedFacility.trackedEntityInstance) return null;
+    return `draft-${selectedFacility.trackedEntityInstance}`;
+  }, [selectedFacility]);
+
+  // Unified Incremental Save (Moved from FormArea)
+  const {
+    formData,
+    saveField,
+    loadFormData,
+    isSaving,
+    lastSaved
+  } = useIncrementalSave(activeEventId, {
+    user,
+    onSaveSuccess: (details) => console.log('✅ App: Saved field:', details),
+    onSaveError: (error) => console.error('❌ App: Save failed:', error)
+  });
+
+  // Load data when activeEventId changes
+  useEffect(() => {
+    if (activeEventId) {
+      loadFormData();
+    }
+  }, [activeEventId, loadFormData]);
 
   const location = useLocation();
 
@@ -70,6 +97,22 @@ const AppContent = () => {
     }
   };
 
+  // Assessment Details Prerequisite Check
+  const isADComplete = React.useMemo(() => {
+    if (!groups || groups.length === 0 || !formData) return false;
+
+    // Find AD section (usually first section of first group)
+    const adSection = groups.flatMap(g => g.sections).find(s => s.name === "Assessment Details");
+    if (!adSection) return true; // If AD section doesn't exist, don't block anything
+
+    return adSection.fields
+      .filter(f => f.type !== 'header')
+      .every(f => {
+        const val = formData[f.id];
+        return val !== undefined && val !== null && val !== '' && String(val).trim() !== '';
+      });
+  }, [groups, formData]);
+
   const handleGroupChange = (group) => {
     setActiveGroup(group);
     // Auto-select first section of the new group
@@ -111,6 +154,7 @@ const AppContent = () => {
                 onSelectGroup={handleGroupChange}
                 activeSection={activeSection}
                 onSelectSection={setActiveSection}
+                isADComplete={isADComplete}
 
                 // Header Props
                 assignments={assignments}
@@ -121,6 +165,13 @@ const AppContent = () => {
                   activeSection={activeSection}
                   selectedFacility={selectedFacility}
                   user={user}
+                  groups={groups}
+                  formData={formData}
+                  saveField={saveField}
+                  isSaving={isSaving}
+                  lastSaved={lastSaved}
+                  isADComplete={isADComplete}
+                  activeEventId={activeEventId}
                 />
               </Layout>
             )}

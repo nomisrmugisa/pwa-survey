@@ -2,9 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/logo.png';
+import SettingsIcon from '@mui/icons-material/Settings';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 
 const Header = ({ assignments = [], selectedFacility, onSelectFacility }) => {
     const navigate = useNavigate();
+    const [showSettings, setShowSettings] = React.useState(false);
 
     return (
         <header className="app-header">
@@ -36,9 +41,28 @@ const Header = ({ assignments = [], selectedFacility, onSelectFacility }) => {
                 <nav className="header-nav">
                     <button className="nav-link-btn" onClick={() => navigate('/')}>Dashboard</button>
                     <button className="action-btn sync-btn">↻ Sync</button>
+                    <Tooltip title="App Settings">
+                        <IconButton onClick={() => setShowSettings(true)} size="small" style={{ color: 'white', margin: '0 10px' }}>
+                            <SettingsIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
                     <button className="action-btn logout-btn">Logout</button>
                 </nav>
             </div>
+
+            {/* Simple Settings Modal for Header */}
+            <Dialog open={showSettings} onClose={() => setShowSettings(false)}>
+                <DialogTitle>Quick Settings</DialogTitle>
+                <DialogContent>
+                    <div style={{ minWidth: '300px', padding: '10px 0' }}>
+                        <p><strong>EMS Configuration:</strong> v2.0 (SE 1-10)</p>
+                        <p>Current Facility: {selectedFacility?.orgUnitName || 'None'}</p>
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setShowSettings(false)}>Close</Button>
+                </DialogActions>
+            </Dialog>
         </header >
     );
 };

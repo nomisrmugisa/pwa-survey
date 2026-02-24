@@ -1,7 +1,7 @@
 import React from 'react';
 import './Sidebar.css';
 
-const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSection }) => {
+const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSection, isADComplete }) => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -23,16 +23,25 @@ const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSe
         <h4>Sections</h4>
       </div>
       <ul className="section-list">
-        {activeGroup?.sections?.map((sec, index) => (
-          <li
-            key={sec.id}
-            className={`section-item ${activeSection?.id === sec.id ? 'active' : ''}`}
-            onClick={() => onSelectSection(sec)}
-          >
-            <span>{`${index + 1}. ${sec.name}`}</span>
-            <span className="status">{sec.fields.length}</span>
-          </li>
-        ))}
+        {activeGroup?.sections?.map((sec, index) => {
+          const isADSection = sec.name === "Assessment Details";
+          const isSectionLocked = !isADSection && !isADComplete;
+
+          return (
+            <li
+              key={sec.id}
+              className={`section-item ${activeSection?.id === sec.id ? 'active' : ''} ${isSectionLocked ? 'locked' : ''}`}
+              onClick={() => !isSectionLocked && onSelectSection(sec)}
+              title={isSectionLocked ? "Please complete Assessment Details first" : ""}
+            >
+              <div className="section-info">
+                <span>{sec.code ? `${sec.code} ${sec.name}` : sec.name}</span>
+                {isSectionLocked && <span className="lock-badge">🔒</span>}
+              </div>
+              <span className="status">{sec.fields.length}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

@@ -9,6 +9,7 @@ const Layout = ({
     onSelectGroup,
     activeSection,
     onSelectSection,
+    isADComplete,
     children,
     assignments,
     selectedFacility,
@@ -28,6 +29,7 @@ const Layout = ({
                     onSelectGroup={onSelectGroup}
                     activeSection={activeSection}
                     onSelectSection={onSelectSection}
+                    isADComplete={isADComplete}
                 />
                 <main className="main-content">
                     {children}

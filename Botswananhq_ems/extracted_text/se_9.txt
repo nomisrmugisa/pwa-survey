@@ -1,0 +1,871 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 15 Page 1 of
+ 15 Page 1 of
+ 15 Page 1 of
+ 15 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+Page 2 of
+ 15 Page 2 of
+ 15 Page 2 of
+ 15 Page 2 of
+ 15 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+9.1 Buildings, Plant, Installations and Machinery
+9.1.1 Standard
+Functional facilities are available to provide safety and comfort for staff.
+Standard Intent: Laws, regulations and inspections by national government and local authorities
+determine in large part how a facility is designed, used and maintained. All organisations,
+regardless of size and resources, must comply with these requirements as part of their
+responsibilities to their staff and visitors.
+  
+Buildings, grounds, plant and machinery are provided and maintained and do not pose
+hazards to the occupants. Utility systems (electrical, water, ventilation and other utility
+systems) are maintained to minimize the risks of operating failures. Ensuring that buildings,
+grounds, plant and machinery are provided and maintained requires that staff be
+knowledgeable and competent.
+Criterion Comments
+Recommendations
+Criterion  9.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The name of the facility and
+its purpose is clearly
+indicated on the site.
+Criterion  9.1.1.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Staff facilities include
+adequate office space.
+Criterion  9.1.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Staff facilities include a fire
+alarm system audible from
+each area of the staff
+quarters.
+Page 3 of
+ 15 Page 3 of
+ 15 Page 3 of
+ 15 Page 3 of
+ 15 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+Criterion  9.1.1.4
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Staff facilities include alarms
+for security threats.
+Criterion  9.1.1.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Staff facilities include
+separate toilet/washroom
+facility.
+Criterion  9.1.1.6
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Staff facilities include at least
+staff restroom/cloakroom with
+adequate secure storage
+facilities for staff outdoor
+clothing, handbags and
+personal possessions.
+Criterion  9.1.1.7
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Staff facilities include at least
+training rooms and
+equipment,
+where indicated.
+Criterion  9.1.1.8
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Staff facilities include at least
+socialisation area, where
+indicated.
+Page 4 of
+ 15 Page 4 of
+ 15 Page 4 of
+ 15 Page 4 of
+ 15 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+Criterion  9.1.1.9
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Staff facilities include at least
+outdoor areas, where
+indicated.
+Criterion  9.1.1.10
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Staff facilities include at least
+adequate, suitably furnished
+kitchen and dining rooms,
+where indicated.
+Criterion  9.1.1.11
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Staff facilities include at least
+sufficient recreational
+equipment,where indicated.
+9.1.2 Standard
+The organisation plans and implements a programme to manage the physical
+environment.
+Criterion Comments
+Recommendations
+Criterion  9.1.2.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation has a
+programme to manage the
+physical facility.
+Page 5 of
+ 15 Page 5 of
+ 15 Page 5 of
+ 15 Page 5 of
+ 15 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+Criterion  9.1.2.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The programme is effective in
+preventing injury and
+maintaining safe operating
+and working conditions.
+Criterion  9.1.2.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The programme includes
+safety, security and
+hazardous materials.
+Criterion  9.1.2.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has a
+documented, current,
+accurate inspection of its
+physical facilities.
+Criterion  9.1.2.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has a plan
+to reduce evident risks based
+on the inspection.
+Page 6 of
+ 15 Page 6 of
+ 15 Page 6 of
+ 15 Page 6 of
+ 15 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+9.1.3 Standard
+The organisation complies with relevant laws, regulations, vehicle, equipment and
+facility inspection requirements.
+Criterion Comments
+Recommendations
+Criterion  9.1.3.1
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation's leaders
+are responsible for ensuring
+compliance with laws,
+regulations and other
+requirements applicable to
+the organisation's facilities,
+equipment and vehicles.
+Criterion  9.1.3.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation has a
+programme to manage its
+vehicle fleet.
+Criterion  9.1.3.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The leaders ensure that the
+organisation meets the
+conditions
+of facility inspection reports,
+periodic equipment review,
+vehicle maintenance records
+or citations.
+Criterion  9.1.3.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation plans and
+budgets to meet applicable
+laws,
+regulations and other
+requirements.
+Criterion  9.1.3.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation plans and
+budgets for the upgrading or
+replacing  of systems,
+buildings or components
+needed for the continued safe
+and effective operation of the
+facility's equipment and
+vehicles.
+Page 7 of
+ 15 Page 7 of
+ 15 Page 7 of
+ 15 Page 7 of
+ 15 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+9.2 Communication Systems
+9.2.1 Standard
+The facility has been provided with reliable communication systems.
+Criterion Comments
+Recommendations
+Criterion  9.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Each facility where
+emergency medical
+(ambulance) services (EMS)
+are provided has a reliable
+telephone connection (down
+time less than 48 hours) and
+back-up is provided by 2-way
+radio and/or cell phone.
+Criterion  9.2.1.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Each facility where EMS
+services are provided has
+access to a fax machine.
+Criterion  9.2.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+EMS services are adequately
+supported by computer
+access and networking
+systems.
+Page 8 of
+ 15 Page 8 of
+ 15 Page 8 of
+ 15 Page 8 of
+ 15 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+9.3 Vehicle Management
+9.3.1 Standard
+The use of organisational motor vehicles by staff is planned and monitored to
+ensure safety and legality.
+Standard Intent: The use of vehicles needs to be controlled because of the cost of acquiring
+and maintaining vehicles and legal aspects relating to the driving of vehicles and transport of
+passengers.
+  
+The Road Traffic Act does not provide for exemption from laws for ambulances or any
+guidelines for such.  Nor is there any legislation defining what an "ambulance" or Rapid
+Response Vehicle is.
+Criterion Comments
+Recommendations
+Criterion  9.3.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A specific manager is
+identified for the control, use
+and maintenance of vehicles.
+Criterion  9.3.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The need for the use of
+transport is established by
+management in consultation
+with the users of vehicles and
+is reviewed annually.
+Criterion  9.3.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a system for
+monitoring the use of vehicles
+(permission, records).
+Page 9 of
+ 15 Page 9 of
+ 15 Page 9 of
+ 15 Page 9 of
+ 15 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+Criterion  9.3.1.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a system for booking
+of vehicles in advance.
+Criterion  9.3.1.5
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a control system for
+mileage travelled.
+Criterion  9.3.1.6
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Drivers of vehicles are
+suitably licensed.
+Criterion  9.3.1.7
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Vehicles are suitably
+licensed.
+Page 10 of
+ 15 Page 10 of
+ 15 Page 10 of
+ 15 Page 10 of
+ 15 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+9.3.2 Standard
+The organisation provides policies and procedures for the cleaning of vehicles.
+Criterion Comments
+Recommendations
+Criterion  9.3.2.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures
+include the sites at which
+vehicles may be cleaned.
+Criterion  9.3.2.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures
+specify that vehicles may only
+be cleaned at purpose-
+designed wash-bays with
+appropriate filters to prevent
+environmental contamination.
+Criterion  9.3.2.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation budgets for
+the provision of appropriate
+wash facilities.
+Criterion  9.3.2.4
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures
+specify what cleaning
+methods and
+chemicals must be used for
+cleaning vehicles.
+Page 11 of
+ 15 Page 11 of
+ 15 Page 11 of
+ 15 Page 11 of
+ 15 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+Criterion  9.3.2.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures
+address the training of
+personnel in proper cleaning
+methods.
+Criterion  9.3.2.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Vehicles are clean and in
+working order when in use.
+9.3.3 Standard
+The organisation maintains and inspects its transport fleet to reduce risk and
+provide safe vehicles.
+Criterion Comments
+Recommendations
+Criterion  9.3.3.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a vehicle
+maintenance programme.
+Criterion  9.3.3.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The programme includes the
+tracking of vehicle failures.
+Page 12 of
+ 15 Page 12 of
+ 15 Page 12 of
+ 15 Page 12 of
+ 15 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+Criterion  9.3.3.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The programme is effective in
+preventing injury and
+maintaining safe vehicles.
+Criterion  9.3.3.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is proof of vehicle
+maintenance.
+Criterion  9.3.3.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation has a
+documented, current,
+accurate inspection of its
+transport and other vehicles.
+Criterion  9.3.3.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation implements
+processes to reduce evident
+risks based on the inspection.
+Page 13 of
+ 15 Page 13 of
+ 15 Page 13 of
+ 15 Page 13 of
+ 15 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+9.4 Medical Equipment
+9.4.1 Standard
+The organisation plans and implements a programme for inspecting, testing and
+maintaining equipment.
+Criterion Comments
+Recommendations
+Criterion  9.4.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Equipment is managed
+throughout the organisation
+according to a plan.
+Criterion  9.4.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is an inventory or asset
+register of all equipment.
+Criterion  9.4.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Equipment is regularly
+inspected.
+Criterion  9.4.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Equipment is tested when
+new and as appropriate
+thereafter.
+Page 14 of
+ 15 Page 14 of
+ 15 Page 14 of
+ 15 Page 14 of
+ 15 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR EMERGENCY MEDICAL
+SERVICES
+9.Facilities, Equipment and Vehicle Management
+Criterion  9.4.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a process in place to
+retrieve equipment from
+facilities where patients have
+been delivered.
+Criterion  9.4.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a preventive
+maintenance programme.
+Criterion  9.4.1.7
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Qualified individuals provide
+these services.
+Criterion  9.4.1.8
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Monitoring data is collected
+and documented for the
+equipment and
+communication equipment.
+Criterion  9.4.1.9
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Monitoring data is used for
+purposes of planning and
+improvement.
+Page 15 of
+ 15 Page 15 of
+ 15 Page 15 of
+ 15 Page 15 of
+ 15 
