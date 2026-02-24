@@ -46,16 +46,16 @@ const normalizeCriterionCode = (rawCode) => {
 };
 
 const getCriterionTooltip = (code) => {
-	    const normalized = normalizeCriterionCode(code);
-	    if (!normalized) return '';
-	    const info = EMS_CRITERION_INDEX[normalized];
-	    if (!info) return '';
+    const normalized = normalizeCriterionCode(code);
+    if (!normalized) return '';
+    const info = EMS_CRITERION_INDEX[normalized];
+    if (!info) return '';
 
-	    const parts = [];
-	    if (info.statement) parts.push(`Statement:\n${info.statement.trim()}`);
-	    if (info.intent) parts.push(`Intent:\n${info.intent.trim()}`);
-	    return parts.join('\n\n');
-	};
+    const parts = [];
+    if (info.statement) parts.push(`Statement:\n${info.statement.trim()}`);
+    if (info.intent) parts.push(`Intent:\n${info.intent.trim()}`);
+    return parts.join('\n\n');
+};
 
 const FormArea = ({
     activeSection,
@@ -131,31 +131,31 @@ const FormArea = ({
             // Look up EMS standard/intent tooltip for this data element code
             const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code) : '';
 
-                return (
-                    <div
-                        key={field.id}
-                        className={`form-field ${isCritical ? 'is-critical' : ''} ${(!isParentAnswered && isCommentField) ? 'field-disabled' : ''}`}
-                        data-tooltip={(!isParentAnswered && isCommentField) ? "Please answer the main question first" : ""}
-                    >
-                        <div className="field-label-container">
-                            <div className="field-label-main">
-                                <label>
-                                    {isCommentField
-                                        ? (field.label || 'Unnamed Field')
-                                        : (field.code ? `${field.code} ${field.label || 'Unnamed Field'}` : field.label || 'Unnamed Field')}
-                                </label>
-                                {criterionTooltip && (
-                                    <button
-                                        type="button"
-                                        className="ems-info-icon"
-                                        data-ems-tooltip={criterionTooltip}
-                                        aria-label="View EMS standard and intent"
-                                    >
-                                        ?
-                                    </button>
-                                )}
-                            </div>
-                            {isCritical && <span className="critical-badge">CRITICAL</span>}
+            return (
+                <div
+                    key={field.id}
+                    className={`form-field ${isCritical ? 'is-critical' : ''} ${(!isParentAnswered && isCommentField) ? 'field-disabled' : ''}`}
+                    data-tooltip={(!isParentAnswered && isCommentField) ? "Please answer the main question first" : ""}
+                >
+                    <div className="field-label-container">
+                        <div className="field-label-main">
+                            <label>
+                                {isCommentField
+                                    ? (field.label || 'Unnamed Field')
+                                    : (field.code ? `${field.code} ${field.label || 'Unnamed Field'}` : field.label || 'Unnamed Field')}
+                            </label>
+                            {criterionTooltip && (
+                                <button
+                                    type="button"
+                                    className="ems-info-icon"
+                                    data-ems-tooltip={criterionTooltip}
+                                    aria-label="View EMS standard and intent"
+                                >
+                                    ?
+                                </button>
+                            )}
+                        </div>
+                        {isCritical && <span className="critical-badge">CRITICAL</span>}
                         {associatedCommentId && !isCommentField && (
                             <div
                                 className={`critical-toggle-container ${!isQuestionAnswered ? 'disabled' : ''}`}
@@ -375,7 +375,7 @@ const FormArea = ({
                         fontSize: '1em'
                     }}
                 >
-                    {isSubmitting ? '⏳ Submitting...' : '🚀 Submit to DHIS2'}
+                    {isSubmitting ? 'Submitting...' : 'Submit to DHIS2'}
                 </button>
             </div>
         </div>
