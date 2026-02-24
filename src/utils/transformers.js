@@ -139,7 +139,7 @@ export const transformMetadata = (metadata) => {
 
         return {
             id: prefix,
-            name: prefix,
+            name: prefix === 'SE' ? 'EMS' : prefix,
             // Prepend general sections to every category
             sections: [...generalSections, ...groupSections]
         };
