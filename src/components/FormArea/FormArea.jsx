@@ -57,6 +57,45 @@ const getCriterionTooltip = (code) => {
     return parts.join('\n\n');
 };
 
+// Internal Input component to manage local state and prevent focus loss on re-renders
+const FieldInput = ({ type, value, onChange, disabled, id, className }) => {
+    const [localValue, setLocalValue] = useState(value || '');
+
+    // Sync local value with prop value when Prop value changes from outside
+    React.useEffect(() => {
+        setLocalValue(value || '');
+    }, [value]);
+
+    const handleChange = (e) => {
+        setLocalValue(e.target.value);
+        onChange(e); // Still call parent onChange to update global state (debounced via saveField)
+    };
+
+    if (type === 'textarea') {
+        return (
+            <textarea
+                id={id}
+                className={className}
+                value={localValue}
+                onChange={handleChange}
+                disabled={disabled}
+                rows={3}
+            />
+        );
+    }
+
+    return (
+        <input
+            id={id}
+            type={type || 'text'}
+            className={className}
+            value={localValue}
+            onChange={handleChange}
+            disabled={disabled}
+        />
+    );
+};
+
 const FormArea = ({
     activeSection,
     selectedFacility,
@@ -72,10 +111,8 @@ const FormArea = ({
     // DEBUG: Validate props on render
     React.useEffect(() => {
         if (!activeSection) console.warn("FormArea: No active section provided");
-        if (activeSection) console.log(`FormArea Rendering Section: ${activeSection.name}, fields:`, activeSection.fields.map(f => ({ id: f.id, label: f.label, type: f.type, options: f.options?.length })));
-        if (!selectedFacility) console.warn("FormArea: No facility selected");
-        if (!user) console.warn("FormArea: No user provided");
-    }, [activeSection, selectedFacility, user]);
+        if (activeSection) console.log(`FormArea Rendering Section: ${activeSection.name}`);
+    }, [activeSection]);
 
     const { configuration } = useApp();
 
@@ -237,12 +274,12 @@ const FormArea = ({
                             })()}
                         </select>
                     ) : (
-                        <input
-                            type={field.type || 'text'}
+                        <FieldInput
+                            type={isCommentField ? 'textarea' : field.type}
                             className="form-control"
                             value={formData[field.id] || ''}
                             onChange={(e) => handleInputChange(e, field.id)}
-                            id={`field-${field.id}`} // Helper for testing
+                            id={`field-${field.id}`}
                             disabled={!isParentAnswered && isCommentField}
                         />
                     )}
@@ -250,6 +287,7 @@ const FormArea = ({
             );
         });
     };
+
 
     if (!activeSection) {
         if (!selectedFacility) {
@@ -353,7 +391,7 @@ const FormArea = ({
                         {submitResult.message}
                     </div>
                 )}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     <button className="nav-btn prev">Previous</button>
                     <span>Page 1 of 1</span>
                     <button className="nav-btn next">Next</button>

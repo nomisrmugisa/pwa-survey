@@ -10,6 +10,12 @@ import { transformMetadata } from './utils/transformers';
 import { useIncrementalSave } from './hooks/useIncrementalSave';
 import './App.css';
 
+const PrivateRoute = ({ children }) => {
+  const { user } = useApp();
+  const location = useLocation();
+  return user ? children : <Navigate to="/login" state={{ from: location }} replace />;
+};
+
 const AppContent = () => {
   const { user, setUser, setConfiguration, setUserAssignments, configuration } = useApp();
   const [isLoading, setIsLoading] = useState(false);
@@ -121,10 +127,6 @@ const AppContent = () => {
     } else {
       setActiveSection(null);
     }
-  };
-
-  const PrivateRoute = ({ children }) => {
-    return user ? children : <Navigate to="/login" />;
   };
 
   return (
