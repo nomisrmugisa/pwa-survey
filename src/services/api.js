@@ -68,7 +68,7 @@ export const api = {
         return await response.json();
     },
 
-    getAssignments: async (programId = 'K9O5fdoBmKf', userId = null) => {
+    getAssignments: async (programId = 'G2gULe4jsfs', userId = null) => {
         const fields = [
             'enrollment',
             'trackedEntityInstance',
@@ -96,14 +96,58 @@ export const api = {
         const data = await response.json();
         const enrollments = data.enrollments || [];
 
-        // Extract the facility ID attribute from each enrollment
+        // 1. Extract all unique org unit IDs to fetch their full details (including parents)
+        const ouIds = [...new Set(enrollments.map(e =>
+            typeof e.orgUnit === 'string' ? e.orgUnit : e.orgUnit?.id
+        ).filter(Boolean))];
+
+        let ouMap = {};
+        if (ouIds.length > 0) {
+            try {
+                // Fetch details for all encountered org units in one request
+                // Standard filter syntax: filter=id:in:id1,id2,id3
+                const ouResponse = await fetch(
+                    `${BASE_URL}/api/organisationUnits?paging=false&filter=id:in:${ouIds.join(',')}&fields=id,displayName,name,parent[id,displayName,name]`,
+                    { headers: getHeaders() }
+                );
+                if (ouResponse.ok) {
+                    const ouData = await ouResponse.json();
+                    ouData.organisationUnits?.forEach(ou => {
+                        ouMap[ou.id] = ou;
+                    });
+                }
+            } catch (err) {
+                console.warn('⚠️ api.js: Failed to fetch bulk org unit details, falling back to basic info.', err);
+            }
+        }
+
+        // 2. Enrich enrollments with full org unit data
         return enrollments.map(enrollment => {
+            const rawOu = enrollment.orgUnit;
+            const ouId = typeof rawOu === 'string' ? rawOu : (rawOu?.id || null);
+            const fullOu = ouMap[ouId];
+
             const facilityIdAttr = (enrollment.attributes || []).find(
                 a => a.attribute === FACILITY_ID_ATTR
             );
+
+            // The facilityId displayed in the UI is either the explicitly assigned attribute
+            // or the ID of the organization unit itself.
+            const resolvedFacilityId = facilityIdAttr?.value || fullOu?.id || ouId || 'N/A';
+
+            // Calculate parent name with multiple fallbacks
+            const parentName = fullOu?.parent?.displayName || fullOu?.parent?.name || fullOu?.parent?.shortName || null;
+
             return {
                 ...enrollment,
-                facilityId: facilityIdAttr?.value || null,
+                // Inject the full org unit object for parent lookups
+                orgUnit: fullOu || rawOu,
+                // Store a guaranteed string ID for the org unit
+                orgUnitId: ouId,
+                // Display name prioritized from the bulk fetch
+                orgUnitName: fullOu?.displayName || fullOu?.name || enrollment.orgUnitName || 'Unknown Facility',
+                facilityId: resolvedFacilityId,
+                parentOrgUnitName: parentName
             };
         });
     },
@@ -146,11 +190,11 @@ export const api = {
      * Bundles TEI, Enrollment, and Event in ONE request.
      */
     submitTrackerAssessment: async (formData, configuration, orgUnitId, onIdGenerated) => {
-        const PROGRAM_ID = configuration?.program?.id || 'K9O5fdoBmKf';
+        const PROGRAM_ID = configuration?.program?.id || 'G2gULe4jsfs';
         const STAGE_ID = configuration?.programStage?.id || 'HpHD6u6MV37';
-        const TE_TYPE = 'hTSffimLQiw';
+        const TE_TYPE = 'uTTDt3fuXZK';
         const ATTR_ID = 'Bw4PZ8NsYFd';
-        const ATTR_VALUE = 'Internal Assessment';
+        const ATTR_VALUE = 'FAC_ASS_TYPE_INTERNAL';
 
         const now = new Date().toISOString().slice(0, 10);
 
@@ -173,6 +217,7 @@ export const api = {
                             ],
                             events: [
                                 {
+                                    uid: formData.eventId_internal || undefined,
                                     program: PROGRAM_ID,
                                     programStage: STAGE_ID,
                                     orgUnit: orgUnitId,
@@ -190,6 +235,11 @@ export const api = {
         // If we already have a TEI ID from a previous partial attempt, reuse it
         if (formData.teiId_internal) {
             trackerPayload.trackedEntities[0].trackedEntity = formData.teiId_internal;
+        }
+
+        // If we have an Enrollment ID, reuse it
+        if (formData.enrollmentId_internal) {
+            trackerPayload.trackedEntities[0].enrollments[0].enrollment = formData.enrollmentId_internal;
         }
 
         console.log('📤 Submitting to DHIS2 v41 Unified Tracker:', trackerPayload);
@@ -212,10 +262,20 @@ export const api = {
 
         console.log('✅ Tracker submission successful:', data);
 
-        // Extract IDs for persistence if needed
+        // Extract IDs for persistence to enable updates instead of duplicates
         const newTeiId = data.bundleReport?.typeReportMap?.TRACKED_ENTITY?.objectReports?.[0]?.uid;
         if (newTeiId && onIdGenerated) {
             onIdGenerated('teiId_internal', newTeiId);
+        }
+
+        const newEnrollmentId = data.bundleReport?.typeReportMap?.ENROLLMENT?.objectReports?.[0]?.uid;
+        if (newEnrollmentId && onIdGenerated) {
+            onIdGenerated('enrollmentId_internal', newEnrollmentId);
+        }
+
+        const newEventId = data.bundleReport?.typeReportMap?.EVENT?.objectReports?.[0]?.uid;
+        if (newEventId && onIdGenerated) {
+            onIdGenerated('eventId_internal', newEventId);
         }
 
         return data;

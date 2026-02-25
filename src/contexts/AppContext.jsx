@@ -116,7 +116,13 @@ export const AppProvider = ({ children }) => {
                     const result = await api.submitTrackerAssessment(
                         draft.formData,
                         configuration,
-                        orgUnit
+                        orgUnit,
+                        async (key, id) => {
+                            // Persist generated IDs to IndexedDB for background retries
+                            console.log(`🔄 AppContext: Saving ${key} to draft ${draft.eventId}`);
+                            const updatedFormData = { ...draft.formData, [key]: id };
+                            await indexedDBService.saveFormData(draft.eventId, updatedFormData);
+                        }
                     );
 
                     // Extract the DHIS2 event ID using our unified helper
@@ -151,7 +157,12 @@ export const AppProvider = ({ children }) => {
             const result = await api.submitTrackerAssessment(
                 draft.formData,
                 configuration,
-                orgUnit
+                orgUnit,
+                async (key, id) => {
+                    console.log(`🔄 AppContext: Saving ${key} to draft ${eventId}`);
+                    const updatedFormData = { ...draft.formData, [key]: id };
+                    await indexedDBService.saveFormData(eventId, updatedFormData);
+                }
             );
 
             // Extract the DHIS2 event ID using our unified helper

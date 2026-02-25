@@ -54,6 +54,16 @@ export const useIncrementalSave = (eventId, options = {}) => {
         initDB();
     }, [onSaveError, enableLogging]);
 
+    // Clear state immediately when eventId changes to prevent data leak between forms
+    useEffect(() => {
+        if (enableLogging) console.log(`🔄 useIncrementalSave: eventId changed to ${eventId}, clearing local state.`);
+        setFormData({});
+        setLastSaved(null);
+        // Clear pending saves to prevent old data from being written to new ID
+        pendingSaves.current.clear();
+        if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+    }, [eventId, enableLogging]);
+
     // Save status state
     const [isSaving, setIsSaving] = useState(false);
     const [lastSaved, setLastSaved] = useState(null);

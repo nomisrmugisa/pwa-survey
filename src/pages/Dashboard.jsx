@@ -113,11 +113,12 @@ export function Dashboard() {
                         event: draft.eventId,
                         orgUnit: draft.formData?.orgUnit,
                         eventDate: draft.formData?.eventDate || new Date(draft.createdAt).toISOString().split('T')[0],
-                        status: 'draft',
-                        syncStatus: 'draft',
+                        status: draft.syncStatus || 'draft',
+                        syncStatus: draft.syncStatus || 'draft',
+                        syncError: draft.syncError,
                         createdAt: draft.createdAt,
                         updatedAt: draft.lastUpdated,
-                        isDraft: true,
+                        isDraft: draft.metadata?.isDraft,
                         isAutoSaved: true,
                         dataValues: [], // Will need to map this for preview
                         _draftData: draft
@@ -188,11 +189,15 @@ export function Dashboard() {
     };
 
     const handleEditForm = (event) => {
-        // If it's a draft, logic to resume it
-        if (event.status === 'draft') {
-            // Need to parse facility from draft ID or data to route correctly 
-            // For now, just route to form
-            navigate(`/form`);
+        // Resume drafts or failed submissions
+        if (event.syncStatus === 'draft' || event.syncStatus === 'pending' || event.syncStatus === 'error') {
+            // Check if it has an assessmentId in metadata or draftId
+            const assessmentId = event._draftData?.metadata?.assessmentId || event._draftData?.eventId;
+            if (assessmentId) {
+                navigate(`/form?assessmentId=${assessmentId}`);
+            } else {
+                navigate(`/form`);
+            }
         }
     };
 
@@ -280,27 +285,62 @@ export function Dashboard() {
                         ) : (upcomingAssessments.length === 0 && pendingAssessments.length === 0) ? (
                             <div className="empty-state">No assessments assigned</div>
                         ) : (
-                            [...pendingAssessments, ...upcomingAssessments].map(assessment => (
-                                <div key={assessment.eventId} className="form-item assessment-item">
-                                    <div className="form-info">
-                                        <div className="form-header-row">
-                                            <h4>{assessment.orgUnitName}</h4>
-                                            <div className={`form-status ${assessment.requiresResponse ? 'error' : 'success'}`}>
-                                                {assessment.requiresResponse ? 'ACTION REQUIRED' : 'CONFIRMED'}
+                            (() => {
+                                const allUniqueAssessments = [];
+                                const seenIds = new Set();
+                                [...pendingAssessments, ...upcomingAssessments].forEach(assessment => {
+                                    if (!seenIds.has(assessment.eventId)) {
+                                        allUniqueAssessments.push(assessment);
+                                        seenIds.add(assessment.eventId);
+                                    }
+                                });
+
+                                return allUniqueAssessments.map(assessment => {
+                                    const draftId = `draft-assessment-${assessment.eventId}`;
+                                    const existingDraft = events.find(e => e.event === draftId);
+                                    const isSynced = existingDraft?.syncStatus === 'synced';
+
+                                    // Robust Facility ID display
+                                    const facilityId = assessment.facilityId || assessment.orgUnitId || assessment.orgUnit || '';
+                                    const displayId = (facilityId && facilityId !== 'N/A')
+                                        ? ` (${facilityId})`
+                                        : '';
+
+                                    return (
+                                        <div key={assessment.eventId} className="form-item assessment-item">
+                                            <div className="form-info">
+                                                <div className="form-header-row">
+                                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                        <h4>{assessment.orgUnitName}{displayId}</h4>
+                                                        {assessment.parentOrgUnitName && (
+                                                            <span style={{ fontSize: '0.85em', color: '#666', marginTop: '-4px' }}>
+                                                                Parent: {assessment.parentOrgUnitName}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <div style={{ display: 'flex', gap: '5px' }}>
+                                                        <div className={`form-status ${assessment.requiresResponse ? 'error' : 'success'}`}>
+                                                            {assessment.requiresResponse ? 'ACTION REQUIRED' : 'CONFIRMED'}
+                                                        </div>
+                                                        {isSynced && (
+                                                            <div className="form-status success">✓ SYNCED</div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                <p>Date: {assessment.sortDate} | Enr: {assessment.eventId} | TEI: {assessment.scheduleTeiId || assessment.trackedEntityInstance}</p>
+                                            </div>
+                                            <div className="form-actions">
+                                                <button
+                                                    className={`btn ${isSynced ? 'btn-secondary' : 'btn-primary'} btn-sm`}
+                                                    onClick={() => navigate(`/form?assessmentId=${assessment.eventId}`)}
+                                                >
+                                                    {isSynced ? 'Update Survey' : existingDraft ? 'Resume Survey' : 'Conduct Survey'}
+                                                </button>
                                             </div>
                                         </div>
-                                        <p>Date: {assessment.sortDate} | ID: {assessment.eventId}</p>
-                                    </div>
-                                    <div className="form-actions">
-                                        <button
-                                            className="btn btn-primary btn-sm"
-                                            onClick={() => navigate(`/form?assessmentId=${assessment.eventId}`)}
-                                        >
-                                            Conduct Survey
-                                        </button>
-                                    </div>
-                                </div>
-                            ))
+                                    );
+                                });
+                            })()
                         )}
                     </div>
                 )}
@@ -327,17 +367,32 @@ export function Dashboard() {
                         <div className="empty-state">No Survey found</div>
                     ) : (
                         filteredEvents.map(event => (
-                            <div key={event.event} className="form-item" onClick={() => handleEditForm(event)}>
+                            <div key={event.event} className={`form-item ${event.syncStatus}`} onClick={() => handleEditForm(event)}>
                                 <div className="form-info">
                                     <div className="form-header-row">
-                                        <h4>Survey - {new Date(event.updatedAt).toLocaleDateString()}</h4>
-                                        <div className="form-status warning">
-                                            Draft
+                                        <h4>{event._draftData?.formData?.facilityName_internal || 'Survey'} - {new Date(event.updatedAt).toLocaleDateString()}</h4>
+                                        <div className={`form-status ${event.syncStatus === 'error' ? 'error' : event.syncStatus === 'synced' ? 'success' : 'warning'}`}>
+                                            {event.syncStatus === 'error' ? 'Failed' : event.syncStatus === 'synced' ? 'Synced' : 'Draft'}
                                         </div>
                                     </div>
-                                    <p>ID: {event.event}</p>
+                                    <p>ID: {event.event} {event.syncError && <span className="error-msg">| Error: {event.syncError}</span>}</p>
                                 </div>
                                 <div className="form-actions">
+                                    {event.syncStatus === 'error' && (
+                                        <button
+                                            className="btn btn-warning btn-sm"
+                                            onClick={async (e) => {
+                                                e.stopPropagation();
+                                                setIsLoading(true);
+                                                await retryEvent(event.event);
+                                                await loadEvents();
+                                                setIsLoading(false);
+                                            }}
+                                            style={{ marginRight: '8px' }}
+                                        >
+                                            Retry Sync
+                                        </button>
+                                    )}
                                     <button
                                         className="btn btn-primary btn-sm"
                                         onClick={(e) => { e.stopPropagation(); setPreviewEvent(event); }}
@@ -532,9 +587,11 @@ export function Dashboard() {
             </Dialog>
 
             {/* Preview Modal */}
-            {previewEvent && (
-                <SurveyPreview event={previewEvent} onClose={() => setPreviewEvent(null)} />
-            )}
+            {
+                previewEvent && (
+                    <SurveyPreview event={previewEvent} onClose={() => setPreviewEvent(null)} />
+                )
+            }
         </div>
     );
 }

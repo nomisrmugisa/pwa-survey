@@ -1,20 +1,20 @@
 /* Dashboard Styles */
 .dashboard-container {
-	padding: 2.5rem 2rem 3rem;
-	max-width: 1200px;
-	margin: 2rem auto;
-	background: #ffffff;
-	border-radius: 12px;
-	box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    padding: 2.5rem 2rem 3rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 }
 
 .program-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 2rem;
-	padding-bottom: 1rem;
-	border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .program-title {
@@ -48,8 +48,8 @@
 .stats-dashboard {
     display: flex;
     gap: 1rem;
-	margin-bottom: 2rem;
-	flex-wrap: wrap;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .form-item {
@@ -90,6 +90,15 @@
 .btn-primary {
     background: #2b3a8e;
     color: white;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
 }
 
 .btn-danger {
@@ -154,11 +163,11 @@
 }
 
 .stat-card.total {
-	border-bottom: 4px solid #3b82f6;
+    border-bottom: 4px solid #3b82f6;
 }
 
 .stat-card.pending {
-	border-bottom: 4px solid #f59e0b;
+    border-bottom: 4px solid #f59e0b;
 }
 
 .assessments-section {
@@ -189,14 +198,30 @@
     }
 }
 
+.form-item.error {
+    border-left: 5px solid #dc3545;
+    background: #fffafa;
+}
+
+.error-msg {
+    color: #dc3545;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+}
+
 .form-actions {
     display: flex;
     gap: 0.5rem;
-}
-
-.btn-sm {
-    padding: 0.25rem 0.75rem;
-    font-size: 0.85rem;
+    align-items: center;
 }
 
 .empty-state {

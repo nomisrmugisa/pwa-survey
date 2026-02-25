@@ -55,7 +55,7 @@ class AssessmentTeamAssignmentService {
     async getUserAssignmentsDomain({ userId, year }) {
         try {
             // Pass userId so DHIS2 filters by attribute Rh87cVTZ8b6 (Inspection Final List)
-            const enrollments = await api.getAssignments('K9O5fdoBmKf', userId);
+            const enrollments = await api.getAssignments('G2gULe4jsfs', userId);
 
             return enrollments.map(item => {
                 // Try to find a stored status code from data values
@@ -74,10 +74,11 @@ class AssessmentTeamAssignmentService {
                     scheduleTeiId: item.trackedEntityInstance,
                     statusCode: mapStatus(item.status, storedStatusCode),
                     sortDate: extractDate(item),
+                    // Use enriched fields from api.js
                     orgUnitName: item.orgUnitName,
-                    orgUnit: item.orgUnit,
-                    // R0e1pnpjkaW — the Inspection Facility ID the inspector is assigned to
-                    facilityId: item.facilityId || item.orgUnit || null,
+                    orgUnit: item.orgUnitId || item.orgUnit?.id || item.orgUnit,
+                    facilityId: item.facilityId,
+                    parentOrgUnitName: item.parentOrgUnitName,
                     enrollmentDate: item.enrollmentDate,
                     attributes: item.attributes || [],
                 };

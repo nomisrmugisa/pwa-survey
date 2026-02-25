@@ -122,6 +122,15 @@ const FormArea = ({
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitResult, setSubmitResult] = useState(null); // { success, message }
 
+    // Reset submit status if data changes after successful submission
+    // This allows the user to "Update" DHIS2
+    React.useEffect(() => {
+        if (submitResult?.success) {
+            console.log('📝 FormArea: Detected change after submission, resetting status to allow update.');
+            setSubmitResult(null);
+        }
+    }, [formData]);
+
     const isADSection = activeSection?.name === "Assessment Details";
     const isLocked = !isADSection && !isADComplete;
 
@@ -364,10 +373,18 @@ const FormArea = ({
         }
 
         try {
+            // Priority 1: Official Assignment IDs (The Source of Truth)
+            // Priority 2: Locally saved internal IDs (From previous successes)
+            const enrichedData = {
+                ...formData,
+                teiId_internal: selectedFacility?.trackedEntityInstance || formData.teiId_internal,
+                enrollmentId_internal: selectedFacility?.enrollment || formData.enrollmentId_internal
+            };
+
             console.log('🚀 Starting Tracker Enrollment Workflow...');
             // Capture generated IDs to prevent duplicates on retry
             const result = await api.submitTrackerAssessment(
-                formData,
+                enrichedData,
                 configuration,
                 orgUnit,
                 (key, id) => {
@@ -383,7 +400,7 @@ const FormArea = ({
                 await indexedDBService.markAsSynced(activeEventId, dhis2EventId || 'synced');
             }
 
-            setSubmitResult({ success: true, message: '✅ Submitted to DHIS2 successfully (TEI -> Enrollment -> Event)!' });
+            setSubmitResult({ success: true, message: '✅ DHIS2 Sync Successful (Data persists under original IDs)!' });
         } catch (err) {
             console.error('❌ Tracker workflow failed:', err);
             if (activeEventId) await indexedDBService.markAsFailed(activeEventId, err.message);
@@ -447,21 +464,22 @@ const FormArea = ({
                 <button
                     className="nav-btn"
                     onClick={handleSubmit}
-                    disabled={isSubmitting || isSaving}
+                    disabled={isSubmitting || isSaving || submitResult?.success}
                     style={{
                         marginTop: '12px',
                         width: '100%',
-                        background: isSubmitting ? '#6c757d' : '#28a745',
+                        background: (isSubmitting || isSaving) ? '#6c757d' : submitResult?.success ? '#2ecc71' : '#28a745',
                         color: '#fff',
                         border: 'none',
                         padding: '10px',
                         borderRadius: '4px',
-                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                        cursor: (isSubmitting || isSaving || submitResult?.success) ? 'not-allowed' : 'pointer',
                         fontWeight: 600,
-                        fontSize: '1em'
+                        fontSize: '1em',
+                        opacity: submitResult?.success ? 0.8 : 1
                     }}
                 >
-                    {isSubmitting ? 'Submitting...' : 'Submit to DHIS2'}
+                    {isSubmitting ? 'Submitting...' : submitResult?.success ? '✓ Successfully Submitted' : 'Submit to DHIS2'}
                 </button>
             </div>
         </div>
