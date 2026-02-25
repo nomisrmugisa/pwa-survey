@@ -292,29 +292,12 @@ export function Dashboard() {
                                         <p>Date: {assessment.sortDate} | ID: {assessment.eventId}</p>
                                     </div>
                                     <div className="form-actions">
-                                        {assessment.requiresResponse ? (
-                                            <>
-                                                <button
-                                                    className="btn btn-primary btn-sm"
-                                                    onClick={() => respondToAssignment(assessment.eventId, 'FAC_ASS_ASSIGN_ACCEPTED')}
-                                                >
-                                                    Accept
-                                                </button>
-                                                <button
-                                                    className="btn btn-danger btn-sm"
-                                                    onClick={() => respondToAssignment(assessment.eventId, 'FAC_ASS_ASSIGN_DECLINED')}
-                                                >
-                                                    Decline
-                                                </button>
-                                            </>
-                                        ) : (
-                                            <button
-                                                className="btn btn-primary btn-sm"
-                                                onClick={() => navigate(`/form?assessmentId=${assessment.eventId}`)}
-                                            >
-                                                Open Form
-                                            </button>
-                                        )}
+                                        <button
+                                            className="btn btn-primary btn-sm"
+                                            onClick={() => navigate(`/form?assessmentId=${assessment.eventId}`)}
+                                        >
+                                            Conduct Survey
+                                        </button>
                                     </div>
                                 </div>
                             ))

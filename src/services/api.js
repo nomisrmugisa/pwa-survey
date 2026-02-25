@@ -126,70 +126,132 @@ export const api = {
     },
 
     /**
-     * Generate a valid DHIS2 event ID (11 alphanumeric chars, must start with a letter)
+     * Formats form data into DHIS2 data values.
      */
-    generateDHIS2Id: () => {
-        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-        const chars = letters + '0123456789';
-        let id = letters[Math.floor(Math.random() * letters.length)];
-        for (let i = 1; i < 11; i++) id += chars[Math.floor(Math.random() * chars.length)];
-        return id;
+    formatDataValues: (formData) => {
+        return Object.entries(formData)
+            .filter(([key, value]) => {
+                if (key.startsWith('is_critical_')) return false;
+                if (key.endsWith('_internal')) return false;
+                return value !== undefined && value !== null && value !== '';
+            })
+            .map(([dataElement, value]) => ({
+                dataElement,
+                value: String(value)
+            }));
     },
 
     /**
-     * Format collected form data into a DHIS2 event payload.
-     *
-     * @param {object} formData     - key/value map of dataElement IDs to values
-     * @param {object} configuration - { programStage: { id }, program: { id } }
-     * @param {string} orgUnit      - DHIS2 org unit ID of the selected facility
-     * @param {string} [existingEventId] - reuse an existing event ID if provided
+     * Unified orchestrator for DHIS2 v41 Tracker API.
+     * Bundles TEI, Enrollment, and Event in ONE request.
      */
-    formatEventData: (formData, configuration, orgUnit, existingEventId = null) => {
-        const eventId = existingEventId || api.generateDHIS2Id();
-        const today = new Date().toISOString().slice(0, 10);
+    submitTrackerAssessment: async (formData, configuration, orgUnitId, onIdGenerated) => {
+        const PROGRAM_ID = configuration?.program?.id || 'K9O5fdoBmKf';
+        const STAGE_ID = configuration?.programStage?.id || 'HpHD6u6MV37';
+        const TE_TYPE = 'hTSffimLQiw';
+        const ATTR_ID = 'Bw4PZ8NsYFd';
+        const ATTR_VALUE = 'Internal Assessment';
 
-        const payload = {
-            event: eventId,
-            program: configuration?.program?.id,
-            programStage: configuration?.programStage?.id,
-            orgUnit: orgUnit,
-            eventDate: formData.eventDate || today,
-            status: 'COMPLETED',
-            dataValues: []
+        const now = new Date().toISOString().slice(0, 10);
+
+        // DHIS2 v41 Tracker Payload Structure
+        const trackerPayload = {
+            trackedEntities: [
+                {
+                    trackedEntityType: TE_TYPE,
+                    orgUnit: orgUnitId,
+                    attributes: [], // Add TEI attributes here if needed
+                    enrollments: [
+                        {
+                            program: PROGRAM_ID,
+                            orgUnit: orgUnitId,
+                            status: 'ACTIVE',
+                            enrolledAt: now,
+                            occurredAt: now,
+                            attributes: [
+                                { attribute: ATTR_ID, value: ATTR_VALUE }
+                            ],
+                            events: [
+                                {
+                                    program: PROGRAM_ID,
+                                    programStage: STAGE_ID,
+                                    orgUnit: orgUnitId,
+                                    status: 'COMPLETED',
+                                    occurredAt: now,
+                                    dataValues: api.formatDataValues(formData)
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         };
 
-        // Map every formData key that is a data element ID to dataValues
-        Object.entries(formData || {}).forEach(([key, value]) => {
-            // Skip meta fields
-            if (['eventDate', 'orgUnit', 'syncStatus'].includes(key)) return;
-            if (value === '' || value === null || value === undefined) return;
-            payload.dataValues.push({ dataElement: key, value: String(value) });
+        // If we already have a TEI ID from a previous partial attempt, reuse it
+        if (formData.teiId_internal) {
+            trackerPayload.trackedEntities[0].trackedEntity = formData.teiId_internal;
+        }
+
+        console.log('📤 Submitting to DHIS2 v41 Unified Tracker:', trackerPayload);
+
+        const response = await fetch(`${BASE_URL}/api/tracker?async=false&importStrategy=CREATE_AND_UPDATE`, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(trackerPayload)
         });
 
-        console.log(`📋 Formatted DHIS2 event ${eventId} with ${payload.dataValues.length} data values`);
-        return payload;
+        const data = await response.json();
+
+        if (!response.ok || data.status !== 'OK') {
+            const errorMsg = data.validationReport?.errorReports?.[0]?.message ||
+                data.message ||
+                'Tracker submission failed';
+            console.error('❌ Tracker submission failed:', data);
+            throw new Error(errorMsg);
+        }
+
+        console.log('✅ Tracker submission successful:', data);
+
+        // Extract IDs for persistence if needed
+        const newTeiId = data.bundleReport?.typeReportMap?.TRACKED_ENTITY?.objectReports?.[0]?.uid;
+        if (newTeiId && onIdGenerated) {
+            onIdGenerated('teiId_internal', newTeiId);
+        }
+
+        return data;
     },
 
     /**
-     * Submit a formatted event to DHIS2.
-     * POST /api/events   { "events": [ payload ] }
+     * Helper to extract the generated Event UID from various DHIS2 response formats.
+     */
+    extractEventId: (result) => {
+        // Tracker API (v41)
+        const trackerUid = result?.bundleReport?.typeReportMap?.EVENT?.objectReports?.[0]?.uid;
+        if (trackerUid) return trackerUid;
+
+        // Legacy Event API
+        const legacyUid = result?.response?.importSummaries?.[0]?.reference;
+        if (legacyUid) return legacyUid;
+
+        return 'synced';
+    },
+
+    /**
+     * Legacy event submission (kept for compatibility if needed).
      */
     submitEvent: async (eventPayload) => {
-        console.log('📤 Submitting event to DHIS2:', eventPayload);
+        console.log('📤 Submitting event to DHIS2 (Legacy):', eventPayload);
         const response = await fetch(`${BASE_URL}/api/events`, {
             method: 'POST',
             headers: getHeaders(),
             body: JSON.stringify({ events: [eventPayload] })
         });
 
-        const data = await response.json();
-
         if (!response.ok) {
-            console.error('❌ DHIS2 event submission failed:', data);
+            const data = await response.json();
             throw new Error(data?.message || `Event submission failed: ${response.status}`);
         }
 
-        console.log('✅ Event submitted successfully to DHIS2:', data);
-        return data;
+        return await response.json();
     }
 };

@@ -58,7 +58,7 @@ const getCriterionTooltip = (code) => {
 };
 
 // Internal Input component to manage local state and prevent focus loss on re-renders
-const FieldInput = ({ type, value, onChange, disabled, id, className }) => {
+const FieldInput = ({ type, value, onChange, onBlur, disabled, id, className }) => {
     const [localValue, setLocalValue] = useState(value || '');
 
     // Sync local value with prop value when Prop value changes from outside
@@ -78,6 +78,7 @@ const FieldInput = ({ type, value, onChange, disabled, id, className }) => {
                 className={className}
                 value={localValue}
                 onChange={handleChange}
+                onBlur={onBlur}
                 disabled={disabled}
                 rows={3}
             />
@@ -91,6 +92,7 @@ const FieldInput = ({ type, value, onChange, disabled, id, className }) => {
             className={className}
             value={localValue}
             onChange={handleChange}
+            onBlur={onBlur}
             disabled={disabled}
         />
     );
@@ -202,7 +204,7 @@ const FormArea = ({
                                 <label className="switch">
                                     <input
                                         type="checkbox"
-                                        checked={isCritical}
+                                        checked={formData[`is_critical_${associatedCommentId}`] || isCritical}
                                         onChange={(e) => handleCriticalToggle(field.id, associatedCommentId, e.target.checked)}
                                         disabled={!isQuestionAnswered}
                                     />
@@ -211,6 +213,9 @@ const FormArea = ({
                             </div>
                         )}
                     </div>
+                    {formData[`is_critical_${field.id}`] && isCommentField && (
+                        <div className="mandatory-label">Comment is required for Critical issues.</div>
+                    )}
                     {field.type === 'select' ? (
                         <select
                             className="form-control"
@@ -276,9 +281,10 @@ const FormArea = ({
                     ) : (
                         <FieldInput
                             type={isCommentField ? 'textarea' : field.type}
-                            className="form-control"
+                            className={`form-control ${formData[`is_critical_${field.id}`] && (!questionValue || questionValue === '') ? 'mandatory-warning' : ''}`}
                             value={formData[field.id] || ''}
                             onChange={(e) => handleInputChange(e, field.id)}
+                            onBlur={isCommentField ? () => handleCommentBlur(field.id) : undefined}
                             id={`field-${field.id}`}
                             disabled={!isParentAnswered && isCommentField}
                         />
@@ -301,19 +307,32 @@ const FormArea = ({
         saveField(fieldId, value);
     };
 
+    const handleCommentBlur = (fieldId) => {
+        const currentComment = formData[fieldId] || '';
+        // Find if this field is linked to a toggled "Critical" state
+        // We look for a field where this fieldId is the 'associatedCommentId'
+        const parentField = activeSection.fields.find(f => f.commentFieldId === fieldId);
+
+        // We'll use a hidden state marker in formData or just check the toggle
+        // For now, if toggle is active, append [CRITICAL] if not present
+        if (formData[`is_critical_${fieldId}`] && !currentComment.includes('[CRITICAL]')) {
+            const newComment = currentComment ? `${currentComment} [CRITICAL]` : '[CRITICAL]';
+            saveField(fieldId, newComment);
+        }
+    };
+
     const handleCriticalToggle = (fieldId, commentFieldId, isChecked) => {
         const currentComment = formData[commentFieldId] || '';
         let newComment = currentComment;
 
-        if (isChecked) {
-            if (!currentComment.includes('[CRITICAL]')) {
-                newComment = currentComment ? `${currentComment} [CRITICAL]` : '[CRITICAL]';
-            }
-        } else {
-            newComment = currentComment.replace(/\s?\[CRITICAL\]/g, '').trim();
-        }
+        // Save a helper state to track if critical is toggled, so we can make it mandatory
+        saveField(`is_critical_${commentFieldId}`, isChecked);
 
-        saveField(commentFieldId, newComment);
+        if (!isChecked) {
+            // If turning off, remove the tag immediately
+            newComment = currentComment.replace(/\s?\[CRITICAL\]/g, '').trim();
+            saveField(commentFieldId, newComment);
+        }
     };
 
     const handleSubmit = async () => {
@@ -329,15 +348,44 @@ const FormArea = ({
 
         setIsSubmitting(true);
         setSubmitResult(null);
+
+        // Validation: Check for mandatory critical comments
+        const missingComments = activeSection.fields
+            .filter(f => formData[`is_critical_${f.id}`])
+            .filter(f => {
+                const val = formData[f.id] || '';
+                return val.replace('[CRITICAL]', '').trim() === '';
+            });
+
+        if (missingComments.length > 0) {
+            setSubmitResult({ success: false, message: '❌ Please provide comments for all items marked as Critical.' });
+            setIsSubmitting(false);
+            return;
+        }
+
         try {
-            const payload = api.formatEventData(formData, configuration, orgUnit, null);
-            await api.submitEvent(payload);
+            console.log('🚀 Starting Tracker Enrollment Workflow...');
+            // Capture generated IDs to prevent duplicates on retry
+            const result = await api.submitTrackerAssessment(
+                formData,
+                configuration,
+                orgUnit,
+                (key, id) => {
+                    console.log(`💾 Persisting ${key} to draft: ${id}`);
+                    saveField(key, id);
+                }
+            );
+
+            // Extract the Event ID using our unified helper (handles v41 tracker vs legacy)
+            const dhis2EventId = api.extractEventId(result);
+
             if (activeEventId) {
-                await indexedDBService.markAsSynced(activeEventId, payload.event);
+                await indexedDBService.markAsSynced(activeEventId, dhis2EventId || 'synced');
             }
-            setSubmitResult({ success: true, message: '✅ Submitted to DHIS2 successfully!' });
+
+            setSubmitResult({ success: true, message: '✅ Submitted to DHIS2 successfully (TEI -> Enrollment -> Event)!' });
         } catch (err) {
-            console.error('Submit failed:', err);
+            console.error('❌ Tracker workflow failed:', err);
             if (activeEventId) await indexedDBService.markAsFailed(activeEventId, err.message);
             setSubmitResult({ success: false, message: `❌ Submit failed: ${err.message}` });
         } finally {

@@ -111,15 +111,16 @@ export const AppProvider = ({ children }) => {
             for (const draft of pending) {
                 try {
                     const orgUnit = draft.formData?.orgUnit || draft.orgUnit;
-                    const payload = api.formatEventData(
+                    console.log(`🔄 AppContext: Syncing draft ${draft.eventId} via Tracker workflow...`);
+
+                    const result = await api.submitTrackerAssessment(
                         draft.formData,
                         configuration,
-                        orgUnit,
-                        draft.dhis2EventId || null
+                        orgUnit
                     );
-                    const result = await api.submitEvent(payload);
-                    // Extract the DHIS2 event ID from the response if available
-                    const dhis2Id = result?.response?.importSummaries?.[0]?.reference || payload.event;
+
+                    // Extract the DHIS2 event ID using our unified helper
+                    const dhis2Id = api.extractEventId(result);
                     await indexedDBService.markAsSynced(draft.eventId, dhis2Id);
                     synced++;
                 } catch (err) {
@@ -145,9 +146,16 @@ export const AppProvider = ({ children }) => {
             const draft = await indexedDBService.getFormData(eventId);
             if (!draft) throw new Error('Draft not found');
             const orgUnit = draft.formData?.orgUnit || draft.orgUnit;
-            const payload = api.formatEventData(draft.formData, configuration, orgUnit, draft.dhis2EventId || null);
-            const result = await api.submitEvent(payload);
-            const dhis2Id = result?.response?.importSummaries?.[0]?.reference || payload.event;
+
+            console.log(`🔄 AppContext: Retrying sync for ${eventId} via Tracker workflow...`);
+            const result = await api.submitTrackerAssessment(
+                draft.formData,
+                configuration,
+                orgUnit
+            );
+
+            // Extract the DHIS2 event ID using our unified helper
+            const dhis2Id = api.extractEventId(result);
             await indexedDBService.markAsSynced(eventId, dhis2Id);
             await refreshStats();
             showToast('Event synced successfully.', 'success');

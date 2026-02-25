@@ -129,22 +129,33 @@ export const useIncrementalSave = (eventId, options = {}) => {
 
     // Load existing form data
     const loadFormData = useCallback(async () => {
-        if (!eventId) return null;
+        if (!eventId) {
+            setFormData({});
+            setLastSaved(null);
+            return null;
+        }
         try {
             const data = await indexedDBService.getFormData(eventId);
             if (data && data.formData) {
+                if (enableLogging) console.log(`📂 useIncrementalSave: Loaded existing draft for ${eventId}`);
                 setFormData(data.formData);
                 if (data.lastUpdated) {
                     setLastSaved(new Date(data.lastUpdated));
                 }
                 return data;
+            } else {
+                if (enableLogging) console.log(`📂 useIncrementalSave: No draft found for ${eventId}, starting fresh.`);
+                setFormData({});
+                setLastSaved(null);
             }
             return null;
         } catch (error) {
             console.error('❌ Failed to load form data:', error);
+            setFormData({});
+            setLastSaved(null);
             return null;
         }
-    }, [eventId]);
+    }, [eventId, enableLogging]);
 
     return {
         formData,

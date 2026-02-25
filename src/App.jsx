@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useSearchParams } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Layout from './components/Layout/Layout';
 import FormArea from './components/FormArea/FormArea';
@@ -18,6 +18,7 @@ const PrivateRoute = ({ children }) => {
 
 const AppContent = () => {
   const { user, setUser, setConfiguration, setUserAssignments, configuration } = useApp();
+  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
 
   // Navigation State
@@ -29,11 +30,15 @@ const AppContent = () => {
   const [assignments, setAssignments] = useState([]);
   const [selectedFacility, setSelectedFacility] = useState(null);
 
-  // Generate Event ID safely (Moved from FormArea)
+  // Generate Event ID safely - unique per assessment if available
   const activeEventId = React.useMemo(() => {
-    if (!selectedFacility || !selectedFacility.trackedEntityInstance) return null;
-    return `draft-${selectedFacility.trackedEntityInstance}`;
-  }, [selectedFacility]);
+    const assessmentId = searchParams.get('assessmentId');
+    if (assessmentId) return `draft-assessment-${assessmentId}`;
+
+    if (!selectedFacility || (!selectedFacility.trackedEntityInstance && !selectedFacility.orgUnit)) return null;
+    const identifier = selectedFacility.trackedEntityInstance || selectedFacility.orgUnit;
+    return `draft-facility-${identifier}`;
+  }, [selectedFacility, searchParams]);
 
   // Unified Incremental Save (Moved from FormArea)
   const {
@@ -102,6 +107,18 @@ const AppContent = () => {
       setIsLoading(false);
     }
   };
+
+  // Auto-select facility based on URL parameter
+  useEffect(() => {
+    const assessmentId = searchParams.get('assessmentId');
+    if (assessmentId && assignments.length > 0) {
+      const matched = assignments.find(a => a.eventId === assessmentId);
+      if (matched) {
+        console.log(`🎯 App: Auto-selecting facility for assessment ${assessmentId}:`, matched.orgUnitName);
+        setSelectedFacility(matched);
+      }
+    }
+  }, [searchParams, assignments]);
 
   // Assessment Details Prerequisite Check
   const isADComplete = React.useMemo(() => {
