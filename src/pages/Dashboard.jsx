@@ -6,6 +6,7 @@ import { useUserAssessments } from '../hooks/useUserAssessments';
 import { SurveyPreview } from '../components/SurveyPreview.jsx';
 import indexedDBService from '../services/indexedDBService';
 import emsConfig from '../assets/ems_config.json';
+import emsLinks from '../assets/ems_links.json';
 import {
     Dialog,
     DialogTitle,
@@ -55,6 +56,10 @@ export function Dashboard() {
     const [editedJson, setEditedJson] = useState('');
     const [jsonError, setJsonError] = useState(null);
     const [customEmsConfig, setCustomEmsConfig] = useState(null);
+    const [customEmsLinks, setCustomEmsLinks] = useState(null);
+    const [isEditingLinks, setIsEditingLinks] = useState(false);
+    const [editedLinksJson, setEditedLinksJson] = useState('');
+    const [showLinksEditor, setShowLinksEditor] = useState(false);
 
     // Integrated Hook
     const assessmentHook = useUserAssessments();
@@ -149,12 +154,24 @@ export function Dashboard() {
                 console.error('Failed to parse saved custom config');
             }
         }
+        const savedLinks = localStorage.getItem('custom_ems_links');
+        if (savedLinks) {
+            try {
+                setCustomEmsLinks(JSON.parse(savedLinks));
+            } catch (e) {
+                console.error('Failed to parse saved custom links');
+            }
+        }
     }, [storage.isReady, user]);
 
     // Use custom config if available, otherwise fallback to imported JSON
     const currentConfig = useMemo(() => {
         return customEmsConfig || emsConfig;
     }, [customEmsConfig]);
+
+    const currentLinks = useMemo(() => {
+        return customEmsLinks || emsLinks;
+    }, [customEmsLinks]);
 
     // Filter events
     const filteredEvents = useMemo(() => {
@@ -429,11 +446,16 @@ export function Dashboard() {
                             <Button onClick={() => setSelectedSE(null)} size="small">← Back</Button>
                             <span>SE {selectedSE.se_id}: {selectedSE.se_name}</span>
                         </div>
+                    ) : showLinksEditor ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <Button onClick={() => setShowLinksEditor(false)} size="small">← Back</Button>
+                            <span>Criteria Linking Configuration</span>
+                        </div>
                     ) : 'App Settings'}
                 </DialogTitle>
                 <DialogContent dividers>
                     <div className="settings-content">
-                        {!selectedSE ? (
+                        {!selectedSE && !showLinksEditor ? (
                             <>
                                 <div className="settings-section">
                                     <h4>Service Element Configuration</h4>
@@ -458,6 +480,22 @@ export function Dashboard() {
                                     <div className="config-status-tag success">STABLE</div>
                                 </div>
                                 <div className="settings-section">
+                                    <h4>Criteria Linking Configuration</h4>
+                                    <p className="settings-subtitle">EMS Criteria dependencies and associations</p>
+                                    <div
+                                        className="se-config-item clickable"
+                                        onClick={() => {
+                                            setShowLinksEditor(true);
+                                            setEditedLinksJson(JSON.stringify(currentLinks, null, 2));
+                                            setIsEditingLinks(false);
+                                        }}
+                                    >
+                                        <span className="se-id-badge">LINKS</span>
+                                        <span className="se-name-text">View/Edit Linked Criteria Map</span>
+                                        <span className="chevron-right">›</span>
+                                    </div>
+                                </div>
+                                <div className="settings-section">
                                     <h4>User Info</h4>
                                     <p>Logged in as: <strong>{user?.username || 'Guest'}</strong></p>
                                 </div>
@@ -474,7 +512,7 @@ export function Dashboard() {
                                     </Button>
                                 </div>
                             </>
-                        ) : (
+                        ) : selectedSE ? (
                             <div className="se-details-view raw-json-container">
                                 <div className="json-header-actions">
                                     {isEditingJson ? (
@@ -578,11 +616,108 @@ export function Dashboard() {
                                     </pre>
                                 )}
                             </div>
-                        )}
+                        ) : showLinksEditor ? (
+                            <div className="se-details-view raw-json-container">
+                                <div className="json-header-actions">
+                                    {isEditingLinks ? (
+                                        <>
+                                            {jsonError && <span className="error-text json-error-msg">{jsonError}</span>}
+                                            <Button
+                                                size="small"
+                                                variant="contained"
+                                                color="success"
+                                                onClick={() => {
+                                                    try {
+                                                        const parsed = JSON.parse(editedLinksJson);
+                                                        setCustomEmsLinks(parsed);
+                                                        localStorage.setItem('custom_ems_links', JSON.stringify(parsed));
+                                                        setIsEditingLinks(false);
+                                                        setJsonError(null);
+                                                        showToast('Linking configuration saved!', 'success');
+                                                    } catch (e) {
+                                                        setJsonError('Invalid JSON format');
+                                                    }
+                                                }}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Save Changes
+                                            </Button>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => {
+                                                    setIsEditingLinks(false);
+                                                    setEditedLinksJson(JSON.stringify(currentLinks, null, 2));
+                                                    setJsonError(null);
+                                                }}
+                                            >
+                                                Cancel
+                                            </Button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => setIsEditingLinks(true)}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Edit Mode
+                                            </Button>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText(JSON.stringify(currentLinks, null, 2));
+                                                    showToast('Links JSON copied!', 'success');
+                                                }}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Copy JSON
+                                            </Button>
+                                            {customEmsLinks && (
+                                                <Button
+                                                    size="small"
+                                                    variant="outlined"
+                                                    color="error"
+                                                    onClick={() => {
+                                                        if (window.confirm('Reset linking configuration to default?')) {
+                                                            setCustomEmsLinks(null);
+                                                            localStorage.removeItem('custom_ems_links');
+                                                            setEditedLinksJson(JSON.stringify(emsLinks, null, 2));
+                                                            showToast('Reset to default', 'info');
+                                                        }
+                                                    }}
+                                                >
+                                                    Reset
+                                                </Button>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+                                {isEditingLinks ? (
+                                    <textarea
+                                        className="raw-json-editor"
+                                        value={editedLinksJson}
+                                        onChange={(e) => setEditedLinksJson(e.target.value)}
+                                        spellCheck="false"
+                                        style={{ minHeight: '400px' }}
+                                    />
+                                ) : (
+                                    <pre className="raw-json-viewer" style={{ minHeight: '400px' }}>
+                                        {JSON.stringify(currentLinks, null, 2)}
+                                    </pre>
+                                )}
+                            </div>
+                        ) : null}
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => { setShowSettings(false); setSelectedSE(null); }}>Close</Button>
+                    <Button onClick={() => {
+                        setShowSettings(false);
+                        setSelectedSE(null);
+                        setShowLinksEditor(false);
+                    }}>Close</Button>
                 </DialogActions>
             </Dialog>
 

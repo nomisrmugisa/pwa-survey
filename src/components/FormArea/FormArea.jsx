@@ -4,6 +4,7 @@ import { useApp } from '../../contexts/AppContext';
 import { api } from '../../services/api';
 import indexedDBService from '../../services/indexedDBService';
 import emsConfig from '../../assets/ems_config.json';
+import emsLinks from '../../assets/ems_links.json';
 import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
 import { createAssessmentSnapshot } from '../../utils/createAssessmentSnapshot';
@@ -50,7 +51,7 @@ const normalizeCriterionCode = (rawCode) => {
     return code;
 };
 
-const getCriterionTooltip = (code) => {
+const getCriterionTooltip = (code, links) => {
     const normalized = normalizeCriterionCode(code);
     if (!normalized) return '';
     const info = EMS_CRITERION_INDEX[normalized];
@@ -59,6 +60,18 @@ const getCriterionTooltip = (code) => {
     const parts = [];
     if (info.statement) parts.push(`Statement:\n${info.statement.trim()}`);
     if (info.intent) parts.push(`Intent:\n${info.intent.trim()}`);
+
+    // Add Linked Criteria if available
+    if (links && Array.isArray(links)) {
+        const linkInfo = links.find(l => normalizeCriterionCode(l.criteria) === normalized);
+        if (linkInfo) {
+            console.log(`Tooltip Match Found for ${normalized}:`, linkInfo);
+            if (linkInfo.linked_criteria && linkInfo.linked_criteria.length > 0) {
+                parts.push(`Linked Criteria:\n${linkInfo.linked_criteria.join(', ')}`);
+            }
+        }
+    }
+
     return parts.join('\n\n');
 };
 
@@ -116,6 +129,20 @@ const FormArea = ({
     activeEventId,
     scoringResults
 }) => {
+    const [customLinks, setCustomLinks] = useState(null);
+
+    React.useEffect(() => {
+        const savedLinks = localStorage.getItem('custom_ems_links');
+        if (savedLinks) {
+            try {
+                setCustomLinks(JSON.parse(savedLinks));
+            } catch (e) {
+                console.error('FormArea: Failed to parse saved custom links');
+            }
+        }
+    }, []);
+
+    const activeLinks = customLinks || emsLinks;
     // DEBUG: Validate props on render
     React.useEffect(() => {
         if (!activeSection) console.warn("FormArea: No active section provided");
@@ -190,7 +217,7 @@ const FormArea = ({
             const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
 
             // Look up EMS standard/intent tooltip for this data element code
-            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code) : '';
+            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks) : '';
 
             return (
                 <div
