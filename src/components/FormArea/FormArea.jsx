@@ -8,8 +8,6 @@ import emsLinks from '../../assets/ems_links.json';
 import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
 import { createAssessmentSnapshot } from '../../utils/createAssessmentSnapshot';
-import Modal from './Modal';
-import SeverityDialog from './SeverityDialog';
 
 // Build a fast lookup from EMS criterion ID (e.g. "1.2.1.3") to its
 // standard statement and intent text.
@@ -171,13 +169,6 @@ const FormArea = ({
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitResult, setSubmitResult] = useState(null); // { success, message }
 
-    // Severity Dialog State
-    const [severityTargetField, setSeverityTargetField] = useState(null); // { fieldId, commentFieldId }
-
-    React.useEffect(() => {
-        console.log('severityTargetField state changed:', severityTargetField);
-    }, [severityTargetField]);
-
     // Reset submit status if data changes after successful submission
     // This allows the user to "Update" DHIS2
     React.useEffect(() => {
@@ -219,6 +210,22 @@ const FormArea = ({
                     </div>
                 );
             }
+
+            // Extract calculated score for this field if it exists
+            let calculatedFieldScore = null;
+            if (scoringResults?.sections) {
+                const currentSectionScores = scoringResults.sections.find(s => s.id === activeSection.id);
+                if (currentSectionScores?.standards) {
+                    for (const standard of currentSectionScores.standards) {
+                        if (standard.criteriaScores && standard.criteriaScores[field.id]) {
+                            calculatedFieldScore = standard.criteriaScores[field.id];
+                            break;
+                        }
+                    }
+                }
+            }
+
+            const isRoot = calculatedFieldScore?.isRoot || false;
 
             const isCommentField = field.isComment || field.label === 'Comment' || field.id?.endsWith('-comments') || field.id?.endsWith('-comment');
 
@@ -308,67 +315,89 @@ const FormArea = ({
                         <div className="mandatory-label">Comment is required for Critical issues.</div>
                     )}
                     {field.type === 'select' ? (
-                        <select
-                            className="form-control"
-                            value={formData[field.id] || ''}
-                            onChange={(e) => handleInputChange(e, field.id)}
-                            id={`field-${field.id}`} // Helper for testing
-                            disabled={!isParentAnswered && isCommentField}
-                        >
-                            <option value="">Select...</option>
-                            {(() => {
-                                const options = field.options || [];
-                                const groups = {};
-                                const ungrouped = [];
+                        <>
+                            {calculatedFieldScore && calculatedFieldScore.points !== null && (
+                                <div className={`${isRoot ? 'root-score-display' : 'linked-score-display'}`} style={{ marginBottom: '10px', padding: '10px', backgroundColor: isRoot ? '#e2e8f0' : '#f0f4f8', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: isRoot ? '1px solid #cbd5e1' : '1px dashed #cbd5e1' }}>
+                                    <span style={{ fontWeight: '600', color: '#2d3748', fontSize: '0.9em' }}>
+                                        {isRoot ? 'Calculated Root Score:' : 'Criterion Score:'}
+                                    </span>
+                                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                                        <span style={{ fontWeight: 'bold', fontSize: '1.05em', color: '#2b3a8e' }}>{parseFloat(calculatedFieldScore.points).toFixed(0)} pts</span>
+                                        <span style={{
+                                            padding: '2px 8px',
+                                            borderRadius: '12px',
+                                            fontSize: '0.75em',
+                                            fontWeight: 'bold',
+                                            backgroundColor: calculatedFieldScore.response === 'NON' ? '#fed7d7' : (calculatedFieldScore.response === 'PARTIAL' ? '#fefcbf' : '#c6f6d5'),
+                                            color: calculatedFieldScore.response === 'NON' ? '#c53030' : (calculatedFieldScore.response === 'PARTIAL' ? '#b7791f' : '#22543d')
+                                        }}>
+                                            {calculatedFieldScore.response}
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
+                            <select
+                                className="form-control"
+                                value={isRoot && calculatedFieldScore ? calculatedFieldScore.response : (formData[field.id] || '')}
+                                onChange={(e) => handleInputChange(e, field.id)}
+                                id={`field-${field.id}`} // Helper for testing
+                                disabled={isRoot || (!isParentAnswered && isCommentField)}
+                            >
+                                <option value="">{isRoot ? "Auto-calculated from linked criteria..." : "Select..."}</option>
+                                {(() => {
+                                    const options = field.options || [];
+                                    const groups = {};
+                                    const ungrouped = [];
 
-                                options.forEach(opt => {
-                                    const val = typeof opt === 'object' ? opt.value : opt;
-                                    const label = typeof opt === 'object' ? opt.label : opt;
-
-                                    if (typeof val === 'string' && val.includes('_')) {
-                                        const prefix = val.split('_')[0];
-                                        if (!groups[prefix]) groups[prefix] = [];
-                                        groups[prefix].push({ val, label });
-                                    } else {
-                                        ungrouped.push({ val, label });
-                                    }
-                                });
-
-                                const groupKeys = Object.keys(groups);
-                                if (groupKeys.length === 0) {
-                                    // No grouped options, render normally
-                                    return options.map((opt, idx) => {
+                                    options.forEach(opt => {
                                         const val = typeof opt === 'object' ? opt.value : opt;
                                         const label = typeof opt === 'object' ? opt.label : opt;
-                                        return (
-                                            <option key={`${val}-${idx}`} value={val}>
-                                                {label}
-                                            </option>
-                                        );
-                                    });
-                                }
 
-                                // Render grouped options
-                                return (
-                                    <>
-                                        {ungrouped.map((opt, idx) => (
-                                            <option key={`ungrouped-${opt.val}-${idx}`} value={opt.val}>
-                                                {opt.label}
-                                            </option>
-                                        ))}
-                                        {groupKeys.map(group => (
-                                            <optgroup key={group} label={group}>
-                                                {groups[group].map((opt, idx) => (
-                                                    <option key={`${group}-${opt.val}-${idx}`} value={opt.val}>
-                                                        {opt.label}
-                                                    </option>
-                                                ))}
-                                            </optgroup>
-                                        ))}
-                                    </>
-                                );
-                            })()}
-                        </select>
+                                        if (typeof val === 'string' && val.includes('_')) {
+                                            const prefix = val.split('_')[0];
+                                            if (!groups[prefix]) groups[prefix] = [];
+                                            groups[prefix].push({ val, label });
+                                        } else {
+                                            ungrouped.push({ val, label });
+                                        }
+                                    });
+
+                                    const groupKeys = Object.keys(groups);
+                                    if (groupKeys.length === 0) {
+                                        // No grouped options, render normally
+                                        return options.map((opt, idx) => {
+                                            const val = typeof opt === 'object' ? opt.value : opt;
+                                            const label = typeof opt === 'object' ? opt.label : opt;
+                                            return (
+                                                <option key={`${val}-${idx}`} value={val}>
+                                                    {label}
+                                                </option>
+                                            );
+                                        });
+                                    }
+
+                                    // Render grouped options
+                                    return (
+                                        <>
+                                            {ungrouped.map((opt, idx) => (
+                                                <option key={`ungrouped-${opt.val}-${idx}`} value={opt.val}>
+                                                    {opt.label}
+                                                </option>
+                                            ))}
+                                            {groupKeys.map(group => (
+                                                <optgroup key={group} label={group}>
+                                                    {groups[group].map((opt, idx) => (
+                                                        <option key={`${group}-${opt.val}-${idx}`} value={opt.val}>
+                                                            {opt.label}
+                                                        </option>
+                                                    ))}
+                                                </optgroup>
+                                            ))}
+                                        </>
+                                    );
+                                })()}
+                            </select>
+                        </>
                     ) : (
                         <FieldInput
                             type={isCommentField ? 'textarea' : field.type}
@@ -385,7 +414,6 @@ const FormArea = ({
         });
     };
 
-
     if (!activeSection) {
         if (!selectedFacility) {
             return <div className="form-area-empty">Please select a facility and a section</div>;
@@ -401,27 +429,78 @@ const FormArea = ({
         const field = activeSection.fields.find(f => f.id === fieldId);
         console.log(`Field found: ${JSON.stringify(field)}`);
 
-        if (field?.type === 'select' && value && value !== '') {
-            console.log('Triggering severity dialog...');
-            setSeverityTargetField({
-                fieldId,
-                commentFieldId: field.commentFieldId
-            });
-        }
-
         saveField(fieldId, value);
     };
 
-    const handleSeveritySelect = (severity) => {
-        if (severityTargetField) {
-            saveField(`severity_${severityTargetField.fieldId}`, severity);
-            setSeverityTargetField(null);
+    // Effect to automatically update comment field with the score when it changes
+    React.useEffect(() => {
+        if (!scoringResults?.sections || !activeSection?.fields) return;
+
+        const currentSectionScores = scoringResults.sections.find(s => s.id === activeSection.id);
+        if (!currentSectionScores?.standards) return;
+
+        let hasUpdates = false;
+
+        // Use a temporary object to hold updates to avoid infinite loops with saveField
+        const updates = {};
+
+        activeSection.fields.forEach(field => {
+            if (field.type === 'select' && field.commentFieldId) {
+                // Find calculated score
+                let calculatedScore = null;
+                for (const standard of currentSectionScores.standards) {
+                    if (standard.criteriaScores && standard.criteriaScores[field.id]) {
+                        calculatedScore = standard.criteriaScores[field.id];
+                        break;
+                    }
+                }
+
+                if (calculatedScore && calculatedScore.points !== null) {
+                    const commentFieldId = field.commentFieldId;
+                    const currentComment = formData[commentFieldId] || '';
+                    const isRoot = calculatedScore.isRoot || false;
+
+                    const scoreTag = isRoot
+                        ? `[ROOT SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}]`
+                        : `[SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}]`;
+
+                    // Only update if there's an actual response value (not empty) or if it's an auto-calculated Root score
+                    const hasResponse = isRoot || (formData[field.id] && formData[field.id] !== '');
+
+                    if (hasResponse) {
+                        // Remove any old score tags first using a robust regex
+                        let newComment = currentComment.replace(/\[((ROOT )?SCORE|SEVERITY): [^\]]+\]/g, '').trim();
+                        // Append the new one
+                        newComment = newComment ? `${newComment} ${scoreTag}` : scoreTag;
+
+                        // Only save if it actually represents a change
+                        if (newComment !== currentComment) {
+                            updates[commentFieldId] = newComment;
+                            hasUpdates = true;
+                        }
+                    } else if (currentComment.includes('[SCORE:') || currentComment.includes('[ROOT SCORE:') || currentComment.includes('[SEVERITY:')) {
+                        // Clear score log if answer removed
+                        let newComment = currentComment.replace(/\[((ROOT )?SCORE|SEVERITY): [^\]]+\]/g, '').trim();
+                        updates[commentFieldId] = newComment;
+                        hasUpdates = true;
+                    }
+                }
+            }
+        });
+
+        if (hasUpdates) {
+            console.log("Auto-applying Score tags to comments...", updates);
+            // Apply all updates
+            Object.entries(updates).forEach(([key, val]) => {
+                saveField(key, val);
+            });
         }
-    };
+    }, [scoringResults, formData, activeSection, saveField]);
+
+
 
     const handleCommentBlur = (fieldId) => {
         const currentComment = formData[fieldId] || '';
-        // Find if this field is linked to a toggled "Critical" state or has a selected "Severity"
         const parentField = activeSection.fields.find(f => f.commentFieldId === fieldId);
         const parentFieldId = parentField?.id;
 
@@ -432,13 +511,34 @@ const FormArea = ({
             newComment = newComment ? `${newComment} [CRITICAL]` : '[CRITICAL]';
         }
 
-        // Add [SEVERITY: ...] tag if selected
-        const severity = parentFieldId ? formData[`severity_${parentFieldId}`] : null;
-        if (severity) {
-            const severityTag = `[SEVERITY: ${severity}]`;
-            // Remove any existing severity tags first to allow updates
-            newComment = newComment.replace(/\[SEVERITY: [^\]]+\]/g, '').trim();
-            newComment = newComment ? `${newComment} ${severityTag}` : severityTag;
+        // Add Score Tag if calculated score exists for parent field
+        if (parentFieldId && scoringResults?.sections) {
+            const currentSectionScores = scoringResults.sections.find(s => s.id === activeSection.id);
+            if (currentSectionScores?.standards) {
+                let calculatedScore = null;
+                for (const standard of currentSectionScores.standards) {
+                    if (standard.criteriaScores && standard.criteriaScores[parentFieldId]) {
+                        calculatedScore = standard.criteriaScores[parentFieldId];
+                        break;
+                    }
+                }
+
+                if (calculatedScore && calculatedScore.points !== null) {
+                    const isRoot = calculatedScore.isRoot || false;
+                    const hasParentResponse = isRoot || (formData[parentFieldId] && formData[parentFieldId] !== '');
+
+                    if (hasParentResponse) {
+                        const scoreTag = isRoot
+                            ? `[ROOT SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}]`
+                            : `[SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}]`;
+
+                        // Remove any old score tags first
+                        newComment = newComment.replace(/\[((ROOT )?SCORE|SEVERITY): [^\]]+\]/g, '').trim();
+                        // Append the new one
+                        newComment = newComment ? `${newComment} ${scoreTag}` : scoreTag;
+                    }
+                }
+            }
         }
 
         if (newComment !== currentComment) {
@@ -625,14 +725,6 @@ const FormArea = ({
                     {isSubmitting ? 'Submitting...' : submitResult?.success ? '✓ Successfully Submitted' : 'Submit to DHIS2'}
                 </button>
             </div>
-
-            <Modal
-                isOpen={!!severityTargetField}
-                onClose={() => setSeverityTargetField(null)}
-                title="Select Severity"
-            >
-                <SeverityDialog onSelect={handleSeveritySelect} />
-            </Modal>
         </div>
     );
 };

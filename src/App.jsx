@@ -9,6 +9,8 @@ import { api } from './services/api';
 import { transformMetadata } from './utils/transformers';
 import { useIncrementalSave } from './hooks/useIncrementalSave';
 import { useAssessmentScoring } from './hooks/useAssessmentScoring';
+import emsConfig from './assets/ems_config.json';
+import emsLinks from './assets/ems_links.json';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
@@ -141,6 +143,33 @@ const AppContent = () => {
   const assessmentDetailsForScoring = React.useMemo(() => {
     if (!activeGroup || !formData) return { sections: [] };
 
+    // Get active configurations (supporting potential local storage overrides later)
+    const activeEmsLinks = emsLinks;
+
+    // Quick lookup for root links
+    const rootLookup = {};
+    activeEmsLinks.forEach(linkObj => {
+      rootLookup[linkObj.criteria] = linkObj.linked_criteria || [];
+    });
+
+    // Quick lookup for severity from full config
+    const severityLookup = {};
+    try {
+      (emsConfig.ems_full_configuration || []).forEach(se => {
+        (se.sections || []).forEach(section => {
+          (section.standards || []).forEach(standard => {
+            (standard.criteria || []).forEach(crit => {
+              if (crit && crit.id) {
+                severityLookup[crit.id] = crit.severity || 1;
+              }
+            });
+          });
+        });
+      });
+    } catch (e) {
+      console.error("App: Error building severity lookup", e);
+    }
+
     return {
       sections: (activeGroup.sections || []).map(section => ({
         id: section.id,
@@ -149,12 +178,23 @@ const AppContent = () => {
           // Only score select fields (dropdowns) as they correspond to criteria responses
           criteria: (section.fields || [])
             .filter(f => f.type === 'select')
-            .map(f => ({
-              id: f.id,
-              response: formData[f.id] || 'NA',
-              // Check for critical flag in formData (appended by FormArea toggle)
-              isCritical: Boolean(formData[`is_critical_${f.commentFieldId}`] || formData[`is_critical_${f.id}`])
-            }))
+            .map(f => {
+              const code = f.code || f.id; // Usually mapped during API transform
+              const links = rootLookup[code] || [];
+              const isRoot = links.length > 0;
+              const severity = severityLookup[code] || 1;
+
+              return {
+                id: f.id,
+                code: code,
+                response: formData[f.id] || 'NA',
+                // Check for critical flag in formData (appended by FormArea toggle)
+                isCritical: Boolean(formData[`is_critical_${f.commentFieldId}`] || formData[`is_critical_${f.id}`]),
+                isRoot,
+                links,
+                severity
+              };
+            })
         }]
       }))
     };
