@@ -13,7 +13,8 @@ const Layout = ({
     children,
     assignments,
     selectedFacility,
-    onSelectFacility
+    onSelectFacility,
+    scoringResults
 }) => {
     return (
         <div className="layout-container">
@@ -21,6 +22,7 @@ const Layout = ({
                 assignments={assignments}
                 selectedFacility={selectedFacility}
                 onSelectFacility={onSelectFacility}
+                scoringResults={scoringResults}
             />
             <div className="layout-body">
                 <Sidebar

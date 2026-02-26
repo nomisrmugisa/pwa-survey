@@ -6,8 +6,10 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
+import ScoreBadge from '../ScoreBadge';
+import { classifyAssessment } from '../../utils/classification';
 
-const Header = ({ assignments = [], selectedFacility, onSelectFacility }) => {
+const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringResults }) => {
     const navigate = useNavigate();
     const [showSettings, setShowSettings] = React.useState(false);
 
@@ -36,6 +38,28 @@ const Header = ({ assignments = [], selectedFacility, onSelectFacility }) => {
                     )}
                 </div>
             </div>
+
+            {scoringResults?.overall && (
+                <div className="header-center">
+                    <div className="header-scoring" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '4px 12px', borderRadius: '8px', minWidth: '120px' }}>
+                        <ScoreBadge
+                            percent={scoringResults.overall.percent}
+                            criticalFail={scoringResults.overall.criticalFail}
+                        />
+                        <div className="overall-classification" style={{
+                            fontSize: '10px',
+                            color: 'rgba(255,255,255,0.9)',
+                            marginTop: '2px',
+                            textAlign: 'center',
+                            fontWeight: '600',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em'
+                        }}>
+                            {classifyAssessment(scoringResults.overall).statusLabel}
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <div className="header-right">
                 <nav className="header-nav">

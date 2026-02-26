@@ -4,6 +4,11 @@ import { useApp } from '../../contexts/AppContext';
 import { api } from '../../services/api';
 import indexedDBService from '../../services/indexedDBService';
 import emsConfig from '../../assets/ems_config.json';
+import ScoreBadge from '../ScoreBadge';
+import { classifyAssessment } from '../../utils/classification';
+import { createAssessmentSnapshot } from '../../utils/createAssessmentSnapshot';
+import Modal from './Modal';
+import SeverityDialog from './SeverityDialog';
 
 // Build a fast lookup from EMS criterion ID (e.g. "1.2.1.3") to its
 // standard statement and intent text.
@@ -108,7 +113,8 @@ const FormArea = ({
     isSaving,
     lastSaved,
     isADComplete,
-    activeEventId
+    activeEventId,
+    scoringResults
 }) => {
     // DEBUG: Validate props on render
     React.useEffect(() => {
@@ -121,6 +127,13 @@ const FormArea = ({
     // Submit state
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitResult, setSubmitResult] = useState(null); // { success, message }
+
+    // Severity Dialog State
+    const [severityTargetField, setSeverityTargetField] = useState(null); // { fieldId, commentFieldId }
+
+    React.useEffect(() => {
+        console.log('severityTargetField state changed:', severityTargetField);
+    }, [severityTargetField]);
 
     // Reset submit status if data changes after successful submission
     // This allows the user to "Update" DHIS2
@@ -313,19 +326,53 @@ const FormArea = ({
 
     const handleInputChange = (e, fieldId) => {
         const value = e.target.value;
+        console.log(`Dropdown change detected: fieldId=${fieldId}, value=${value}`);
+
+        // If it's a dropdown change (non-empty selection), trigger severity dialog FIRST
+        const field = activeSection.fields.find(f => f.id === fieldId);
+        console.log(`Field found: ${JSON.stringify(field)}`);
+
+        if (field?.type === 'select' && value && value !== '') {
+            console.log('Triggering severity dialog...');
+            setSeverityTargetField({
+                fieldId,
+                commentFieldId: field.commentFieldId
+            });
+        }
+
         saveField(fieldId, value);
+    };
+
+    const handleSeveritySelect = (severity) => {
+        if (severityTargetField) {
+            saveField(`severity_${severityTargetField.fieldId}`, severity);
+            setSeverityTargetField(null);
+        }
     };
 
     const handleCommentBlur = (fieldId) => {
         const currentComment = formData[fieldId] || '';
-        // Find if this field is linked to a toggled "Critical" state
-        // We look for a field where this fieldId is the 'associatedCommentId'
+        // Find if this field is linked to a toggled "Critical" state or has a selected "Severity"
         const parentField = activeSection.fields.find(f => f.commentFieldId === fieldId);
+        const parentFieldId = parentField?.id;
 
-        // We'll use a hidden state marker in formData or just check the toggle
-        // For now, if toggle is active, append [CRITICAL] if not present
-        if (formData[`is_critical_${fieldId}`] && !currentComment.includes('[CRITICAL]')) {
-            const newComment = currentComment ? `${currentComment} [CRITICAL]` : '[CRITICAL]';
+        let newComment = currentComment;
+
+        // Add [CRITICAL] tag if toggled
+        if (formData[`is_critical_${fieldId}`] && !newComment.includes('[CRITICAL]')) {
+            newComment = newComment ? `${newComment} [CRITICAL]` : '[CRITICAL]';
+        }
+
+        // Add [SEVERITY: ...] tag if selected
+        const severity = parentFieldId ? formData[`severity_${parentFieldId}`] : null;
+        if (severity) {
+            const severityTag = `[SEVERITY: ${severity}]`;
+            // Remove any existing severity tags first to allow updates
+            newComment = newComment.replace(/\[SEVERITY: [^\]]+\]/g, '').trim();
+            newComment = newComment ? `${newComment} ${severityTag}` : severityTag;
+        }
+
+        if (newComment !== currentComment) {
             saveField(fieldId, newComment);
         }
     };
@@ -378,7 +425,9 @@ const FormArea = ({
             const enrichedData = {
                 ...formData,
                 teiId_internal: selectedFacility?.trackedEntityInstance || formData.teiId_internal,
-                enrollmentId_internal: selectedFacility?.enrollment || formData.enrollmentId_internal
+                enrollmentId_internal: selectedFacility?.enrollment || formData.enrollmentId_internal,
+                // Add point-in-time scoring snapshot for auditing
+                scoringSnapshot: createAssessmentSnapshot(scoringResults)
             };
 
             console.log('🚀 Starting Tracker Enrollment Workflow...');
@@ -428,6 +477,31 @@ const FormArea = ({
                             ) : (
                                 <span className="save-status ready">Ready to save</span>
                             )}
+                        </div>
+                    )}
+                    {scoringResults && (
+                        <div className="section-scoring-summary">
+                            {(() => {
+                                const sectionScore = scoringResults.sections?.find(s => s.id === activeSection?.id);
+                                if (!sectionScore) return null;
+
+                                const classification = classifyAssessment({
+                                    percent: sectionScore.percent,
+                                    criticalFail: sectionScore.criticalFail
+                                });
+
+                                return (
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '4px' }}>
+                                        <ScoreBadge
+                                            percent={sectionScore.percent}
+                                            criticalFail={sectionScore.criticalFail}
+                                        />
+                                        <span className="compliance-label" style={{ fontSize: '0.85em', fontWeight: '500', color: '#fff', backgroundColor: 'rgba(255,255,255,0.1)', padding: '2px 8px', borderRadius: '4px' }}>
+                                            {classification.statusLabel}
+                                        </span>
+                                    </div>
+                                );
+                            })()}
                         </div>
                     )}
                 </div>
@@ -482,6 +556,14 @@ const FormArea = ({
                     {isSubmitting ? 'Submitting...' : submitResult?.success ? '✓ Successfully Submitted' : 'Submit to DHIS2'}
                 </button>
             </div>
+
+            <Modal
+                isOpen={!!severityTargetField}
+                onClose={() => setSeverityTargetField(null)}
+                title="Select Severity"
+            >
+                <SeverityDialog onSelect={handleSeveritySelect} />
+            </Modal>
         </div>
     );
 };

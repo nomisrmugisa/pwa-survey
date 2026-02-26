@@ -8,6 +8,7 @@ import { AppProvider, useApp } from './contexts/AppContext';
 import { api } from './services/api';
 import { transformMetadata } from './utils/transformers';
 import { useIncrementalSave } from './hooks/useIncrementalSave';
+import { useAssessmentScoring } from './hooks/useAssessmentScoring';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
@@ -136,6 +137,31 @@ const AppContent = () => {
       });
   }, [groups, formData]);
 
+  // Scoring Integration: Map flat formData to hierarchical structure for the scoring hook
+  const assessmentDetailsForScoring = React.useMemo(() => {
+    if (!activeGroup || !formData) return { sections: [] };
+
+    return {
+      sections: (activeGroup.sections || []).map(section => ({
+        id: section.id,
+        standards: [{
+          id: section.code || section.id,
+          // Only score select fields (dropdowns) as they correspond to criteria responses
+          criteria: (section.fields || [])
+            .filter(f => f.type === 'select')
+            .map(f => ({
+              id: f.id,
+              response: formData[f.id] || 'NA',
+              // Check for critical flag in formData (appended by FormArea toggle)
+              isCritical: Boolean(formData[`is_critical_${f.commentFieldId}`] || formData[`is_critical_${f.id}`])
+            }))
+        }]
+      }))
+    };
+  }, [activeGroup, formData]);
+
+  const scoringResults = useAssessmentScoring(assessmentDetailsForScoring);
+
   const handleGroupChange = (group) => {
     setActiveGroup(group);
     // Auto-select first section of the new group
@@ -179,6 +205,7 @@ const AppContent = () => {
                 assignments={assignments}
                 selectedFacility={selectedFacility}
                 onSelectFacility={setSelectedFacility}
+                scoringResults={scoringResults}
               >
                 <FormArea
                   activeSection={activeSection}
@@ -191,6 +218,7 @@ const AppContent = () => {
                   lastSaved={lastSaved}
                   isADComplete={isADComplete}
                   activeEventId={activeEventId}
+                  scoringResults={scoringResults}
                 />
               </Layout>
             )}
