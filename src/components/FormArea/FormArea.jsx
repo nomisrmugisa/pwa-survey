@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import './FormArea.css';
 import { useApp } from '../../contexts/AppContext';
 import { api } from '../../services/api';
@@ -13,10 +13,10 @@ import SeverityDialog from './SeverityDialog';
 
 // Build a fast lookup from EMS criterion ID (e.g. "1.2.1.3") to its
 // standard statement and intent text.
-const buildCriterionIndex = () => {
+const buildCriterionIndex = (configData) => {
     const index = {};
     try {
-        const config = emsConfig?.ems_full_configuration || [];
+        const config = configData?.ems_full_configuration || [];
         config.forEach(se => {
             (se.sections || []).forEach(section => {
                 (section.standards || []).forEach(standard => {
@@ -24,7 +24,9 @@ const buildCriterionIndex = () => {
                         if (!crit || !crit.id) return;
                         index[crit.id] = {
                             statement: standard.statement || '',
-                            intent: standard.intent_tooltip || ''
+                            intent: standard.intent_tooltip || '',
+                            is_critical: crit.is_critical || false,
+                            severity: crit.severity || 1
                         };
                     });
                 });
@@ -36,7 +38,8 @@ const buildCriterionIndex = () => {
     return index;
 };
 
-const EMS_CRITERION_INDEX = buildCriterionIndex();
+// Default index for helper functions that don't have access to component state
+const DEFAULT_CRITERION_INDEX = buildCriterionIndex(emsConfig);
 
 const normalizeCriterionCode = (rawCode) => {
     if (!rawCode) return '';
@@ -51,10 +54,10 @@ const normalizeCriterionCode = (rawCode) => {
     return code;
 };
 
-const getCriterionTooltip = (code, links) => {
+const getCriterionTooltip = (code, links, index) => {
     const normalized = normalizeCriterionCode(code);
     if (!normalized) return '';
-    const info = EMS_CRITERION_INDEX[normalized];
+    const info = index[normalized];
     if (!info) return '';
 
     const parts = [];
@@ -130,6 +133,7 @@ const FormArea = ({
     scoringResults
 }) => {
     const [customLinks, setCustomLinks] = useState(null);
+    const [customConfig, setCustomConfig] = useState(null);
 
     React.useEffect(() => {
         const savedLinks = localStorage.getItem('custom_ems_links');
@@ -140,9 +144,21 @@ const FormArea = ({
                 console.error('FormArea: Failed to parse saved custom links');
             }
         }
+
+        const savedConfig = localStorage.getItem('custom_ems_config');
+        if (savedConfig) {
+            try {
+                setCustomConfig(JSON.parse(savedConfig));
+            } catch (e) {
+                console.error('FormArea: Failed to parse saved custom config');
+            }
+        }
     }, []);
 
     const activeLinks = customLinks || emsLinks;
+    const activeConfig = customConfig || emsConfig;
+
+    const criterionIndex = useMemo(() => buildCriterionIndex(activeConfig), [activeConfig]);
     // DEBUG: Validate props on render
     React.useEffect(() => {
         if (!activeSection) console.warn("FormArea: No active section provided");
@@ -208,7 +224,18 @@ const FormArea = ({
 
             const associatedCommentId = field.commentFieldId;
             const currentCommentValue = associatedCommentId ? (formData[associatedCommentId] || '') : '';
-            const isCritical = currentCommentValue.includes('[CRITICAL]');
+
+            // Logic to determine if it's critical: 
+            // 1. Check formData helper state
+            // 2. Fallback to index (from Config)
+            // 3. Fallback to comment tag presence
+            const normalizedCode = normalizeCriterionCode(field.code);
+            const configIsCritical = criterionIndex[normalizedCode]?.is_critical || false;
+
+            const isCritical = formData[`is_critical_${associatedCommentId}`] !== undefined
+                ? formData[`is_critical_${associatedCommentId}`]
+                : (configIsCritical || currentCommentValue.includes('[CRITICAL]'));
+
             const questionValue = formData[field.id];
             const isQuestionAnswered = questionValue !== undefined && questionValue !== null && questionValue !== '';
 
@@ -217,7 +244,7 @@ const FormArea = ({
             const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
 
             // Look up EMS standard/intent tooltip for this data element code
-            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks) : '';
+            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex) : '';
 
             return (
                 <div
@@ -250,15 +277,30 @@ const FormArea = ({
                                 data-tooltip={!isQuestionAnswered ? "Please answer the main question first" : ""}
                             >
                                 <span className="toggle-label">Critical?</span>
-                                <label className="switch">
-                                    <input
-                                        type="checkbox"
-                                        checked={formData[`is_critical_${associatedCommentId}`] || isCritical}
-                                        onChange={(e) => handleCriticalToggle(field.id, associatedCommentId, e.target.checked)}
-                                        disabled={!isQuestionAnswered}
-                                    />
-                                    <span className="slider round"></span>
-                                </label>
+                                <div className="critical-radio-group">
+                                    <label className="radio-label">
+                                        <input
+                                            type="radio"
+                                            name={`critical-${field.id}`}
+                                            value="yes"
+                                            checked={isCritical === true}
+                                            onChange={() => handleCriticalToggle(field.id, associatedCommentId, true)}
+                                            disabled={!isQuestionAnswered}
+                                        />
+                                        <span>Yes</span>
+                                    </label>
+                                    <label className="radio-label">
+                                        <input
+                                            type="radio"
+                                            name={`critical-${field.id}`}
+                                            value="no"
+                                            checked={isCritical === false}
+                                            onChange={() => handleCriticalToggle(field.id, associatedCommentId, false)}
+                                            disabled={!isQuestionAnswered}
+                                        />
+                                        <span>No</span>
+                                    </label>
+                                </div>
                             </div>
                         )}
                     </div>
