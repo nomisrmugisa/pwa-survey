@@ -8,6 +8,7 @@ import { AppProvider, useApp } from './contexts/AppContext';
 import { api } from './services/api';
 import { transformMetadata } from './utils/transformers';
 import { useIncrementalSave } from './hooks/useIncrementalSave';
+import { normalizeCriterionCode } from './utils/normalization';
 import { useAssessmentScoring } from './hooks/useAssessmentScoring';
 import emsConfig from './assets/ems_config.json';
 import emsLinks from './assets/ems_links.json';
@@ -141,15 +142,18 @@ const AppContent = () => {
 
   // Scoring Integration: Map flat formData to hierarchical structure for the scoring hook
   const assessmentDetailsForScoring = React.useMemo(() => {
-    if (!activeGroup || !formData) return { sections: [] };
+    if (!groups || groups.length === 0 || !formData) return { sections: [] };
 
     // Get active configurations (supporting potential local storage overrides later)
     const activeEmsLinks = emsLinks;
 
-    // Quick lookup for root links
-    const rootLookup = {};
+    // Quick lookup for links data
+    const linksDataLookup = {};
     activeEmsLinks.forEach(linkObj => {
-      rootLookup[linkObj.criteria] = linkObj.linked_criteria || [];
+      linksDataLookup[linkObj.criteria] = {
+        roots: linkObj.root || [],
+        linked_criteria: linkObj.linked_criteria || []
+      };
     });
 
     // Quick lookup for severity from full config
@@ -170,8 +174,10 @@ const AppContent = () => {
       console.error("App: Error building severity lookup", e);
     }
 
+    const allSections = groups.flatMap(g => g.sections || []);
+
     return {
-      sections: (activeGroup.sections || []).map(section => ({
+      sections: allSections.map(section => ({
         id: section.id,
         standards: [{
           id: section.code || section.id,
@@ -179,10 +185,11 @@ const AppContent = () => {
           criteria: (section.fields || [])
             .filter(f => f.type === 'select')
             .map(f => {
-              const code = f.code || f.id; // Usually mapped during API transform
-              const links = rootLookup[code] || [];
-              const isRoot = links.length > 0;
-              const severity = severityLookup[code] || 1;
+              const code = f.code || f.id;
+              const normalizedCode = normalizeCriterionCode(code);
+              const linksData = linksDataLookup[normalizedCode] || linksDataLookup[code] || { roots: [], linked_criteria: [] };
+              const isRoot = linksData.linked_criteria.length > 0; // Auto-calculated ONLY if it calculates from others
+              const severity = severityLookup[normalizedCode] || severityLookup[code] || 1;
 
               return {
                 id: f.id,
@@ -191,7 +198,8 @@ const AppContent = () => {
                 // Check for critical flag in formData (appended by FormArea toggle)
                 isCritical: Boolean(formData[`is_critical_${f.commentFieldId}`] || formData[`is_critical_${f.id}`]),
                 isRoot,
-                links,
+                links: linksData.linked_criteria,
+                roots: linksData.roots,
                 severity
               };
             })

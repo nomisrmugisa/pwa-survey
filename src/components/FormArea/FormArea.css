@@ -356,3 +356,204 @@
 .nav-btn:hover {
     background-color: #23272b;
 }
+
+/* Scoring Logic Modal */
+.scoring-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(4px);
+}
+
+.scoring-modal-content {
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scoring-modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8fafc;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #94a3b8;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-modal-btn:hover {
+    color: #475569;
+}
+
+.scoring-modal-body {
+    padding: 2rem;
+}
+
+.scoring-guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.scoring-guide-table th,
+.scoring-guide-table td {
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+    text-align: left;
+}
+
+.scoring-guide-table th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    color: #334155;
+}
+
+.scoring-guide-table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.scoring-logic-btn {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.scoring-logic-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Root Calculation Summary Styles */
+.root-calc-modal {
+    max-width: 650px;
+}
+
+.calc-summary-box {
+    display: flex;
+    gap: 2rem;
+    padding: 1.25rem;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.calc-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.calc-stat .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.calc-stat .value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.status-pill {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-c {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-pc {
+    background-color: #fef9c3;
+    color: #854d0e;
+}
+
+.status-nc {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.status-pending {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.calc-formula {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #fafafa;
+    border-left: 4px solid #2b3a8e;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+.formula-work {
+    margin-top: 0.5rem;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #2b3a8e;
+    font-weight: 600;
+}
+
+.calc-warning {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    color: #92400e;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}

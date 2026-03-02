@@ -1,0 +1,963 @@
+--- Page 1 ---
+Page 1 of 20 
+ 
+ 
+ 
+ 
+Ministry of Health  
+ 
+ 
+ 
+Health Inspectorate 
+ 
+ 
+ 
+ 
+Matrix Chart 
+ 
+ 
+ 
+ 
+National Health Quality Standards and guidelines for Emergency Medical Services 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Republic of Botswana 
+ 
+--- Page 2 ---
+Page 2 of 20 
+ 
+Table of Contents 
+SE 1 Management and Leadership ........................................................................................................................................................................... 3 
+SE 2 Human Resource Management ........................................................................................................................................................................ 7 
+SE 3 Administration Support .................................................................................................................................................................................... 10 
+SE 4 Access to Services ............................................................................................................................................................................................ 11 
+SE 5 Patients and Family Rights .............................................................................................................................................................................. 12 
+SE 6 Management of Information ........................................................................................................................................................................... 13 
+SE 7 Risk Management ............................................................................................................................................................................................. 15 
+SE 8 Quality Management and Improvement ....................................................................................................................................................... 17 
+SE 9 Facilities, equipment and Vehicle Management ........................................................................................................................................... 17 
+SE 10 Patient Care ..................................................................................................................................................................................................... 19 
+ 
+  
+--- Page 3 ---
+Page 3 of 20 
+ 
+SE 1 Management and Leadership  
+ 
+Criteria Criteria Description   Linked Criteria    
+1.1.1.5 
+ 
+The Organisation has a valid licence, issued by 
+acknowledged healthcare licensing authority, to 
+operate as an emergency medical service. 
+1.1.3.1 
+ 
+       
+1.1.2.1 The leaders establish a framework for the ethical 
+management of the organisation. 
+1.2.1.1 
+1.2.1.6 
+1.2.2.1 
+1.3.1.5      
+ 
+  
+1.1.3.1 The organisation has a document explaining the 
+details of its ownership and licensure 
+1.1.1.5   
+ 
+1.2.1.1 There is an appropriately licensed and trained 
+medical director who is accountable for the 
+oversight of all medical activities of the 
+organisation 
+1.1.2.1 
+2.1.1.2 
+1.2.1.2 The medical director is accountable for the 
+development, implementation and monitoring of 
+clinical dispatch functions 
+1.2.5.1 
+1.2.1.3 The medical director is accountable for the 
+development, implementation and monitoring of 
+all patient care and transport protocols 
+1.4.1.9 
+1.2.1.4 The medical director is accountable for the 
+training and development and clinical 
+performance monitoring of employees that 
+provide medical care 
+1.2.4.10 2.1.1.4 
+2.2.2.2 
+2.2.2.6 
+2.2.3.1 
+1.2.1.5 The medical director is accountable for the 
+medical components of the quality management 
+and improvement programme 
+1.2.5.6 
+1.2.5.7 
+1.4.1.9 
+1.5.1.3 
+6.2.1.4 8.1.1.1 
+8.1.1.2 
+1.2.1.6 The medical director and the managerial leaders 
+select clinical practice guidelines 
+1.1.2.1 
+1.2.3.1 
+1.2.4.1 
+1.2.4.2 
+  
+--- Page 4 ---
+Page 4 of 20 
+ 
+1.2.1.7 The medical director and the managerial leaders 
+adapt guidelines as appropriate for the patients 
+served by the organisation and the resources 
+available within the organisation. 
+4.2.1.4  
+1.2.1.8 Guidelines are used in clinical monitoring as part 
+of a structured clinical audit 
+1.2.3.1 
+1.2.2.3 
+1.2.2.4 
+1.2.2.5 
+      
+1.2.1.10 There is a quality control programme for point of 
+care (POC) tests conducted by the organisation 
+that meets or exceeds the manufacturer's 
+recommendations 
+10.2.1.1  
+1.2.2.1 Organisation leaders plan with the community 
+leaders and the leaders of other organisations to 
+meet the community's emergency and medical 
+transport system needs 
+1.1.2.1 
+1.4.1.2 
+1.4.1.3 
+5.1.3.9 
+1.2.2.2 The organisation plans community education 
+consistent with its mission, services and patient 
+population. 
+4.1.1.1  
+1.2.2.3 The organisation's medical direction and senior 
+management leaders collaborate to provide 
+uniform care processes 
+1.2.1.8 
+ 
+ 
+1.2.2.4 Similar care is provided in all patient care settings 1.2.1.8  
+1.2.2.5 Protocols not to treat or transport are developed 
+by senior management in conjunction with, and 
+approved by, medical direction 
+1.2.1.8 
+1.2.5.2      
+ 
+ 
+ 
+ 
+--- Page 5 ---
+Page 5 of 20 
+ 
+1.2.3.1 The leaders ensure that there are policies and 
+procedures to guide and support the different 
+services offered by the organisation 
+1.2.1.6 
+1.2.1.8 
+1.2.4.1 
+1.3.1.3 
+2.1.1.5 
+2.3.1.1 
+2.3.1.4 
+3.1.1.1 
+3.2.1.2 
+3.2.1.3. 
+3.2.1.4 
+3.2.1.5 
+3.2.1.6 
+3.2.1.7 
+ 
+3.3.1.2 
+3.3.1.3 
+3.3.1.4 
+4.3.2.2 
+5.1.1.1 
+6.4.2.2 
+6.4.2.3 
+7.1.1.8 
+7.2.1.4 
+7.2.2.2 
+7.4.1.9 
+7.7.1.7 
+9.3.2.1 
+9.3.2.2 
+9.3.2.4 
+9.3.2.5 
+10.1.1.1 
+10.3.1.1 
+      
+1.2.3.4 There is a process to ensure that staff and key 
+volunteers are familiar with relevant policies 
+and procedures 
+1.2.4.10 2.2.1.5 
+2.2.2.3 
+1.2.4.1 The organisation's medical direction and 
+managerial leaders have identified high-risk 
+patients and service 
+1.2.1.6 
+1.2.3.1 
+ 
+1.2.4.2 A collaborative process was used to develop 
+applicable policies and procedures 
+1.2.1.6 
+1.2.4.10 Staff members are trained in the policies and 
+procedures 
+1.2.1.4 
+1.2.4.1 
+1.2.3.4 
+1.2.5.1 The medical director is responsible for the 
+clinical decisions and care rendered by the 
+emergency medical dispatchers (EMDs). 
+1.2.1.2 
+1.2.5.2 The medical director approves and controls 
+the EMDs' priority reference system 
+1.2.2.5 4.2.1.1      
+1.2.5.6 The medical director is responsible for the 
+evaluation of medical care and prearrival 
+instructions rendered by the EMD personnel 
+1.2.1.5 
+   
+     
+     
+1.2.5.7 Managers measure compliance with protocol 
+through on-going random case reviews for 
+each EMD 
+1.2.1.5 
+4.2.1.3        
+1.2.7.1 Medications identified for special control (by 
+law or organisational policy) are stored in a 
+1.3.1.5 
+        
+--- Page 6 ---
+Page 6 of 20 
+ 
+cabinet of substantial construction for which 
+only authorised personnel have the keys 
+1.2.7.2 Medications identified for special control (by 
+law or organisational policy) are accurately 
+accounted for 
+1.3.1.5 
+        
+1.3.1.2 The manager has the education and 
+experience to carry out his or her 
+responsibilities 
+2.1.1.2 
+        
+1.3.1.3 The manager recommends policies to the 
+governing body 
+1.2.3.1 
+        
+1.3.1.5 The manager ensures compliance with 
+applicable laws and regulations 
+1.1.2.1 
+1.2.7.1 
+1.2.7.2 
+1.4.1.10 
+2.2.3.3 
+2.3.1.2 
+2.3.1.3 
+2.4.1.1 
+2.4.1.5 
+3.2.3.2 
+6.1.2.3 
+6.4.5.5 
+7.2.1.1 
+7.2.1.3 
+7.6.2.4 
+7.7.2.1 
+9.1.3.1 
+9.3.1.6 
+9.3.1.7 10.1.2.1   
+       
+1.3.1.7 The manager or director manages human, 
+financial and other resources 
+2.1.1.1 
+2.2.4.1 
+2.4.1.1 
+3.2.2.1 
+3.2.2.4 
+7.4.1.3 
+7.5.1.6 
+9.1.3.2 
+9.3.1.3 
+9.4.1.2      
+1.4.1.1 The Organisation has a written response and 
+deployment plan including the identification 
+of response areas and availability of response 
+units. 
+7.5.1.1 
+        
+1.4.1.2 The plan includes coordination with other 
+governmental, private, public safety and/or 
+military agencies, and the appropriate 
+conditions for turning patients over to these 
+agencies 
+1.2.2.1 
+        
+1.4.1.3 The organisation designs and implements 
+processes to provide coordination of services 
+among other organisations and agencies in 
+the community 
+1.2.2.1 
+        
+1.4.1.9 The response and deployment plan includes 
+response time standards 
+1.2.1.3 
+1.2.1.5         
+--- Page 7 ---
+Page 7 of 20 
+ 
+1.4.1.10 The response time standards meet local, 
+regional or national laws and regulations 
+1.3.1.5 
+        
+1.5.1.3 Contracts and other arrangements are 
+monitored as part of the organisation's 
+quality management and improvement 
+programme 
+1.2.1.5 
+        
+         
+ 
+SE 2 Human Resource Management 
+Criteria Criteria Description   Linked Criteria     
+2.1.1.1 There is a documented process for staffing the 
+emergency medical service 
+1.2.1.1 
+1.3.1.7 
+3.2.1.1 
+3.3.1.1 
+6.1.3.1 
+ 
+7.1.1.2 
+7.6.2.1 
+7.6.2.2 
+7.7.1.1 
+9.3.1.1     
+2.1.1.2 The desired education, qualifications, skills and 
+knowledge are defined for all personnel 
+1.2.1.1 
+1.3.1.2 2.2.3.2 
+2.4.1.2 
+2.4.1.7 4.3.1.4 
+5.1.4.4 7.1.1.2 
+7.5.1.4 
+7.6.2.2 
+7.6.4.3 
+9.4.1.7 10.2.1.3  
+2.1.1.4 There is at least one documented evaluation of 
+personnel each year, or more frequently, as 
+defined by the service 
+1.2.1.4 
+ 
+      
+2.1.1.5 New staff members are evaluated in 
+accordance with the policies determined by 
+the service 
+1.2.3.1 
+ 
+       
+2.2.1.4 The orientation and induction programme 
+prepares personnel for their roles and 
+responsibilities in the Emergency Medical 
+Services 
+7.6.2.6 10.2.1.4  
+2.2.1.5 The orientation and induction programme 
+introduces personnel to the applicable 
+legislation and policies and procedures of the 
+Emergency Medical Services 
+1.2.3.4 
+ 
+ 
+      
+ 
+       
+ 
+  
+--- Page 8 ---
+Page 8 of 20 
+ 
+         
+2.2.2.2 There is a written in-service training 
+programme for personnel in the EMS, which is 
+coordinated with the inservice training 
+programme of the district 1.2.1.4 7.7.1.8  
+      
+ 
+      
+ 
+    
+2.2.2.3 The in-service training programme ensures 
+that all personnel are competent and updated 
+when new systems or equipment are installed 
+or new policies, procedures or legislation are 
+introduced 
+1.2.3.4 
+       
+2.2.2.6 The Emergency Medical Services manager 
+ensures that personnel attend training on 
+health and safety 
+1.2.1.4          
+        
+2.2.3.1 There is a system for identifying and 
+addressing the training needs of EMS 
+personnel, consistent with the EMS objectives 
+1.2.1.4     
+2.2.3.2 The continuing education plan ensures the 
+provision of information on advances in 
+practice relating to EMS 
+2.1.1.2 
+2.4.2.1 
+2.4.2.3 
+ 
+2.2.3.3 The plan ensures adequate opportunity to fulfil 
+requirements for continued registration with 
+the professional regulating body 
+1.3.1.5 2.2.4.2      
+2.2.4.1 There is a designated member of the personnel 
+of the EMS who coordinates student internship 
+1.3.1.7       
+2.2.4.2 The training programme is structured in 
+accordance with the guidelines of the 
+appropriate registration body and training 
+centres 
+2.2.3.3        
+2.3.1.1 There are mutually agreed policies and 
+procedures with the staff for the satisfactory 
+conduct of industrial relations activities 
+1.2.3.1        
+2.3.1.2 Written disciplinary procedures which meet 
+the requirements of current legislation are 
+available 
+1.3.1.5        
+--- Page 9 ---
+Page 9 of 20 
+ 
+2.3.1.3 There is a grievance procedure in terms of 
+current legislation. 
+1.3.1.5        
+2.3.1.4 There are dispute and appeal procedures. 1.2.3.1        
+2.4.1.1 Those permitted by law, regulation and the 
+organisation to provide patient care without 
+supervision are identified. 
+1.3.1.5 
+1.3.1.7 
+10.4.1.1       
+2.4.1.2 The registration, education, training and 
+experience of these individuals are 
+documented. 
+2.1.1.2        
+2.4.1.4 There is a record on every healthcare 
+professional staff member 
+2.5.1.1        
+2.4.1.5 The record contains copies of any required 
+registration certificate(s). 
+1.3.1.5 
+2.5.1.1 
+       
+2.4.1.7 A determination is made about the current 
+qualifications of the individual to provide 
+patient care services. 
+2.1.1.2        
+2.4.2.1 Staff members to be trained in life support 
+techniques are identified 
+2.2.3.2        
+2.4.2.3 The training is repeated every two years 2.2.3.2        
+2.5.1.1 Personnel information is maintained for each 
+staff member 
+2.4.1.4 
+2.4.1.5 
+ 
+       
+2.6.1.1 Properly trained and experienced counsellors 
+are available to assist staff after major 
+incidents 
+7.2.2.3       
+       
+  
+--- Page 10 ---
+Page 10 of 20 
+ 
+SE 3 Administration Support  
+Criteria Criteria Description    Linked Criteria 
+3.1.1.1 Financial managers ensure that policies and 
+procedures are available to guide staff and that they 
+are implemented 1.2.3.1 
+    
+3.1.1.2    There is a mechanism for developing budgets (e.g. cost 
+centres) with the participation of staff  
+3.2.1.1 A designated individual is responsible for the ordering, 
+storage, distribution and control of equipment and 
+supplies used in the facility 2.1.1.1 
+ 
+3.2.1.2 Policies and procedures guide the ordering of supplies 
+and equipment 1.2.3.1 
+ 
+3.2.1.3    Policies and procedures guide the payment for 
+supplies and equipment received. 
+1.2.3.1 
+ 
+3.2.1.4 Policies and procedures guide the safe storage of 
+supplies and equipment. 
+1.2.3.1 3.2.3.1 
+3.2.3.2 
+3.2.1.5 Policies and procedures guide the issue of supplies and 
+equipment 
+1.2.3.1 
+3.2.2.1 
+3.2.1.6 Policies and procedures guide the condemning of 
+equipment. 
+1.2.3.1 
+ 
+3.2.1.7 Policies and procedures guide the security of order 
+books and other face-value documents. 
+1.2.3.1 
+3.2.3.1 
+3.2.2.1 A record is kept of goods received and goods issued 1.3.1.7 3.2.1.5 
+3.2.2.4 There is an inventory of all goods stored 1.3.1.7  
+3.2.3.1 Secure storage facilities are available 3.2.1.4 
+3.2.1.7  
+3.2.3.2 Hazardous and flammable materials are stored in 
+accordance with relevant regulations. 
+1.3.1.5 
+3.2.1.4  
+3.3.1.1 A designated individual is responsible for the storage, 
+maintenance and retrieval of health records 
+2.1.1.1 
+6.4.1.1 
+  
+3.3.1.2 The health record manager ensures that policies and 
+procedures are available to guide staff and that they 
+are implemented 
+1.2.3.1 
+6.1.2.1 
+  
+--- Page 11 ---
+Page 11 of 20 
+ 
+3.3.1.3 Policies and procedures relate to the safeguarding of 
+patient information against loss, damage, breach of 
+confidentiality or use by unauthorised persons 
+1.2.3.1 
+ 
+  
+3.3.1.4 Policies and procedures are developed for health 
+record destruction, specifying the criteria for selection 
+and method of destruction of records 
+1.2.3.1 6.1.2.4 
+6.4.1.3 
+6.4.1.8 
+  
+   
+ 
+SE 4 Access to Services 
+Criteria Criteria Description    Linked Criteria 
+4.1.1.1 The organisation provides access information to the 
+community 1.2.2.2 
+   
+4.2.1.1 The organisation has a prioritisation process for medical 
+transport requests 1.2.5.2 
+4.2.1.3 The process is monitored for compliance to protocol. 1.2.5.7 4.2.2.4  
+4.2.1.4 The guidelines are approved by the organisation's medical 
+direction leaders 1.2.1.7 
+ 
+4.2.2.4 Call waiting times are monitored. 4.2.1.3 
+4.3.1.2 The process addresses situations in which transfer is not 
+possible.  
+4.3.1.4 During transfer, a qualified, licensed staff member 
+monitors the patient's condition 2.1.1.2 
+4.3.2.2 The records of transferred patients contain notes as 
+required by the policy of the transferring and receiving 
+organisations. 
+1.2.3.1 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+--- Page 12 ---
+Page 12 of 20 
+ 
+SE 5 Patients and Family Rights 
+ 
+Criteria Criteria Description    Linked Criteria 
+5.1.1.1 
+ 
+Policies and procedures guide and support patient and 
+family rights in the organisation 
+1.2.3.1 
+5.1.3.1 
+5.1.3.2 
+5.1.3.3 
+5.1.3.4 
+5.1.2.4 
+5.1.3.5 
+5.1.5.2 
+5.1.7.4 
+5.1.7.5 
+  
+5.1.2.3 The organisation respects patient health information as 
+confidential. 
+6.2.1.8 
+6.4.1.7 
+ 
+5.1.2.4 Policies and procedures to prevent the loss and/or 
+misuse of patient information are implemented. 5.1.1.1 
+ 
+5.1.3.1 The organisation has policies and procedures guiding 
+staff on when to initiate and when to terminate 
+resuscitation measures in line with their scope of 
+practice 
+5.1.1.1   
+5.1.3.2 The organisation has policies and procedures to guide 
+staff encountering patients who choose to forego 
+resuscitative or life-sustaining interventions 
+5.1.1.1 
+5.1.3.3 Policies and procedures for initiating and terminating 
+resuscitation are developed in conjunction with medical 
+direction 
+5.1.1.1 
+5.1.3.4 Policies and procedures guide staff in the handling of and 
+the legal and regulatory requirements for clearly expired 
+patients 
+5.1.1.1 
+5.1.3.5 Policies and procedures guide the transport of potential 
+organ donors without self -sustaining vital signs prior to 
+arrival in the emergency department setting. 
+5.1.1.1 
+ 
+5.1.3.9 The organisation's policies and procedures regarding 
+end-of-life care conform to its community's religious and 1.2.2.1 
+    
+--- Page 13 ---
+Page 13 of 20 
+ 
+cultural norms and to any legal or regulatory 
+requirements 
+5.1.4.4 The organisation educates health professionals in 
+assessing and managing pain. 2.1.1.2 
+ 
+5.1.5.2 Policies include which healthcare providers may obtain 
+consent 5.1.1.1 
+ 
+5.1.7.3 Policies and procedures identify participants in the 
+process. 
+5.1.1.1 
+ 
+5.1.7.4 Policies and procedures identify participants in the 
+process. 
+5.1.1.1 
+ 
+5.1.7.5 Policies and procedures identify how the patient and 
+family participate 
+5.1.1.1 
+ 
+  
+   
+ 
+SE 6 Management of Information 
+ 
+Criteria Criteria Description    Linked Criteria 
+6.1.2.1 The organisation has a policy on the retention of dispatch 
+records, dispatch calls, patient records and other data and 
+information 
+3.3.1.2    
+6.1.2.3 Records, data and information are retained according to 
+policy or laws and regulations 
+1.3.1.5 6.4.1.6 
+6.1.2.4 Records, data and information are destroyed appropriately 3.3.1.4  
+6.1.3.1 Sufficient staff members support the implementation. 2.1.1.1 
+6.2.1.4 Aggregate data and information support the quality 
+management programme 
+1.2.1.5 7.1.1.6 9.4.1.9 
+6.2.1.8 Security and confidentiality of patient-specific data and 
+information are maintained when contributing to or using 
+external databases 
+5.1.2.3   
+--- Page 14 ---
+Page 14 of 20 
+ 
+6.4.1.1 A clinical record is initiated for every patient assessed or 
+treated by the organisation 
+3.3.1.1 
+6.4.1.3 Records and information are protected from loss or 
+destruction according to documented policies and 
+procedures 
+3.3.1.4 
+6.4.1.6 Records and information are protected from tampering and 
+un-prescribed access or use according to documented 
+policies and procedures. 
+6.1.2.3 
+6.4.1.7 Access is consistent with organisation confidentiality and 
+security policies 
+5.1.2.3 
+ 
+6.4.1.8 Records, data and information are destroyed 
+appropriately. 
+3.3.1.4 
+ 
+6.4.2.1 The specific content of patient records has been 
+determined by the organisation. 
+10.1.1.1 
+ 
+6.4.2.2 Those prescribed to make entries in the patient record are 
+identified in organisation policy. 
+1.2.1.3 
+ 
+6.4.2.3 The format and location of entries are determined by 
+organisation policy 
+1.2.1.3 
+ 
+6.4.5.5 Record contents required by law or regulation are included 
+in the review process 
+1.3.1.5 
+ 
+   
+--- Page 15 ---
+Page 15 of 20 
+ 
+SE 7 Risk Management 
+ 
+Criteria Criteria Description    Linked Criteria 
+7.1.1.2 One or more qualified and/or skilled and/or experienced 
+individuals supervise the implementation of the risk 
+management programme 
+2.1.1.2 
+2.1.1.1 
+   
+7.1.1.3 The risk management programme includes documented 
+processes for the identification of all risks (physical, 
+environmental, medico-legal, operational, etc.) relating to 
+organisational processes and systems, staff, patients, 
+visitors and physical facilities 
+7.3.1.2 
+7.1.1.4 The risk management programme includes documented 
+plans and actions to eliminate or reduce the identified risks 
+9.1.2.1 
+9.1.2.2 
+7.1.1.5 The risk management programme includes the on-going 
+monitoring of risks through documented risk assessments 
+9.1.2.4 
+9.1.2.5 
+7.1.1.6 Analysed data on negative incidents is used to monitor the 
+effectiveness of the risk management programme 
+6.2.1.4  
+7.1.1.8 Management and leaders ensure the development and 
+implementation of written policies and procedures for all 
+risk management processes and activities 
+1.2.3.1  
+7.2.1.1 A health and safety committee, where applicable, is 
+constituted in terms of current legislation 
+1.3.1.5  
+7.2.1.3 Health and safety meetings are held at a frequency 
+determined by legislation, and when requested by staff or 
+management. 
+1.3.1.5   
+7.2.1.4 Written policies and procedures on all aspects of health 
+and safety guide staff in maintaining a safe work 
+environment 
+1.2.3.1    
+--- Page 16 ---
+Page 16 of 20 
+ 
+7.2.2.2. The organisation provides its staff with written policies and 
+procedures on its provisioning of occupational health 
+services. 
+1.2.3.1    
+7.2.2.3 The occupational health service includes the provision of 
+information and training on risks specific to the healthcare 
+workers (e.g. manual handling, needle stick injuries). 
+2.6.1.1    
+7.3.1.2 Security systems provide for internal and external security 7.1.1.3    
+7.4.1.3 Fire-fighting equipment is available in each ambulance or 
+other patient transport vehicle 
+1.3.1.7    
+7.4.1.9 Annual staff training in fire prevention and evacuation 
+procedures is documented 
+1.2.1.3    
+7.5.1.1 The organisation plans its response to likely community 
+emergencies, epidemics and natural or other disasters 
+1.4.1.1    
+7.5.1.4 The disaster preparedness plan ensures that disaster 
+response employees are well trained 
+2.1.1.2    
+7.5.1.6 Communication equipment is available in emergencies. 1.3.1.7 9.2.1.1   
+7.6.2.1 One or more individuals oversee the infection, biologic and 
+chemical agent control programme 
+2.1.1.1    
+7.6.2.2 The individuals are qualified for the scope and complexity 
+of the programme 
+2.1.1.2 
+2.1.1.1 
+   
+7.6.2.4 The BCA control programme is based on applicable laws 
+and regulations 
+1.3.1.5    
+7.6.2.6 All staff members receive orientation to the organisation's 
+BCA control procedures and practices 
+2.2.1.4    
+7.6.4.3 The organisation provides the necessary training to 
+personnel as appropriate for their assigned tasks. 
+2.1.1.2    
+7.7.1.1 An individual member of staff is identified to be 
+responsible for infection control in the organisation 
+2.1.1.1    
+--- Page 17 ---
+Page 17 of 20 
+ 
+7.7.1.7 Written policies and procedures guide staff in the 
+implementation of the infection control programme 
+1.2.3.1    
+7.7.1.8 Regular in-service training to staff in the field of infection 
+control is documented 
+2.2.2.2    
+7.7.2.1 Waste is managed according to a written plan consistent 
+with current local by-laws and regulations 
+1.3.1.5    
+   
+ 
+ SE 8 Quality Management and Improvement 
+ 
+Criteria Criteria Description    Linked Criteria 
+8.1.1.1 Those, who govern and lead participate in planning and 
+monitoring the quality management and improvement 
+programme 
+1.2.1.5    
+8.1.1.2 Medical direction participates to plan and carry out the 
+quality management and improvement programme 
+1.2.1.5  
+   
+ 
+SE 9 Facilities, equipment and Vehicle Management 
+Criteria Criteria Description    Linked Criteria 
+9.1.2.1 The organisation has a programme to manage the physical 
+facility. 
+7.1.1.4    
+9.1.2.2 The Programme is effective in preventing injury and 
+maintaining safe, operating and working conditions. 
+7.1.1.4    
+9.1.2.4 The organisation has a documented, current, accurate 
+inspection of its physical facilities 
+7.1.1.5 
+9.1.2.5 The organisation has a plan to reduce evident risks based 
+on the inspection 
+7.1.1.5   
+--- Page 18 ---
+Page 18 of 20 
+ 
+9.1.3.1 The organisation's leaders are responsible for ensuring 
+compliance with laws, regulations and other requirements 
+applicable to the organisation's facilities, equipment and 
+vehicles. 
+1.3.1.5   
+9.1.3.2 The organisation has a programme to manage its vehicle 
+fleet. 
+1.3.1.7   
+9.1.3.3 The leaders ensure that the organisation meets the 
+conditions of facility inspection reports, periodic 
+equipment review, vehicle maintenance records or 
+citations. 
+9.4.1.3 
+9.3.3.5 
+  
+9.1.3.4 The organisation plans and budgets to meet applicable 
+laws, regulations and other requirements 
+9.3.2.3   
+9.2.1.1 Each facility where emergency medical (ambulance) 
+services (EMS) are provided has a reliable telephone 
+connection (down time less than 48 hours) and back-up is 
+provided by 2-way radio and/or cell phone 
+7.5.1.6   
+9.3.1.1 A specific manager is identified for the control, use and 
+maintenance of vehicles 
+2.1.1.1   
+9.3.1.3 There is a system for monitoring the use of vehicles 
+(permission, records) 
+1.3.1.7   
+9.3.1.6 Drivers of vehicles are suitably licensed. 1.3.1.5   
+9.3.1.7 Vehicles are suitably licensed. 1.3.1.5   
+9.3.2.1 Policies and procedures include the sites at which vehicles 
+may be cleaned 
+1.2.3.1   
+9.3.2.2 Policies and procedures specify that vehicles may only be 
+cleaned at purposedesigned wash-bays with appropriate 
+filters to prevent environmental contamination 
+1.2.3.1   
+9.3.2.3 The organisation budgets for the provision of appropriate 
+wash facilities 
+9.1.3.4   
+--- Page 19 ---
+Page 19 of 20 
+ 
+9.3.2.4 Policies and procedures specify what cleaning methods and 
+chemicals must be used for cleaning vehicles 
+1.2.3.1   
+9.3.2.5 Policies and procedures address the training of personnel 
+in proper cleaning methods 
+1.2.3.1   
+9.3.3.5 The organisation has a documented, current, accurate 
+inspection of its transport and other vehicles 
+9.1.3.3   
+9.4.1.2 There is an inventory or asset register of all equipment. 1.3.1.7   
+9.4.1.3 Equipment is regularly inspected 9.1.3.3   
+9.4.1.7 Qualified individuals provide these services. 2.1.1.2   
+9.4.1.9 Monitoring data is used for purposes of planning and 
+improvement 
+6.2.1.4   
+   
+ 
+SE 10 Patient Care 
+ 
+Criteria Criteria Description    Linked Criteria 
+10.1.1.1 Organisation policy and procedure define the information 
+to be obtained for different types of patients. 
+1.2.3.1 6.4.2.1 10.1.1.4  
+10.1.1.4 Assessment findings are documented in the patient's 
+record. 
+10.1.1.1    
+10.1.2.1 Only those individuals permitted by licensure, applicable 
+laws and regulations or certification perform the 
+assessments. 
+1.3.1.5   
+10.2.1.1 The organisation identifies any point of care tests to be 
+conducted 
+1.2.1.10   
+10.2.1.3 Staff have had specific training in the test they perform 2.1.1.2   
+10.2.1.4 Staff are oriented to the tests performed by the 
+Organisation. 
+2.1.1.4   
+--- Page 20 ---
+Page 20 of 20 
+ 
+10.3.1.1 Policies and procedures guide uniform care and reflect 
+relevant laws and regulations 
+1.2.3.1   
+10.4.1.1 Individuals administering or causing sedation are trained to 
+monitor patients carefully in order to maintain them at the 
+desired level of sedation 
+2.4.1.1   
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

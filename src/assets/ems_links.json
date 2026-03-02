@@ -1,14 +1,14 @@
 [
     {
         "criteria": "1.1.1.5",
-        "description": "The Organisation has a valid licence, issued by acknowledged healthcare licensing authority, to operate as an emergency medical service.",
-        "linked_criteria": [
+        "root": [
             "1.1.3.1"
-        ]
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "1.1.2.1",
-        "description": "The leaders establish a framework for the ethical management of the organisation.",
+        "root": [],
         "linked_criteria": [
             "1.2.1.1",
             "1.2.1.6",
@@ -18,38 +18,54 @@
     },
     {
         "criteria": "1.1.3.1",
-        "description": "The organisation has a document explaining the details of its ownership and licensure",
+        "root": [],
         "linked_criteria": [
             "1.1.1.5"
         ]
     },
     {
         "criteria": "1.2.1.1",
-        "description": "There is an appropriately licensed and trained medical director who is accountable for the oversight of all medical activities of the organisation",
-        "linked_criteria": [
+        "root": [
             "1.1.2.1",
+            "1.5.1.3"
+        ],
+        "linked_criteria": [
             "2.1.1.2"
         ]
     },
     {
+        "criteria": "1.2.1.10",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": [
+            "10.2.1.1"
+        ]
+    },
+    {
         "criteria": "1.2.1.2",
-        "description": "The medical director is accountable for the development, implementation and monitoring of clinical dispatch functions",
+        "root": [],
         "linked_criteria": [
             "1.2.5.1"
         ]
     },
     {
         "criteria": "1.2.1.3",
-        "description": "The medical director is accountable for the development, implementation and monitoring of all patient care and transport protocols",
+        "root": [
+            "3.2.1.3"
+        ],
         "linked_criteria": [
             "1.4.1.9"
         ]
     },
     {
         "criteria": "1.2.1.4",
-        "description": "The medical director is accountable for the training and development and clinical performance monitoring of employees that provide medical care",
+        "root": [
+            "1.5.1.3"
+        ],
         "linked_criteria": [
             "1.2.4.10",
+            "2.1.1.4",
             "2.2.2.2",
             "2.2.2.6",
             "2.2.3.1"
@@ -57,12 +73,14 @@
     },
     {
         "criteria": "1.2.1.5",
-        "description": "The medical director is accountable for the medical components of the quality management and improvement programme",
-        "linked_criteria": [
+        "root": [
             "1.2.5.6",
             "1.2.5.7",
             "1.4.1.9",
             "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": [
             "6.2.1.4",
             "8.1.1.1",
             "8.1.1.2"
@@ -70,143 +88,168 @@
     },
     {
         "criteria": "1.2.1.6",
-        "description": "The medical director and the managerial leaders select clinical practice guidelines",
-        "linked_criteria": [
+        "root": [
             "1.1.2.1",
-            "1.2.3.1",
             "1.2.4.1",
             "1.2.4.2"
+        ],
+        "linked_criteria": [
+            "1.2.3.1"
         ]
     },
     {
         "criteria": "1.2.1.7",
-        "description": "The medical director and the managerial leaders adapt guidelines as appropriate for the patients served by the organisation and the resources available within the organisation.",
-        "linked_criteria": []
-    },
-    {
-        "criteria": "1.2.1.8",
-        "description": "Guidelines are used in clinical monitoring as part of a structured clinical audit",
+        "root": [
+            "3.2.1.3"
+        ],
         "linked_criteria": [
-            "1.2.3.1",
-            "1.2.2.3",
-            "1.2.2.4",
-            "1.2.2.5"
+            "4.2.1.4"
         ]
     },
     {
-        "criteria": "1.2.1.10",
-        "description": "There is a quality control programme for point of care (POC) tests conducted by the organisation that meets or exceeds the manufacturer's recommendations",
+        "criteria": "1.2.1.8",
+        "root": [],
         "linked_criteria": [
-            "10.2.1.1"
+            "1.2.2.3",
+            "1.2.2.4",
+            "1.2.2.5",
+            "1.2.3.1"
         ]
     },
     {
         "criteria": "1.2.2.1",
-        "description": "Organisation leaders plan with the community leaders and the leaders of other organisations to meet the community's emergency and medical transport system needs",
-        "linked_criteria": [
+        "root": [
             "1.1.2.1",
             "1.4.1.2",
             "1.4.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": [
             "5.1.3.9"
         ]
     },
     {
         "criteria": "1.2.2.2",
-        "description": "The organisation plans community education consistent with its mission, services and patient population.",
+        "root": [
+            "3.2.1.3"
+        ],
         "linked_criteria": [
             "4.1.1.1"
         ]
     },
     {
         "criteria": "1.2.2.3",
-        "description": "The organisation's medical direction and senior management leaders collaborate to provide uniform care processes",
-        "linked_criteria": [
+        "root": [
             "1.2.1.8"
-        ]
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "1.2.2.4",
-        "description": "Similar care is provided in all patient care settings",
-        "linked_criteria": [
+        "root": [
             "1.2.1.8"
-        ]
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "1.2.2.5",
-        "description": "Protocols not to treat or transport are developed by senior management in conjunction with, and approved by, medical direction",
-        "linked_criteria": [
+        "root": [
             "1.2.1.8",
             "1.2.5.2"
-        ]
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "1.2.3.1",
-        "description": "The leaders ensure that there are policies and procedures to guide and support the different services offered by the organisation",
-        "linked_criteria": [
+        "root": [
             "1.2.1.6",
-            "3.1.1.1",
-            "3.3.1.2",
-            "4.3.2.2",
-            "7.1.1.8",
-            "9.3.2.1",
             "1.2.1.8",
-            "3.2.1.2",
-            "3.3.1.3",
-            "5.1.1.1",
-            "7.2.1.4",
-            "9.3.2.2",
             "1.2.4.1",
-            "3.2.1.3",
-            "3.3.1.4",
-            "6.4.2.2",
-            "7.2.2.2",
-            "9.3.2.4",
             "1.3.1.3",
-            "3.2.1.4",
-            "6.4.2.3",
-            "7.4.1.9",
-            "9.3.2.5",
-            "2.1.1.5",
-            "3.2.1.5",
-            "7.7.1.7",
-            "2.3.1.1",
-            "3.2.1.6",
-            "2.3.1.4",
-            "3.2.1.7",
+            "1.5.1.3",
+            "3.1.1.2",
+            "3.2.1.3"
+        ],
+        "linked_criteria": [
             "10.1.1.1",
             "10.3.1.1",
+            "2.1.1.5",
+            "2.3.1.1",
+            "2.3.1.4",
+            "3.1.1.1",
+            "3.2.1.2",
+            "3.2.1.4",
+            "3.2.1.5",
+            "3.2.1.6",
+            "3.2.1.7",
+            "3.3.1.2",
+            "3.3.1.3",
+            "3.3.1.4",
+            "4.3.2.2",
+            "5.1.1.1",
+            "6.4.2.2",
+            "6.4.2.3",
+            "7.1.1.8",
+            "7.2.1.4",
+            "7.2.2.2",
+            "7.4.1.9",
+            "7.7.1.7",
+            "9.3.2.1",
+            "9.3.2.2",
+            "9.3.2.4",
+            "9.3.2.5"
+        ]
+    },
+    {
+        "criteria": "1.2.3.4",
+        "root": [
             "1.2.4.10",
-            "2.2.1.5"
+            "1.5.1.3"
+        ],
+        "linked_criteria": [
+            "2.2.1.5",
+            "2.2.2.3"
         ]
     },
     {
         "criteria": "1.2.4.1",
-        "description": "A collaborative process was used to develop",
+        "root": [
+            "1.2.4.10"
+        ],
         "linked_criteria": [
             "1.2.1.6",
-            "1.2.4.10",
             "1.2.3.1"
         ]
     },
     {
-        "criteria": "1.2.4.2",
-        "description": "Staff members are trained in the policies and procedures",
+        "criteria": "1.2.4.10",
+        "root": [
+            "1.2.1.4"
+        ],
         "linked_criteria": [
-            "1.2.1.4",
-            "1.2.4.1",
-            "1.2.3.4"
+            "1.2.3.4",
+            "1.2.4.1"
+        ]
+    },
+    {
+        "criteria": "1.2.4.2",
+        "root": [],
+        "linked_criteria": [
+            "1.2.1.6"
         ]
     },
     {
         "criteria": "1.2.5.1",
-        "description": "The medical director is responsible for the clinical decisions and care rendered by the emergency medical dispatchers (EMDs).",
-        "linked_criteria": [
+        "root": [
             "1.2.1.2"
-        ]
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "1.2.5.2",
-        "description": "The medical director approves and controls the EMDs' priority reference system",
+        "root": [
+            "3.2.1.3"
+        ],
         "linked_criteria": [
             "1.2.2.5",
             "4.2.1.1"
@@ -214,14 +257,16 @@
     },
     {
         "criteria": "1.2.5.6",
-        "description": "The medical director is responsible for the evaluation of medical care and prearrival instructions rendered by the EMD personnel",
+        "root": [],
         "linked_criteria": [
             "1.2.1.5"
         ]
     },
     {
         "criteria": "1.2.5.7",
-        "description": "Managers measure compliance with protocol through on-going random case reviews for each EMD",
+        "root": [
+            "3.2.1.3"
+        ],
         "linked_criteria": [
             "1.2.1.5",
             "4.2.1.3"
@@ -229,281 +274,452 @@
     },
     {
         "criteria": "1.2.7.1",
-        "description": "Medications identified for special control (by law or organisational policy) are stored in a",
+        "root": [],
         "linked_criteria": [
             "1.3.1.5"
         ]
     },
     {
         "criteria": "1.2.7.2",
-        "description": "Medications identified for special control (by law or organisational policy) are accurately accounted for",
+        "root": [
+            "1.3.1.5"
+        ],
         "linked_criteria": []
     },
     {
         "criteria": "1.3.1.2",
-        "description": "The manager has the education and experience to carry out his or her responsibilities",
-        "linked_criteria": []
+        "root": [
+            "1.5.1.3"
+        ],
+        "linked_criteria": [
+            "2.1.1.2"
+        ]
     },
     {
         "criteria": "1.3.1.3",
-        "description": "The manager recommends policies to the governing body",
-        "linked_criteria": []
+        "root": [],
+        "linked_criteria": [
+            "1.2.3.1"
+        ]
     },
     {
         "criteria": "1.3.1.5",
-        "description": "The manager ensures compliance with applicable laws and regulations",
-        "linked_criteria": []
+        "root": [
+            "1.1.2.1",
+            "1.2.7.1",
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": [
+            "1.2.7.2",
+            "1.4.1.10",
+            "10.1.2.1",
+            "2.2.3.3",
+            "2.3.1.2",
+            "2.3.1.3",
+            "2.4.1.1",
+            "2.4.1.5",
+            "3.2.3.2",
+            "6.1.2.3",
+            "6.4.5.5",
+            "7.2.1.1",
+            "7.2.1.3",
+            "7.6.2.4",
+            "7.7.2.1",
+            "9.1.3.1",
+            "9.3.1.6",
+            "9.3.1.7"
+        ]
     },
     {
         "criteria": "1.3.1.7",
-        "description": "The manager or director manages human, financial and other resources",
-        "linked_criteria": []
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": [
+            "2.1.1.1",
+            "2.2.4.1",
+            "2.4.1.1",
+            "3.2.2.1",
+            "3.2.2.4",
+            "7.4.1.3",
+            "7.5.1.6",
+            "9.1.3.2",
+            "9.3.1.3",
+            "9.4.1.2"
+        ]
     },
     {
         "criteria": "1.4.1.1",
-        "description": "The Organisation has a written response and deployment plan including the identification of response areas and availability of response units.",
-        "linked_criteria": []
-    },
-    {
-        "criteria": "1.4.1.2",
-        "description": "The plan includes coordination with other governmental, private, public safety and/or military agencies, and the appropriate conditions for turning patients over to these agencies",
-        "linked_criteria": []
-    },
-    {
-        "criteria": "1.4.1.3",
-        "description": "The organisation designs and implements processes to provide coordination of services among other organisations and agencies in the community",
-        "linked_criteria": []
-    },
-    {
-        "criteria": "1.4.1.9",
-        "description": "The response and deployment plan includes response time standards",
+        "root": [
+            "3.2.1.3"
+        ],
         "linked_criteria": [
-            "1.2.1.1",
-            "1.2.1.2",
-            "1.2.1.3",
-            "1.2.1.5"
+            "7.5.1.1"
         ]
     },
     {
         "criteria": "1.4.1.10",
-        "description": "The response time standards meet local, regional or national laws and regulations",
-        "linked_criteria": [
+        "root": [
             "1.3.1.5"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "1.4.1.2",
+        "root": [],
+        "linked_criteria": [
+            "1.2.2.1"
         ]
     },
     {
-        "criteria": "1.5.1.3",
-        "description": "Contracts and other arrangements are monitored as part of the organisation's quality management and improvement programme",
+        "criteria": "1.4.1.3",
+        "root": [],
+        "linked_criteria": [
+            "1.2.2.1"
+        ]
+    },
+    {
+        "criteria": "1.4.1.9",
+        "root": [
+            "1.2.1.3"
+        ],
         "linked_criteria": [
             "1.2.1.5"
         ]
     },
     {
-        "criteria": "2.1.1.1",
-        "description": "There is a documented process for staffing the emergency medical service",
+        "criteria": "1.5.1.3",
+        "root": [],
         "linked_criteria": [
             "1.2.1.1",
+            "1.2.1.4",
+            "1.2.1.5",
+            "1.2.3.1",
+            "1.2.3.4",
+            "1.3.1.2",
+            "1.3.1.5",
             "1.3.1.7",
+            "10.2.1.3",
+            "10.2.1.4",
+            "10.4.1.1",
+            "2.1.1.1",
+            "2.1.1.2",
+            "2.1.1.4",
+            "2.1.1.5",
+            "2.2.1.4",
+            "2.2.1.5",
+            "2.2.2.2",
+            "2.2.2.3",
+            "2.2.2.6",
+            "2.2.3.1",
+            "2.2.3.2",
+            "2.2.3.3",
+            "2.2.4.1",
+            "2.2.4.2",
+            "2.3.1.1",
+            "2.3.1.2",
+            "2.3.1.3",
+            "2.3.1.4",
+            "2.4.1.1",
+            "2.4.1.2",
+            "2.4.1.4",
+            "2.4.1.5",
+            "2.4.1.7",
+            "2.4.2.1",
+            "2.4.2.3",
+            "2.5.1.1",
+            "2.6.1.1",
+            "3.1.1.1",
             "3.2.1.1",
             "3.3.1.1",
+            "4.3.1.4",
             "6.1.3.1",
             "7.1.1.2",
+            "7.2.2.3",
+            "7.5.1.4",
             "7.6.2.1",
             "7.6.2.2",
+            "7.6.2.6",
+            "7.6.4.3",
             "7.7.1.1",
-            "9.3.1.1"
+            "7.7.1.8",
+            "9.3.1.1",
+            "9.4.1.7"
         ]
+    },
+    {
+        "criteria": "10.1.1.1",
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "10.1.1.4",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "10.1.2.1",
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "10.2.1.1",
+        "root": [
+            "1.2.1.10",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "10.2.1.3",
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "10.2.1.4",
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "10.3.1.1",
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "10.4.1.1",
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "2.1.1.1",
+        "root": [
+            "1.3.1.7",
+            "1.5.1.3",
+            "3.1.1.2",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.1.1.2",
-        "description": "The desired education, qualifications, skills and knowledge are defined for all personnel",
-        "linked_criteria": [
+        "root": [
             "1.2.1.1",
             "1.3.1.2",
-            "2.2.3.2",
-            "2.4.1.2",
-            "2.4.1.7",
-            "5.1.4.4",
-            "4.3.1.4",
-            "7.1.1.2",
-            "7.5.1.4",
-            "7.6.2.2",
-            "7.6.4.3",
-            "9.4.1.7",
-            "10.2.1.3"
-        ]
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.1.1.4",
-        "description": "There is at least one documented evaluation of personnel each year, or more frequently, as defined by the service",
-        "linked_criteria": [
+        "root": [
             "1.2.1.4",
-            "7.6.2.6",
-            "10.2.1.4"
-        ]
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.1.1.5",
-        "description": "New staff members are evaluated in accordance with the policies determined by the service",
-        "linked_criteria": [
+        "root": [
             "1.2.3.1",
-            "7.6.2.6",
-            "10.2.1.4"
-        ]
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.2.1.4",
-        "description": "The orientation and induction programme prepares personnel for their roles and responsibilities in the Emergency Medical Services",
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
         "linked_criteria": []
     },
     {
         "criteria": "2.2.1.5",
-        "description": "The orientation and induction programme introduces personnel to the applicable legislation and policies and procedures of the Emergency Medical Services",
-        "linked_criteria": [
-            "1.2.3.4"
-        ]
+        "root": [
+            "1.2.3.4",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.2.2.2",
-        "description": "There is a written in- service training programme for personnel in the EMS, which is coordinated with the inservice training programme of the district",
-        "linked_criteria": [
+        "root": [
             "1.2.1.4",
-            "7.7.1.8"
-        ]
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.2.2.3",
-        "description": "The in- service training programme ensures that all personnel are competent and updated when new systems or equipment are installed or new policies, procedures or legislation are introduced",
+        "root": [
+            "1.2.3.4",
+            "1.5.1.3"
+        ],
         "linked_criteria": []
     },
     {
         "criteria": "2.2.2.6",
-        "description": "The Emergency Medical Services manager ensures that personnel attend training on health and safety",
-        "linked_criteria": [
-            "1.2.1.4"
-        ]
+        "root": [
+            "1.2.1.4",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.2.3.1",
-        "description": "There is a system for identifying and addressing the training needs of EMS personnel, consistent with the EMS objectives",
-        "linked_criteria": [
-            "1.2.1.4"
-        ]
+        "root": [
+            "1.2.1.4",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.2.3.2",
-        "description": "The continuing education plan ensures the provision of information on advances in practice relating to EMS",
-        "linked_criteria": [
-            "2.1.1.2",
-            "2.4.2.1",
-            "2.4.2.3"
-        ]
+        "root": [
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.2.3.3",
-        "description": "The plan ensures adequate opportunity to fulfil requirements for continued registration with the professional regulating body",
-        "linked_criteria": [
+        "root": [
             "1.3.1.5",
-            "2.2.4.2"
-        ]
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.2.4.1",
-        "description": "There is a designated member of the personnel of the EMS who coordinates student internship",
-        "linked_criteria": [
-            "1.3.1.7"
-        ]
+        "root": [
+            "1.3.1.7",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.2.4.2",
-        "description": "The training programme is structured in accordance with the guidelines of the appropriate registration body and training centres",
-        "linked_criteria": [
-            "2.2.3.3"
-        ]
+        "root": [
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.3.1.1",
-        "description": "There are mutually agreed policies and procedures with the staff for the satisfactory conduct of industrial relations activities",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.3.1.2",
-        "description": "Written disciplinary procedures which meet the requirements of current legislation are available",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.3.1.3",
-        "description": "There is a grievance procedure in terms of current legislation.",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.3.1.4",
-        "description": "There are dispute and appeal procedures.",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.4.1.1",
-        "description": "Those permitted by law, regulation and the organisation to provide patient care without supervision are identified.",
-        "linked_criteria": [
+        "root": [
             "1.3.1.5",
             "1.3.1.7",
-            "10.4.1.1"
-        ]
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.4.1.2",
-        "description": "The registration, education, training and experience of these individuals are documented.",
-        "linked_criteria": [
-            "2.1.1.2"
-        ]
+        "root": [
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.4.1.4",
-        "description": "There is a record on every healthcare professional staff member",
-        "linked_criteria": [
+        "root": [
+            "1.5.1.3",
             "2.5.1.1"
-        ]
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.4.1.5",
-        "description": "The record contains copies of any required registration certificate(s).",
-        "linked_criteria": [
+        "root": [
             "1.3.1.5",
+            "1.5.1.3",
             "2.5.1.1"
-        ]
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.4.1.7",
-        "description": "A determination is made about the current qualifications of the individual to provide patient care services.",
-        "linked_criteria": [
-            "2.1.1.2"
-        ]
+        "root": [
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.4.2.1",
-        "description": "Staff members to be trained in life support techniques are identified",
-        "linked_criteria": [
-            "2.2.3.2"
-        ]
+        "root": [
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.4.2.3",
-        "description": "The training is repeated every two years",
-        "linked_criteria": [
-            "2.2.3.2"
-        ]
+        "root": [
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "2.5.1.1",
-        "description": "Personnel information is maintained for each staff member",
+        "root": [
+            "1.5.1.3"
+        ],
         "linked_criteria": [
             "2.4.1.4",
             "2.4.1.5"
@@ -511,795 +727,921 @@
     },
     {
         "criteria": "2.6.1.1",
-        "description": "Properly trained and experienced counsellors are available to assist staff after major incidents",
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "3.1.1.1",
+        "root": [
+            "1.2.3.1",
+            "1.5.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "3.1.1.2",
+        "root": [],
         "linked_criteria": [
-            "7.2.2.3"
+            "1.2.3.1",
+            "2.1.1.1",
+            "3.2.1.1",
+            "3.2.1.2"
         ]
+    },
+    {
+        "criteria": "3.2.1.1",
+        "root": [
+            "1.5.1.3",
+            "3.1.1.2"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.1.2",
-        "description": "Policies and procedures guide the ordering of supplies and equipment",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.1.1.2"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.1.3",
-        "description": "Policies and procedures guide the payment for supplies and equipment received.",
+        "root": [],
         "linked_criteria": [
-            "1.2.3.1"
+            "1.2.1.10",
+            "1.2.1.3",
+            "1.2.1.5",
+            "1.2.1.7",
+            "1.2.2.1",
+            "1.2.2.2",
+            "1.2.3.1",
+            "1.2.5.2",
+            "1.2.5.7",
+            "1.3.1.5",
+            "1.3.1.7",
+            "1.4.1.1",
+            "10.1.1.1",
+            "10.1.1.4",
+            "10.1.2.1",
+            "10.2.1.1",
+            "10.2.1.3",
+            "10.2.1.4",
+            "10.3.1.1",
+            "10.4.1.1",
+            "2.1.1.1",
+            "2.1.1.2",
+            "2.1.1.4",
+            "2.2.1.4",
+            "2.2.2.2",
+            "2.4.1.1",
+            "2.6.1.1",
+            "3.2.1.4",
+            "3.2.1.5",
+            "3.2.1.6",
+            "3.2.1.7",
+            "3.2.2.1",
+            "3.2.2.4",
+            "3.2.3.1",
+            "3.2.3.2",
+            "3.3.1.1",
+            "3.3.1.2",
+            "3.3.1.3",
+            "3.3.1.4",
+            "4.1.1.1",
+            "4.2.1.1",
+            "4.2.1.3",
+            "4.2.1.4",
+            "4.2.2.4",
+            "4.3.1.2",
+            "4.3.1.4",
+            "4.3.2.2",
+            "5.1.1.1",
+            "5.1.2.3",
+            "5.1.2.4",
+            "5.1.3.1",
+            "5.1.3.2",
+            "5.1.3.3",
+            "5.1.3.4",
+            "5.1.3.5",
+            "5.1.3.9",
+            "5.1.5.2",
+            "5.1.7.3",
+            "5.1.7.4",
+            "6.1.2.1",
+            "6.1.2.3",
+            "6.1.2.4",
+            "6.1.3.1",
+            "6.2.1.4",
+            "6.2.1.8",
+            "6.4.1.1",
+            "6.4.1.3",
+            "6.4.1.6",
+            "6.4.1.7",
+            "6.4.1.8",
+            "6.4.2.1",
+            "6.4.2.2",
+            "6.4.2.3",
+            "6.4.5.5",
+            "7.1.1.2",
+            "7.1.1.3",
+            "7.1.1.4",
+            "7.1.1.5",
+            "7.1.1.6",
+            "7.1.1.8",
+            "7.2.1.1",
+            "7.2.1.3",
+            "7.2.1.4",
+            "7.2.2.2",
+            "7.2.2.3",
+            "7.3.1.2",
+            "7.4.1.3",
+            "7.4.1.9",
+            "7.5.1.1",
+            "7.5.1.4",
+            "7.5.1.6",
+            "7.6.2.1",
+            "7.6.2.2",
+            "7.6.2.4",
+            "7.6.2.6",
+            "7.6.4.3",
+            "7.7.1.1",
+            "7.7.1.7",
+            "7.7.1.8",
+            "7.7.2.1",
+            "8.1.1.1",
+            "8.1.1.2",
+            "9.1.2.1",
+            "9.1.2.2",
+            "9.1.2.4",
+            "9.1.2.5",
+            "9.1.3.1",
+            "9.1.3.2",
+            "9.1.3.3",
+            "9.1.3.4",
+            "9.2.1.1",
+            "9.3.1.1",
+            "9.3.1.3",
+            "9.3.1.6",
+            "9.3.1.7",
+            "9.3.2.1",
+            "9.3.2.2",
+            "9.3.2.3",
+            "9.3.2.4",
+            "9.3.2.5",
+            "9.3.3.5",
+            "9.4.1.2",
+            "9.4.1.3",
+            "9.4.1.7",
+            "9.4.1.9"
         ]
     },
     {
         "criteria": "3.2.1.4",
-        "description": "Policies and procedures guide the safe storage of supplies and equipment.",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.1.5",
-        "description": "Policies and procedures guide the issue of supplies and equipment",
-        "linked_criteria": [
+        "root": [
             "1.2.3.1",
-            "3.2.2.1"
-        ]
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.1.6",
-        "description": "Policies and procedures guide the condemning of equipment.",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.1.7",
-        "description": "Policies and procedures guide the security of order books and other face-value documents.",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.2.1",
-        "description": "A record is kept of goods received and goods issued",
-        "linked_criteria": [
+        "root": [
             "1.3.1.7",
-            "3.2.1.5"
-        ]
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.2.4",
-        "description": "There is an inventory of all goods stored",
-        "linked_criteria": [
-            "1.3.1.7"
-        ]
+        "root": [
+            "1.3.1.7",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.3.1",
-        "description": "Secure storage facilities are available",
-        "linked_criteria": [
-            "3.2.1.4",
-            "3.2.1.7"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.2.3.2",
-        "description": "Hazardous and flammable materials are stored in accordance with relevant regulations.",
-        "linked_criteria": [
+        "root": [
             "1.3.1.5",
-            "3.2.1.4",
-            "3.2.1.7"
-        ]
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.3.1.1",
-        "description": "A designated individual is responsible for the storage, maintenance and retrieval of health records",
-        "linked_criteria": [
-            "2.1.1.1",
-            "6.4.1.1"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.3.1.2",
-        "description": "The health record manager ensures that policies and procedures are available to guide staff and that they are implemented",
-        "linked_criteria": [
+        "root": [
             "1.2.3.1",
-            "6.1.2.1"
-        ]
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.3.1.3",
-        "description": "Policies and procedures relate to the safeguarding of patient information against loss, damage, breach of confidentiality or use by unauthorised persons",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "3.3.1.4",
-        "description": "Policies and procedures are developed for health record destruction, specifying the criteria for selection and method of destruction of records",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "4.1.1.1",
-        "description": "The organisation provides access information to the community",
-        "linked_criteria": [
-            "1.2.2.2"
-        ]
+        "root": [
+            "1.2.2.2",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "4.2.1.1",
-        "description": "The organisation has a prioritisation process for medical transport requests",
-        "linked_criteria": [
-            "1.2.5.2"
-        ]
+        "root": [
+            "1.2.5.2",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "4.2.1.3",
-        "description": "The process is monitored for compliance to protocol.",
-        "linked_criteria": [
-            "1.2.5.7"
-        ]
+        "root": [
+            "1.2.5.7",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "4.2.1.4",
-        "description": "The guidelines are approved by the organisation's medical direction leaders",
-        "linked_criteria": [
-            "1.2.1.7"
-        ]
+        "root": [
+            "1.2.1.7",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "4.2.2.4",
-        "description": "Call waiting times are monitored.",
-        "linked_criteria": [
-            "4.2.1.3"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "4.3.1.2",
-        "description": "The process addresses situations in which transfer is not possible.",
-        "linked_criteria": [
-            "2.1.1.2"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "4.3.1.4",
-        "description": "During transfer, a qualified, licensed staff member monitors the patient's condition",
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
         "linked_criteria": []
     },
     {
         "criteria": "4.3.2.2",
-        "description": "The records of transferred patients contain notes as required by the policy of the transferring and receiving organisations.",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
-    },
-    {
-        "criteria": "5.1.1.1",
-        "description": "Policies and procedures guide and support patient and family rights in the organisation",
-        "linked_criteria": [
-            "5.1.2.3.1",
-            "5.1.3.1",
-            "5.1.3.2",
-            "5.1.3.3",
-            "5.1.3.4"
-        ]
-    },
-    {
-        "criteria": "5.1.2.3",
-        "description": "The organisation respects patient health information as confidential.",
-        "linked_criteria": [
-            "6.2.1.8",
-            "6.4.1.7"
-        ]
-    },
-    {
-        "criteria": "5.1.2.4",
-        "description": "Policies and procedures to prevent the loss and/or misuse of patient information are implemented.",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
-    },
-    {
-        "criteria": "5.1.3.1",
-        "description": "The organisation has policies and procedures guiding staff on when to initiate and when to terminate resuscitation measures in line with their scope of practice",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
-    },
-    {
-        "criteria": "5.1.3.2",
-        "description": "The organisation has policies and procedures to guide staff encountering patients who choose to forego resuscitative or life-sustaining interventions",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
-    },
-    {
-        "criteria": "5.1.3.3",
-        "description": "Policies and procedures for initiating and terminating resuscitation are developed in conjunction with medical direction",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
-    },
-    {
-        "criteria": "5.1.3.4",
-        "description": "Policies and procedures guide staff in the handling of and the legal and regulatory requirements for clearly expired patients",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
-    },
-    {
-        "criteria": "5.1.3.5",
-        "description": "Policies and procedures guide the transport of potential organ donors without self-sustaining vital signs prior to arrival in the emergency department setting.",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
-    },
-    {
-        "criteria": "5.1.3.9",
-        "description": "The organisation's policies and procedures regarding end-of-life care conform to its community's religious and cultural norms and to any legal or regulatory requirements",
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
         "linked_criteria": []
     },
     {
-        "criteria": "5.1.4.4",
-        "description": "The organisation educates health professionals in assessing and managing pain.",
-        "linked_criteria": [
-            "2.1.1.2"
-        ]
+        "criteria": "5.1.1.1",
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "5.1.2.3",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "5.1.2.4",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "5.1.3.1",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "5.1.3.2",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "5.1.3.3",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "5.1.3.4",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "5.1.3.5",
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
+    },
+    {
+        "criteria": "5.1.3.9",
+        "root": [
+            "1.2.2.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "5.1.5.2",
-        "description": "Policies include which healthcare providers may obtain consent",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "5.1.7.3",
-        "description": "Policies and procedures identify participants in the process.",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "5.1.7.4",
-        "description": "Policies and procedures identify participants in the process.",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
-    },
-    {
-        "criteria": "5.1.7.5",
-        "description": "Policies and procedures identify how the patient and family participate",
-        "linked_criteria": [
-            "5.1.1.1"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.1.2.1",
-        "description": "The organisation has a policy on the retention of dispatch records, dispatch calls, patient records and other data and information",
-        "linked_criteria": [
-            "3.3.1.2"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.1.2.3",
-        "description": "Records, data and information are retained according to policy or laws and regulations",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.1.2.4",
-        "description": "Records, data and information are destroyed appropriately",
-        "linked_criteria": [
-            "3.3.1.4"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.1.3.1",
-        "description": "Sufficient staff members support the implementation.",
-        "linked_criteria": [
-            "2.1.1.1"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.2.1.4",
-        "description": "Aggregate data and information support the quality management programme",
-        "linked_criteria": [
-            "1.2.1.5"
-        ]
+        "root": [
+            "1.2.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.2.1.8",
-        "description": "Security and confidentiality of patient-specific data and information are maintained when contributing to or using external databases",
-        "linked_criteria": [
-            "5.1.2.3"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.1.1",
-        "description": "A clinical record is initiated for every patient assessed or treated by the organisation",
-        "linked_criteria": [
-            "3.3.1.1"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.1.3",
-        "description": "Records and information are protected from loss or destruction according to documented policies and procedures",
-        "linked_criteria": [
-            "3.3.1.4"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.1.6",
-        "description": "Records and information are protected from tampering and un- prescribed access or use according to documented policies and procedures.",
-        "linked_criteria": [
-            "6.1.2.3"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.1.7",
-        "description": "Access is consistent with organisation confidentiality and security policies",
-        "linked_criteria": [
-            "5.1.2.3"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.1.8",
-        "description": "Records, data and information are destroyed appropriately.",
-        "linked_criteria": [
-            "3.3.1.4"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.2.1",
-        "description": "The specific content of patient records has been determined by the organisation.",
-        "linked_criteria": [
-            "10.1.1.1"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.2.2",
-        "description": "Those prescribed to make entries in the patient record are identified in organisation policy.",
-        "linked_criteria": [
-            "1.2.1.3"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.2.3",
-        "description": "The format and location of entries are determined by organisation policy",
-        "linked_criteria": [
-            "1.2.1.3"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "6.4.5.5",
-        "description": "Record contents required by law or regulation are included in the review process",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.1.1.2",
-        "description": "One or more qualified and/or skilled and/or experienced individuals supervise the implementation of the risk management programme",
-        "linked_criteria": [
-            "2.1.1.2",
-            "2.1.1.1"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.1.1.3",
-        "description": "The risk management programme includes documented processes for the identification of all risks (physical, environmental, medico-legal, operational, etc.) relating to organisational processes and systems, staff, patients, visitors and physical facilities",
-        "linked_criteria": [
-            "7.3.1.2"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.1.1.4",
-        "description": "The risk management programme includes documented plans and actions to eliminate or reduce the identified risks",
-        "linked_criteria": [
-            "9.1.2.1",
-            "9.1.2.2"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.1.1.5",
-        "description": "The risk management programme includes the on-going monitoring of risks through documented risk assessments",
-        "linked_criteria": [
-            "9.1.2.4",
-            "9.1.2.5"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.1.1.6",
-        "description": "Analysed data on negative incidents is used to monitor the effectiveness of the risk management programme",
-        "linked_criteria": [
-            "6.2.1.4"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.1.1.8",
-        "description": "Management and leaders ensure the development and implementation of written policies and procedures for all risk management processes and activities",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.2.1.1",
-        "description": "A health and safety committee, where applicable, is constituted in terms of current legislation",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.2.1.3",
-        "description": "Health and safety meetings are held at a frequency determined by legislation, and when requested by staff or management.",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.2.1.4",
-        "description": "Written policies and procedures on all aspects of health and safety guide staff in maintaining a safe work environment",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.2.2.2",
-        "description": "The organisation provides its staff with written policies and procedures on its provisioning of occupational health services.",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.2.2.3",
-        "description": "The occupational health service includes the provision of information and training on risks specific to the healthcare workers (e.g. manual handling, needle stick injuries).",
-        "linked_criteria": [
-            "2.6.1.1"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.3.1.2",
-        "description": "Security systems provide for internal and external security",
-        "linked_criteria": [
-            "7.1.1.3"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.4.1.3",
-        "description": "Fire- fighting equipment is available in each ambulance or other patient transport vehicle",
-        "linked_criteria": [
-            "1.3.1.7"
-        ]
+        "root": [
+            "1.3.1.7",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.4.1.9",
-        "description": "Annual staff training in fire prevention and evacuation procedures is documented",
-        "linked_criteria": [
-            "1.2.1.3"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.5.1.1",
-        "description": "The organisation plans its response to likely community emergencies, epidemics and natural or other disasters",
-        "linked_criteria": [
-            "1.4.1.1"
-        ]
+        "root": [
+            "1.4.1.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.5.1.4",
-        "description": "The disaster preparedness plan ensures that disaster response employees are well trained",
-        "linked_criteria": [
-            "2.1.1.2"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.5.1.6",
-        "description": "Communication equipment is available in emergencies.",
-        "linked_criteria": [
+        "root": [
             "1.3.1.7",
-            "9.2.1.1"
-        ]
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.6.2.1",
-        "description": "One or more individuals oversee the infection, biologic and chemical agent control programme",
-        "linked_criteria": [
-            "2.1.1.1"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.6.2.2",
-        "description": "The individuals are qualified for the scope and complexity of the programme",
-        "linked_criteria": [
-            "2.1.1.2",
-            "2.1.1.1"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.6.2.4",
-        "description": "The BCA control programme is based on applicable laws and regulations",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.6.2.6",
-        "description": "All staff members receive orientation to the organisation's BCA control procedures and practices",
-        "linked_criteria": [
-            "2.2.1.4"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.6.4.3",
-        "description": "The organisation provides the necessary training to personnel as appropriate for their assigned tasks.",
-        "linked_criteria": [
-            "2.1.1.2"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.7.1.1",
-        "description": "An individual member of staff is identified to be responsible for infection control in the organisation",
-        "linked_criteria": [
-            "2.1.1.1"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.7.1.7",
-        "description": "Written policies and procedures guide staff in the implementation of the infection control programme",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.7.1.8",
-        "description": "Regular in-service training to staff in the field of infection control is documented",
-        "linked_criteria": [
-            "2.2.2.2"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "7.7.2.1",
-        "description": "Waste is managed according to a written plan consistent with current local by-laws and regulations",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "8.1.1.1",
-        "description": "Those, who govern and lead participate in planning and monitoring the quality management and improvement programme",
-        "linked_criteria": [
-            "1.2.1.5"
-        ]
+        "root": [
+            "1.2.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "8.1.1.2",
-        "description": "Medical direction participates to plan and carry out the quality management and improvement programme",
-        "linked_criteria": [
-            "1.2.1.5"
-        ]
+        "root": [
+            "1.2.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.1.2.1",
-        "description": "The organisation has a programme to manage the physical facility.",
-        "linked_criteria": [
-            "7.1.1.4"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.1.2.2",
-        "description": "The Programme is effective in preventing injury and maintaining safe, operating and working conditions.",
-        "linked_criteria": [
-            "7.1.1.4"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.1.2.4",
-        "description": "The organisation has a documented, current, accurate inspection of its physical facilities",
-        "linked_criteria": [
-            "7.1.1.5"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.1.2.5",
-        "description": "The organisation has a plan to reduce evident risks based on the inspection",
-        "linked_criteria": [
-            "7.1.1.5"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.1.3.1",
-        "description": "The organisation's leaders are responsible for ensuring compliance with laws, regulations and other requirements applicable to the organisation's facilities, equipment and vehicles.",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.1.3.2",
-        "description": "The organisation has a programme to manage its vehicle fleet.",
-        "linked_criteria": [
-            "1.3.1.7"
-        ]
+        "root": [
+            "1.3.1.7",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.1.3.3",
-        "description": "The leaders ensure that the organisation meets the conditions of facility inspection reports, periodic equipment review, vehicle maintenance records or citations.",
-        "linked_criteria": [
-            "9.4.1.3",
-            "9.3.3.5"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.1.3.4",
-        "description": "The organisation plans and budgets to meet applicable laws, regulations and other requirements",
-        "linked_criteria": [
-            "9.3.2.3"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.2.1.1",
-        "description": "Each facility where emergency medical (ambulance) services (EMS) are provided has a reliable telephone connection (down time less than 48 hours) and back-up is provided by 2-way radio and/or cell phone",
-        "linked_criteria": [
-            "7.5.1.6"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.1.1",
-        "description": "A specific manager is identified for the control, use and maintenance of vehicles",
-        "linked_criteria": [
-            "2.1.1.1"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.1.3",
-        "description": "There is a system for monitoring the use of vehicles (permission, records)",
-        "linked_criteria": [
-            "1.3.1.7"
-        ]
+        "root": [
+            "1.3.1.7",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.1.6",
-        "description": "Drivers of vehicles are suitably licensed.",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.1.7",
-        "description": "Vehicles are suitably licensed.",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
+        "root": [
+            "1.3.1.5",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.2.1",
-        "description": "Policies and procedures include the sites at which vehicles may be cleaned",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.2.2",
-        "description": "Policies and procedures specify that vehicles may only be cleaned at purpose-designed wash-bays with appropriate filters to prevent environmental contamination",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.2.3",
-        "description": "The organisation budgets for the provision of appropriate wash facilities",
-        "linked_criteria": [
-            "9.1.3.4"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.2.4",
-        "description": "Policies and procedures specify what cleaning methods and chemicals must be used for cleaning vehicles",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.2.5",
-        "description": "Policies and procedures address the training of personnel in proper cleaning methods",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
+        "root": [
+            "1.2.3.1",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.3.3.5",
-        "description": "The organisation has a documented, current, accurate inspection of its transport and other vehicles",
-        "linked_criteria": [
-            "9.1.3.3"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.4.1.2",
-        "description": "There is an inventory or asset register of all equipment.",
-        "linked_criteria": [
-            "1.3.1.7"
-        ]
+        "root": [
+            "1.3.1.7",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.4.1.3",
-        "description": "Equipment is regularly inspected",
-        "linked_criteria": [
-            "9.1.3.3"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.4.1.7",
-        "description": "Qualified individuals provide these services.",
-        "linked_criteria": [
-            "2.1.1.2"
-        ]
+        "root": [
+            "1.5.1.3",
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     },
     {
         "criteria": "9.4.1.9",
-        "description": "Monitoring data is used for purposes of planning and improvement",
-        "linked_criteria": [
-            "6.2.1.4"
-        ]
-    },
-    {
-        "criteria": "10.1.1.1",
-        "description": "Organisation policy and procedure define the information to be obtained for different types of patients.",
-        "linked_criteria": [
-            "1.2.3.1",
-            "6.4.2.1",
-            "10.1.1.4"
-        ]
-    },
-    {
-        "criteria": "10.1.1.4",
-        "description": "Assessment findings are documented in the patient's record.",
-        "linked_criteria": [
-            "10.1.1.1"
-        ]
-    },
-    {
-        "criteria": "10.1.2.1",
-        "description": "Only those individuals permitted by licensure, applicable laws and regulations or certification perform the assessments.",
-        "linked_criteria": [
-            "1.3.1.5"
-        ]
-    },
-    {
-        "criteria": "10.2.1.1",
-        "description": "The organisation identifies any point of care tests to be conducted",
-        "linked_criteria": [
-            "1.2.1.10"
-        ]
-    },
-    {
-        "criteria": "10.2.1.3",
-        "description": "Staff have had specific training in the test they perform",
-        "linked_criteria": [
-            "2.1.1.2"
-        ]
-    },
-    {
-        "criteria": "10.2.1.4",
-        "description": "Staff are oriented to the tests performed by the Organisation.",
-        "linked_criteria": [
-            "2.1.1.4"
-        ]
-    },
-    {
-        "criteria": "10.3.1.1",
-        "description": "Policies and procedures guide uniform care and reflect relevant laws and regulations",
-        "linked_criteria": [
-            "1.2.3.1"
-        ]
-    },
-    {
-        "criteria": "10.4.1.1",
-        "description": "Individuals administering or causing sedation are trained to monitor patients carefully in order to maintain them at the desired level of sedation",
-        "linked_criteria": [
-            "2.4.1.1"
-        ]
+        "root": [
+            "3.2.1.3"
+        ],
+        "linked_criteria": []
     }
 ]

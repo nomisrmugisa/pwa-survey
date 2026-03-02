@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 import {
-    calculateStandardScore,
     calculateSectionScore,
-    calculateOverallScore
+    calculateOverallScore,
+    computeGraphScores
 } from '../utils/scoring';
+import { normalizeCriterionCode } from '../utils/normalization';
 
 /**
  * Hook for calculating hierarchical assessment scores.
@@ -16,21 +17,63 @@ import {
  */
 export const useAssessmentScoring = (assessment) => {
     return useMemo(() => {
-        // Graceful handling of empty or undefined assessment
-        if (!assessment || !Array.isArray(assessment.sections)) {
-            const emptyResult = { percent: 0, totalScore: 0, maxScore: 0, criticalFail: false };
-            return {
-                overall: emptyResult,
-                sections: []
-            };
-        }
+        // 1. Build a full criteria map
+        const criteriaMap = {};
+        (assessment.sections || []).forEach(section => {
+            (section.standards || []).forEach(standard => {
+                (standard.criteria || []).forEach(criterion => {
+                    const code = criterion.code || criterion.id;
+                    if (code) {
+                        const norm = normalizeCriterionCode(code);
+                        criteriaMap[norm] = criterion;
+                    }
+                });
+            });
+        });
 
-        const sectionResults = assessment.sections.map(section => {
+        // 2. Perform deep recursive graph resolution for all criteria
+        const globalScores = computeGraphScores(criteriaMap);
+
+        // 3. Aggregate into standard, section, and overall results
+        const sectionResults = (assessment.sections || []).map(section => {
             const standardResults = (section.standards || []).map(standard => {
-                const result = calculateStandardScore(standard.criteria);
+
+                let totalScore = 0;
+                let maxScore = 0;
+                let criticalFail = false;
+                const criteriaScores = {};
+
+                (standard.criteria || []).forEach(criterion => {
+                    const code = criterion.code || criterion.id;
+                    const norm = normalizeCriterionCode(code);
+                    const score = globalScores[norm];
+
+                    if (score) {
+                        criteriaScores[criterion.id] = score;
+
+                        // Add to standard totals if it was scored
+                        if (score.isScored && score.points !== null) {
+                            totalScore += score.points;
+                            maxScore += 100;
+                        }
+                        if (score.criticalFail) {
+                            criticalFail = true;
+                        }
+                    }
+                });
+
+                if (criticalFail) {
+                    totalScore = 0;
+                }
+                const percent = maxScore === 0 ? 0 : (totalScore / maxScore) * 100;
+
                 return {
                     id: standard.id,
-                    ...result
+                    totalScore,
+                    maxScore,
+                    percent,
+                    criticalFail,
+                    criteriaScores
                 };
             });
 
@@ -47,7 +90,8 @@ export const useAssessmentScoring = (assessment) => {
 
         return {
             overall: overallResult,
-            sections: sectionResults
+            sections: sectionResults,
+            globalScores // Expose for debugging if needed
         };
     }, [assessment?.sections]);
 };

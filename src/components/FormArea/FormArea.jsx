@@ -7,6 +7,7 @@ import emsConfig from '../../assets/ems_config.json';
 import emsLinks from '../../assets/ems_links.json';
 import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
+import { normalizeCriterionCode } from '../../utils/normalization';
 import { createAssessmentSnapshot } from '../../utils/createAssessmentSnapshot';
 
 // Build a fast lookup from EMS criterion ID (e.g. "1.2.1.3") to its
@@ -39,20 +40,9 @@ const buildCriterionIndex = (configData) => {
 // Default index for helper functions that don't have access to component state
 const DEFAULT_CRITERION_INDEX = buildCriterionIndex(emsConfig);
 
-const normalizeCriterionCode = (rawCode) => {
-    if (!rawCode) return '';
-    let code = String(rawCode).trim();
-    // Strip known prefixes like "EMS_" or "SE " if present
-    code = code.replace(/^EMS_/, '');
-    if (code.startsWith('SE ')) {
-        code = code.slice(3).trim();
-    }
-    // If any spaces remain, take the first token (e.g. "1.1.1.1 extra" -> "1.1.1.1")
-    code = code.split(/\s+/)[0];
-    return code;
-};
+// Shared utility normalizeCriterionCode is now imported
 
-const getCriterionTooltip = (code, links, index) => {
+const getCriterionTooltip = (code, links, index, scoreResult) => {
     const normalized = normalizeCriterionCode(code);
     if (!normalized) return '';
     const info = index[normalized];
@@ -66,14 +56,167 @@ const getCriterionTooltip = (code, links, index) => {
     if (links && Array.isArray(links)) {
         const linkInfo = links.find(l => normalizeCriterionCode(l.criteria) === normalized);
         if (linkInfo) {
-            console.log(`Tooltip Match Found for ${normalized}:`, linkInfo);
             if (linkInfo.linked_criteria && linkInfo.linked_criteria.length > 0) {
                 parts.push(`Linked Criteria:\n${linkInfo.linked_criteria.join(', ')}`);
             }
         }
     }
 
+    // Add Score Traceability
+    if (scoreResult && scoreResult.isRoot && scoreResult.rootSources && scoreResult.rootSources.length > 0) {
+        const sourceDetails = scoreResult.rootSources.map(src => {
+            const pts = (src.points !== null && src.isScored) ? (Number.isInteger(src.points) ? src.points : src.points.toFixed(1)) : '---';
+            const res = src.response || 'Pending';
+            return `• ${src.code}: ${pts} pts [${res}]`;
+        }).join('\n');
+        parts.push(`Score Traceability:\n${sourceDetails}`);
+    }
+
     return parts.join('\n\n');
+};
+
+const ScoringGuideModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+    return (
+        <div className="scoring-modal-overlay" onClick={onClose}>
+            <div className="scoring-modal-content" onClick={e => e.stopPropagation()}>
+                <div className="scoring-modal-header">
+                    <h2 style={{ margin: 0, color: '#2b3a8e' }}>Scoring Logic Guide</h2>
+                    <button className="close-modal-btn" onClick={onClose}>&times;</button>
+                </div>
+                <div className="scoring-modal-body">
+                    <p style={{ marginBottom: '1.5rem', color: '#4a5568' }}>This table summarizes the hierarchical structure and expected behavior of the criteria as implemented:</p>
+                    <table className="scoring-guide-table">
+                        <thead>
+                            <tr>
+                                <th>Level</th>
+                                <th>Criterion ID</th>
+                                <th>Type</th>
+                                <th>Severity</th>
+                                <th>Expected Behavior</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style={{ textAlign: 'center' }}><strong>3</strong></td>
+                                <td><strong>1.1.2.1</strong></td>
+                                <td>Mega-Root</td>
+                                <td style={{ textAlign: 'center' }}>3</td>
+                                <td><strong>Disabled.</strong> Calc: Avg of Level 2 results + other links.</td>
+                            </tr>
+                            <tr>
+                                <td style={{ textAlign: 'center' }}><strong>2</strong></td>
+                                <td><strong>1.2.2.1</strong></td>
+                                <td>Intermediate Root</td>
+                                <td style={{ textAlign: 'center' }}>3</td>
+                                <td><strong>Disabled.</strong> Calc: Avg of Level 1 results.</td>
+                            </tr>
+                            <tr>
+                                <td style={{ textAlign: 'center' }}><strong>1</strong></td>
+                                <td><strong>1.4.1.2</strong></td>
+                                <td>Data Point</td>
+                                <td style={{ textAlign: 'center' }}>3</td>
+                                <td><strong>Enabled.</strong> Manual Input (C, PC, NC).</td>
+                            </tr>
+                            <tr>
+                                <td style={{ textAlign: 'center' }}><strong>1</strong></td>
+                                <td><strong>1.4.1.3</strong></td>
+                                <td>Data Point</td>
+                                <td style={{ textAlign: 'center' }}>4</td>
+                                <td><strong>Enabled.</strong> Manual Input (C, PC, NC).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div className="scoring-guide-footer" style={{ marginTop: '1.5rem', borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
+                        <p style={{ fontSize: '0.9rem', color: '#718096', fontStyle: 'italic' }}>
+                            *The scoring engine handles this recursion automatically, ensuring that roots are only finalized when all children (at any depth) are fully assessed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const RootCalculationModal = ({ isOpen, onClose, rootCode, scoreResult }) => {
+    if (!isOpen || !scoreResult) return null;
+
+    const sources = scoreResult.rootSources || [];
+    const points = scoreResult.points;
+    const isDraft = scoreResult.isDraft;
+
+    return (
+        <div className="scoring-modal-overlay" onClick={onClose}>
+            <div className="scoring-modal-content root-calc-modal" onClick={e => e.stopPropagation()}>
+                <div className="scoring-modal-header">
+                    <h2 style={{ margin: 0, color: '#2b3a8e' }}>Calculation Details: {rootCode}</h2>
+                    <button className="close-modal-btn" onClick={onClose}>&times;</button>
+                </div>
+                <div className="scoring-modal-body">
+                    <div className="calc-summary-box">
+                        <div className="calc-stat">
+                            <span className="label">{isDraft ? 'Draft Average:' : 'Current Score:'}</span>
+                            <span className="value">
+                                {points !== null
+                                    ? (Number.isInteger(points) ? points : points.toFixed(1))
+                                    : (scoreResult.draftAvg !== null ? `${Number.isInteger(scoreResult.draftAvg) ? scoreResult.draftAvg : scoreResult.draftAvg.toFixed(1)} (Draft)` : '---')}
+                                {isDraft ? '' : ' pts'}
+                            </span>
+                        </div>
+                        <div className="calc-stat">
+                            <span className="label">Status:</span>
+                            <span className={`value status-${scoreResult.response.toLowerCase()}`}>{scoreResult.response}</span>
+                        </div>
+                    </div>
+
+                    <h4 style={{ margin: '1.5rem 0 0.5rem', color: '#2d3748' }}>Contributing Criteria:</h4>
+                    <table className="scoring-guide-table">
+                        <thead>
+                            <tr>
+                                <th>Criterion</th>
+                                <th>Response</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {sources.map((src, idx) => (
+                                <tr key={idx}>
+                                    <td>
+                                        <strong>{src.code}</strong> {src.isCritical && <span style={{ color: '#c53030', fontWeight: 'bold' }} title="Critical Criterion">þ</span>}
+                                    </td>
+                                    <td><span className={`status-pill status-${src.response?.toLowerCase()}`}>{src.response || 'Pending'}</span></td>
+                                    <td style={{ textAlign: 'right' }}>
+                                        {src.points !== null ? (Number.isInteger(src.points) ? src.points : src.points.toFixed(1)) : '---'}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <div className="calc-formula">
+                        <strong>Formula:</strong> {isDraft ? "Draft average of completed items" : "Average of all linked criteria"}
+                        {scoreResult.countScoredLinks > 0 && (
+                            <div className="formula-work">
+                                ({sources.filter(s => s.points !== null).map(s => Number.isInteger(s.points) ? s.points : s.points.toFixed(1)).join(' + ')}) / {scoreResult.countScoredLinks} = {(scoreResult.draftAvg || 0).toFixed(1)}
+                            </div>
+                        )}
+                    </div>
+
+                    {scoreResult.criticalFail && (
+                        <div className="calc-warning" style={{ backgroundColor: '#fed7d7', borderColor: '#feb2b2', color: '#9b2c2c' }}>
+                            ⛔ <strong>Critical Failure:</strong> One or more Critical Criteria (þ) linked to this root are Non-compliant. The entire score is forced to 0.
+                        </div>
+                    )}
+
+                    {isDraft && !scoreResult.criticalFail && (
+                        <div className="calc-warning">
+                            ⚠️ This score is <strong>Pending</strong> because some contributing criteria have not been assessed yet.
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
 };
 
 // Internal Input component to manage local state and prevent focus loss on re-renders
@@ -132,6 +275,8 @@ const FormArea = ({
 }) => {
     const [customLinks, setCustomLinks] = useState(null);
     const [customConfig, setCustomConfig] = useState(null);
+    const [isScoringModalOpen, setIsScoringModalOpen] = useState(false);
+    const [viewingRootCalc, setViewingRootCalc] = useState(null); // { code, result }
 
     React.useEffect(() => {
         const savedLinks = localStorage.getItem('custom_ems_links');
@@ -251,7 +396,7 @@ const FormArea = ({
             const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
 
             // Look up EMS standard/intent tooltip for this data element code
-            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex) : '';
+            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex, calculatedFieldScore) : '';
 
             return (
                 <div
@@ -316,34 +461,59 @@ const FormArea = ({
                     )}
                     {field.type === 'select' ? (
                         <>
-                            {calculatedFieldScore && calculatedFieldScore.points !== null && (
+                            {calculatedFieldScore && (calculatedFieldScore.points !== null || isRoot) && (
                                 <div className={`${isRoot ? 'root-score-display' : 'linked-score-display'}`} style={{ marginBottom: '10px', padding: '10px', backgroundColor: isRoot ? '#e2e8f0' : '#f0f4f8', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: isRoot ? '1px solid #cbd5e1' : '1px dashed #cbd5e1' }}>
                                     <span style={{ fontWeight: '600', color: '#2d3748', fontSize: '0.9em' }}>
-                                        {isRoot ? 'Calculated Root Score:' : 'Criterion Score:'}
+                                        {isRoot ? (calculatedFieldScore.response === 'Pending' ? 'Root Score Pending:' : 'Calculated Root Score:') : 'Criterion Score:'}
                                     </span>
                                     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                                        <span style={{ fontWeight: 'bold', fontSize: '1.05em', color: '#2b3a8e' }}>{parseFloat(calculatedFieldScore.points).toFixed(0)} pts</span>
+                                        <span style={{ fontWeight: 'bold', fontSize: '1.05em', color: '#2b3a8e' }}>
+                                            {calculatedFieldScore.response === 'Pending' ? '--- pts' : (calculatedFieldScore.points !== null ? `${Number.isInteger(calculatedFieldScore.points) ? calculatedFieldScore.points : calculatedFieldScore.points.toFixed(1)} pts` : '--- pts')}
+                                        </span>
                                         <span style={{
                                             padding: '2px 8px',
                                             borderRadius: '12px',
                                             fontSize: '0.75em',
                                             fontWeight: 'bold',
-                                            backgroundColor: calculatedFieldScore.response === 'NON' ? '#fed7d7' : (calculatedFieldScore.response === 'PARTIAL' ? '#fefcbf' : '#c6f6d5'),
-                                            color: calculatedFieldScore.response === 'NON' ? '#c53030' : (calculatedFieldScore.response === 'PARTIAL' ? '#b7791f' : '#22543d')
+                                            backgroundColor: (calculatedFieldScore.response === 'NC' || calculatedFieldScore.response === 'NON') ? '#fed7d7' : ((calculatedFieldScore.response === 'PC' || calculatedFieldScore.response === 'PARTIAL' || calculatedFieldScore.response === 'SUBSTANTIAL') ? '#fefcbf' : (calculatedFieldScore.response === 'Pending' ? '#edf2f7' : '#c6f6d5')),
+                                            color: (calculatedFieldScore.response === 'NC' || calculatedFieldScore.response === 'NON') ? '#c53030' : ((calculatedFieldScore.response === 'PC' || calculatedFieldScore.response === 'PARTIAL' || calculatedFieldScore.response === 'SUBSTANTIAL') ? '#b7791f' : (calculatedFieldScore.response === 'Pending' ? '#4a5568' : '#22543d'))
                                         }}>
                                             {calculatedFieldScore.response}
                                         </span>
+                                        {isRoot && (
+                                            <button
+                                                type="button"
+                                                className="view-calc-btn"
+                                                onClick={() => setViewingRootCalc({ code: field.code, result: calculatedFieldScore })}
+                                                title="View calculation details"
+                                                style={{
+                                                    background: '#2b3a8e',
+                                                    color: 'white',
+                                                    border: 'none',
+                                                    borderRadius: '4px',
+                                                    padding: '2px 8px',
+                                                    fontSize: '0.75em',
+                                                    cursor: 'pointer',
+                                                    marginLeft: '8px'
+                                                }}
+                                            >
+                                                ℹ️ Details
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             )}
                             <select
                                 className="form-control"
-                                value={isRoot && calculatedFieldScore ? calculatedFieldScore.response : (formData[field.id] || '')}
+                                value={isRoot && calculatedFieldScore ? (calculatedFieldScore.normalizedValue || calculatedFieldScore.response) : (formData[field.id] || '')}
                                 onChange={(e) => handleInputChange(e, field.id)}
                                 id={`field-${field.id}`} // Helper for testing
                                 disabled={isRoot || (!isParentAnswered && isCommentField)}
                             >
                                 <option value="">{isRoot ? "Auto-calculated from linked criteria..." : "Select..."}</option>
+                                {isRoot && calculatedFieldScore?.response === 'Pending' && (
+                                    <option value="Pending">Pending...</option>
+                                )}
                                 {(() => {
                                     const options = field.options || [];
                                     const groups = {};
@@ -432,7 +602,6 @@ const FormArea = ({
         saveField(fieldId, value);
     };
 
-    // Effect to automatically update comment field with the score when it changes
     React.useEffect(() => {
         if (!scoringResults?.sections || !activeSection?.fields) return;
 
@@ -440,13 +609,11 @@ const FormArea = ({
         if (!currentSectionScores?.standards) return;
 
         let hasUpdates = false;
-
-        // Use a temporary object to hold updates to avoid infinite loops with saveField
         const updates = {};
 
         activeSection.fields.forEach(field => {
             if (field.type === 'select' && field.commentFieldId) {
-                // Find calculated score
+                // Find calculated score for this criterion
                 let calculatedScore = null;
                 for (const standard of currentSectionScores.standards) {
                     if (standard.criteriaScores && standard.criteriaScores[field.id]) {
@@ -455,42 +622,57 @@ const FormArea = ({
                     }
                 }
 
-                if (calculatedScore && calculatedScore.points !== null) {
+                if (calculatedScore && (calculatedScore.points !== null || calculatedScore.normalizedValue)) {
                     const commentFieldId = field.commentFieldId;
                     const currentComment = formData[commentFieldId] || '';
                     const isRoot = calculatedScore.isRoot || false;
+                    const isDraft = calculatedScore.isDraft || false;
 
-                    const scoreTag = isRoot
-                        ? `[ROOT SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}]`
-                        : `[SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}]`;
+                    // Use normalized value if available for consistent tagging
+                    const statusText = calculatedScore.normalizedValue || calculatedScore.response || 'NA';
+                    const pointsText = calculatedScore.points !== null ? `${parseFloat(calculatedScore.points).toFixed(0)} pts` : '0 pts';
+
+                    const rootSources = (calculatedScore.rootSources || []).map(s => typeof s === 'string' ? s : s.code);
+                    const rootSuffix = rootSources.length > 0 ? ` -root(${rootSources.join(',')})` : '';
+
+                    let scoreTag = `[SCORE: ${pointsText} - ${statusText}${rootSuffix}]`;
+                    if (isRoot) {
+                        if (isDraft) {
+                            scoreTag = `[INCOMPLETE ROOT SCORE: ${pointsText} - ${statusText}${rootSuffix}]`;
+                        } else {
+                            scoreTag = `[ROOT SCORE: ${pointsText} - ${statusText}${rootSuffix}]`;
+                        }
+                    }
 
                     // Only update if there's an actual response value (not empty) or if it's an auto-calculated Root score
-                    const hasResponse = isRoot || (formData[field.id] && formData[field.id] !== '');
+                    const hasResponse = isRoot || (formData[field.id] && formData[field.id] !== '' && formData[field.id] !== 'NA');
 
                     if (hasResponse) {
-                        // Remove any old score tags first using a robust regex
-                        let newComment = currentComment.replace(/\[((ROOT )?SCORE|SEVERITY): [^\]]+\]/g, '').trim();
+                        // Remove any old score/severity tags and also common junk like [object Object]
+                        let newComment = currentComment
+                            .replace(/\s*\[(INCOMPLETE )?((ROOT )?SCORE|SEVERITY)[^\]]*\]/g, '')
+                            .replace(/\[object Object\](\)]*)?/g, '')
+                            .trim();
                         // Append the new one
                         newComment = newComment ? `${newComment} ${scoreTag}` : scoreTag;
 
-                        // Only save if it actually represents a change
                         if (newComment !== currentComment) {
                             updates[commentFieldId] = newComment;
                             hasUpdates = true;
                         }
-                    } else if (currentComment.includes('[SCORE:') || currentComment.includes('[ROOT SCORE:') || currentComment.includes('[SEVERITY:')) {
-                        // Clear score log if answer removed
-                        let newComment = currentComment.replace(/\[((ROOT )?SCORE|SEVERITY): [^\]]+\]/g, '').trim();
-                        updates[commentFieldId] = newComment;
-                        hasUpdates = true;
+                    } else if (currentComment.match(/\[((ROOT )?SCORE|SEVERITY)[^\]]*\]/)) {
+                        // Clear score tag if answer removed
+                        let newComment = currentComment.replace(/\s*\[((ROOT )?SCORE|SEVERITY)[^\]]*\]/g, '').trim();
+                        if (newComment !== currentComment) {
+                            updates[commentFieldId] = newComment;
+                            hasUpdates = true;
+                        }
                     }
                 }
             }
         });
 
         if (hasUpdates) {
-            console.log("Auto-applying Score tags to comments...", updates);
-            // Apply all updates
             Object.entries(updates).forEach(([key, val]) => {
                 saveField(key, val);
             });
@@ -528,12 +710,24 @@ const FormArea = ({
                     const hasParentResponse = isRoot || (formData[parentFieldId] && formData[parentFieldId] !== '');
 
                     if (hasParentResponse) {
-                        const scoreTag = isRoot
-                            ? `[ROOT SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}]`
-                            : `[SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}]`;
+                        const isDraft = calculatedScore.isDraft || false;
+                        const rootSources = (calculatedScore.rootSources || []).map(s => typeof s === 'string' ? s : s.code);
+                        const rootSuffix = rootSources.length > 0 ? ` -root(${rootSources.join(',')})` : '';
 
-                        // Remove any old score tags first
-                        newComment = newComment.replace(/\[((ROOT )?SCORE|SEVERITY): [^\]]+\]/g, '').trim();
+                        let scoreTag = `[SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}${rootSuffix}]`;
+                        if (isRoot) {
+                            if (isDraft) {
+                                scoreTag = `[INCOMPLETE ROOT SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}${rootSuffix}]`;
+                            } else {
+                                scoreTag = `[ROOT SCORE: ${parseFloat(calculatedScore.points).toFixed(0)} pts - ${calculatedScore.response}${rootSuffix}]`;
+                            }
+                        }
+
+                        // Remove any old score tags first and also common junk
+                        newComment = newComment
+                            .replace(/\s*\[(INCOMPLETE )?((ROOT )?SCORE|SEVERITY)[^\]]*\]/g, '')
+                            .replace(/\[object Object\](\)]*)?/g, '')
+                            .trim();
                         // Append the new one
                         newComment = newComment ? `${newComment} ${scoreTag}` : scoreTag;
                     }
@@ -673,8 +867,27 @@ const FormArea = ({
                             })()}
                         </div>
                     )}
+                    <div className="header-actions" style={{ marginLeft: 'auto' }}>
+                        <button
+                            className="scoring-logic-btn"
+                            onClick={() => setIsScoringModalOpen(true)}
+                            title="View Scoring Logic Summary"
+                        >
+                            📊 Scoring Logic
+                        </button>
+                    </div>
                 </div>
             </div>
+            <ScoringGuideModal
+                isOpen={isScoringModalOpen}
+                onClose={() => setIsScoringModalOpen(false)}
+            />
+            <RootCalculationModal
+                isOpen={!!viewingRootCalc}
+                rootCode={viewingRootCalc?.code}
+                scoreResult={viewingRootCalc?.result}
+                onClose={() => setViewingRootCalc(null)}
+            />
             <div className="form-content">
                 {isLocked ? (
                     <div className="blocking-overlay">
