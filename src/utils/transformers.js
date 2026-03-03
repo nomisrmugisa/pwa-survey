@@ -16,6 +16,40 @@ export const transformMetadata = (metadata) => {
     }
     console.log(`Transform: Hydrated ${Object.keys(deMap).length} data elements from programStageDataElements`);
 
+    // 1b. Second pass: also hydrate deMap from section-level dataElements.
+    //     This covers data elements (e.g. SURV-MORTUARY / Mortuary) that carry
+    //     inline optionSets in the section response but are NOT listed under
+    //     programStageDataElements — ensuring they get the same treatment as EMS.
+    if (metadata.programStageSections) {
+        metadata.programStageSections.forEach(section => {
+            const elements = section.dataElements || [];
+            elements.forEach(rawDe => {
+                const de = rawDe.dataElement || rawDe;
+                if (de && de.id && !deMap[de.id]) {
+                    // Only add if it has meaningful data (name or optionSet)
+                    if (de.displayName || de.formName || de.optionSet) {
+                        deMap[de.id] = de;
+                    }
+                }
+            });
+        });
+    }
+    console.log(`Transform: deMap after section hydration: ${Object.keys(deMap).length} data elements`);
+
+    // DIAGNOSTIC: Per-section optionSet coverage
+    if (metadata.programStageSections) {
+        metadata.programStageSections.forEach(section => {
+            const elements = section.dataElements || [];
+            const withOptSet = elements.filter(rawDe => {
+                const de = rawDe.dataElement || rawDe;
+                return de && deMap[de.id]?.optionSet;
+            });
+            if (elements.length > 0) {
+                console.log(`[Transform Diag] Section "${section.displayName || section.name}" (code: ${section.code}): ${withOptSet.length}/${elements.length} data elements have optionSet in deMap`);
+            }
+        });
+    }
+
     // Sort Sections by sortOrder
     const sortedSections = [...metadata.programStageSections].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
 
@@ -77,6 +111,12 @@ export const transformMetadata = (metadata) => {
 
                 if (options.length > 0) {
                     console.log(`  Dropdown Found: ${name} (${options.length} options)`);
+                } else if (de.valueType === 'TEXT' || !de.valueType) {
+                    // Possible missing optionSet — log it
+                    const rawOptSet = de.optionSet || deMap[deId]?.optionSet;
+                    if (!rawOptSet) {
+                        console.warn(`  [Transform Diag] No optionSet for DE "${name}" (id: ${deId}, code: ${de.code}) in section "${section.displayName}". valueType=${de.valueType}`);
+                    }
                 }
 
                 const isComment = name.toLowerCase().endsWith('-comments') || name.toLowerCase().endsWith('-comment');
@@ -101,16 +141,45 @@ export const transformMetadata = (metadata) => {
         };
     });
 
+    // ─── Prefix detection helpers ─────────────────────────────────────────────
+    // Matches a compound ALL-CAPS prefix at the start of a section name,
+    // e.g. "SURV-MORTUARY Section 1"  →  "SURV-MORTUARY"
+    const COMPOUND_PREFIX_RE = /^([A-Z][A-Z0-9]*(?:-[A-Z][A-Z0-9]+)+)\b/;
+
+    const detectPrefix = (sec) => {
+        const code = sec.code || '';
+
+        // 1. Code contains underscore: SURV-MORTUARY_1 → "SURV-MORTUARY"
+        if (code.includes('_')) return code.split('_')[0];
+
+        // 2. Code starts with 'SE ' (EMS sections already transformed from EMS_N)
+        if (code.startsWith('SE ')) return 'SE';
+
+        // 3. Fallback: compound hyphenated ALL-CAPS prefix in the display name
+        //    e.g. "SURV-MORTUARY Section 1" → "SURV-MORTUARY"
+        const nameMatch = sec.name.match(COMPOUND_PREFIX_RE);
+        if (nameMatch) return nameMatch[1];
+
+        return null; // no prefix detected → general section
+    };
+
+    // Human-readable name overrides for known prefix codes
+    const PREFIX_NAME_MAP = {
+        'SE': 'EMS',
+        // add more here if needed, e.g. 'SURV-MORTUARY': 'Mortuary Survey'
+    };
+
     // 1. Identify General vs Prefix sections
-    const generalSections = [];
+    //    "Assessment Details" is special — it belongs to ALL groups as a shared header.
+    const generalSections = [];  // all non-prefixed sections (including AD)
     const prefixSectionsByPrefix = {};
 
     transformedSections.forEach(sec => {
-        // Updated: Recognize both '_' and ' ' as prefix separators
-        const hasPrefix = sec.code && (sec.code.includes('_') || sec.code.startsWith('SE '));
-        const isGeneral = !sec.code || !hasPrefix ||
+        const prefix = detectPrefix(sec);
+        const isGeneral =
+            !prefix ||
             sec.name === 'Assessment Details' ||
-            sec.code.startsWith('GENERAL_');
+            (sec.code || '').startsWith('GENERAL_');
 
         if (isGeneral) {
             // Force mandatory for general/global sections
@@ -119,37 +188,48 @@ export const transformMetadata = (metadata) => {
             });
             generalSections.push(sec);
         } else {
-            // Extract prefix handling both space and underscore
-            const prefix = sec.code.includes('_') ? sec.code.split('_')[0] : sec.code.split(' ')[0];
             if (!prefixSectionsByPrefix[prefix]) prefixSectionsByPrefix[prefix] = [];
             prefixSectionsByPrefix[prefix].push(sec);
         }
     });
 
-    // 2. Create groups for each prefix, injecting general sections as defaults
+    // Split: Assessment Details goes into every group; remaining general sections stay in Mortuary only
+    // Use ALL generalSections (not just name-matched) so we don't miss AD if the DHIS2 name differs slightly
+    const sharedSections = generalSections;
+
+    // 2. Create a group per prefix.
+    //    Each group starts with shared sections (Assessment Details etc.), then its own sections.
     const finalGroups = Object.keys(prefixSectionsByPrefix).map(prefix => {
-        // Sort sections numerically within the group
         const groupSections = [...prefixSectionsByPrefix[prefix]].sort((a, b) => {
-            const extractNum = (code) => {
-                const match = code.match(/\d+/);
+            const extractNum = (str) => {
+                const match = (str || '').match(/\d+/);
                 return match ? parseInt(match[0], 10) : 0;
             };
-            return extractNum(a.code) - extractNum(b.code);
+            return extractNum(a.code || a.name) - extractNum(b.code || b.name);
         });
 
         return {
             id: prefix,
-            name: prefix === 'SE' ? 'EMS' : prefix,
-            // Prepend general sections to every category
-            sections: [...generalSections, ...groupSections]
+            name: PREFIX_NAME_MAP[prefix] || prefix,
+            // Shared sections (Assessment Details etc.) always come first
+            sections: [...sharedSections, ...groupSections]
         };
     });
 
-    // 3. Sort groups alphabetically
+    // 3. Sort prefixed groups alphabetically
     const sortedGroups = finalGroups.sort((a, b) => a.name.localeCompare(b.name));
 
-    // Fallback: If no categorized sections exist, show general sections in a default group
-    if (sortedGroups.length === 0 && generalSections.length > 0) {
+    // 4. Prepend the Mortuary group (contains Assessment Details + any other general sections)
+    if (generalSections.length > 0) {
+        sortedGroups.unshift({
+            id: 'GENERAL',
+            name: 'Mortuary',
+            sections: generalSections
+        });
+    }
+
+    // Fallback: If no categorized sections exist at all, return general sections as a solo group
+    if (sortedGroups.length === 0) {
         return [{
             id: 'SURVEY',
             name: 'SURVEY',

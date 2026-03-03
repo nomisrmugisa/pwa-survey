@@ -49,7 +49,7 @@ const getCriterionTooltip = (code, links, index, scoreResult) => {
     if (!info) return '';
 
     const parts = [];
-    if (info.statement) parts.push(`Statement:\n${info.statement.trim()}`);
+    if (info.statement) parts.push(`Statement:\n${info.statement.trim().replace(/^Standard\s*/i, '')}`);
     if (info.intent) parts.push(`Intent:\n${info.intent.trim()}`);
 
     // Add Linked Criteria if available
@@ -277,6 +277,12 @@ const FormArea = ({
     const [customConfig, setCustomConfig] = useState(null);
     const [isScoringModalOpen, setIsScoringModalOpen] = useState(false);
     const [viewingRootCalc, setViewingRootCalc] = useState(null); // { code, result }
+    const [currentSubsectionIndex, setCurrentSubsectionIndex] = useState(0);
+
+    // Reset pagination when activeSection changes
+    React.useEffect(() => {
+        setCurrentSubsectionIndex(0);
+    }, [activeSection?.id]);
 
     React.useEffect(() => {
         const savedLinks = localStorage.getItem('custom_ems_links');
@@ -326,6 +332,34 @@ const FormArea = ({
     const isADSection = activeSection?.name === "Assessment Details";
     const isLocked = !isADSection && !isADComplete;
 
+    // Group fields into subsections based on headers
+    const subsections = useMemo(() => {
+        if (!activeSection?.fields) return [];
+        const groups = [];
+        let currentGroup = [];
+
+        activeSection.fields.forEach((field, index) => {
+            if (field.type === 'header' && index !== 0) {
+                // Start a new group if we hit a header (and it's not the very first thing)
+                if (currentGroup.length > 0) {
+                    groups.push(currentGroup);
+                }
+                currentGroup = [field];
+            } else {
+                currentGroup.push(field);
+            }
+        });
+
+        if (currentGroup.length > 0) {
+            groups.push(currentGroup);
+        }
+
+        return groups;
+    }, [activeSection?.fields]);
+
+    const activeSubsectionFields = subsections[currentSubsectionIndex] || [];
+    const isLastSubsection = currentSubsectionIndex === subsections.length - 1 || subsections.length === 0;
+
     // Render Logic Helpers
     const renderFields = () => {
         if (!activeSection) return null;
@@ -336,12 +370,12 @@ const FormArea = ({
             return <div className="error-message">Error: Section data is malformed.</div>;
         }
 
-        if (activeSection.fields.length === 0) {
-            return <div className="empty-fields-message">No fields in this section.</div>;
+        if (activeSubsectionFields.length === 0) {
+            return <div className="empty-fields-message">No fields in this subsection.</div>;
         }
 
 
-        return activeSection.fields.map((field) => {
+        return activeSubsectionFields.map((field) => {
             // Safety check for field
             if (!field || !field.id) {
                 console.warn("FormArea: Invalid field in section:", field);
@@ -826,7 +860,14 @@ const FormArea = ({
         <div className="form-area">
             <div className="form-header">
                 <div className="header-content">
-                    <h2>{activeSection.code ? `${activeSection.code} ${activeSection.name}` : activeSection.name}</h2>
+                    <h2>
+                        {activeSection.code ? `${activeSection.code} ${activeSection.name}` : activeSection.name}
+                        {subsections.length > 1 && (
+                            <span style={{ fontSize: '0.6em', opacity: 0.8, marginLeft: '10px', verticalAlign: 'middle', backgroundColor: 'rgba(255,255,255,0.15)', padding: '2px 8px', borderRadius: '4px' }}>
+                                Part {currentSubsectionIndex + 1} of {subsections.length}
+                            </span>
+                        )}
+                    </h2>
                     {activeEventId && (
                         <div className="save-status-container">
                             {isSaving ? (
@@ -912,31 +953,57 @@ const FormArea = ({
                         {submitResult.message}
                     </div>
                 )}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                    <button className="nav-btn prev">Previous</button>
-                    <span>Page 1 of 1</span>
-                    <button className="nav-btn next">Next</button>
-                </div>
-                <button
-                    className="nav-btn"
-                    onClick={handleSubmit}
-                    disabled={isSubmitting || isSaving || submitResult?.success}
-                    style={{
-                        marginTop: '12px',
-                        width: '100%',
-                        background: (isSubmitting || isSaving) ? '#6c757d' : submitResult?.success ? '#2ecc71' : '#28a745',
-                        color: '#fff',
-                        border: 'none',
-                        padding: '10px',
-                        borderRadius: '4px',
-                        cursor: (isSubmitting || isSaving || submitResult?.success) ? 'not-allowed' : 'pointer',
-                        fontWeight: 600,
-                        fontSize: '1em',
-                        opacity: submitResult?.success ? 0.8 : 1
-                    }}
-                >
-                    {isSubmitting ? 'Submitting...' : submitResult?.success ? '✓ Successfully Submitted' : 'Submit to DHIS2'}
-                </button>
+                {subsections.length > 1 && (
+                    <div className="subsection-nav" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginBottom: '1rem' }}>
+                        <button
+                            className="nav-btn"
+                            onClick={() => {
+                                setCurrentSubsectionIndex(curr => Math.max(0, curr - 1));
+                                window.scrollTo(0, 0);
+                            }}
+                            disabled={currentSubsectionIndex === 0}
+                            style={{ opacity: currentSubsectionIndex === 0 ? 0.5 : 1 }}
+                        >
+                            ← Previous Page
+                        </button>
+                        <span className="page-indicator" style={{ fontWeight: 600, color: '#4a5568' }}>
+                            Subsection {currentSubsectionIndex + 1} of {subsections.length}
+                        </span>
+                        <button
+                            className="nav-btn"
+                            onClick={() => {
+                                setCurrentSubsectionIndex(curr => Math.min(subsections.length - 1, curr + 1));
+                                window.scrollTo(0, 0);
+                            }}
+                            disabled={isLastSubsection}
+                            style={{ opacity: isLastSubsection ? 0.5 : 1 }}
+                        >
+                            Next Page →
+                        </button>
+                    </div>
+                )}
+                {isLastSubsection && (
+                    <button
+                        className="nav-btn submit-btn"
+                        onClick={handleSubmit}
+                        disabled={isSubmitting || isSaving || submitResult?.success}
+                        style={{
+                            marginTop: '12px',
+                            width: '100%',
+                            background: (isSubmitting || isSaving) ? '#6c757d' : submitResult?.success ? '#2ecc71' : '#28a745',
+                            color: '#fff',
+                            border: 'none',
+                            padding: '10px',
+                            borderRadius: '4px',
+                            cursor: (isSubmitting || isSaving || submitResult?.success) ? 'not-allowed' : 'pointer',
+                            fontWeight: 600,
+                            fontSize: '1em',
+                            opacity: submitResult?.success ? 0.8 : 1
+                        }}
+                    >
+                        {isSubmitting ? 'Submitting...' : submitResult?.success ? '✓ Successfully Submitted' : 'Submit to DHIS2'}
+                    </button>
+                )}
             </div>
         </div>
     );

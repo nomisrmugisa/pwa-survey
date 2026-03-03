@@ -114,6 +114,17 @@
     letter-spacing: 0.05em;
 }
 
+@media print {
+    .form-header-separator {
+        break-before: page;
+        padding-top: 2rem;
+    }
+
+    .subsection-nav {
+        display: none !important;
+    }
+}
+
 .form-footer {
     display: flex;
     flex-direction: column;
