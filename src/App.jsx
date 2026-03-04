@@ -11,7 +11,9 @@ import { useIncrementalSave } from './hooks/useIncrementalSave';
 import { normalizeCriterionCode } from './utils/normalization';
 import { useAssessmentScoring } from './hooks/useAssessmentScoring';
 import emsConfig from './assets/ems_config.json';
+import mortuaryConfig from './assets/mortuary_config.json';
 import emsLinks from './assets/ems_links.json';
+import mortuaryLinks from './assets/mortuary_links.json';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
@@ -129,7 +131,10 @@ const AppContent = () => {
     if (!groups || groups.length === 0 || !formData) return false;
 
     // Find AD section (usually first section of first group)
-    const adSection = groups.flatMap(g => g.sections).find(s => s.name === "Assessment Details");
+    const adSection = groups.flatMap(g => g.sections).find(s => {
+      const nameLower = (s.name || '').toLowerCase().trim();
+      return nameLower === "assessment details" || nameLower === "assessment_details";
+    });
     if (!adSection) return true; // If AD section doesn't exist, don't block anything
 
     return adSection.fields
@@ -144,12 +149,17 @@ const AppContent = () => {
   const assessmentDetailsForScoring = React.useMemo(() => {
     if (!groups || groups.length === 0 || !formData) return { sections: [] };
 
+    // Determine which configuration to use based on the active group
+    const isMortuary = activeGroup?.id === 'SURV-MORTUARY' || activeGroup?.id === 'MORTUARY' || activeGroup?.id === 'GENERAL' || activeGroup?.name === 'Mortuary';
+    const activeConfig = isMortuary ? mortuaryConfig : emsConfig;
+    const configKey = isMortuary ? 'mortuary_full_configuration' : 'ems_full_configuration';
+
     // Get active configurations (supporting potential local storage overrides later)
-    const activeEmsLinks = emsLinks;
+    const activeLinks = isMortuary ? mortuaryLinks : emsLinks;
 
     // Quick lookup for links data
     const linksDataLookup = {};
-    activeEmsLinks.forEach(linkObj => {
+    activeLinks.forEach(linkObj => {
       linksDataLookup[linkObj.criteria] = {
         roots: linkObj.root || [],
         linked_criteria: linkObj.linked_criteria || []
@@ -159,7 +169,7 @@ const AppContent = () => {
     // Quick lookup for severity from full config
     const severityLookup = {};
     try {
-      (emsConfig.ems_full_configuration || []).forEach(se => {
+      (activeConfig[configKey] || []).forEach(se => {
         (se.sections || []).forEach(section => {
           (section.standards || []).forEach(standard => {
             (standard.criteria || []).forEach(crit => {

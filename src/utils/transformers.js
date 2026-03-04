@@ -1,276 +1,238 @@
+/**
+ * Maps DHIS2 value types to our application's internal input types.
+ */
+const mapValueTypeToInputType = (vt, hasOpt) => {
+    if (hasOpt) return 'select';
+    switch (vt) {
+        case 'NUMBER':
+        case 'INTEGER':
+        case 'INTEGER_POSITIVE':
+        case 'INTEGER_ZERO_OR_POSITIVE': return 'number';
+        case 'BOOLEAN':
+        case 'TRUE_ONLY': return 'select';
+        case 'DATE': return 'date';
+        case 'LONG_TEXT': return 'textarea';
+        default: return 'text';
+    }
+};
+
+/**
+ * Transforms DHIS2 Metadata into a grouped structure for the PWA.
+ * Groups are currently restricted to "Mortuary" and "EMS".
+ */
 export const transformMetadata = (metadata) => {
+    console.log("Transform: Starting metadata transformation...");
     if (!metadata || !metadata.programStageSections) {
         console.warn("Transform: No programStageSections found in metadata");
         return [];
     }
 
-    // 1. Map Program Stage Data Elements for quick lookup
+    // 1. Map Data Elements for quick lookup during section transformation
     const deMap = {};
     if (metadata.programStageDataElements) {
         metadata.programStageDataElements.forEach(psde => {
             const de = psde.dataElement || psde;
-            if (de && de.id) {
-                deMap[de.id] = de;
-            }
+            if (de && de.id) deMap[de.id] = de;
         });
     }
-    console.log(`Transform: Hydrated ${Object.keys(deMap).length} data elements from programStageDataElements`);
 
-    // 1b. Second pass: also hydrate deMap from section-level dataElements.
-    //     This covers data elements (e.g. SURV-MORTUARY / Mortuary) that carry
-    //     inline optionSets in the section response but are NOT listed under
-    //     programStageDataElements — ensuring they get the same treatment as EMS.
+    // Secondary pass to ensure all elements referenced in sections are hydrated
     if (metadata.programStageSections) {
         metadata.programStageSections.forEach(section => {
-            const elements = section.dataElements || [];
+            const elements = section.dataElements || section.programStageDataElements || [];
             elements.forEach(rawDe => {
                 const de = rawDe.dataElement || rawDe;
                 if (de && de.id && !deMap[de.id]) {
-                    // Only add if it has meaningful data (name or optionSet)
-                    if (de.displayName || de.formName || de.optionSet) {
-                        deMap[de.id] = de;
-                    }
+                    if (de.displayName || de.formName || de.optionSet) deMap[de.id] = de;
                 }
             });
         });
     }
-    console.log(`Transform: deMap after section hydration: ${Object.keys(deMap).length} data elements`);
 
-    // DIAGNOSTIC: Per-section optionSet coverage
-    if (metadata.programStageSections) {
-        metadata.programStageSections.forEach(section => {
-            const elements = section.dataElements || [];
-            const withOptSet = elements.filter(rawDe => {
-                const de = rawDe.dataElement || rawDe;
-                return de && deMap[de.id]?.optionSet;
-            });
-            if (elements.length > 0) {
-                console.log(`[Transform Diag] Section "${section.displayName || section.name}" (code: ${section.code}): ${withOptSet.length}/${elements.length} data elements have optionSet in deMap`);
-            }
-        });
-    }
+    // Prefix helpers - identifies which group a section belongs to
+    const detectPrefix = (sec) => {
+        const code = (sec.code || '').toUpperCase();
+        const name = (sec.name || '').toUpperCase();
 
-    // Sort Sections by sortOrder
-    const sortedSections = [...metadata.programStageSections].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+        // Highest Priority: Explicit user-requested string for Mortuary
+        if (name.includes('SURV_MORTUARY') || name.includes('SURV-MORTUARY') ||
+            code.includes('MORTUARY')) {
+            return 'MORTUARY';
+        }
 
-    const transformedSections = sortedSections.map(section => {
+        // Standard EMS detection
+        if (code.startsWith('EMS') || code.startsWith('SE') || name.startsWith('EMS')) {
+            return 'SE';
+        }
+
+        // Generic prefix detection using shared patterns
+        if (name.includes('SURV_') || name.includes('SURV-')) {
+            const match = name.match(/SURV[_-]([A-Z0-9]+)/i);
+            if (match && match[1]) return match[1].toUpperCase();
+        }
+
+        if (code.startsWith('SURV_') || code.startsWith('SURV-')) {
+            const stripped = code.replace(/^SURV[-_]/, '');
+            const part = stripped.split('_')[0];
+            if (part) return part.toUpperCase();
+        }
+
+        if (code.includes('_')) return code.split('_')[0].toUpperCase();
+
+        return null; // General section
+    };
+
+    const PREFIX_NAME_MAP = { 'SE': 'EMS', 'MORTUARY': 'Mortuary' };
+
+    // Strips prefixes for clean UI display
+    const stripPrefix = (str, allowEmpty = true) => {
+        if (!str) return '';
+        // Special case: remove SURV_MORTUARY blocks, allowing leading/trailing spaces, multiple underscores, and numbers
+        let cleaned = str.replace(/^\s*SURV[-_]+MORTUARY[-_\d\s]*/i, '').trim();
+        // Catch-all: remove generic SURV_ prefixes
+        cleaned = cleaned.replace(/^\s*SURV[-_\d\s]*/i, '').trim();
+
+        if (cleaned === '') {
+            return allowEmpty ? '' : str; // Only revert to original if we forbid empty labels
+        }
+        return cleaned;
+    };
+
+    const transformedSections = metadata.programStageSections.map(section => {
         const fields = [];
-        // DHIS2 usually has programStageDataElements on the stage, but sections have dataElements
-        let elements = section.dataElements || section.programStageDataElements || [];
+        const sectionName = section.displayName || section.name || '';
+        const sectionCode = section.code || '';
 
-        // Sort elements by sortOrder if they have it
+        let elements = section.dataElements || section.programStageDataElements || [];
         elements = [...elements].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
 
         elements.forEach(rawDe => {
-            // Robust lookup: handle object with ID, direct ID, or nested dataElement object
-            let deId = rawDe.id;
-            if (!deId && rawDe.dataElement) deId = rawDe.dataElement.id;
-            if (!deId && typeof rawDe === 'string') deId = rawDe;
-
+            let deId = rawDe.id || (rawDe.dataElement ? rawDe.dataElement.id : (typeof rawDe === 'string' ? rawDe : null));
             const de = deMap[deId] || rawDe.dataElement || rawDe;
+            if (!de || (!de.id && !de.displayName)) return;
 
-            if (!de || (!de.id && !de.displayName)) {
-                console.warn("Transform: Could not resolve data element details for:", rawDe);
-                return;
-            }
-
-            const name = de.formName || de.displayName || de.name || de.shortName;
-            const isHeader = name && (name.includes('(--)') || name.trim().endsWith('--'));
+            const deName = de.formName || de.displayName || de.name || de.shortName;
+            const isHeader = deName && (deName.includes('(--)') || deName.trim().endsWith('--'));
 
             if (isHeader) {
-                const cleanName = name.replace(/\(--\)/g, '').replace(/--$/, '').trim();
                 fields.push({
                     id: de.id || deId || Math.random().toString(),
-                    label: cleanName,
+                    label: deName.replace(/\(--\)/g, '').replace(/--$/, '').trim(),
                     type: 'header',
                     code: de.code
                 });
             } else {
                 let options = [];
-                // Check multiple locations for optionSet
                 const optionSet = de.optionSet || (deMap[deId] ? deMap[deId].optionSet : null);
-
                 if (optionSet && optionSet.options) {
                     options = [...optionSet.options]
                         .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
-                        .map(opt => ({
-                            value: opt.code || opt.id,
-                            label: opt.displayName || opt.name
-                        }));
+                        .map(opt => ({ value: opt.code || opt.id, label: opt.displayName || opt.name }));
                 }
-
-                // Fallback for Booleans
                 if (options.length === 0 && (de.valueType === 'BOOLEAN' || de.valueType === 'TRUE_ONLY')) {
-                    options = [
-                        { value: 'true', label: 'Yes' },
-                        { value: 'false', label: 'No' }
-                    ];
+                    options = [{ value: 'true', label: 'Yes' }, { value: 'false', label: 'No' }];
                 }
-
-                const finalType = mapValueTypeToInputType(de.valueType, options.length > 0);
-
-                if (options.length > 0) {
-                    console.log(`  Dropdown Found: ${name} (${options.length} options)`);
-                } else if (de.valueType === 'TEXT' || !de.valueType) {
-                    // Possible missing optionSet — log it
-                    const rawOptSet = de.optionSet || deMap[deId]?.optionSet;
-                    if (!rawOptSet) {
-                        console.warn(`  [Transform Diag] No optionSet for DE "${name}" (id: ${deId}, code: ${de.code}) in section "${section.displayName}". valueType=${de.valueType}`);
-                    }
-                }
-
-                const isComment = name.toLowerCase().endsWith('-comments') || name.toLowerCase().endsWith('-comment');
-
+                const isComment = deName && (deName.toLowerCase().endsWith('-comments') || deName.toLowerCase().endsWith('-comment'));
                 fields.push({
                     id: de.id || deId,
-                    label: isComment ? 'Comment' : name,
-                    type: finalType,
+                    label: isComment ? 'Comment' : deName,
+                    type: mapValueTypeToInputType(de.valueType, options.length > 0),
                     options: options,
-                    compulsory: section.displayName === 'Assessment Details' ? true : de.compulsory,
+                    compulsory: sectionName.toLowerCase().includes('assessment details') ? true : de.compulsory,
                     isComment: isComment,
-                    code: de.code // Added code property
+                    code: de.code
                 });
             }
         });
 
+        const prefix = detectPrefix({ name: sectionName, code: sectionCode });
+        const finalName = stripPrefix(sectionName, false);
+        const finalCode = stripPrefix(sectionCode, true).replace(/^EMS/, 'SE');
+
         return {
             id: section.id,
-            name: section.displayName,
-            code: (section.code || '').replace(/^EMS_/, 'SE '),
-            fields: fields
+            name: finalName,
+            code: finalCode,
+            fields: fields,
+            _prefix: prefix,
+            _originalName: sectionName
         };
     });
 
-    // ─── Prefix detection helpers ─────────────────────────────────────────────
-    // Matches a compound ALL-CAPS prefix at the start of a section name,
-    // e.g. "SURV-MORTUARY Section 1"  →  "SURV-MORTUARY"
-    const COMPOUND_PREFIX_RE = /^([A-Z][A-Z0-9]*(?:-[A-Z][A-Z0-9]+)+)\b/;
-
-    const detectPrefix = (sec) => {
-        const code = sec.code || '';
-
-        // 1. Code contains underscore: SURV-MORTUARY_1 → "SURV-MORTUARY"
-        if (code.includes('_')) return code.split('_')[0];
-
-        // 2. Code starts with 'SE ' (EMS sections already transformed from EMS_N)
-        if (code.startsWith('SE ')) return 'SE';
-
-        // 3. Fallback: compound hyphenated ALL-CAPS prefix in the display name
-        //    e.g. "SURV-MORTUARY Section 1" → "SURV-MORTUARY"
-        const nameMatch = sec.name.match(COMPOUND_PREFIX_RE);
-        if (nameMatch) return nameMatch[1];
-
-        return null; // no prefix detected → general section
-    };
-
-    // Human-readable name overrides for known prefix codes
-    const PREFIX_NAME_MAP = {
-        'SE': 'EMS',
-        // add more here if needed, e.g. 'SURV-MORTUARY': 'Mortuary Survey'
-    };
-
-    // 1. Identify General vs Prefix sections
-    //    "Assessment Details" is special — it belongs to ALL groups as a shared header.
-    const generalSections = [];  // all non-prefixed sections (including AD)
+    const generalSections = [];
     const prefixSectionsByPrefix = {};
 
     transformedSections.forEach(sec => {
-        const prefix = detectPrefix(sec);
-        const isGeneral =
-            !prefix ||
-            sec.name === 'Assessment Details' ||
-            (sec.code || '').startsWith('GENERAL_');
+        const prefix = sec._prefix;
+        const nl = (sec._originalName || '').toLowerCase();
+        const isAD = nl.includes('assessment details') || nl.includes('assessment_details');
 
-        if (isGeneral) {
-            // Force mandatory for general/global sections
-            sec.fields.forEach(f => {
-                if (f.type !== 'header') f.compulsory = true;
-            });
+        // Restriction: Only EMS (SE) gets its own group. 
+        // Everything else, including MORTUARY and unprefixied, goes to the general (Mortuary) group.
+        const isEMS = prefix === 'SE' && !isAD;
+
+        if (!isEMS) {
+            sec.fields.forEach(f => { if (f.type !== 'header') f.compulsory = true; });
             generalSections.push(sec);
         } else {
-            if (!prefixSectionsByPrefix[prefix]) prefixSectionsByPrefix[prefix] = [];
-            prefixSectionsByPrefix[prefix].push(sec);
+            if (!prefixSectionsByPrefix['SE']) prefixSectionsByPrefix['SE'] = [];
+            prefixSectionsByPrefix['SE'].push(sec);
         }
     });
 
-    // Split: Assessment Details goes into every group; remaining general sections stay in Mortuary only
-    // Use ALL generalSections (not just name-matched) so we don't miss AD if the DHIS2 name differs slightly
-    const sharedSections = generalSections;
-
-    // 2. Create a group per prefix.
-    //    Each group starts with shared sections (Assessment Details etc.), then its own sections.
-    const finalGroups = Object.keys(prefixSectionsByPrefix).map(prefix => {
-        const groupSections = [...prefixSectionsByPrefix[prefix]].sort((a, b) => {
-            const extractNum = (str) => {
-                const match = (str || '').match(/\d+/);
-                return match ? parseInt(match[0], 10) : 0;
-            };
-            return extractNum(a.code || a.name) - extractNum(b.code || b.name);
-        });
-
-        return {
-            id: prefix,
-            name: PREFIX_NAME_MAP[prefix] || prefix,
-            // Shared sections (Assessment Details etc.) always come first
-            sections: [...sharedSections, ...groupSections]
-        };
+    const sharedSections = generalSections.filter(s => {
+        const nl = (s._originalName || '').toLowerCase();
+        return nl.includes('assessment details') || nl.includes('assessment_details');
     });
 
-    // 3. Sort prefixed groups alphabetically
-    const sortedGroups = finalGroups.sort((a, b) => a.name.localeCompare(b.name));
+    const nonSharedGeneralSections = generalSections.filter(s => !sharedSections.includes(s));
 
-    // 4. Prepend the Mortuary group (contains Assessment Details + any other general sections)
-    if (generalSections.length > 0) {
-        sortedGroups.unshift({
-            id: 'GENERAL',
-            name: 'Mortuary',
-            sections: generalSections
+    // Sort non-shared Mortuary sections based on any numbers in their names/codes (e.g. SE 1, SE 2)
+    const sortedNonSharedMortuarySections = [...nonSharedGeneralSections].sort((a, b) => {
+        const ex = (s) => (s && s.match(/\d+/) ? parseInt(s.match(/\d+/)[0], 10) : 999);
+        return ex(a.code || a.name) - ex(b.code || b.name);
+    });
+
+    // Ensure sharedSections (Assessment Details) are always at the very beginning
+    const finalMortuarySections = [...sharedSections, ...sortedNonSharedMortuarySections];
+
+    // Construct EMS Group
+    const emsGroupSections = prefixSectionsByPrefix['SE'] || [];
+    const sortedEmsSections = [...emsGroupSections].sort((a, b) => {
+        const ex = (s) => (s.match(/\d+/) ? parseInt(s.match(/\d+/)[0], 10) : 0);
+        return ex(a.code || a.name) - ex(b.code || b.name);
+    });
+
+    const allGroups = [];
+
+    // Always include Mortuary (General) group
+    allGroups.push({
+        id: 'GENERAL',
+        name: 'Mortuary',
+        sections: finalMortuarySections
+    });
+
+    // Add EMS group if sections exist
+    if (sortedEmsSections.length > 0) {
+        allGroups.push({
+            id: 'SE',
+            name: 'EMS',
+            sections: [...sharedSections, ...sortedEmsSections]
         });
     }
 
-    // Fallback: If no categorized sections exist at all, return general sections as a solo group
-    if (sortedGroups.length === 0) {
-        return [{
-            id: 'SURVEY',
-            name: 'SURVEY',
-            sections: generalSections
-        }];
-    }
-
-    // 4. Post-process to link questions to their associated comment fields
-    sortedGroups.forEach(group => {
+    // Final pass for linking comments and questions
+    allGroups.forEach(group => {
         group.sections.forEach(section => {
-            const fields = section.fields;
+            const fields = section.fields || [];
             for (let i = 0; i < fields.length - 1; i++) {
-                // If this is a question (not a header or comment) and the next field is a comment
                 if (!fields[i].isComment && fields[i].type !== 'header' && fields[i + 1].isComment) {
                     fields[i].commentFieldId = fields[i + 1].id;
-                    fields[i + 1].questionFieldId = fields[i].id; // Link comment back to question
+                    fields[i + 1].questionFieldId = fields[i].id;
                 }
             }
         });
     });
 
-    return sortedGroups;
-};
-
-const mapValueTypeToInputType = (valueType, hasOptions) => {
-    if (hasOptions) return 'select';
-
-    switch (valueType) {
-        case 'NUMBER':
-        case 'INTEGER':
-        case 'INTEGER_POSITIVE':
-        case 'INTEGER_ZERO_OR_POSITIVE':
-            return 'number';
-        case 'BOOLEAN':
-        case 'TRUE_ONLY':
-            return 'select';
-        case 'DATE':
-            return 'date';
-        case 'LONG_TEXT':
-            return 'textarea';
-        default:
-            return 'text';
-    }
+    return allGroups;
 };

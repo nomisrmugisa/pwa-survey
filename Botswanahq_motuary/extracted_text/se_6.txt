@@ -1,0 +1,631 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 10 Page 1 of
+ 10 Page 1 of
+ 10 Page 1 of
+ 10 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+Page 2 of
+ 10 Page 2 of
+ 10 Page 2 of
+ 10 Page 2 of
+ 10 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+6.1 Management of Pathology Services
+6.1.1 Standard
+A medical director/head of department with appropriate registration,
+                    education and training provides oversight of the pathology activities of
+                    the organisation.
+Standard Intent: Each organisation employs or otherwise obtains the services of a doctor who
+is accountable for oversight of the pathology activities that take place within the
+organisation. To accomplish these oversight responsibilities, the medical director/head of
+department must have training and experience related to forensic medicine/pathology
+services. The individual selected or appointed by the governing body to carry out these
+functions has the necessary qualifications as a histopathologist/forensic pathologist, forensic
+medical officer or medical practitioner qualified to perform post-mortem examinations and/or
+autopsies.
+Criterion Comments
+Recommendations
+Criterion  6.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a trained and
+licensed Pathologist who is
+accountable for the oversight
+of all autopsy services of the
+organisation.
+Criterion  6.1.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The pathologist is
+accountable for the
+development, implementation
+and monitoring of autopsy
+service functions.
+Criterion  6.1.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The pathologist is
+accountable for the in-service
+training/education and
+performance monitoring of
+employees that provide
+autopsy services.
+Page 3 of
+ 10 Page 3 of
+ 10 Page 3 of
+ 10 Page 3 of
+ 10 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+Criterion  6.1.1.4
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A determination is made
+about the current
+qualifications of individuals to
+provide pathology services.
+Criterion  6.1.1.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation has an
+effective process to authorise
+all health professionals to
+provide pathology services
+consistent with their
+qualifications.
+Criterion  6.1.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The head of
+department/medical director
+is accountable for the medical
+components of the quality
+management and
+improvement programme.
+Criterion  6.1.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The medical director and the
+managerial leaders select
+pathology practice guidelines.
+Criterion  6.1.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The medical director and the
+managerial leaders adapt
+guidelines as appropriate for
+the clients served by the
+organisation and the
+resources available within the
+organisation.
+Page 4 of
+ 10 Page 4 of
+ 10 Page 4 of
+ 10 Page 4 of
+ 10 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+Criterion  6.1.1.9
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Guidelines are reviewed and
+adapted on a regular basis
+after implementation.
+6.1.2 Standard
+The pathology service is responsible for the removal and transportation of the body.
+Criterion Comments
+Recommendations
+Criterion  6.1.2.1
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The forensic pathology
+service removes the body
+from the scene of death in
+consultation with the
+Investigation Officer after
+death certification by a
+qualified medical practitioner.
+Criterion  6.1.2.2
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The body is handled
+according to prescribed
+policies and procedures.
+Criterion  6.1.2.3
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The body is transported to the
+mortuary according to
+stipulated procedures after it
+has been certified dead by
+the hospital Accident and
+Emergency Department or
+clinic doctors.
+Criterion  6.1.2.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Designated vehicles are used
+for the transportation of
+bodies
+Page 5 of
+ 10 Page 5 of
+ 10 Page 5 of
+ 10 Page 5 of
+ 10 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+6.1.3 Standard
+Bodies are admitted to the forensic mortuary and stored according to documented
+procedures.
+Criterion Comments
+Recommendations
+Criterion  6.1.3.1
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The medico-legal admission
+requirements and processes
+are adhered to when a body
+is admitted.
+Criterion  6.1.3.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The body is stored in
+accordance with the
+prescribed procedure.
+Criterion  6.1.3.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Access to the body is
+controlled at all times.
+Criterion  6.1.3.4
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medico-legal post-mortems
+are conducted within
+prescribed time frames.
+Page 6 of
+ 10 Page 6 of
+ 10 Page 6 of
+ 10 Page 6 of
+ 10 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+6.1.4 Standard
+Forensic post-mortem examinations are only conducted in terms of relevant
+legislation.
+Standard Intent: Relevant legislation must be adhered to where post-mortems or autopsies are
+to be performed. This includes liaison between the investigating officer of the police service
+and the forensic pathologist so as to maintain the chain of evidence relating to the body and
+any associated items.
+Criterion Comments
+Recommendations
+Criterion  6.1.4.1
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the forensic
+pathologist secures
+custodianship of the body
+from the scene of death;
+Criterion  6.1.4.2
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the forensic
+pathologist will have the full
+authority to discretionally
+allow access to the body.
+Access to the body will be
+limited to those who have a
+medical background and fulfil
+the criteria.
+Criterion  6.1.4.3
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the body shall
+be viewed by the family
+representative for purposes of
+identification only.
+Criterion  6.1.4.4
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the family may
+elect to have a medical
+practitioner observe the post-
+mortem procedure.
+Page 7 of
+ 10 Page 7 of
+ 10 Page 7 of
+ 10 Page 7 of
+ 10 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+Criterion  6.1.4.5
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the forensic
+pathologist maintains the
+chain of evidence relating to
+the body and any associated
+items.
+Criterion  6.1.4.6
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the forensic
+pathologist conducts the post-
+mortem investigation and
+harvesting of evidentiary
+material according to
+prescribed laws and
+procedures.
+Criterion  6.1.4.7
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the forensic
+pathologist conducts
+appropriate special
+investigations according to
+prescribed laws and
+procedures.
+Criterion  6.1.4.8
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the forensic
+pathologist produces medico-
+legal reports, consultancy
+reports, expert testimony and
+opinions.
+Criterion  6.1.4.9
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the forensic
+pathologist archives
+documents, specimens and
+related materials.
+Page 8 of
+ 10 Page 8 of
+ 10 Page 8 of
+ 10 Page 8 of
+ 10 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+Criterion  6.1.4.10
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For forensic post-mortem
+examinations, the forensic
+pathologist releases the body
+to a registered undertaker or
+for a pauper's burial in terms
+of relevant legislation.
+6.1.5 Standard
+Clinical post-mortem examinations are only conducted in terms of relevant
+legislation.
+Standard Intent: Relevant legislation must be adhered to where post-mortems or autopsies are
+to be performed. For clinical autopsies, a consent from the relatives should be obtained and
+liaison between the requesting doctor and the pathologist should be established.
+Criterion Comments
+Recommendations
+Criterion  6.1.5.1
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For clinical post-mortem
+examinations, the anatomical
+pathologist conducts the post-
+mortem examination and
+harvesting of diagnostic
+material
+Criterion  6.1.5.2
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For clinical post-mortem
+examinations, consent from
+relatives should be obtained
+before the case is admitted
+for post-mortem examination.
+Criterion  6.1.5.3
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For clinical post-mortem
+examinations, the anatomical
+pathologist conducts
+appropriate special
+investigations.
+Page 9 of
+ 10 Page 9 of
+ 10 Page 9 of
+ 10 Page 9 of
+ 10 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR
+MORTUARIES/FORENSIC SERVICES
+6.Autopsy Processes
+Criterion  6.1.5.4
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For clinical post-mortem
+examinations, the anatomical
+pathologist conducts the post-
+mortem examination and
+harvesting of diagnostic
+material.
+Criterion  6.1.5.5
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For clinical post-mortem
+examinations, the anatomical
+pathologist produces reports
+and submits them to the
+requesting entity.
+Criterion  6.1.5.6
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+For clinical post-mortem
+examinations, the anatomical
+pathologist archives
+documents, specimens and
+related materials according to
+national regulations.
+Criterion  6.1.5.7
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Following anatomical post-
+mortem examinations, the
+mortuary personnel release
+the body to a registered
+undertaker or for a pauper's
+burial in terms of relevant
+legislation.
+Page 10 of
+ 10 Page 10 of
+ 10 Page 10 of
+ 10 Page 10 of
+ 10 

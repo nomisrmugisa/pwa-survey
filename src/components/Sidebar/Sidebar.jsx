@@ -24,7 +24,8 @@ const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSe
       </div>
       <ul className="section-list">
         {activeGroup?.sections?.map((sec, index) => {
-          const isADSection = sec.name === "Assessment Details";
+          const nameLower = (sec.name || '').toLowerCase().trim();
+          const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
           const isSectionLocked = !isADSection && !isADComplete;
 
           return (

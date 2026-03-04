@@ -244,6 +244,7 @@ export const api = {
             .filter(([key, value]) => {
                 if (key.startsWith('is_critical_')) return false;
                 if (key.endsWith('_internal')) return false;
+                if (key === 'scoringSnapshot') return false;
                 return value !== undefined && value !== null && value !== '';
             })
             .map(([dataElement, value]) => ({

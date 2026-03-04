@@ -4,7 +4,9 @@ import { useApp } from '../../contexts/AppContext';
 import { api } from '../../services/api';
 import indexedDBService from '../../services/indexedDBService';
 import emsConfig from '../../assets/ems_config.json';
+import mortuaryConfig from '../../assets/mortuary_config.json';
 import emsLinks from '../../assets/ems_links.json';
+import mortuaryLinks from '../../assets/mortuary_links.json';
 import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
 import { normalizeCriterionCode } from '../../utils/normalization';
@@ -15,7 +17,8 @@ import { createAssessmentSnapshot } from '../../utils/createAssessmentSnapshot';
 const buildCriterionIndex = (configData) => {
     const index = {};
     try {
-        const config = configData?.ems_full_configuration || [];
+        // Handle both EMS and Mortuary config keys
+        const config = configData?.ems_full_configuration || configData?.mortuary_full_configuration || [];
         config.forEach(se => {
             (se.sections || []).forEach(section => {
                 (section.standards || []).forEach(standard => {
@@ -304,8 +307,10 @@ const FormArea = ({
         }
     }, []);
 
-    const activeLinks = customLinks || emsLinks;
-    const activeConfig = customConfig || emsConfig;
+    const activeGroup = groups.find(g => g.sections?.some(s => s.id === activeSection?.id));
+    const isMortuary = activeGroup?.id === 'SURV-MORTUARY' || activeGroup?.id === 'GENERAL' || activeGroup?.name === 'Mortuary';
+    const activeLinks = customLinks || (isMortuary ? mortuaryLinks : emsLinks);
+    const activeConfig = customConfig || (isMortuary ? mortuaryConfig : emsConfig);
 
     const criterionIndex = useMemo(() => buildCriterionIndex(activeConfig), [activeConfig]);
     // DEBUG: Validate props on render
