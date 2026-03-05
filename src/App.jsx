@@ -150,11 +150,14 @@ const AppContent = () => {
     if (!groups || groups.length === 0 || !formData) return { sections: [] };
 
     // Determine which configuration to use based on the active group
-    const isMortuary = activeGroup?.id === 'SURV-MORTUARY' || activeGroup?.id === 'MORTUARY' || activeGroup?.id === 'GENERAL' || activeGroup?.name === 'Mortuary';
+    const isMortuary = activeGroup?.id === 'GENERAL' || activeGroup?.id === 'MORTUARY' || activeGroup?.name === 'Mortuary';
+    const isClinics = activeGroup?.id === 'CLINICS' || activeGroup?.name === 'Clinics';
+
+    // Default to emsConfig for Clinics if no specific clinicsConfig is found
     const activeConfig = isMortuary ? mortuaryConfig : emsConfig;
     const configKey = isMortuary ? 'mortuary_full_configuration' : 'ems_full_configuration';
 
-    // Get active configurations (supporting potential local storage overrides later)
+    // Get active links (default to emsLinks for Clinics)
     const activeLinks = isMortuary ? mortuaryLinks : emsLinks;
 
     // Quick lookup for links data

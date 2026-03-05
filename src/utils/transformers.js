@@ -73,27 +73,56 @@ export const transformMetadata = (metadata) => {
 
         if (code.startsWith('SURV_') || code.startsWith('SURV-')) {
             const stripped = code.replace(/^SURV[-_]/, '');
-            const part = stripped.split('_')[0];
+            const part = stripped.split(/[_-]/)[0];
             if (part) return part.toUpperCase();
         }
 
-        if (code.includes('_')) return code.split('_')[0].toUpperCase();
+        const fallbackParts = code.split(/[_-]/);
+        if (fallbackParts.length > 1) return fallbackParts[0].toUpperCase();
+
+        // One last try: if it starts with CLINIC, just return CLINICS
+        if (code.startsWith('CLINIC') || name.startsWith('CLINIC')) return 'CLINICS';
 
         return null; // General section
     };
 
-    const PREFIX_NAME_MAP = { 'SE': 'EMS', 'MORTUARY': 'Mortuary' };
+    const PREFIX_NAME_MAP = {
+        'SE': 'EMS',
+        'MORTUARY': 'Mortuary',
+        'CLINICS': 'Clinics',
+        'CLINIC': 'Clinics'
+    };
 
     // Strips prefixes for clean UI display
     const stripPrefix = (str, allowEmpty = true) => {
         if (!str) return '';
-        // Special case: remove SURV_MORTUARY blocks, allowing leading/trailing spaces, multiple underscores, and numbers
-        let cleaned = str.replace(/^\s*SURV[-_]+MORTUARY[-_\d\s]*/i, '').trim();
-        // Catch-all: remove generic SURV_ prefixes
-        cleaned = cleaned.replace(/^\s*SURV[-_\d\s]*/i, '').trim();
+
+        let cleaned = str;
+
+        // Remove common patterns aggressively, but STOP at "SE" or specific identifiers
+        const patterns = [
+            /^\s*SURV[-_]+MORTUARY[-_\d\s]*/i,
+            /^\s*SURV[-_]+CLINIC[S]?[-_\d\s]*/i,
+            /^\s*CLINIC[S]?[-_]+(?![SE|EMS|[\d]])/i, // Strip CLINIC_ but ONLY if not followed by SE or numbers
+            /^\s*CLINIC[S]?\s+(?![SE|EMS|[\d]])/i,  // Strip CLINIC  but ONLY if not followed by SE or numbers
+            /^\s*SURV[-_]+(?![SE|EMS|[\d]])/i
+        ];
+
+        let previous;
+        let iterations = 0;
+        do {
+            previous = cleaned;
+            // Never strip SE or EMS identifiers if we've already reached them
+            if (cleaned.match(/^(SE|EMS)[\s-_\d]/i)) break;
+
+            patterns.forEach(p => {
+                cleaned = cleaned.replace(p, '').trim();
+            });
+            iterations++;
+        } while (cleaned !== previous && iterations < 10);
 
         if (cleaned === '') {
-            return allowEmpty ? '' : str; // Only revert to original if we forbid empty labels
+            return allowEmpty ? '' : str;
         }
         return cleaned;
     };
@@ -146,6 +175,7 @@ export const transformMetadata = (metadata) => {
         });
 
         const prefix = detectPrefix({ name: sectionName, code: sectionCode });
+        // DEBUG: console.log(`[Transform] Section: ${sectionName} (${sectionCode}) -> Prefix: ${prefix}`);
         const finalName = stripPrefix(sectionName, false);
         const finalCode = stripPrefix(sectionCode, true).replace(/^EMS/, 'SE');
 
@@ -167,16 +197,19 @@ export const transformMetadata = (metadata) => {
         const nl = (sec._originalName || '').toLowerCase();
         const isAD = nl.includes('assessment details') || nl.includes('assessment_details');
 
-        // Restriction: Only EMS (SE) gets its own group. 
-        // Everything else, including MORTUARY and unprefixied, goes to the general (Mortuary) group.
-        const isEMS = prefix === 'SE' && !isAD;
+        // Determine group: SE/EMS or Clinics get specific groups.
+        // Everything else (Mortuary or untagged) goes to the general (Mortuary) group.
+        const groupKey = (prefix === 'SE' || (prefix && prefix.startsWith('SE'))) ? 'SE' :
+            (prefix === 'CLINICS' || prefix === 'CLINIC' ? 'CLINICS' : null);
 
-        if (!isEMS) {
+        if (!groupKey) {
+            // console.log(`[Transform] Grouping ${sec.name} into MORTUARY (prefix was ${prefix})`);
             sec.fields.forEach(f => { if (f.type !== 'header') f.compulsory = true; });
             generalSections.push(sec);
         } else {
-            if (!prefixSectionsByPrefix['SE']) prefixSectionsByPrefix['SE'] = [];
-            prefixSectionsByPrefix['SE'].push(sec);
+            // console.log(`[Transform] Grouping ${sec.name} into ${groupKey} (prefix was ${prefix})`);
+            if (!prefixSectionsByPrefix[groupKey]) prefixSectionsByPrefix[groupKey] = [];
+            prefixSectionsByPrefix[groupKey].push(sec);
         }
     });
 
@@ -196,19 +229,24 @@ export const transformMetadata = (metadata) => {
     // Ensure sharedSections (Assessment Details) are always at the very beginning
     const finalMortuarySections = [...sharedSections, ...sortedNonSharedMortuarySections];
 
-    // Construct EMS Group
+    // Construct SE groups (EMS, Clinics)
     const emsGroupSections = prefixSectionsByPrefix['SE'] || [];
-    const sortedEmsSections = [...emsGroupSections].sort((a, b) => {
-        const ex = (s) => (s.match(/\d+/) ? parseInt(s.match(/\d+/)[0], 10) : 0);
+    const clinicsGroupSections = prefixSectionsByPrefix['CLINICS'] || [];
+
+    const sortSections = (secs) => [...secs].sort((a, b) => {
+        const ex = (s) => (s && s.match(/\d+/) ? parseInt(s.match(/\d+/)[0], 10) : 0);
         return ex(a.code || a.name) - ex(b.code || b.name);
     });
+
+    const sortedEmsSections = sortSections(emsGroupSections);
+    const sortedClinicsSections = sortSections(clinicsGroupSections);
 
     const allGroups = [];
 
     // Always include Mortuary (General) group
     allGroups.push({
         id: 'GENERAL',
-        name: 'Mortuary',
+        name: PREFIX_NAME_MAP['MORTUARY'],
         sections: finalMortuarySections
     });
 
@@ -216,8 +254,17 @@ export const transformMetadata = (metadata) => {
     if (sortedEmsSections.length > 0) {
         allGroups.push({
             id: 'SE',
-            name: 'EMS',
+            name: PREFIX_NAME_MAP['SE'],
             sections: [...sharedSections, ...sortedEmsSections]
+        });
+    }
+
+    // Add Clinics group if sections exist
+    if (sortedClinicsSections.length > 0) {
+        allGroups.push({
+            id: 'CLINICS',
+            name: PREFIX_NAME_MAP['CLINICS'],
+            sections: [...sharedSections, ...sortedClinicsSections]
         });
     }
 
