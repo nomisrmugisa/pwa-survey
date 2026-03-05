@@ -1,0 +1,997 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 17 Page 1 of
+ 17 Page 1 of
+ 17 Page 1 of
+ 17 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Page 2 of
+ 17 Page 2 of
+ 17 Page 2 of
+ 17 Page 2 of
+ 17 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+4.1 Information Planning
+4.1.1 Standard
+The health facility meets the information needs of all those who provide clinical
+care, those who manage the service and those outside the health facility who
+require data and information from the health facility.
+Standard Intent: Information is generated and used during patient care and for safely and
+effectively managing an organisation. The ability to capture and provide information requires
+effective planning. Planning incorporates input from a variety of sources:
+·         the care providers
+·         the organisation's managers and leaders,  and
+·         those outside the organisation who need or require data or information about the
+organisation's operational and care processes.
+  
+The most urgent information needs of those sources influence the organisation's information
+management strategies and its ability to implement those strategies. The strategies are
+appropriate for the organisation's size, complexity of services, availability of trained
+personnel and other human and technical resources. The plan is comprehensive and
+includes all the departments and services of the organisation.
+  
+There is a system integrating administrative data such as the number of patients per
+department, enrolment data, utilisation, bed occupancy rate where applicable and human
+resources data supported by IT or paper-based administration systems. The collection of
+data is based on the systematically investigated need for information within the organisation.
+ 
+Criterion Comments
+Recommendations
+Criterion  4.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The health facility uses a
+health information system
+that facilitates the collection
+and utilisation of data.
+Criterion  4.1.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The information system
+includes data required to
+measure the objectives set
+for each programme provided
+by the health facility.
+Page 3 of
+ 17 Page 3 of
+ 17 Page 3 of
+ 17 Page 3 of
+ 17 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.1.1.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The requirements for the
+collection, collation, validation
+and distribution of data are
+clearly defined in the system.
+Criterion  4.1.1.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The system identifies those
+permitted access to each
+category of data and
+information.
+Criterion  4.1.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The health facility collects
+data in a timely and efficient
+manner.
+Criterion  4.1.1.6
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Systems are in place for the
+storage and retrieval of
+patient information.
+Page 4 of
+ 17 Page 4 of
+ 17 Page 4 of
+ 17 Page 4 of
+ 17 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+4.2 Analysis of Data
+4.2.1 Standard
+There is a relevant system for the analysis of data.
+Standard Intent: To reach conclusions and make decisions, data must be aggregated, analysed
+and transformed into useful information. Data analysis involves individuals with an
+understanding of information management and skills in data aggregation methods, and in
+the use of various statistical tools. Data analysis involves the individuals responsible for the
+process or outcome being measured. These individuals may be clinical, managerial or a
+combination. Thus, data analysis provides the continuous feedback of quality management
+information to help those individuals make decisions and continuously improve clinical and
+managerial processes.
+  
+The health facility determines how often data is aggregated and analysed. The frequency
+depends on the activity or area being measured, the frequency of measurement and the
+health facility's priorities. For example, clinic data may be analysed weekly to meet national
+regulations, but patient fall data may be analysed monthly if falls are infrequent.Thus
+aggregation of data at points in time enables the health facility to judge a particular
+process's stability or a particular outcome's predictability in relation to expectations.
+  
+When the health facility detects or suspects an undesirable change from what is expected, it
+initiates intense analysis to determine where best to focus improvement. In particular,
+intense analysis is initiated when levels, patterns or trends vary significantly or undesirably
+from:
+·         what is expected
+·         those of other health facilities,  or
+·         recognised standards.
+  
+Certain events related to specific processes always result in intense analysis to understand
+the cause and prevent recurrence. When appropriate to the health facility's services, these
+events include:
+·         confirmed transfusion reactions
+·         significant adverse drug reactions
+·         significant medication errors
+·         significant discrepancies between preoperative and postoperative diagnosis,  and
+·         significant adverse anaesthetic events.
+  
+Each health facility establishes which events are significant and the process for their intense
+analysis. When undesirable events can be prevented, the health facility works to carry out
+preventive changes.
+  
+The goal of data analysis is to be able to compare a health facility in four ways:
+·         with itself over time, such as month to month, or one year to the next
+·         with other similar health facilities, such as through reference databases
+·         with standards, such as those set by accrediting and professional bodies, or those set
+by laws or regulations,  and
+·         with desirable practices identified in the literature, such as practice guidelines.
+  
+These comparisons help the health facility to understand the source and nature of
+undesirable change and help to focus improvement efforts.
+  
+Understanding statistical techniques is helpful in data analysis, especially in interpreting
+variation and in deciding where improvement is needed. Run charts, control charts,
+histograms and Pareto charts are examples of statistical tools that are useful when seeking
+to understand trends and variations in healthcare.
+ 
+Criterion Comments
+Recommendations
+Page 5 of
+ 17 Page 5 of
+ 17 Page 5 of
+ 17 Page 5 of
+ 17 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.2.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Data is aggregated, analysed
+and transformed into useful
+information.
+Criterion  4.2.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The frequency of data
+analysis is appropriate to the
+process under study.
+Criterion  4.2.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The frequency of data
+analysis meets the
+requirements of the health
+facility.
+Criterion  4.2.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Intense analysis of data takes
+place when there are
+significant adverse levels,
+patterns or trends, as
+established by the health
+facility.
+Criterion  4.2.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Statistical tools and
+techniques are used in the
+analysis process when
+suitable.
+Page 6 of
+ 17 Page 6 of
+ 17 Page 6 of
+ 17 Page 6 of
+ 17 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+4.3 Information Usage
+4.3.1 Standard
+Health statistics are collected as required and reported in a timely manner to
+responsible officers.
+Criterion Comments
+Recommendations
+Criterion  4.3.1.1
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The health facility contributes
+to external reference
+databases when required by
+laws or regulations.
+Criterion  4.3.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The health facility manager or
+delegated person checks
+data leaving the facility for
+completeness, correctness
+and consistency.
+Criterion  4.3.1.3
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The performance of the
+facility on identified priority
+indicators forms part of the
+discussions at regular staff
+meetings.
+Criterion  4.3.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The performance of the
+facility on identified priority
+indicators forms part of the
+discussions at meetings with
+community representatives.
+Page 7 of
+ 17 Page 7 of
+ 17 Page 7 of
+ 17 Page 7 of
+ 17 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.3.1.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Targets for identified priority
+indicators are known to the
+facility manager and the
+information coordinator for
+the facility.
+Criterion  4.3.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The facility uses information
+from external data sources for
+benchmarking.
+4.3.2 Standard
+There is a programme for using information to improve practice.
+Criterion Comments
+Recommendations
+Criterion  4.3.2.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Data relating to the meeting
+of objectives for each
+programme is made available
+to the health facility personnel
+at least quarterly.
+Criterion  4.3.2.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Data is analysed and used to
+provide relevant information
+for improving the clinical
+service.
+Criterion  4.3.2.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a regular scheduled
+meeting, at least quarterly, to
+review institutional mortalities
+and morbidities.
+Page 8 of
+ 17 Page 8 of
+ 17 Page 8 of
+ 17 Page 8 of
+ 17 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+4.4 Patient Health Records
+4.4.1 Standard
+The organisation has defined the type and content of patient records.
+Criterion Comments
+Recommendations
+Criterion  4.4.1.1
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There are written policies and
+procedures relating to the
+type of patient record used,
+e.g. carry cards or other
+health records.
+Criterion  4.4.1.2
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies specify the records or
+registers relating to the visits
+of each patient to be kept by
+the health facility.
+Criterion  4.4.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Standardised diagnostic and
+procedure codes are used, if
+required.
+Criterion  4.4.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Symbols and definitions are
+standardised.
+Page 9 of
+ 17 Page 9 of
+ 17 Page 9 of
+ 17 Page 9 of
+ 17 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.4.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Each patient has a record
+which is provided with a
+unique number.
+4.4.2 Standard
+Patient records contain the required information.
+Standard Intent: There is a clinical record for each patient and it contains the following
+documented information:
+This information promotes continuity of care among healthcare providers.
+ 
+Criterion Comments
+Recommendations
+Criterion  4.4.2.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The patients' records are up
+to date to ensure the transfer
+of the latest information
+between care providers.
+Criterion  4.4.2.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The complete patient record
+containing notes by medical,
+nursing and other health
+professionals should be
+readily available to healthcare
+providers.
+Criterion  4.4.2.3
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a standardised
+format for recording patient
+assessment and treatment.
+Page 10 of
+ 17 Page 10 of
+ 17 Page 10 of
+ 17 Page 10 of
+ 17 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.4.2.4
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The signature and
+designation of the signatory
+can be identified for each
+patient record entry.
+Criterion  4.4.2.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The date of each patient
+record entry can be identified.
+Criterion  4.4.2.6
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The plan of care for each
+patient is noted in the patient
+record.
+Criterion  4.4.2.7
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Nursing care plans are
+updated after each shift.
+Criterion  4.4.2.8
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All procedures and diagnostic
+tests requested are noted in
+the patient's record.
+Page 11 of
+ 17 Page 11 of
+ 17 Page 11 of
+ 17 Page 11 of
+ 17 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.4.2.9
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is evidence of review of
+the results of procedures and
+diagnostic tests performed.
+Criterion  4.4.2.10
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Re-assessments are
+documented in the patient's
+record.
+Criterion  4.4.2.11
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medications prescribed and
+administered are recorded for
+each patient.
+Criterion  4.4.2.12
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Adverse drug reactions are
+noted in the patient's record.
+Criterion  4.4.2.13
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medication errors are
+reported through a process
+and within a time frame
+defined by the organisation.
+Page 12 of
+ 17 Page 12 of
+ 17 Page 12 of
+ 17 Page 12 of
+ 17 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.4.2.14
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patient and family education
+provided is noted in the
+patient's record.
+Criterion  4.4.2.15
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Follow-up instructions are
+recorded in the patient's
+record.
+Criterion  4.4.2.16
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A document audit process
+regularly reviews patient
+records.
+Criterion  4.4.2.17
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Clinical information is used in
+clinical monitoring as part of a
+structured clinical audit.
+Page 13 of
+ 17 Page 13 of
+ 17 Page 13 of
+ 17 Page 13 of
+ 17 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+4.4.3 Standard
+A discharge summary is written for each inpatient and made available in the
+patient's record.
+Standard Intent: The discharge summary is one of the most important documents to ensure
+continuity of care and facilitate correct management at subsequent visits. Information
+provided by the organisation may include when to resume daily activities, preventive
+practices relevant to the patient's condition and, when appropriate, information on coping
+with disease or disability.
+The summary contains at least:
+a)     the reason for admission   b)    the diagnosis of main and significant illnesses   c)     the
+results of investigations that will influence further management   d)    all procedures
+performed   e)     the patient's condition at discharge,  and   f)     discharge medications and
+follow-up instructions.
+Criterion Comments
+Recommendations
+Criterion  4.4.3.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A discharge summary, which
+includes items a) to f) in the
+intent statement, is written by
+the medical practitioner at the
+discharge of each patient.
+Criterion  4.4.3.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Each record contains a copy
+of the discharge summary.
+Page 14 of
+ 17 Page 14 of
+ 17 Page 14 of
+ 17 Page 14 of
+ 17 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+4.5 Health Record Maintenance
+4.5.1 Standard
+There is an established health record storage system that ensures confidentiality
+and safety.
+Standard Intent: Health record management must be implemented by a person with suitable
+training and experience. The manager controls the safe storage and retrieval of files.  Files
+must be readily available each time the patient visits a healthcare professional and therefore
+must be filed in such a way that they are easily identified. Policies and procedures as well as
+managerial supervision ensure the safety and confidentiality of files. Loss of information may
+be through electronic failure, fire, flood or theft. The organisation develops and implements a
+policy that guides the retention of patient records and other data and information.  Patient
+records and other data and information are retained for sufficient periods to comply with law
+and regulation and support patient care, the management of the organisation, legal
+documentation, research and education. The retention policy is consistent with the
+confidentiality and security of such information. When the retention period is complete,
+patient records and other data and information are destroyed appropriately.
+  
+Facilities make more and more use of electronic systems, requiring these standards and
+criteria to be assessed appropriately in such instances. These electronic systems vary
+greatly in their application and can range from a simple spreadsheet to register all patient
+admissions/folders to very sophisticated systems where the entire patient record is kept
+electronically.
+  
+Often organisations do not have a single, central location from where records are managed
+and it is important to apply the standards and criteria to ALL areas where patient records are
+being handled, stored or archived. All these areas (that are under the control/management
+of the organisation) need to be visited during the survey, even if located off-site (e.g. across
+the street, on an adjacent plot or within reasonable travelling distance). This assessment
+does not include warehouses of private companies to whom the archiving of records has
+been contracted out, as the service agreement/contract will have to make provision for
+monitoring compliance with specifications.
+ 
+Criterion Comments
+Recommendations
+Criterion  4.5.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A designated individual is
+responsible for the storage,
+maintenance and retrieval of
+health records.
+Criterion  4.5.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The health facility manager
+ensures that policies and
+procedures are implemented
+to guide the personnel.
+Page 15 of
+ 17 Page 15 of
+ 17 Page 15 of
+ 17 Page 15 of
+ 17 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.5.1.3
+Critical: þ
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures
+relate to the safeguarding of
+information in the record
+against loss, damage, breach
+of confidentiality or use by
+unauthorised persons.
+Criterion  4.5.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a system which
+allows for the rapid retrieval
+and distribution of health
+records.
+Criterion  4.5.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The filing system allows for
+incorrectly filed records to be
+easily identified (e.g. through
+colour coding of the records).
+Criterion  4.5.1.6
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The health facility has a
+policy on the retention of
+patient records and other
+data and information.
+Criterion  4.5.1.7
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The retention process
+provides the necessary
+confidentiality and security.
+Page 16 of
+ 17 Page 16 of
+ 17 Page 16 of
+ 17 Page 16 of
+ 17 
+--- Page 17 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+4.Management of Information
+Criterion  4.5.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures are
+developed for health record
+destruction, specifying the
+criteria for selection and the
+method of destruction.
+Criterion  4.5.1.9
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is provision for
+authorised access to patient
+records at all times.
+Criterion  4.5.1.10
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Storage space for health
+records is sufficient and
+secure against unauthorised
+entry.
+Page 17 of
+ 17 Page 17 of
+ 17 Page 17 of
+ 17 Page 17 of
+ 17 

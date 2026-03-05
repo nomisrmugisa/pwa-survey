@@ -1,0 +1,1132 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 20 Page 1 of
+ 20 Page 1 of
+ 20 Page 1 of
+ 20 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Page 2 of
+ 20 Page 2 of
+ 20 Page 2 of
+ 20 Page 2 of
+ 20 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+9.1 Management of the Service
+9.1.1 Standard
+Laboratory services are available to meet the needs of services and patients, in
+compliance with national laws, regulations and standards.
+Standard Intent: The organisation has a system for providing the laboratory services, including
+clinical pathology services, required by its patient population, clinical services offered and
+healthcare providers' needs.
+  
+The laboratory services are organised and provided in a manner that meets applicable
+national standards, laws and regulations.
+  
+Laboratory services, including those required for emergencies, may be provided within the
+organisation, by agreement with another organisation or both. Laboratory services are
+available after normal hours for emergencies.
+  
+Outside sources are convenient for the patients. The organisation selects outside sources
+based on the recommendations of the director or other individual responsible for laboratory
+services. Outside sources of laboratory services meet applicable laws and regulations and
+have acceptable records of accurate, timely services.  Patients are informed when an
+outside source of laboratory services is owned by the referring medical practitioner.
+  
+Laboratory results are validated to ensure that they are those of the correct patient and
+medical practitioner. Validations include the name of the validating officer.
+  
+Results are reported within a time frame based on patient needs, services offered and the
+needs of the clinical personnel. Emergency tests, after-hours and weekend testing needs
+are included. Appropriate specimen containers are available in the organisation, with
+instructions for their correct use.
+Criterion Comments
+Recommendations
+Criterion  9.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Adequate, convenient and
+regular laboratory services
+are available to meet the
+organisation's needs.
+Criterion  9.1.1.2
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The laboratory services are
+organised and provided in a
+manner that meets applicable
+national standards, laws and
+regulations.
+Page 3 of
+ 20 Page 3 of
+ 20 Page 3 of
+ 20 Page 3 of
+ 20 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.1.1.3
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Emergency laboratory
+services are available,
+including after-hours services.
+Criterion  9.1.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The organisation has
+established the expected
+report time for results.
+Criterion  9.1.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Laboratory results are
+reported within a suitable time
+frame to meet patient needs.
+Criterion  9.1.1.6
+Critical: þ
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Laboratory results are
+validated and include unique
+patient identity, date of
+testing/reporting, name and
+location of the requesting
+medical practitioner.
+Criterion  9.1.1.7
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+The validating officer is
+identified and recorded.
+Page 4 of
+ 20 Page 4 of
+ 20 Page 4 of
+ 20 Page 4 of
+ 20 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.1.1.8
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+A list of referral laboratories
+which have been duly
+approved is available for tests
+not performed on site.
+Criterion  9.1.1.9
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a documented,
+implemented procedure for
+packaging specimens and
+transporting them to the
+referral laboratories.
+Criterion  9.1.1.10
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A register is kept of the
+referred specimens and the
+results.
+Page 5 of
+ 20 Page 5 of
+ 20 Page 5 of
+ 20 Page 5 of
+ 20 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+9.1.2 Standard
+A qualified individual is responsible for managing the laboratory service.
+Standard Intent: The laboratory service is under the direction of an individual who is qualified by
+virtue of documented training, expertise and experience, in accordance with applicable laws
+and regulations. This individual has professional responsibility for the laboratory facility and
+for the services provided. When this individual provides clinical consultations or medical
+opinions, he/she is a medical practitioner or a pathologist. Speciality and subspecialty
+laboratory services are under the direction of appropriately qualified individuals.  The
+responsibilities of the laboratory director include:
+•                developing service-related policies and procedures and ensuring that they are
+implemented and reviewed regularly
+•                managing relevant human resource functions, e.g. job descriptions, personnel
+evaluation, personnel training,  and
+•                developing, coordinating and monitoring the required quality control and
+improvement systems.
+ 
+Criterion Comments
+Recommendations
+Criterion  9.1.2.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The laboratory is under the
+direction of a qualified
+individual.
+Criterion  9.1.2.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The responsibilities of this
+person include maintaining
+quality control programmes.
+Criterion  9.1.2.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The responsibilities of this
+person include administrative
+supervision.
+Page 6 of
+ 20 Page 6 of
+ 20 Page 6 of
+ 20 Page 6 of
+ 20 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.1.2.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The responsibilities of this
+person include monitoring
+and reviewing all the
+laboratory services.
+9.1.3 Standard
+Individuals with adequate training, skills, orientation and experience perform tests
+and interpret the results.
+Standard Intent: The organisation identifies the laboratory personnel who may perform testing
+and who may direct or supervise testing.  Supervisory and technical personnel have
+appropriate and adequate training, experience and skills and are oriented to their work.
+Technical personnel are given work assignments consistent with their training and
+experience. In addition, there are enough staff members to perform laboratory tests
+promptly and to provide the necessary laboratory services during all hours of operation and
+for emergencies.
+  
+The organisation is able to identify and contact experts in specialised diagnostic areas, such
+as parasitology or virology, when needed.
+Criterion Comments
+Recommendations
+Criterion  9.1.3.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Qualified individuals are
+assigned to perform and
+supervise the provided
+laboratory services.
+Criterion  9.1.3.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There are enough staff
+members to meet service
+needs.
+Page 7 of
+ 20 Page 7 of
+ 20 Page 7 of
+ 20 Page 7 of
+ 20 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.1.3.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+On-going in-service training is
+provided to all personnel.
+Criterion  9.1.3.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Records of the training
+provided are kept for each
+staff member.
+9.2 Facilities and Equipment
+9.2.1 Standard
+Laboratory buildings are adequate to provide a safe and effective laboratory
+service.
+Standard Intent: Departmental managers need to work closely with organisational managers to
+ensure that facilities and equipment are adequate. Departmental managers keep
+organisational managers informed about inadequate facilities, additional equipment
+requirements and the current state of facilities and equipment.
+  
+The general state of the laboratory will be checked. The walls, floor and ceiling should be in
+a good condition.  As few items/instruments as possible should be placed on the floor.
+Criterion Comments
+Recommendations
+Criterion  9.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The laboratory is a separate
+designated area within or in
+close proximity to the health
+facility.
+Page 8 of
+ 20 Page 8 of
+ 20 Page 8 of
+ 20 Page 8 of
+ 20 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.2.1.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The size of the laboratory is
+appropriate to the services
+provided.
+Criterion  9.2.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The ceiling and walls are
+clean and painted in a light
+colour.
+Criterion  9.2.1.4
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The floor has a smooth and
+continuous surface.
+Criterion  9.2.1.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The ceiling is not leaking and
+does not show signs of
+moisture.
+Page 9 of
+ 20 Page 9 of
+ 20 Page 9 of
+ 20 Page 9 of
+ 20 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+9.2.2 Standard
+Laboratory fixtures and fittings are adequate to provide a safe and effective
+laboratory service.
+Standard Intent: The laboratory has to be constructed in such a way that it can provide the
+projected laboratory services. The laboratory has to have sufficient and proper laboratory
+benches, washing and staining facilities, sufficient power and water requirements and
+preferably a controlled temperature. The following specific details should be monitored:
+  
+•                Laboratory benches and equipment should be of a material that can support the
+laboratory instruments (strong) and should be of a material that cannot affect the surface of
+the table. Preferably the laboratory tables are constructed of concrete that is tiled. No
+wooden tables are allowed.
+•                At least one washing unit is available for standard cleaning and washing activities. 
+When staining is performed, two units are preferred.
+•                The number and quality of the available electrical sockets should be sufficient for the
+projected activities.
+•                The water supply should be guaranteed to provide washing and staining activities.
+Criterion Comments
+Recommendations
+Criterion  9.2.2.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There are sufficient laboratory
+benches for the projected
+activities.
+Criterion  9.2.2.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Laboratory benches are
+strong enough for the
+projected activities (e.g. large
+instruments).
+Criterion  9.2.2.3
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is either an
+uninterrupted power supply
+(UPS), battery backup system
+and/or an automated voltage
+stabilizer (AVS) present for
+critical equipment.
+Page 10 of
+ 20 Page 10 of
+ 20 Page 10 of
+ 20 Page 10 of
+ 20 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.2.2.4
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Each laboratory compartment
+has adequate ventilation, with
+room temperature below
+25°C, and a temperature
+record is kept.
+9.2.3 Standard
+There is sufficient laboratory equipment that is adequate to provide a safe and
+effective laboratory service.
+Standard Intent: In order to provide effective laboratory services, it is essential that specific
+equipment is available. Laboratory management and personnel are responsible for the
+selection and availability of the critical instruments, their operation according to
+manufacturer's instructions and their appropriate maintenance. The following aspects must
+be considered:
+•                Processes for the selection and procurement of new instruments
+•                The availability of an equipment inventory management system
+•                The maintenance of the available equipment through inspection, testing and
+calibration
+•                Monitoring of and acting on equipment hazard notices, recalls, reportable incidents,
+problems and failures
+•                The availability of a system where activities are documented.
+  
+Testing, maintenance and calibration frequencies are related to the laboratory's use of
+equipment and its documented history of service.
+Criterion Comments
+Recommendations
+Criterion  9.2.3.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Sufficient equipment is
+available to provide the
+required laboratory services
+for the projected activities.
+Criterion  9.2.3.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All equipment is in good
+working order and is
+operating appropriately.
+Page 11 of
+ 20 Page 11 of
+ 20 Page 11 of
+ 20 Page 11 of
+ 20 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.2.3.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Records are maintained to
+indicate that all equipment is
+regularly inspected,
+maintained and calibrated.
+9.3 Reagents, Chemicals and Kits
+9.3.1 Standard
+The supplies of laboratory consumables, reagents, chemicals and kits are adequate
+to provide a safe and effective laboratory service.
+Standard Intent: The organisation has identified those reagents and supplies needed to
+regularly guarantee the laboratory services provided to its patients. There is an effective
+process for ordering and ensuring that essential reagents and other supplies are available at
+all times. All reagents are stored and dispensed according to defined procedures. The
+periodic evaluation of all reagents, such as monitoring expiry dates, ensures accuracy and
+precise results. Written guidelines ensure the complete and accurate labelling of reagents
+and solutions.
+  
+Criterion Comments
+Recommendations
+Criterion  9.3.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The available supplies,
+consumables, reagents,
+chemicals and kits are
+sufficient for projected
+activities.
+Criterion  9.3.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Specific laboratory reagents,
+chemicals and kits are used
+appropriately
+Page 12 of
+ 20 Page 12 of
+ 20 Page 12 of
+ 20 Page 12 of
+ 20 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.3.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All reagents and chemicals
+are stored and dispensed
+according to guidelines.
+Criterion  9.3.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All reagents and solutions are
+completely and accurately
+labelled.
+Criterion  9.3.1.5
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All reagents are periodically
+evaluated for accuracy of
+results.
+Criterion  9.3.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All reagents are stored in a
+lockable storage room or
+cupboard.
+Criterion  9.3.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where required, reagents are
+stored in the correct
+environment, e.g. controlled
+temperature, humidity,
+exposure to direct sunlight.
+Page 13 of
+ 20 Page 13 of
+ 20 Page 13 of
+ 20 Page 13 of
+ 20 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.3.1.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Dangerous reagents and
+chemicals are separately and
+securely stored.
+Criterion  9.3.1.9
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+All reagents are checked for
+expiry dates.
+Criterion  9.3.1.10
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a documented stock
+management system that
+keeps track of current stock.
+Criterion  9.3.1.11
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Re-order levels are defined.
+Page 14 of
+ 20 Page 14 of
+ 20 Page 14 of
+ 20 Page 14 of
+ 20 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+9.4 Management of Specimens (Samples) and Results
+9.4.1 Standard
+Procedures are followed for collecting, identifying, safely transporting and tracking
+specimens/samples and reporting the results.
+Standard Intent: Procedures are developed and implemented for:
+•                requesting laboratory tests (laboratory request form)
+•                specimen collection and identification
+•                specimen storage, preservation and transport,  and
+•                reviewing and authorising the laboratory results.
+  
+There should be at least two log-books: only one patient logbook and at least one logbook
+for laboratory results. Depending upon the size of the provider and the national
+requirements of the Ministry of Health, different logbooks for various disciplines are required
+or mandatory. Logbooks for laboratory results should not be directly linked to names. Patient
+logbooks should contain name, date of visit, date of birth, gender, which services are
+requested, what material should be collected and the unique laboratory identification
+number. In the laboratory logbooks only the unique laboratory number and results are
+registered. In other words, both logbooks are required to match results to patient names.
+  
+Ideally, monthly overviews of the number of tests performed are generated.
+  
+Procedures should be available for administration, collection and reporting activities of
+specimens tested on site or sent to outside referral laboratories.
+Criterion Comments
+Recommendations
+Criterion  9.4.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures
+(SOPs) for handling
+specimens are implemented.
+Criterion  9.4.1.2
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Request forms are available
+and contain relevant
+information.
+Page 15 of
+ 20 Page 15 of
+ 20 Page 15 of
+ 20 Page 15 of
+ 20 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.4.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Specimen labels include
+unique patient identification
+and adequate supporting
+information.
+Criterion  9.4.1.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Specimens are registered
+(handwritten or digital) legibly
+and in an organised manner.
+Criterion  9.4.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Results are registered in a
+log-book.
+Criterion  9.4.1.6
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Laboratory results are stored
+in a lockable cupboard.
+Criterion  9.4.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures
+(SOPs) regarding reporting
+and reviewing results are
+implemented.
+Page 16 of
+ 20 Page 16 of
+ 20 Page 16 of
+ 20 Page 16 of
+ 20 
+--- Page 17 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+9.4.2 Standard
+Established norms and ranges are used to interpret and report clinical laboratory
+results.
+Standard Intent: The laboratory establishes reference intervals or "normal" ranges for each test
+performed.  The range is included in the clinical record, either as part of the report or by
+including a current listing of such values, approved by the laboratory director. Ranges are
+furnished when an outside source performs the test. The reference ranges are appropriate
+to the organisation's patient population and are reviewed and updated when methods
+change.
+Criterion Comments
+Recommendations
+Criterion  9.4.2.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The laboratory has
+established reference ranges
+for relevant tests.
+Criterion  9.4.2.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The range is included in the
+clinical record at the time test
+results are reported.
+Page 17 of
+ 20 Page 17 of
+ 20 Page 17 of
+ 20 Page 17 of
+ 20 
+--- Page 18 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+9.5 Quality Control
+9.5.1 Standard
+Quality control procedures are followed and documented.
+Standard Intent: The quality of the laboratory services can be monitored using internal and
+external quality control guidelines. Designing and implementing internal and external quality
+control activities is essential for the final quality assurance of the laboratory results.
+  
+Sound quality control systems are essential to providing excellent pathology and clinical
+laboratory services. Quality control procedures could include:
+a)         validation of the test methods used for accuracy, precision and reportable range
+b)         daily surveillance of results by qualified laboratory personnel
+c)         rapid corrective action when a deficiency is identified
+d)         testing of reagents,  and
+e)         documentation of results and corrective actions.
+  
+Proficiency testing determines how well an individual laboratory's results compare with other
+laboratories that use the same methodologies. Such testing can identify performance
+problems not recognised by internal mechanisms. Thus, the laboratory participates in an
+approved proficiency testing programme when one is available. Alternatively, when
+approved programmes are not available the laboratory exchanges samples with a laboratory
+in another organisation for peer comparison testing purposes.  The laboratory maintains a
+cumulative record of participation in a proficiency testing process. Proficiency testing, or an
+alternative, is carried out for all speciality laboratory programmes, when available.
+Criterion Comments
+Recommendations
+Criterion  9.5.1.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a documented
+quality control system.
+Criterion  9.5.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The laboratory participates in
+an external quality control
+programme.
+Criterion  9.5.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a current register of
+quality control results and of
+the corrective and preventive
+actions taken.
+Page 18 of
+ 20 Page 18 of
+ 20 Page 18 of
+ 20 Page 18 of
+ 20 
+--- Page 19 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+9.6 Prevention and Control of Infection
+9.6.1 Standard
+The laboratory service implements infection prevention and control processes.
+Criterion Comments
+Recommendations
+Criterion  9.6.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The service identifies the
+procedures and processes
+associated with the risk of
+infection and implements
+strategies to reduce risk.
+Criterion  9.6.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Suitable processes are
+followed for cleaning and
+decontaminating laboratory
+surfaces and equipment.
+Criterion  9.6.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Protective clothing is worn
+correctly.
+Criterion  9.6.1.4
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Individuals who handle
+specimens are trained in the
+proper handling of dangerous
+specimens.
+Page 19 of
+ 20 Page 19 of
+ 20 Page 19 of
+ 20 Page 19 of
+ 20 
+--- Page 20 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+9.Laboratory Services
+Criterion  9.6.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Organisational policy on post-
+exposure prophylaxis (PEP)
+is implemented.
+Criterion  9.6.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Organisational policy on
+handling, storing and
+disposing of healthcare waste
+is implemented.
+Page 20 of
+ 20 Page 20 of
+ 20 Page 20 of
+ 20 Page 20 of
+ 20 

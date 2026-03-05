@@ -1,0 +1,1238 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 21 Page 1 of
+ 21 Page 1 of
+ 21 Page 1 of
+ 21 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Page 2 of
+ 21 Page 2 of
+ 21 Page 2 of
+ 21 Page 2 of
+ 21 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+12.1 Facilities and Equipment
+12.1.1 Standard
+Functional facilities are available to provide safety and comfort for patients, visitors
+and personnel.
+Standard Intent: Laws, regulations and inspections by government and local authorities
+determine in large part how a facility is designed, used and maintained. All organisations,
+regardless of size and resources, must comply with these requirements as part of their
+responsibilities to their patients, families, staff and visitors.
+  
+Buildings, grounds, plant and machinery are provided and maintained, and do not pose
+hazards to the occupants. The construction of the building in terms of walls, ceilings, floors,
+doors and windows must be sound. The general appearance will be examined for neatness,
+condition of paintwork, signs of leakage, mould spots, etc.
+  
+Utility systems (electrical, water, oxygen, ventilation, mosquito screening and other utility
+systems) are maintained to minimise the risks of operating failures. Ensuring that buildings,
+grounds, plant and machinery are provided and maintained requires that the personnel be
+knowledgeable and competent.
+Criterion Comments
+Recommendations
+Criterion  12.1.1.1
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Laws, regulations and other
+requirements applicable to
+the organisation's facilities
+are available in writing to the
+personnel.
+Criterion  12.1.1.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The building is appropriate as
+a healthcare facility in terms
+of size and layout.
+Criterion  12.1.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Mosquito net screening is
+available at external windows
+and doors throughout the
+facility, where applicable.
+Page 3 of
+ 21 Page 3 of
+ 21 Page 3 of
+ 21 Page 3 of
+ 21 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.1.1.4
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+All rooms are adequately
+ventilated.
+Criterion  12.1.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where required, air-
+conditioning is installed in
+laboratories, pharmacies,
+operating theatres and
+sterilising departments and is
+tested and maintained.
+Criterion  12.1.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Temperature and ventilation
+control mechanisms are
+installed and maintained in
+the pharmacy, laboratory,
+kitchens, laundries and other
+relevant areas.
+Criterion  12.1.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Toilet/washroom facilities are
+clean and in working order.
+Criterion  12.1.1.8
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a separate area for
+the personnel with secure
+storage facilities for outdoor
+clothing, handbags and
+personal possessions.
+Page 4 of
+ 21 Page 4 of
+ 21 Page 4 of
+ 21 Page 4 of
+ 21 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.1.1.9
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Sufficient office/administrative
+space is available for the
+personnel
+12.2 Buildings, Plant, Installations and Machinery
+12.2.1 Standard
+The maintenance service is managed to ensure the provision of a safe and effective
+service.
+Standard Intent: A suitably qualified individual, with proven competence, is appointed to
+manage the service. The accountabilities and responsibilities of this individual are clearly
+defined.
+  
+Management ensures that enough competent personnel are available to manage routine
+and emergency functions and meet the needs of a safe and effective health service.
+Personnel may be employed by the organisation or be contracted out.  Where there are
+contracted personnel, there must be clear contracts outlining their responsibilities. The roles
+of the personnel need to be clearly defined and management needs to ensure that they
+maintain their competence.
+Criterion Comments
+Recommendations
+Criterion  12.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A designated, competent
+individual is responsible for
+supervising the maintenance
+of buildings, plant and
+installations.
+Criterion  12.2.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Where these services are
+outsourced, the
+organisation's personnel have
+access at all times to a list of
+these private contractors with
+their contact numbers.
+Page 5 of
+ 21 Page 5 of
+ 21 Page 5 of
+ 21 Page 5 of
+ 21 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.2.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Written agreements ensure
+24-hour technical back-up
+services.
+Criterion  12.2.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Written policies and
+procedures guide the
+organisation's personnel in
+the implementation of all
+service-related requirements.
+Criterion  12.2.1.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a dedicated work
+area for maintenance
+activities.
+Criterion  12.2.1.6
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Basic maintenance
+equipment and tools are
+available.
+Criterion  12.2.1.7
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Basic technical spare parts
+are available.
+Page 6 of
+ 21 Page 6 of
+ 21 Page 6 of
+ 21 Page 6 of
+ 21 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+12.2.2 Standard
+The organisation implements a documented preventive planned maintenance
+programme for buildings, plant, installations and machinery.
+Standard Intent: The organisation plans for regular in-house inspection of facilities and testing
+of plant and machinery to avoid hazards. The organisation's personnel may carry out the
+testing, or the manufacturer's technicians may carry out these tasks. Whatever the system in
+use, the organisation has a documented plan for testing plant and machinery.
+  
+Building maintenance will include the monitoring of the following aspects:
+  
+•                the general appearance of the inside and outside structure, which includes the
+construction of walls, floors, doors and windows
+•                the condition of the paintwork
+•                water leaks, mould spots
+•                electrical wiring, e.g. exposed wires, switches, electrical sockets,  and
+•                maintenance of the grounds (no litter, neat garden and grass kept short).
+Criterion Comments
+Recommendations
+Criterion  12.2.2.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation plans and
+budgets for upgrading or
+replacing systems, buildings
+or components needed for
+the continued operation of a
+safe and effective facility.
+Criterion  12.2.2.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are site and floor plans
+that depict the locations and
+layout of the main services
+(e.g. water, sanitation,
+electricity supply).
+Criterion  12.2.2.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The facility has an
+established, documented
+preventive maintenance
+management plan.
+Page 7 of
+ 21 Page 7 of
+ 21 Page 7 of
+ 21 Page 7 of
+ 21 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.2.2.4
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Regular inspections of all
+buildings, plant, installations
+and machinery are
+documented.
+Criterion  12.2.2.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A documented procedure for
+reporting defects in
+maintenance installations
+during and after normal
+working hours is known to the
+personnel.
+Page 8 of
+ 21 Page 8 of
+ 21 Page 8 of
+ 21 Page 8 of
+ 21 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+12.2.3 Standard
+Electrical installations are regularly inspected, tested, maintained and, when
+appropriate, improved.
+Standard Intent:   The effective and efficient operation of all key systems in the organisation is
+essential for patient, family, volunteer and visitor safety and for meeting patient care needs.
+  
+The organisation needs to protect patients and personnel in emergencies, such as system
+failure, interruption or contamination.
+  
+An uninterrupted source of electricity is essential to meet patient care needs, both routine
+and urgent, twenty four (24) hours a day. Regular and alternate sources can be used.
+  
+Critical instruments that provide required emergency services need to be connected to an
+emergency power system. Critical instruments are available in several different
+departments, e.g. refrigerators in the pharmacy and the laboratory, and lights and
+equipment in the operating theatre and delivery room.
+  
+Critical points to be lighted by emergency power are identified and listed.  These include:
+•                     operating theatres and recovery rooms 
+•                     lights and sockets in the delivery rooms
+•                     strategic lights and sockets in ward corridors
+•                     the neonatal nursery,  and
+•                     casualty and trauma areas.
+•                     Emergency electricity supplies:
+•                     each patient care area is provided with at least one socket outlet which is
+connected to the emergency power supply
+•                     all emergency supply socket outlets are appropriately demarcated
+•                     emergency and backup power sources are tested.
+  
+Criterion Comments
+Recommendations
+Criterion  12.2.3.1
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Electrical power is available
+twenty four (24) hours a day,
+seven (7) days a week, from
+regular or emergency
+sources.
+Criterion  12.2.3.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Sufficient light sources are
+available to provide adequate
+light (no dark areas) in all
+areas such as the entrance,
+waiting rooms, halls and
+offices.
+Page 9 of
+ 21 Page 9 of
+ 21 Page 9 of
+ 21 Page 9 of
+ 21 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.2.3.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Sufficient electrical socket
+outlets are provided in all
+areas to avoid overloading of
+individual outlets and to
+minimise fire risks.
+Criterion  12.2.3.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Provision has been made for
+an emergency electrical
+supply.
+Criterion  12.2.3.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is documented
+evidence that relevant
+personnel are regularly
+trained to use/operate
+electrical supply systems and
+to access power in
+emergencies.
+Criterion  12.2.3.6
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Servicing and testing of the
+uninterrupted power supplies
+(UPS) and/or battery backup
+systems is documented.
+Criterion  12.2.3.7
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Emergency generators are
+tested on full load in
+accordance with
+manufacturers' specifications
+and such tests are
+documented.
+Page 10 of
+ 21 Page 10 of
+ 21 Page 10 of
+ 21 Page 10 of
+ 21 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.2.3.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Sufficient fuel, e.g. diesel, is
+available to provide power for
+twenty four (24) hours.
+12.2.4 Standard
+Water supplies are regularly inspected, tested, maintained and, when appropriate,
+improved.
+Standard Intent: An uninterrupted source of clean water is essential to meet patient care needs,
+both routine and urgent, twenty four (24) hours a day.  Drinkable water needs to be available
+in all essential areas such as medical departments, wards, OPD and ablution facilities. 
+Storage areas such as a well, storage tanks or other backup systems must be safe from
+contamination. Regular and alternate sources can be used.
+  
+Water quality can change suddenly due to many causes, some of which can be outside the
+organisation, such as a break in the supply line to the organisation, or contamination of the
+water source. The frequency of water quality monitoring is based in part on previous
+experience with water quality problems. The monitoring can be carried out by individuals
+designated by the organisation, such as personnel from the clinical laboratory, or by public
+health or water control authorities outside the organisation.  Records of all checks are
+available.
+  
+Monitoring data is collected and documented for the medical utility management programme
+and is used for planning and improvement purposes.
+Criterion Comments
+Recommendations
+Criterion  12.2.4.1
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Regular and/or emergency
+water supplies, including
+drinkable water, are available
+twenty four (24) hours a day,
+seven days a week in all
+essential areas.
+Criterion  12.2.4.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Water filters are available to
+remove mud and dust
+particles.
+Page 11 of
+ 21 Page 11 of
+ 21 Page 11 of
+ 21 Page 11 of
+ 21 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.2.4.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Should the water supply be
+contaminated or interrupted,
+the areas and services at risk
+have been identified and
+provision has been made for
+an alternative water supply.
+Criterion  12.2.4.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is documented
+evidence that relevant
+personnel are regularly
+trained to ensure that all
+operations to secure safe
+water are properly performed.
+Criterion  12.2.4.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+All drinkable water supplies
+are tested on a regular basis
+and the results are
+documented.
+Page 12 of
+ 21 Page 12 of
+ 21 Page 12 of
+ 21 Page 12 of
+ 21 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+12.2.5 Standard
+Medical gas systems are regularly inspected and maintained and when appropriate,
+improved.
+Standard Intent: The organisation plans its oxygen supplies according to the needs of the
+patients served. 
+  
+Policies and procedures relating to the storage, testing and safety of gas supplies are
+available and are implemented.
+  
+Gas cylinders are stored in outside facilities, chained in the upright position, and have "no
+smoking" and "no oil" signs.
+  
+Emergency oxygen supplies ensure that:
+•         where there is no piped oxygen supply, there is at least one mobile oxygen supply per
+ward, and more depending on the number of beds/cots in the ward and
+•         all the necessary fittings for oxygen are suitable for the ages of the children admitted,
+and are working satisfactorily.
+Criterion Comments
+Recommendations
+Criterion  12.2.5.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Medical gas (oxygen, nitrous
+oxide and medical air)
+supplies are available
+according to the operational
+requirements of the facility.
+Criterion  12.2.5.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medical gas supply systems
+comply with safety standards.
+Criterion  12.2.5.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Where there is piped gas, the
+enclosure, gas bank,
+pressure regulators, related
+control/alarm systems and all
+outlet points are clean and in
+good operating condition.
+Page 13 of
+ 21 Page 13 of
+ 21 Page 13 of
+ 21 Page 13 of
+ 21 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.2.5.4
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where there is piped gas, the
+main oxygen supply system is
+fitted with an alarm, which
+operates automatically in the
+event of low pressure in the
+gas supplies and is regularly
+tested.
+Criterion  12.2.5.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Where there is piped gas,
+medical gas alarm systems
+are regularly tested and these
+tests are documented.
+Criterion  12.2.5.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Backup supplies of medical
+gas are available and
+strategically positioned to
+ensure timely deployment in
+emergencies.
+Page 14 of
+ 21 Page 14 of
+ 21 Page 14 of
+ 21 Page 14 of
+ 21 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+12.2.6 Standard
+Medical vacuum systems are regularly inspected, maintained and, when
+appropriate, improved.
+Standard Intent: The organisation plans its vacuum supplies according to the needs of the
+patients served. 
+  
+Policies and procedures relating to the testing and safety of vacuum systems are available
+and implemented.
+  
+Vacuum systems are regularly tested in accordance with the specifications of the suppliers.
+  
+Emergency vacuum supplies ensure that:
+•                     where there is no vacuum supply, there is at least one mobile vacuum pump per
+ward, and more depending on the number of beds/cots in
+•                     the ward,  and
+•                     all the necessary fittings for suction are suitable for the ages of the children
+admitted and are working satisfactorily.
+Criterion Comments
+Recommendations
+Criterion  12.2.6.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Where there is a piped
+vacuum system, it is
+externally ventilated and able
+to provide sufficient suction to
+all piped vacuum points in the
+facility.
+Criterion  12.2.6.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Piped vacuum systems are
+regularly tested, and these
+tests are documented.
+Criterion  12.2.6.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Alternative vacuum/suction
+units are available and
+strategically positioned to
+ensure timely deployment in
+emergencies.
+Page 15 of
+ 21 Page 15 of
+ 21 Page 15 of
+ 21 Page 15 of
+ 21 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+12.2.7 Standard
+The sewerage system is regularly inspected, tested, maintained and, when
+appropriate, improved.
+Standard Intent: An appropriate sewerage system must be available and maintained. This will
+include disposal of waste water, surface water and sewage. The infrastructure, including
+drainage points, pipes, pumps and mains, needs to be protected to prevent spillage and
+contamination of the environment. 
+Criterion Comments
+Recommendations
+Criterion  12.2.7.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is an appropriate and
+effective sewerage system.
+Criterion  12.2.7.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Septic tank systems are
+properly managed and
+functional.
+Criterion  12.2.7.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All drains are appropriately
+covered.
+Page 16 of
+ 21 Page 16 of
+ 21 Page 16 of
+ 21 Page 16 of
+ 21 
+--- Page 17 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+12.3 Medical Equipment
+12.3.1 Standard
+Medical equipment is available and properly maintained to meet the needs of the
+patient population.
+Standard Intent: Healthcare organisations are responsible for ensuring that appropriate medical
+equipment is available and ready for use at all times.  There is an accountable, systematic
+approach to ensuring that cost-effective, safe and appropriate medical equipment is
+available to meet the demands of quality patient care.
+  
+Managers take responsibility for ensuring that medical equipment is available, appropriately
+maintained and calibrated and that the personnel are competent to use it.
+Criterion Comments
+Recommendations
+Criterion  12.3.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A designated individual
+supervises the management
+of medical equipment in the
+organisation.
+Criterion  12.3.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures
+guide the management of
+medical equipment.
+Criterion  12.3.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The supply of medical
+equipment is adequate to
+meet the needs of the
+service.
+Criterion  12.3.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is an inventory of all
+medical equipment.
+Page 17 of
+ 21 Page 17 of
+ 21 Page 17 of
+ 21 Page 17 of
+ 21 
+--- Page 18 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.3.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Records are kept of the
+checking and maintenance of
+medical equipment.
+Criterion  12.3.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a documented
+procedure known to the
+personnel for reporting
+defects in medical equipment
+during and after normal
+working hours.
+12.4 Information and Communication Technology (ICT) Equipment
+12.4.1 Standard
+ICT equipment is available and properly maintained to meet the needs of the
+services.
+Standard Intent: Healthcare organisations are responsible for ensuring that appropriate ICT
+equipment is available and ready for use at all times.  There is an accountable, systematic
+approach to ensuring that cost-effective, safe and appropriate ICT equipment is available to
+meet the demands of quality patient care.
+  
+Managers take responsibility for ensuring that ICT equipment is available, appropriately
+maintained and calibrated and that the personnel are competent to use it.
+Criterion Comments
+Recommendations
+Criterion  12.4.1.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures
+guide the management of ICT
+equipment.
+Page 18 of
+ 21 Page 18 of
+ 21 Page 18 of
+ 21 Page 18 of
+ 21 
+--- Page 19 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.4.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A designated individual
+supervises the management
+of ICT equipment in the
+organisation.
+Criterion  12.4.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The supply of ICT equipment
+is adequate to meet the
+needs of the services.
+Criterion  12.4.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is an inventory of all
+ICT equipment.
+Criterion  12.4.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+All desktop and server
+computers are attached to an
+uninterrupted power supply
+(UPS) with surge protection.
+Criterion  12.4.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+There is a data back-up
+system.
+Page 19 of
+ 21 Page 19 of
+ 21 Page 19 of
+ 21 Page 19 of
+ 21 
+--- Page 20 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.4.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Records are kept of the
+checking and maintenance of
+ICT equipment.
+Criterion  12.4.1.8
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Where technical ICT support
+is not available at facility
+level, an arrangement is in
+place to obtain such support
+from outside.
+Criterion  12.4.1.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is documented
+evidence that relevant
+personnel are regularly
+trained to use/operate ICT
+equipment.
+Criterion  12.4.1.10
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a documented
+procedure known to the
+personnel for reporting
+defects in ICT equipment
+during and after normal
+working hours.
+Criterion  12.4.1.11
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Computers are equipped with
+officially licensed software
+only.
+Page 20 of
+ 21 Page 20 of
+ 21 Page 20 of
+ 21 Page 20 of
+ 21 
+--- Page 21 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+12.Facility Management Services
+Criterion  12.4.1.12
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Operating system
+patches/updates are installed
+as they become available.
+Criterion  12.4.1.13
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Each computer is equipped
+with an up-to-date virus
+scanner.
+Criterion  12.4.1.14
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Basic technical spare parts
+are available.
+Page 21 of
+ 21 Page 21 of
+ 21 Page 21 of
+ 21 Page 21 of
+ 21 

@@ -12,8 +12,10 @@ import { normalizeCriterionCode } from './utils/normalization';
 import { useAssessmentScoring } from './hooks/useAssessmentScoring';
 import emsConfig from './assets/ems_config.json';
 import mortuaryConfig from './assets/mortuary_config.json';
+import clinicsConfig from './assets/clinics_config.json';
 import emsLinks from './assets/ems_links.json';
 import mortuaryLinks from './assets/mortuary_links.json';
+import clinicsLinks from './assets/clinics_links.json';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
@@ -153,12 +155,11 @@ const AppContent = () => {
     const isMortuary = activeGroup?.id === 'GENERAL' || activeGroup?.id === 'MORTUARY' || activeGroup?.name === 'Mortuary';
     const isClinics = activeGroup?.id === 'CLINICS' || activeGroup?.name === 'Clinics';
 
-    // Default to emsConfig for Clinics if no specific clinicsConfig is found
-    const activeConfig = isMortuary ? mortuaryConfig : emsConfig;
-    const configKey = isMortuary ? 'mortuary_full_configuration' : 'ems_full_configuration';
+    const activeConfig = isMortuary ? mortuaryConfig : (isClinics ? clinicsConfig : emsConfig);
+    const configKey = isMortuary ? 'mortuary_full_configuration' : (isClinics ? 'clinics_full_configuration' : 'ems_full_configuration');
 
-    // Get active links (default to emsLinks for Clinics)
-    const activeLinks = isMortuary ? mortuaryLinks : emsLinks;
+    // Get active links
+    const activeLinks = isMortuary ? mortuaryLinks : (isClinics ? clinicsLinks : emsLinks);
 
     // Quick lookup for links data
     const linksDataLookup = {};

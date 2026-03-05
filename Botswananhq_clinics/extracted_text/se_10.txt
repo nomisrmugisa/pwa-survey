@@ -1,0 +1,794 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 14 Page 1 of
+ 14 Page 1 of
+ 14 Page 1 of
+ 14 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+Page 2 of
+ 14 Page 2 of
+ 14 Page 2 of
+ 14 Page 2 of
+ 14 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+10.1 Management of the Service
+10.1.1 Standard
+A diagnostic imaging service is provided by the organisation.
+Standard Intent: The organisation has a system for providing the diagnostic imaging services
+required by its patient population, the clinical services offered and healthcare provider
+needs.
+  
+Diagnostic imaging services, including those required for emergencies, may be provided
+within the organisation, by agreement with another organisation, or both. The diagnostic
+imaging service is available after normal hours for emergencies.
+  
+Outside sources are convenient for the patients and reports are received in a timely manner,
+which supports continuity of care. These sources are selected by the organisation on the
+recommendation of the director or another individual responsible for radiology and
+diagnostic imaging services. Outside sources of diagnostic imaging meet applicable laws
+and regulations and have acceptable records of accurate, timely service. Patients are
+informed when the referring physician owns the outside source of diagnostic imaging.
+Criterion Comments
+Recommendations
+Criterion  10.1.1.1
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+An adequate, convenient and
+regular diagnostic imaging
+service is available.
+Criterion  10.1.1.2
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+An emergency diagnostic
+imaging service is available
+after normal hours.
+Criterion  10.1.1.3
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The selection of an outside
+source is based on an
+acceptable record and
+compliance with applicable
+laws and regulations.
+Page 3 of
+ 14 Page 3 of
+ 14 Page 3 of
+ 14 Page 3 of
+ 14 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+10.1.2 Standard
+The diagnostic imaging service meets applicable local and national standards, laws
+and regulations.
+Standard Intent: The organisation ensures that the personnel are knowledgeable about the
+relevant legal requirements relating to diagnostic imaging. This is ensured by having
+available copies of the most recent radiation safety report and the local rules relating to the
+current Ionising Radiation regulations, together with other applicable documents that provide
+guidance relating to legality.
+  
+The organisation satisfies the statutory requirements of the Ionising Radiation regulations,
+according to the most recent radiation safety report.
+There are organisational arrangements for obtaining advice on radiation protection and how
+to deal with a suspected case of overexposure.
+Criterion Comments
+Recommendations
+Criterion  10.1.2.1
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Written policies and
+procedures address
+compliance with applicable
+standards, laws and
+regulations.
+Criterion  10.1.2.2
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A copy of the local rules
+relating to the current Ionising
+Radiation regulations is
+available and the
+requirements are met.
+Criterion  10.1.2.3
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A copy of the most recent
+radiation safety report is held.
+Criterion  10.1.2.4
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation satisfies the
+statutory requirements of the
+Ionising Radiation
+regulations.
+Page 4 of
+ 14 Page 4 of
+ 14 Page 4 of
+ 14 Page 4 of
+ 14 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+Criterion  10.1.2.5
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A radiation protection
+supervisor is identified and
+available to assist a radiation
+protection inspector in
+complying with the Ionising
+Radiation regulations.
+Criterion  10.1.2.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A patient register is held in
+the diagnostic imaging
+department.
+10.1.3 Standard
+A radiation safety programme is in place, followed and documented.
+Standard Intent: The organisation has an active radiation safety programme that includes all
+components of the organisation's radiology and diagnostic imaging services.  The radiation
+safety programme reflects the risks and hazards encountered.  The programme addresses
+safety practices and prevention measures for radiology and diagnostic imaging personnel,
+other personnel and patients.  The programme is coordinated with the organisation's safety
+management programme.
+Criterion Comments
+Recommendations
+Criterion  10.1.3.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is an established
+radiation safety programme
+that addresses potential
+safety risks and hazards
+encountered within or outside
+of the department.
+Criterion  10.1.3.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The safety programme is part
+of the organisation's safety
+management programme.
+Page 5 of
+ 14 Page 5 of
+ 14 Page 5 of
+ 14 Page 5 of
+ 14 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+Criterion  10.1.3.3
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Written policies and
+procedures address the
+handling and disposal of
+hazardous materials.
+Criterion  10.1.3.4
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Identified radiation safety
+risks are addressed by
+specific processes or devices
+that reduce those risks, e.g.
+lead aprons, radiation
+badges, etc.
+10.2 Facilities and Equipment
+10.2.1 Standard
+Equipment and machines used to conduct diagnostic imaging studies are adequate
+and appropriate for the service provided.
+Standard Intent: Diagnostic imaging personnel work to ensure that all equipment functions at
+acceptable levels and in a manner that is safe for the operator(s).  Radiology and diagnostic
+imaging equipment management programme provides for:
+•       selecting and acquiring equipment
+•       identifying and inventorying equipment
+•       assessing equipment use through inspection, testing, calibration and maintenance
+•       monitoring and acting on equipment hazard notices, recalls, reportable incidents,
+problems and failures,  and
+•       documenting the management programme.
+  
+Testing, maintenance and calibration frequency are related to the use of equipment and its
+documented history of service.
+Criterion Comments
+Recommendations
+Criterion  10.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation identifies
+the equipment required for
+the projected activities.
+Page 6 of
+ 14 Page 6 of
+ 14 Page 6 of
+ 14 Page 6 of
+ 14 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+Criterion  10.2.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A diagnostic imaging
+equipment management
+programme is implemented.
+Criterion  10.2.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is an inventory of
+equipment.
+Criterion  10.2.1.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is documented
+evidence that equipment is
+tested and calibrated in
+accordance with
+organisational policy/SOP
+(standard operating
+procedure).
+Criterion  10.2.1.5
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is documented
+evidence that equipment is
+maintained in accordance
+with organisational
+policy/SOP.
+Page 7 of
+ 14 Page 7 of
+ 14 Page 7 of
+ 14 Page 7 of
+ 14 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+10.2.2 Standard
+X-ray film and other supplies are regularly available.
+Standard Intent: The organisation has identified the quantities of film, reagents and supplies
+necessary to provide a radiology and diagnostic imaging service to its patients.  There is an
+effective process for ordering or securing essential film, reagents and other supplies.  All
+supplies are stored and dispensed in accordance with defined procedures.  The periodic
+evaluation of reagents ensures accuracy and precise results. Written guidelines ensure the
+complete and accurate labelling of film, reagents and solutions.
+Criterion Comments
+Recommendations
+Criterion  10.2.2.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Essential quantities of film,
+reagents and supplies are
+available.
+Criterion  10.2.2.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+All reagents and solutions are
+completely and accurately
+labelled.
+Criterion  10.2.2.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Film and reagents are
+periodically evaluated for
+accuracy
+and results.
+Page 8 of
+ 14 Page 8 of
+ 14 Page 8 of
+ 14 Page 8 of
+ 14 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+10.3 Diagnostic Imaging Procedures
+10.3.1 Standard
+Individuals with adequate training, skills and experience perform X-ray procedures
+and interpret the results.
+Standard Intent: The organisation identifies those staff members who may perform procedures
+and those who may interpret X-ray films and report the findings.
+These staff members have appropriate and adequate training, experience and skills and are
+oriented to their work. Radiographers are given assignments consistent with their training
+and experience. There are enough staff members to provide the necessary staffing during
+all hours of operation and for emergencies.
+Criterion Comments
+Recommendations
+Criterion  10.3.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A qualified individual
+manages the diagnostic
+imaging service.
+Criterion  10.3.1.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Those individuals who may
+perform X-ray procedures
+and those who may interpret
+and report the results are
+identified.
+Criterion  10.3.1.3
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a mechanism that
+ensures that procedures are
+performed only by
+radiographers, radiologists or
+specially trained doctors and
+other persons who are
+authorised to do so by a
+radiation protection advisor.
+Criterion  10.3.1.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+X-rays are done only upon a
+signed request from a
+qualified medical practitioner.
+Page 9 of
+ 14 Page 9 of
+ 14 Page 9 of
+ 14 Page 9 of
+ 14 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+Criterion  10.3.1.5
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+X-rays are interpreted and
+reported on by appropriately
+trained and experienced
+personnel.
+Criterion  10.3.1.6
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Experts in specialised
+diagnostic areas are
+contacted, when needed.
+Criterion  10.3.1.7
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A roster of experts for
+specialised diagnostic areas
+is maintained.
+Criterion  10.3.1.8
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Quality control procedures
+are implemented.
+Page 10 of
+ 14 Page 10 of
+ 14 Page 10 of
+ 14 Page 10 of
+ 14 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+10.3.2 Standard
+Reporting and recording policies and procedures within the diagnostic imaging
+service ensure safety and legality.
+Standard Intent: X-ray request forms and the ensuing reports must identify the correct patient
+and the correct site of X-ray. The organisation defines the time period for reporting
+diagnostic imaging test results.  Results are reported within a time frame based on patients'
+needs, the services offered and the needs of the clinical personnel.  Mechanisms are in
+place to ensure that X-ray results are reported on immediately in an emergency.
+  
+The X-ray films are the property of the patient and may be taken away by the patient. 
+Where this is done, the patient must be asked to bring the films for future visits.  Where the
+organisation stores films they are kept according to national regulations.
+Criterion Comments
+Recommendations
+Criterion  10.3.2.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Imaging request forms
+contain the patient's name,
+examination requested,
+relevant previous
+examinations, name of the
+requesting officer and clinical
+information to explain the
+request.
+Criterion  10.3.2.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Diagnostic imaging results
+are reported on by a qualified
+person within a time frame
+that meets clinical needs.
+Criterion  10.3.2.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+X-ray reports by a qualified
+person contain a clear
+conclusion (including
+recommendations for future
+treatment if appropriate).
+Page 11 of
+ 14 Page 11 of
+ 14 Page 11 of
+ 14 Page 11 of
+ 14 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+Criterion  10.3.2.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A copy of the report is filed in
+the patient's record.
+Criterion  10.3.2.5
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Films are available at each
+visit of the patient.
+Criterion  10.3.2.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policy defines the length and
+method of storage of X-ray
+films.
+10.3.3 Standard
+Where ultrasound services are provided, individuals with adequate training, skills
+and experience perform the procedures and interpret the results.
+Standard Intent: The organisation identifies those staff members who may perform ultrasound
+procedures and those who may interpret and report the findings.  These staff members have
+appropriate and adequate training, experience and skills and are oriented to their work.
+Criterion Comments
+Recommendations
+Criterion  10.3.3.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A qualified individual
+manages the ultrasound
+service.
+Page 12 of
+ 14 Page 12 of
+ 14 Page 12 of
+ 14 Page 12 of
+ 14 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+Criterion  10.3.3.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Those individuals who may
+perform ultrasound
+procedures and those who
+may interpret and report the
+results are identified.
+Criterion  10.3.3.3
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Ultrasound procedures are
+performed only by individuals
+with specific training.
+Criterion  10.3.3.4
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Ultrasound images are
+interpreted and reported on
+by appropriately trained and
+experienced staff members.
+Criterion  10.3.3.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Experts in specialised
+diagnostic areas are
+contacted, when needed.
+Criterion  10.3.3.6
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A roster of experts for
+specialised diagnostic areas
+is maintained.
+Page 13 of
+ 14 Page 13 of
+ 14 Page 13 of
+ 14 Page 13 of
+ 14 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR CLINICS
+10.Diagnostic Imaging Service
+Criterion  10.3.3.7
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Quality control procedures
+are implemented.
+Page 14 of
+ 14 Page 14 of
+ 14 Page 14 of
+ 14 Page 14 of
+ 14 

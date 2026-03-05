@@ -7,8 +7,10 @@ import { SurveyPreview } from '../components/SurveyPreview.jsx';
 import indexedDBService from '../services/indexedDBService';
 import emsConfig from '../assets/ems_config.json';
 import mortuaryConfig from '../assets/mortuary_config.json';
+import clinicsConfig from '../assets/clinics_config.json';
 import emsLinks from '../assets/ems_links.json';
 import mortuaryLinks from '../assets/mortuary_links.json';
+import clinicsLinks from '../assets/clinics_links.json';
 import {
     Dialog,
     DialogTitle,
@@ -168,11 +170,11 @@ export function Dashboard() {
 
     // Use custom config if available, otherwise fallback to imported JSON
     const currentConfig = useMemo(() => {
-        return customEmsConfig || { ...emsConfig, ...mortuaryConfig };
+        return customEmsConfig || { ...emsConfig, ...mortuaryConfig, ...clinicsConfig };
     }, [customEmsConfig]);
 
     const currentLinks = useMemo(() => {
-        return customEmsLinks || { ems: emsLinks, mortuary: mortuaryLinks };
+        return customEmsLinks || { ems: emsLinks, mortuary: mortuaryLinks, clinics: clinicsLinks };
     }, [customEmsLinks]);
 
     // Filter events
@@ -497,6 +499,24 @@ export function Dashboard() {
                                             </div>
                                         ))}
                                     </div>
+                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Clinics Standards (SE 1 - SE 13)</p>
+                                    <div className="se-config-list">
+                                        {(currentConfig.clinics_full_configuration || []).map(se => (
+                                            <div
+                                                key={`clinics-${se.se_id}`}
+                                                className="se-config-item clickable"
+                                                onClick={() => {
+                                                    setSelectedSE({ ...se, _type: 'clinics' });
+                                                    setEditedJson(JSON.stringify(se, null, 2));
+                                                    setIsEditingJson(false);
+                                                }}
+                                            >
+                                                <span className="se-id-badge">SE {se.se_id}</span>
+                                                <span className="se-name-text">{se.se_name}</span>
+                                                <span className="chevron-right">›</span>
+                                            </div>
+                                        ))}
+                                    </div>
                                     <div className="config-status-tag success" style={{ marginTop: '10px' }}>STABLE</div>
                                 </div>
                                 <div className="settings-section">
@@ -525,6 +545,19 @@ export function Dashboard() {
                                     >
                                         <span className="se-id-badge">MORT LINKS</span>
                                         <span className="se-name-text">View/Edit Mortuary Linked Criteria Map</span>
+                                        <span className="chevron-right">›</span>
+                                    </div>
+                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Clinics Criteria dependencies and associations</p>
+                                    <div
+                                        className="se-config-item clickable"
+                                        onClick={() => {
+                                            setShowLinksEditor('clinics');
+                                            setEditedLinksJson(JSON.stringify(currentLinks.clinics || currentLinks, null, 2));
+                                            setIsEditingLinks(false);
+                                        }}
+                                    >
+                                        <span className="se-id-badge">CLINIC LINKS</span>
+                                        <span className="se-name-text">View/Edit Clinics Linked Criteria Map</span>
                                         <span className="chevron-right">›</span>
                                     </div>
                                 </div>
@@ -560,7 +593,7 @@ export function Dashboard() {
                                                         const parsed = JSON.parse(editedJson);
                                                         // Update full config
                                                         const newConfig = { ...currentConfig };
-                                                        const key = selectedSE._type === 'mortuary' ? 'mortuary_full_configuration' : 'ems_full_configuration';
+                                                        const key = selectedSE._type === 'mortuary' ? 'mortuary_full_configuration' : (selectedSE._type === 'clinics' ? 'clinics_full_configuration' : 'ems_full_configuration');
                                                         const index = newConfig[key].findIndex(se => se.se_id === selectedSE.se_id);
                                                         if (index !== -1) {
                                                             newConfig[key][index] = parsed;
