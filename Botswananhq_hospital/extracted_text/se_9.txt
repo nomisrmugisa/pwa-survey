@@ -1,0 +1,843 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 14 Page 1 of
+ 14 Page 1 of
+ 14 Page 1 of
+ 14 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Page 2 of
+ 14 Page 2 of
+ 14 Page 2 of
+ 14 Page 2 of
+ 14 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+9.1 Infection Control Management
+9.1.1 Standard
+The organisation designs and implements coordinated processes to reduce the
+risks of healthcare associated (nosocomial) infections in patients and healthcare
+workers.
+Standard Intent: For infection prevention and control processes to be effective, they must be
+comprehensive, encompassing both patient care and employee health. The processes are
+appropriate to the size and geographic location of the organisation, the services offered by
+the organisation and the patients seen by the organisation.
+  
+Infections can enter the organisation via patients, their families, staff members, volunteers,
+vectors, visitors and other individuals such as trade representatives. Thus, all areas of the
+organisation where these individuals are found must be included in the programme of
+infection surveillance, prevention and control.
+  
+One or more individuals acting on a full-time or part-time basis direct the processes.  Their
+qualifications depend on the activities they will carry out and may be met through education,
+training and experience.  Their responsibilities include, for example, the setting of criteria for
+defining nosocomial infections and establishing data collection methods and reporting
+processes. Coordination involves communication with all parts of the organisation to ensure
+that the programme is continuous and proactive.
+  
+Whatever the mechanism chosen by the organisation to coordinate the infection control
+processes, medical and nursing staff are represented and engaged in the activities. Others
+may be included as determined by the size of the organisation and the services offered (for
+example, epidemiologist, data collection expert, central sterilisation manager, operating
+theatre supervisor).  
+  
+The individual, committee or other mechanism must also monitor those housekeeping and
+other support service practices which may lead to the spread of infection, e.g. cleaning,
+linen supply, laundry services and waste disposal.
+  
+Current scientific information is required to understand and implement effective surveillance
+and control activities; practice guidelines provide information on preventive practices and
+infections associated with clinical services; and applicable laws and regulations define
+elements of the basic processes and reporting requirements. Information supports the
+tracking of risks, rates and trends in nosocomial infections, data analysis, interpretation and
+presentation of findings.  In addition, infection control programme data and information are
+managed with those of the organisation's quality management and improvement
+programme.
+Criterion Comments
+Recommendations
+Criterion  9.1.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a process to reduce
+the risk of healthcare
+associated (nosocomial)
+infections to patients and
+healthcare workers.
+Page 3 of
+ 14 Page 3 of
+ 14 Page 3 of
+ 14 Page 3 of
+ 14 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Criterion  9.1.1.2
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The process is appropriate to
+the size and geographic
+location of the organisation,
+the services offered and the
+patients served.
+Criterion  9.1.1.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Coordination of infection
+control activities involves
+medical, nursing and other
+staff as appropriate to the
+organisation.
+Criterion  9.1.1.4
+Critical: þ
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All patient, staff and visitor
+areas of the organisation are
+included in the infection
+control processes.
+Criterion  9.1.1.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Responsibility for
+coordinating the processes is
+assigned to one individual or
+a committee.
+Criterion  9.1.1.6
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The individuals are
+competent to manage the
+scope and complexity of the
+processes.
+Page 4 of
+ 14 Page 4 of
+ 14 Page 4 of
+ 14 Page 4 of
+ 14 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Criterion  9.1.1.7
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The infection control
+processes are based on
+current scientific knowledge,
+accepted practice guidelines
+and applicable laws and
+regulations.
+Criterion  9.1.1.8
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Information management
+systems support the infection
+control processes.
+Page 5 of
+ 14 Page 5 of
+ 14 Page 5 of
+ 14 Page 5 of
+ 14 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+9.1.2 Standard
+The organisation designs and implements processes to reduce the risks of
+healthcare associated (nosocomial) infections in patients and healthcare workers.
+Standard Intent: For infection prevention and control measures to be effective, they must be
+comprehensive, encompassing both patient care and employee health. The processes are
+guided by a plan that identifies and addresses the infection issues that are epidemiologically
+important to the organisation. The plan includes systems to monitor infections and
+investigate outbreaks of infectious diseases.  Policies and procedures guide the processes,
+which include the periodic assessment of risk and setting of risk reduction goals.
+  
+Each organisation must establish those epidemiologically important infections, infection sites
+and associated devices that will provide the focus of efforts to prevent and reduce the
+incidence of healthcare associated/nosocomial infections.  They consider, as appropriate,
+infections that involve:
+•       the respiratory tract – such as the procedures and equipment associated with intubation,
+mechanical ventilation support and tracheostomy
+•       the urinary tract – such as the invasive procedures and equipment associated with
+indwelling urinary catheters, urinary drainage systems and their care, etc.
+•       intravascular invasive devices – such as the insertion and care of central venous
+catheters, peripheral venous lines
+•       surgical sites– such as their care, type of dressing and associated aseptic procedures
+•       epidemiologically significant diseases and organisms, multi-drug resistant organisms,
+highly virulent infections,  and
+•       emerging or re-emerging infections within the community.
+Criterion Comments
+Recommendations
+Criterion  9.1.2.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The processes to reduce
+healthcare associated
+(nosocomial) infections
+include systematic and
+proactive surveillance
+activities to determine usual
+(endemic) rates of infection.
+Criterion  9.1.2.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The processes include
+systems to investigate
+outbreaks of infectious
+diseases.
+Page 6 of
+ 14 Page 6 of
+ 14 Page 6 of
+ 14 Page 6 of
+ 14 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Criterion  9.1.2.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Epidemiologically significant
+diseases and organisms are
+included as appropriate to the
+organisation and its
+community.
+Criterion  9.1.2.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Emerging or re-emerging
+infections are included as
+appropriate to the
+organisation and its
+community.
+Criterion  9.1.2.5
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Risk reduction goals and
+measurable objectives are
+established and regularly
+reviewed.
+Page 7 of
+ 14 Page 7 of
+ 14 Page 7 of
+ 14 Page 7 of
+ 14 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+9.2 Infection Control Processes
+9.2.1 Standard
+The organisation identifies the procedures and processes associated with the risk of
+infection and implements strategies to reduce infection risk.
+Standard Intent: Healthcare organisations assess and care for patients using many simple and
+complex processes, each associated with a level of infection risk to patients and the staff. It
+is thus important for an organisation to review those processes and, as appropriate,
+implement needed policies, procedures, educational and other activities to reduce the risk of
+infection. 
+Criterion Comments
+Recommendations
+Criterion  9.2.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has
+identified those processes
+associated with infection risk
+and implemented strategies
+to reduce such risk.
+Criterion  9.2.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Identified processes include –
+as appropriate to the services
+provided by the organisation
+– equipment cleaning,
+disinfection and sterilisation.
+Criterion  9.2.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Identified processes include –
+as appropriate to the services
+provided by the organisation
+– laundry and linen
+management.
+Criterion  9.2.1.4
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Identified processes include –
+as appropriate to the services
+provided by the organisation
+– management of healthcare
+waste.
+Page 8 of
+ 14 Page 8 of
+ 14 Page 8 of
+ 14 Page 8 of
+ 14 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Criterion  9.2.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Identified processes include –
+as appropriate to the services
+provided by the organisation
+– ensuring that food
+preparation, handling, storage
+and distribution are safe and
+comply with laws, regulations
+and current acceptable
+practices.
+Criterion  9.2.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Identified processes include –
+as appropriate to the services
+provided by the organisation
+– housekeeping services.
+Criterion  9.2.1.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Identified processes include –
+as appropriate to the services
+provided by the organisation
+– operation of the mortuary
+area/holding room for the
+deceased.
+Criterion  9.2.1.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Identified processes include –
+as appropriate to the services
+provided by the organisation
+– separating patients with
+communicable diseases from
+those patients and staff
+members who are susceptible
+to infection due to immuno-
+suppression or other reasons.
+Criterion  9.2.1.9
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Identified processes include –
+as appropriate to the services
+provided by the organisation
+– the management of viral
+haemorrhagic fevers.
+Page 9 of
+ 14 Page 9 of
+ 14 Page 9 of
+ 14 Page 9 of
+ 14 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Criterion  9.2.1.10
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Processes associated with
+risk are described in written
+documents.
+9.2.2 Standard
+Protective clothing, disinfectants and barrier techniques are available and are used
+correctly when required.
+Standard Intent: Hand washing, barrier techniques and disinfecting agents are fundamental to
+infection prevention and control.  The organisation identifies those situations in which the
+use of masks and gloves is required and provides training in their correct use.  Soap and
+disinfectants are located in those areas where hand washing and disinfecting procedures
+are required. Staff are educated in proper hand washing and disinfecting procedures.
+Criterion Comments
+Recommendations
+Criterion  9.2.2.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation identifies
+those situations for which
+protective clothing is required.
+Criterion  9.2.2.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Protective clothing is correctly
+used in those situations.
+Criterion  9.2.2.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation identifies
+those areas where hand
+washing and disinfecting
+procedures are required.
+Page 10 of
+ 14 Page 10 of
+ 14 Page 10 of
+ 14 Page 10 of
+ 14 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Criterion  9.2.2.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Hand washing and
+disinfecting procedures are
+used correctly in those areas.
+9.3 Obtaining Of Laboratory Cultures
+9.3.1 Standard
+Laboratory cultures are obtained from designated environmental sites in the
+organisation associated with significant infection risk.
+Standard Intent: Infection surveillance procedures rely on specimen collection from those areas
+of the organisation thought to be associated with a high incidence or risk of infection, such
+as operating theatres. The infection control programme includes identifying those sites and
+collecting specimens from those sites. The sites associated with the activities described in
+9.2.1 are frequently included in such surveillance activities. Those individuals who collect
+specimens are trained in the proper collection and handling of microbiological specimens.
+Criterion Comments
+Recommendations
+Criterion  9.3.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation identifies
+those environmental sites
+from which specimens are to
+be collected.
+Criterion  9.3.1.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation identifies
+the frequency with which
+specimens are collected.
+Page 11 of
+ 14 Page 11 of
+ 14 Page 11 of
+ 14 Page 11 of
+ 14 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Criterion  9.3.1.3
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures
+which describe how
+specimens are taken and
+sent to the laboratory and
+action is taken when
+laboratory reports identify
+pathogenic organisms are
+implemented.
+9.4 Infection Control Quality Management
+9.4.1 Standard
+The infection control processes are integrated with the organisation’s processes for
+quality management and improvement.
+Standard Intent: The infection control process is designed to lower the risk of infection for
+patients, the staff and others. To reach this goal, the organisation must proactively monitor
+and track risks, rates and trends in nosocomial infections. The organisation uses monitoring
+information to improve infection prevention and control activities and to reduce nosocomial
+infection rates to the lowest possible levels. An organisation can best use monitoring data
+and information by understanding similar rates and trends in other similar organisations and
+contributing data to infection-related databases.
+  
+For the purpose of this section, take note of the quality management and improvement
+methodology as described in Service Element 8.
+  
+Also, this section contains the root criteria for those listed in all clinical service elements
+such as 10.12.1.1. In other words, the latter cannot be scored compliant unless this section
+has achieved compliance.
+Criterion Comments
+Recommendations
+Criterion  9.4.1.1
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation uses quality
+improvement methodology to
+track infection risks, infection
+rates and trend in healthcare
+associated/nosocomial
+infections.
+Criterion  9.4.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Monitoring includes using
+indicators related to infection
+issues that are
+epidemiologically important to
+the organisation.
+Page 12 of
+ 14 Page 12 of
+ 14 Page 12 of
+ 14 Page 12 of
+ 14 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+Criterion  9.4.1.3
+Critical: þ
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation uses risk,
+rate and trend information to
+design or modify processes to
+reduce healthcare
+associated/nosocomial
+infections to the lowest
+possible levels.
+Criterion  9.4.1.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation compares
+its infection control rates with
+other organisations, national
+and international, through
+comparative databases.
+Criterion  9.4.1.5
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The results of infection
+monitoring in the organisation
+are regularly communicated
+to medical and nursing staff
+and to the management of
+the organisation.
+Criterion  9.4.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation reports
+information on infections to
+appropriate external public
+health agencies.
+Page 13 of
+ 14 Page 13 of
+ 14 Page 13 of
+ 14 Page 13 of
+ 14 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+9.Prevention and Control of Infection
+9.5 Infection Control Education For The Staff
+9.5.1 Standard
+The organisation provides education on infection control practices to the staff,
+patients and, as appropriate, family and other caregivers.
+Standard Intent: For an organisation to have effective infection control processes, it must
+educate staff members about the processes when they begin work in the organisation and
+regularly thereafter. The education programme includes professional staff, clinical and non-
+clinical support staff and even patients and families, if appropriate. The education focuses
+on the policies, procedures and practices that guide the organisation's infection control
+processes.  The education also includes the findings and trends from the monitoring
+activities.
+Criterion Comments
+Recommendations
+Criterion  9.5.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation provides on-
+going in-service training
+about infection control to all
+personnel.
+Criterion  9.5.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Personnel are educated in
+infection control processes,
+when new policies are
+implemented and when
+significant trends are noted in
+surveillance data.
+Criterion  9.5.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patients and families are
+included when appropriate to
+the patient's needs and
+condition.
+Page 14 of
+ 14 Page 14 of
+ 14 Page 14 of
+ 14 Page 14 of
+ 14 

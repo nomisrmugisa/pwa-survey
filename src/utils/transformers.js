@@ -18,7 +18,9 @@ const mapValueTypeToInputType = (vt, hasOpt) => {
 
 /**
  * Transforms DHIS2 Metadata into a grouped structure for the PWA.
- * Groups are currently restricted to "Mortuary" and "EMS".
+ * Groups are currently organised into Mortuary (General), EMS, Clinics,
+ * and (optionally) Hospital where the metadata uses the appropriate
+ * SURV_/code prefixes.
  */
 export const transformMetadata = (metadata) => {
     console.log("Transform: Starting metadata transformation...");
@@ -60,7 +62,14 @@ export const transformMetadata = (metadata) => {
             return 'MORTUARY';
         }
 
-        // Standard EMS detection
+	        // Hospital detection (SURV_HOSPITAL, HOSPITAL_*, etc.)
+	        if (name.includes('SURV_HOSPITAL') || name.includes('SURV-HOSPITAL') ||
+	            code.includes('HOSPITAL') || code.startsWith('HOSP') ||
+	            name.startsWith('HOSPITAL') || name.startsWith('HOSP')) {
+	            return 'HOSPITAL';
+	        }
+
+	        // Standard EMS detection
         if (code.startsWith('EMS') || code.startsWith('SE') || name.startsWith('EMS')) {
             return 'SE';
         }
@@ -86,12 +95,13 @@ export const transformMetadata = (metadata) => {
         return null; // General section
     };
 
-    const PREFIX_NAME_MAP = {
-        'SE': 'EMS',
-        'MORTUARY': 'Mortuary',
-        'CLINICS': 'Clinics',
-        'CLINIC': 'Clinics'
-    };
+	    const PREFIX_NAME_MAP = {
+	        'SE': 'EMS',
+	        'MORTUARY': 'Mortuary',
+	        'CLINICS': 'Clinics',
+	        'CLINIC': 'Clinics',
+	        'HOSPITAL': 'Hospital'
+	    };
 
     // Strips prefixes for clean UI display
     const stripPrefix = (str, allowEmpty = true) => {
@@ -197,10 +207,12 @@ export const transformMetadata = (metadata) => {
         const nl = (sec._originalName || '').toLowerCase();
         const isAD = nl.includes('assessment details') || nl.includes('assessment_details');
 
-        // Determine group: SE/EMS or Clinics get specific groups.
-        // Everything else (Mortuary or untagged) goes to the general (Mortuary) group.
-        const groupKey = (prefix === 'SE' || (prefix && prefix.startsWith('SE'))) ? 'SE' :
-            (prefix === 'CLINICS' || prefix === 'CLINIC' ? 'CLINICS' : null);
+	        // Determine group: SE/EMS, Clinics, and Hospital get specific groups.
+	        // Everything else (Mortuary or untagged) goes to the general (Mortuary) group.
+	        const groupKey =
+	            (prefix === 'SE' || (prefix && prefix.startsWith('SE'))) ? 'SE' :
+	            (prefix === 'CLINICS' || prefix === 'CLINIC' ? 'CLINICS' :
+	            (prefix === 'HOSPITAL' || prefix === 'HOSP') ? 'HOSPITAL' : null);
 
         if (!groupKey) {
             // console.log(`[Transform] Grouping ${sec.name} into MORTUARY (prefix was ${prefix})`);
@@ -229,17 +241,19 @@ export const transformMetadata = (metadata) => {
     // Ensure sharedSections (Assessment Details) are always at the very beginning
     const finalMortuarySections = [...sharedSections, ...sortedNonSharedMortuarySections];
 
-    // Construct SE groups (EMS, Clinics)
+	    // Construct SE groups (EMS, Clinics, Hospital)
     const emsGroupSections = prefixSectionsByPrefix['SE'] || [];
     const clinicsGroupSections = prefixSectionsByPrefix['CLINICS'] || [];
+	    const hospitalGroupSections = prefixSectionsByPrefix['HOSPITAL'] || [];
 
     const sortSections = (secs) => [...secs].sort((a, b) => {
         const ex = (s) => (s && s.match(/\d+/) ? parseInt(s.match(/\d+/)[0], 10) : 0);
         return ex(a.code || a.name) - ex(b.code || b.name);
     });
 
-    const sortedEmsSections = sortSections(emsGroupSections);
-    const sortedClinicsSections = sortSections(clinicsGroupSections);
+	    const sortedEmsSections = sortSections(emsGroupSections);
+	    const sortedClinicsSections = sortSections(clinicsGroupSections);
+	    const sortedHospitalSections = sortSections(hospitalGroupSections);
 
     const allGroups = [];
 
@@ -259,6 +273,15 @@ export const transformMetadata = (metadata) => {
         });
     }
 
+	    // Add Hospital group if sections exist
+	    if (sortedHospitalSections.length > 0) {
+	        allGroups.push({
+	            id: 'HOSPITAL',
+	            name: PREFIX_NAME_MAP['HOSPITAL'],
+	            sections: [...sharedSections, ...sortedHospitalSections]
+	        });
+	    }
+	
     // Add Clinics group if sections exist
     if (sortedClinicsSections.length > 0) {
         allGroups.push({

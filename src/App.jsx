@@ -13,9 +13,11 @@ import { useAssessmentScoring } from './hooks/useAssessmentScoring';
 import emsConfig from './assets/ems_config.json';
 import mortuaryConfig from './assets/mortuary_config.json';
 import clinicsConfig from './assets/clinics_config.json';
+import hospitalConfig from './assets/hospital_config.json';
 import emsLinks from './assets/ems_links.json';
 import mortuaryLinks from './assets/mortuary_links.json';
 import clinicsLinks from './assets/clinics_links.json';
+import hospitalLinks from './assets/hospital_links.json';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
@@ -120,13 +122,41 @@ const AppContent = () => {
   useEffect(() => {
     const assessmentId = searchParams.get('assessmentId');
     if (assessmentId && assignments.length > 0) {
-      const matched = assignments.find(a => a.eventId === assessmentId);
+      // Corrected: Check both eventId and enrollment (api.getAssignments uses enrollment)
+      const matched = assignments.find(a => (a.eventId || a.enrollment) === assessmentId);
       if (matched) {
         console.log(`🎯 App: Auto-selecting facility for assessment ${assessmentId}:`, matched.orgUnitName);
         setSelectedFacility(matched);
       }
     }
   }, [searchParams, assignments]);
+
+  // Auto-populate Assessment Details from selected assessment
+  useEffect(() => {
+    const nameLower = (activeSection?.name || '').toLowerCase().trim();
+    const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
+
+    // Corrected keys for raw data from api.getAssignments
+    const enrollmentId = selectedFacility?.enrollment || selectedFacility?.eventId;
+    const teiId = selectedFacility?.trackedEntityInstance || selectedFacility?.scheduleTeiId;
+
+    if (selectedFacility && isADSection && enrollmentId) {
+      const adFields = activeSection.fields || [];
+
+      // Find fields for TEI ID and Enrollment
+      const teiField = adFields.find(f => (f.label || '').includes('TEI ID'));
+      const enrField = adFields.find(f => (f.label || '').toLowerCase().includes('enrollment'));
+
+      if (teiField && teiId && !formData[teiField.id]) {
+        console.log(`📝 App: Auto-populating TEI ID: ${teiId}`);
+        saveField(teiField.id, teiId);
+      }
+      if (enrField && enrollmentId && !formData[enrField.id]) {
+        console.log(`📝 App: Auto-populating Enrollment ID: ${enrollmentId}`);
+        saveField(enrField.id, enrollmentId);
+      }
+    }
+  }, [selectedFacility, activeSection, saveField, formData]);
 
   // Assessment Details Prerequisite Check
   const isADComplete = React.useMemo(() => {
@@ -152,14 +182,40 @@ const AppContent = () => {
     if (!groups || groups.length === 0 || !formData) return { sections: [] };
 
     // Determine which configuration to use based on the active group
-    const isMortuary = activeGroup?.id === 'GENERAL' || activeGroup?.id === 'MORTUARY' || activeGroup?.name === 'Mortuary';
-    const isClinics = activeGroup?.id === 'CLINICS' || activeGroup?.name === 'Clinics';
+    const isMortuary =
+      activeGroup?.id === 'GENERAL' ||
+      activeGroup?.id === 'MORTUARY' ||
+      activeGroup?.name === 'Mortuary';
+    const isClinics =
+      activeGroup?.id === 'CLINICS' || activeGroup?.name === 'Clinics';
+    const isHospital =
+      activeGroup?.id === 'HOSPITAL' || activeGroup?.name === 'Hospital';
 
-    const activeConfig = isMortuary ? mortuaryConfig : (isClinics ? clinicsConfig : emsConfig);
-    const configKey = isMortuary ? 'mortuary_full_configuration' : (isClinics ? 'clinics_full_configuration' : 'ems_full_configuration');
+    const programmeType = isMortuary
+      ? 'mortuary'
+      : isClinics
+      ? 'clinics'
+      : isHospital
+      ? 'hospital'
+      : 'ems';
+
+    const configMap = {
+      ems: { config: emsConfig, key: 'ems_full_configuration' },
+      mortuary: { config: mortuaryConfig, key: 'mortuary_full_configuration' },
+      clinics: { config: clinicsConfig, key: 'clinics_full_configuration' },
+      hospital: { config: hospitalConfig, key: 'hospital_full_configuration' },
+    };
+
+    const { config: activeConfig, key: configKey } = configMap[programmeType];
 
     // Get active links
-    const activeLinks = isMortuary ? mortuaryLinks : (isClinics ? clinicsLinks : emsLinks);
+    const linksMap = {
+      ems: emsLinks,
+      mortuary: mortuaryLinks,
+      clinics: clinicsLinks,
+      hospital: hospitalLinks,
+    };
+    const activeLinks = linksMap[programmeType] || [];
 
     // Quick lookup for links data
     const linksDataLookup = {};

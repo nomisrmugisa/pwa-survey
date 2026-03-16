@@ -1,0 +1,1706 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 27 Page 1 of
+ 27 Page 1 of
+ 27 Page 1 of
+ 27 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Page 2 of
+ 27 Page 2 of
+ 27 Page 2 of
+ 27 Page 2 of
+ 27 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+18.1 Management of the Service
+18.1.1 Standard
+Where the organisation provides on-site nuclear medicine services, the service is
+organised and managed in accordance with applicable laws, regulations and
+standards.
+Standard Intent: Where the organisation provides an on-site service, suitably qualified and
+experienced managers ensure that the service is managed in accordance with applicable
+laws, regulations and standards.
+Criterion Comments
+Recommendations
+Criterion  18.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Nuclear medicine services
+are under the direction of one
+or more qualified individuals.
+Criterion  18.1.1.2
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All professional staff are
+currently registered with the
+Health Professions Council.
+Criterion  18.1.1.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are qualified nuclear
+radiographers to provide
+services in keeping with the
+scope of their profession.
+Criterion  18.1.1.4
+Critical: þ
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A qualified medical radiation
+physicist is available to fulfil
+the legal requirements of the
+regulations for the safe use of
+ionising radiation.
+Page 3 of
+ 27 Page 3 of
+ 27 Page 3 of
+ 27 Page 3 of
+ 27 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.1.1.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The services of a qualified
+radio-pharmacist or nuclear
+medicine radiographer are
+available for radio-
+pharmaceutical preparations.
+Criterion  18.1.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The responsibilities of this
+person include developing,
+implementing and maintaining
+policies and procedures.
+Criterion  18.1.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The responsibilities of this
+person include administrative
+control.
+Criterion  18.1.1.8
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The responsibilities of this
+person include maintaining
+quality control programmes.
+Criterion  18.1.1.9
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The responsibilities of this
+person include monitoring
+and reviewing all nuclear
+medicine services.
+Page 4 of
+ 27 Page 4 of
+ 27 Page 4 of
+ 27 Page 4 of
+ 27 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+18.2 Referral Services
+18.2.1 Standard
+Where there is an arrangement with an outside service, this service meets
+applicable and national standards, laws and regulations.
+Standard Intent: The organisation has a system for providing nuclear medicine services
+required by its patient population, clinical services offered and health provider needs. These
+services may be provided by agreement with another organisation.  The organisation
+defines the time period for reporting nuclear medicine results. Results are reported within a
+time frame based on patient needs, services offered and the clinical staff's needs.
+Emergency tests, after-hours and weekend testing needs are included. The reports are
+submitted timeously, in accordance with arrangements.
+  
+When the organisation uses outside sources of nuclear medicine services, they receive and
+review on a regular basis the quality control results of the outside source. Qualified
+individuals review the quality control results.
+  
+Patients are informed when the referring physician owns an outside source of nuclear
+medicine services.
+Criterion Comments
+Recommendations
+Criterion  18.2.1.1
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Adequate, convenient and
+regular nuclear medicine
+services are available to meet
+needs.
+Criterion  18.2.1.2
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The selection of an outside
+source is based on an
+acceptable record and
+compliance with relevant laws
+and regulations.
+Criterion  18.2.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patients are informed about
+any relationships between the
+referring physician and
+outside sources of nuclear
+medicine services.
+Page 5 of
+ 27 Page 5 of
+ 27 Page 5 of
+ 27 Page 5 of
+ 27 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.2.1.4
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The nuclear medicine
+services provided meet
+applicable local and national
+standards, laws and
+regulQQations.
+Criterion  18.2.1.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has
+established the expected
+report time for results, within
+a time frame to meet patient
+needs.
+Criterion  18.2.1.6
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Reports are clearly labelled
+with the name of the patient
+and the date and time of the
+procedures.
+Criterion  18.2.1.7
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Quality control results from
+outside sources are regularly
+reviewed.
+Page 6 of
+ 27 Page 6 of
+ 27 Page 6 of
+ 27 Page 6 of
+ 27 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+18.3 Radiation Safety
+18.3.1 Standard
+A radiation safety programme is in place, followed and documented.
+Standard Intent: The organisation has an active radiation safety programme appropriate to the
+risks and hazards encountered. The programme addresses safety practices and prevention
+measures for nuclear medicine staff, other staff and patients. The programme is coordinated
+with the organisation's safety management programme.
+  
+The radiation safety programme includes:
+•       written policies and procedures which  support compliance with applicable standards,
+laws and regulations
+•       written policies and procedures for the handling and disposal of infectious and
+hazardous materials
+•       the availability of safety protective devices appropriate to the practices and hazards
+encountered
+•       the orientation of all nuclear medicine staff to safety procedures and practices,  and
+•       in-service education for new procedures and newly acquired or recognised hazardous
+materials.
+Criterion Comments
+Recommendations
+Criterion  18.3.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A radiation safety programme
+is in place and is appropriate
+to the risks and hazards
+encountered.
+Criterion  18.3.1.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The programme is
+coordinated with the
+organisation's safety
+management programme.
+Criterion  18.3.1.3
+Critical: þ
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Personal dosimeters worn by
+staff comply with the ionising
+radiation regulations.
+Page 7 of
+ 27 Page 7 of
+ 27 Page 7 of
+ 27 Page 7 of
+ 27 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.1.4
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Appropriate radiation safety
+devices are available.
+Criterion  18.3.1.5
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Written records of radioactive
+stocks, calculation and
+preparation, administration
+and disposal details are kept.
+Criterion  18.3.1.6
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A register is kept of sealed
+sources.
+Criterion  18.3.1.7
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Contamination monitors are
+provided.
+Criterion  18.3.1.8
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Area monitors are available,
+where necessary.
+Page 8 of
+ 27 Page 8 of
+ 27 Page 8 of
+ 27 Page 8 of
+ 27 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+18.3.2 Standard
+There are written policies and procedures to guide staff in all aspects of the
+provision of nuclear medicine services.
+Standard Intent: Written policies and procedures are essential to guide staff in the nuclear
+medicine service in their activities. The existence of written procedures does not preclude
+modification in the best interests of the patient.
+  
+Nuclear medicine policies and procedures are related to the requirements or availability of
+other services in the hospital environment.
+Criterion Comments
+Recommendations
+Criterion  18.3.2.1
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Written policies and
+procedures that address
+compliance with applicable
+standards, laws and
+regulations are implemented.
+Criterion  18.3.2.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The associated medical
+physicist is involved in the
+formulation of policies and
+radiation safety procedures
+applicable to nuclear
+medicine.
+Criterion  18.3.2.3
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures that
+satisfy statutory requirements
+under the ionising radiation
+regulations are implemented.
+Criterion  18.3.2.4
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A copy of the local rules
+relating to current ionising
+radiation regulations is
+available.
+Page 9 of
+ 27 Page 9 of
+ 27 Page 9 of
+ 27 Page 9 of
+ 27 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.2.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures that
+relate to limiting the
+irradiation of patients to levels
+consistent with medical
+requirements are
+implemented. The ALARA (as
+low as reasonably
+achievable) principle is
+applied to the calculation,
+preparation and
+administration of radioactive
+doses.
+Criterion  18.3.2.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A strict policy on the terms
+under which pregnant women
+may be subjected to a
+nuclear medicine examination
+is available and implemented.
+Criterion  18.3.2.7
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a procedure to
+ensure professional handling
+of a radiation emergency
+situation.
+Criterion  18.3.2.8
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures that
+relate to avoiding radioactive
+contamination and controlling
+spread should it occur are
+implemented.
+Criterion  18.3.2.9
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A written procedure is
+available for staff to follow in
+the event of contamination.
+Page 10 of
+ 27 Page 10 of
+ 27 Page 10 of
+ 27 Page 10 of
+ 27 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.2.10
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies relating to monitoring
+the hands, clothing and body
+of every member of staff
+leaving a controlled area are
+implemented.
+Criterion  18.3.2.11
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures are
+implemented for the reporting
+of adverse reactions to
+therapy.
+Criterion  18.3.2.12
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures are
+implemented for clinical trials,
+where applicable.
+Criterion  18.3.2.13
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures that
+address the handling and
+disposal of infectious and
+hazardous materials are
+implemented.
+Criterion  18.3.2.14
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Nuclear medicine staff are
+oriented to safety procedures
+and practices.
+Page 11 of
+ 27 Page 11 of
+ 27 Page 11 of
+ 27 Page 11 of
+ 27 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.2.15
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Personnel receive education
+with regard to new
+procedures and newly
+acquired or recognised
+hazardous materials.
+18.3.3 Standard
+All diagnostic equipment is regularly inspected and maintained, and appropriate
+records are kept of those activities.
+Standard Intent: Nuclear medicine personnel work with medical equipment management to
+ensure that all equipment and facilities function at acceptable levels and in a manner that is
+safe for the operator(s). A nuclear medicine equipment management programme provides
+for:
+•       selecting and acquiring equipment
+•       identifying and taking an inventory of equipment
+•       assessing equipment use through inspection, testing and maintenance
+•       monitoring and acting on equipment hazard notices, recalls, reportable incidents,
+problems and failures
+•       documenting the management programme.
+  
+Testing and maintenance are related to the use of the equipment and its documented
+history of service.
+Criterion Comments
+Recommendations
+Criterion  18.3.3.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a nuclear medicine
+equipment management
+programme.
+Criterion  18.3.3.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The programme includes
+selecting and acquiring
+equipment.
+Page 12 of
+ 27 Page 12 of
+ 27 Page 12 of
+ 27 Page 12 of
+ 27 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.3.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The programme includes
+taking an inventory of
+equipment.
+Criterion  18.3.3.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The programme includes
+inspecting and testing the
+equipment.
+Criterion  18.3.3.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The programme includes
+maintaining the equipment.
+Criterion  18.3.3.6
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The programme includes
+monitoring and follow-up of
+the equipment.
+Criterion  18.3.3.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Radiation monitors are
+calibrated regularly.
+Page 13 of
+ 27 Page 13 of
+ 27 Page 13 of
+ 27 Page 13 of
+ 27 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.3.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Values are recorded in a log
+book.
+Criterion  18.3.3.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The programme is followed.
+Criterion  18.3.3.10
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is adequate
+documentation of all testing,
+maintenance and calibration
+of equipment.
+18.3.4 Standard
+Facilities ensure the safe, efficient and effective functioning of the nuclear medicine
+service.
+Standard Intent: Nuclear medicine personnel work with management to ensure that facilities
+provide for safety and that they comply with current nuclear medicine laws and regulations.
+Criterion Comments
+Recommendations
+Criterion  18.3.4.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Facilities ensure that radiation
+to staff is kept as low as
+possible.
+Page 14 of
+ 27 Page 14 of
+ 27 Page 14 of
+ 27 Page 14 of
+ 27 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.4.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+At every entrance to a room
+where radioactive material is
+handled, a radiation warning
+sign is displayed.
+Criterion  18.3.4.3
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Requirements laid down by
+the Department of Radiation
+regarding a controlled area
+are complied with.
+Criterion  18.3.4.4
+Critical: ¨
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A copy of the most recent
+radiation safety inspection
+report is held by the nuclear
+physician responsible for the
+department, or the medical
+physics department, or
+medical physicist.
+Criterion  18.3.4.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a shower available in
+the event of contamination.
+Criterion  18.3.4.6
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Separate toilets for staff and
+patients are available.
+Page 15 of
+ 27 Page 15 of
+ 27 Page 15 of
+ 27 Page 15 of
+ 27 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.4.7
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Signs warning of the dangers
+of radiation to pregnant and
+breast-feeding women are
+prominently displayed.
+18.3.5 Standard
+Radio-pharmaceuticals intended for administration to patients are prepared in a
+manner which satisfies both radiation safety and pharmaceutical quality
+requirements.
+Standard Intent: Sound quality control systems are essential to providing excellent nuclear
+medicine services. Quality control procedures include:
+•       validation of the procedures used
+•       daily surveillance of results by a nuclear medicine physician
+•       rapid corrective action when a deficiency is identified
+•       documentation of results and corrective actions.
+Criterion Comments
+Recommendations
+Criterion  18.3.5.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Appropriate aseptic
+precautions are taken.
+Criterion  18.3.5.2
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Regular and frequent gamma
+camera quality control
+procedures (e.g. flood
+uniformities, centre-of-
+rotation) are attended to or
+supervised by the medical
+physicist.
+Criterion  18.3.5.3
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The radio-pharmacy is
+designed to ensure that the
+history of each radio-
+pharmaceutical dose can be
+traced.
+Page 16 of
+ 27 Page 16 of
+ 27 Page 16 of
+ 27 Page 16 of
+ 27 
+--- Page 17 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.5.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Radio-pharmaceuticals are
+only dispensed on written
+request.
+Criterion  18.3.5.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All details of each Tc-99m
+generator are recorded,
+including full details of each
+elution.
+Criterion  18.3.5.6
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Facilities are available for the
+quality control of all kits
+reconstituted on the
+premises.
+Criterion  18.3.5.7
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There are separate facilities
+for the radio labelling of blood
+products.
+Criterion  18.3.5.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Blood products are labelled in
+a workstation with filtered air
+(at least a vertical laminar
+flow unit of biohazard type) to
+protect the product and
+designed to protect the
+operator against
+contamination.
+Page 17 of
+ 27 Page 17 of
+ 27 Page 17 of
+ 27 Page 17 of
+ 27 
+--- Page 18 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.5.9
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All containers with
+radioactivity are labelled
+according to specifications
+stating that the contents are
+radioactive and indicating the
+activity and the date.
+18.3.6 Standard
+The management of organ disease using open radio-nuclides is practised taking
+into account the safety and well-being of patients and staff as a consequence of the
+high radiation levels.
+Standard Intent: Where open radio-nuclides are used, all staff and patients in the organisation
+are protected from exposure to radiation by following established guidelines which are
+formulated by experts in the field. Supervision ensures that the guidelines are adhered to.
+Criterion Comments
+Recommendations
+Criterion  18.3.6.1
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where radioactive material
+administered to the patient
+exceeds a level of 370 MBq
+(10mCi), it is administered by
+the nuclear physician or
+radiation oncologist only.
+Criterion  18.3.6.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where radioactive material
+administered to the patient
+exceeds a level of 370 MBq
+(10mCi), there is an en-suite
+ward approved by the
+medical physicist for the
+isolation of the patient.
+Criterion  18.3.6.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+In the event that the approved
+ward is not available, any
+alternative ward for the
+isolation of the therapy
+patients is also approved by
+the medical physicist.
+Page 18 of
+ 27 Page 18 of
+ 27 Page 18 of
+ 27 Page 18 of
+ 27 
+--- Page 19 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.6.4
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A radiation survey of the ward
+used for the isolation of the
+patient and adjacent areas is
+conducted according to the
+requirements of the physicist
+immediately after the
+administration of the
+radioactive material.
+Criterion  18.3.6.5
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The isolated patient is
+monitored regularly during the
+isolation period.
+Criterion  18.3.6.6
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+On discharge of the patient
+who has been isolated, the
+ward, the bedding and the
+bathroom are monitored
+according to the requirements
+of the physicist.
+Criterion  18.3.6.7
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Orally administered radio-
+iodine is always in capsule
+form.
+Criterion  18.3.6.8
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Radio-iodine by injection (e.g.
+MIGB) is administered only
+by the nuclear physician or
+radiation oncologist.
+Page 19 of
+ 27 Page 19 of
+ 27 Page 19 of
+ 27 Page 19 of
+ 27 
+--- Page 20 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.3.6.9
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A fume hood is used if liquid
+radio-iodine is being prepared
+and staff members preparing
+the radio-iodine are
+adequately protected.
+Criterion  18.3.6.10
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Administration of all radio-
+nuclides for therapy purposes
+is done in consultation with
+the physicist and according to
+statutory radiation safety
+norms.
+18.4 Administration of Tests
+18.4.1 Standard
+Individuals with adequate training, skills, orientation and experience administer tests
+and interpret the results.
+Standard Intent: The organisation identifies which nuclear staff members may assess patients
+and who may interpret and report on results.  Staff members have appropriate and adequate
+training, experience and skills and are oriented to their work.  Staff members are given work
+assignments consistent with their training and experience.  In addition, there is a sufficient
+number of staff to perform procedures promptly and provide the necessary staffing during all
+hours of operation and for emergencies.
+Criterion Comments
+Recommendations
+Criterion  18.4.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Examinations are performed
+only upon a formal request
+from a medical practitioner.
+Page 20 of
+ 27 Page 20 of
+ 27 Page 20 of
+ 27 Page 20 of
+ 27 
+--- Page 21 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.4.1.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Nuclear medicine procedure
+requests contain all relevant
+clinical information.
+Criterion  18.4.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+If relevant radionuclides are
+available, all examinations
+are performed as soon as
+possible. Urgent scans are
+performed and reported on
+the same day.
+Criterion  18.4.1.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Those individuals who
+perform testing and those
+who direct or supervise
+testing are identified.
+Criterion  18.4.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Tests are interpreted by
+appropriately trained and
+experienced staff.
+Criterion  18.4.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Only a nuclear medicine
+physician or a registrar under
+supervision of a nuclear
+medicine physician or a
+radiologist may report on the
+results of nuclear medicine
+procedures.
+Page 21 of
+ 27 Page 21 of
+ 27 Page 21 of
+ 27 Page 21 of
+ 27 
+--- Page 22 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.4.1.7
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+An effective mechanism
+exists whereby emergency
+nuclear medicine procedure
+results are brought to the
+attention of the doctor who
+requested the examination.
+Criterion  18.4.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Nuclear medicine procedure
+results are handled in a
+professional and confidential
+manner.
+Criterion  18.4.1.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Reports are appropriately
+filed/distributed.
+Criterion  18.4.1.10
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Mechanisms exist whereby
+the results of procedures can
+be retrieved when necessary.
+Page 22 of
+ 27 Page 22 of
+ 27 Page 22 of
+ 27 Page 22 of
+ 27 
+--- Page 23 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+18.5 Quality Improvement
+18.5.1 Standard
+A formalised proactive quality improvement approach is maintained in the nuclear
+medicine service.
+Standard Intent: This refers to the implementation of organisational quality improvement
+processes (Service Element 8).
+  
+It is the responsibility of the management of the organisation to ensure that standards are
+set throughout the organisation. Within each department or service, it is the responsibility of
+the managers to ensure that standards are set for the particular department. This requires
+coordination with the organisation's central/management/coordinating quality improvement
+structures or systems.  Departmental managers use available data and information to
+identify priority areas for quality monitoring and improvement.
+Quality monitoring could include:
+a)    request forms without history or clinical diagnosis
+b)    number of unidentified patients
+c)     unescorted patients arriving at the department
+d)    waiting times
+e)     patient and family expectations and satisfaction.
+  
+The following will be evaluated:
+•         problems identified in this service for which quality improvement activities were initiated
+•         the processes put in place to resolve the problem
+•         the identification of indicators to measure improvement
+•         the tool(s) used to evaluate these indicators
+•         the monitoring of these indicators and corrective steps taken when goals were not
+achieved
+•         graphed and/or tabled results, as appropriate.
+Criterion Comments
+Recommendations
+Criterion  18.5.1.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are formalised quality
+improvement processes for
+the nuclear medicine service
+which have been developed
+and agreed upon by the
+personnel of the service.
+Criterion  18.5.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Indicators of performance are
+identified to evaluate the
+quality of treatment and
+patient care.
+Page 23 of
+ 27 Page 23 of
+ 27 Page 23 of
+ 27 Page 23 of
+ 27 
+--- Page 24 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.5.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The quality improvement
+cycle includes the monitoring
+and evaluation of the
+standards set and any
+remedial action implemented.
+Criterion  18.5.1.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A documentation audit
+system is in place.
+18.6 Patient Rights
+18.6.1 Standard
+The department/service implements processes that support patient and family rights
+during care.
+Standard Intent: This refers to the implementation of organisational policies on patient and
+family rights (Service Element 5). 
+  
+Compliance will be verified during observation of patient care processes, patient record
+audits and patient interviews.
+Criterion Comments
+Recommendations
+Criterion  18.6.1.1
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are processes which
+support patient and family
+rights during care.
+Criterion  18.6.1.2
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Measures are taken to protect
+the patient's privacy, person
+and possessions.
+Page 24 of
+ 27 Page 24 of
+ 27 Page 24 of
+ 27 Page 24 of
+ 27 
+--- Page 25 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.6.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The personnel respect the
+rights of patients and families
+to treatment and to refuse
+treatment.
+18.7 Prevention and Control of Infection
+18.7.1 Standard
+The department/service implements infection prevention and control processes.
+Standard Intent: This refers to the implementation of organisational processes for infection
+prevention and control (Service Element 9).
+Criterion Comments
+Recommendations
+Criterion  18.7.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department identifies the
+procedures and processes
+associated with the risk of
+infection, and implements
+strategies to reduce risk.
+Criterion  18.7.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Infection control processes
+includes prevention of the
+spread of infection through
+invasive devices.
+Page 25 of
+ 27 Page 25 of
+ 27 Page 25 of
+ 27 Page 25 of
+ 27 
+--- Page 26 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+18.8 Risk Management
+18.8.1 Standard
+The department/service implements risk management processes.
+Standard Intent: This refers to the implementation of organisational risk management
+processes. (Service Element 7).
+  
+The organisation has an active radiation safety programme that includes all components of
+the organisation's nuclear medicine services, including nuclear medicine, radiation oncology
+and the cardiac catheterisation laboratory.  The radiation safety programme reflects the risks
+and hazards encountered. The programme addresses safety practices and prevention
+measures for nuclear medicine staff, other staff and patients. The programme is coordinated
+with the organisation's safety management programme.
+Criterion Comments
+Recommendations
+Criterion  18.8.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department conducts on-
+going monitoring of risks
+through documented
+assessments as part of the
+organisational programme.
+Criterion  18.8.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A system for the monitoring of
+negative incidents/near
+misses/ adverse (sentinel)
+events is available which
+includes the documentation of
+interventions and responses
+to recorded incidents.
+Criterion  18.8.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Security measures are in
+place and implemented for
+the safeguarding and
+protection of patients, staff
+and visitors.
+Page 26 of
+ 27 Page 26 of
+ 27 Page 26 of
+ 27 Page 26 of
+ 27 
+--- Page 27 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+18.Nuclear Medicine Service
+Criterion  18.8.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Fire safety measures are
+implemented.
+Criterion  18.8.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Organisation policy on
+handling, storage and
+disposal of health waste
+generated by nuclear
+medicine procedures is
+implemented.
+Page 27 of
+ 27 Page 27 of
+ 27 Page 27 of
+ 27 Page 27 of
+ 27 

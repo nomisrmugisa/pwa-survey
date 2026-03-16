@@ -1,0 +1,1301 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 21 Page 1 of
+ 21 Page 1 of
+ 21 Page 1 of
+ 21 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Page 2 of
+ 21 Page 2 of
+ 21 Page 2 of
+ 21 Page 2 of
+ 21 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.1 Risk Management
+7.1.1 Standard
+Managers and leaders work collaboratively to develop, implement and maintain
+effective risk management systems in the organisation.
+Standard Intent: To plan effectively, the organisation must be aware of all relevant risks. The
+goal is to prevent accidents and injuries, maintain safe and secure conditions for patients,
+families, staff, volunteers and visitors, and reduce and control hazards and risks.
+  
+Risk management includes:
+•         Comprehensive risk identification within the organisation
+•         Planning all aspects of risk management (financial, physical, environmental, medico-
+legal, operational, etc.)
+•         Ensuring that there is adequate insurance
+•         Implementation of the risk management system
+•         Education of staff
+•         Monitoring processes to manage risk,  and
+•         Periodic review and revision of the programme.
+  
+Monitoring of all aspects provides valuable data to make improvements in the programme
+and further reduce risks within the organization.
+Criterion Comments
+Recommendations
+Criterion  7.1.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are documented risk
+management processes for
+the identification of all risks
+(physical, environmental,
+medico-legal, operational,
+etc) relating to organisational
+processes and systems, staff,
+patients, visitors and physical
+facilities.
+Criterion  7.1.1.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Risk management processes
+include documented plans
+and actions to eliminate or
+reduce the identified risks.
+Criterion  7.1.1.3
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Risk management processes
+include on-going documented
+monitoring of risks.
+Page 3 of
+ 21 Page 3 of
+ 21 Page 3 of
+ 21 Page 3 of
+ 21 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.1.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Management and leaders
+ensure the development and
+implementation of
+documented policies and
+procedures for risk
+management processes and
+activities.
+Criterion  7.1.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+On-going in-service training
+of all staff in these policies,
+procedures and risk
+management principles,
+including reporting of adverse
+events, is documented.
+Criterion  7.1.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+One or more qualified and/or
+skilled and/or experienced
+individuals supervise the
+implementation of the risk
+management system.
+Criterion  7.1.1.7
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Analysed data, including
+adverse events and near
+misses, are used to monitor
+the effectiveness of the risk
+management system.
+Criterion  7.1.1.8
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Risk management systems
+are reviewed whenever there
+are changes in organisational
+systems and processes or
+physical facilities.
+Page 4 of
+ 21 Page 4 of
+ 21 Page 4 of
+ 21 Page 4 of
+ 21 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.2 Patient Safety
+7.2.1 Standard
+The organisation develops an approach to improve accuracy of patient
+identifications.
+Standard Intent: These standards are based on the Joint Commission International (JCI)
+Patient Safety Goals.
+  
+Wrong patient identification CAN OCCUR IN virtually all aspects of diagnosis and
+treatment.  Patients may be sedated, disoriented or not fully alert; may change beds, rooms
+or locations within the hospital; may have sensory disabilities; or may be subject to other
+situations that may lead to incorrect identification. The intent of this standard is twofold: first,
+to reliably identify the individual as the person for whom the service or treatment is intended;
+second, to match the service or treatment to that individual, and should be in place until final
+discharge from the organisation.
+  
+Policies and/or procedures are collaboratively developed to improve identification
+processes, in particular the processes used to identify a patient when giving medications or
+blood or blood products; taking blood and other specimens for clinical testing; or providing
+any other treatments or procedures. The policies and/or procedures require at least two
+ways to identify a patient, such as the patient's name, identification number, birth date, bar-
+coded wristband or other ways.  The policies and/or procedures clarify the use to two
+different identifiers in different locations within the organisation, such as in outpatient
+services, the emergency department or operating theatre
+  
+The identification process commences at the entry of the patient into the hospital system.
+Criterion Comments
+Recommendations
+Criterion  7.2.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and/or procedures
+that address the accuracy of
+patient identification are
+implemented.
+Criterion  7.2.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The policies and/or
+procedures require the use of
+two patient identifiers, not
+including the use of the
+patient’s room number or
+locations.
+Page 5 of
+ 21 Page 5 of
+ 21 Page 5 of
+ 21 Page 5 of
+ 21 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.2.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patients are identified before
+administering medications,
+blood or blood products.
+Criterion  7.2.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patients are identified before
+taking blood and other
+specimens for clinical testing.
+Criterion  7.2.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Patients are identified before
+providing treatments and
+procedures.
+Page 6 of
+ 21 Page 6 of
+ 21 Page 6 of
+ 21 Page 6 of
+ 21 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.2.2 Standard
+The organisation develops an approach to improve the effectiveness of
+communication among caregivers.
+Standard Intent: Effective communication which is timely, accurate, complete, unambiguous
+and understood by the recipient reduces errors and results in improved patient safety. 
+Communications can be electronic, verbal or written. The most error-prone communications
+are patient care orders given verbally and those given over the telephone, when permitted
+under local laws or regulations. Another error-prone communication is the report back of
+critical test results such as the clinical laboratory telephoning the patient care unit to report
+the results of a STAT test.
+  
+The organisation collaboratively develops a policy and/or procedure for verbal and
+telephone orders that includes: the writing down (or entering into a computer) of the
+complete order or test result by the receiver of the information; the receiver reading back the
+order or test result; and the confirmation that what has been written down and read back is
+accurate. The policy and/or procedure identifies permissible alternatives when the read-back
+process may not always be possible such as in the operating theatre and in emergency
+situations in the emergency department or intensive care unit.
+Criterion Comments
+Recommendations
+Criterion  7.2.2.1
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and/or procedures
+that address the accuracy of
+verbal and telephone orders
+are implemented.
+Criterion  7.2.2.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The complete verbal and
+telephone order or test result
+is written down by the
+receiver of the order or test
+result, who signs as having
+done so.
+Criterion  7.2.2.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The complete verbal and
+telephone order or test result
+is read back by a second
+person, who signs as having
+done so.
+Page 7 of
+ 21 Page 7 of
+ 21 Page 7 of
+ 21 Page 7 of
+ 21 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.2.2.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The order or test result is
+confirmed by the individual
+who gave the order or test
+result by signing the relevant
+document as per organisation
+policy.
+7.2.3 Standard
+The organisation develops an approach to improve the safety of high-alert
+medications.
+Standard Intent: When medications are part of the patient treatment plan, appropriate
+management is critical to ensure patient safety. A frequently cited medication safety issue is
+the unintentional administration of concentrated electrolytes (for example, potassium
+chloride [2mEq/ml or more concentrated], potassium phosphate, sodium chloride more
+concentrated than 0.9% and magnesium sulphate [50% or more concentrated]).
+  
+This error can occur when a staff member has not been properly oriented to the patient care
+unit, when contract nurses are used and not properly oriented, or during emergencies. The
+most effective means to reduce or eliminate this occurrence is to remove the concentrated
+electrolytes from the patient care unit to the pharmacy.
+  
+The organisation collaboratively develops a policy and/or procedure that prevents the
+location of concentrated electrolytes in patient care areas where misadministration can
+occur. The policy and/or procedure identifies any areas where concentrated electrolytes are
+clinically necessary, such as the emergency department, intensive care unit or operating
+theatre, and identifies how they are clearly labelled and how they are stored in those areas
+in a manner that restricts access to prevent inadvertent administration.
+Criterion Comments
+Recommendations
+Criterion  7.2.3.1
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and/or procedures
+that address the location,
+labelling and storage of
+concentrated electrolytes are
+implemented.
+Criterion  7.2.3.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Concentrated electrolytes are
+not present in patient care
+units unless clinically
+necessary and actions are
+taken to prevent inadvertent
+administration in those areas
+where permitted by policy.
+Page 8 of
+ 21 Page 8 of
+ 21 Page 8 of
+ 21 Page 8 of
+ 21 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.2.4 Standard
+The organisation develops an approach to ensure correct-site, correct-procedure
+and correct-patient surgery.
+Standard Intent: Wrong-site, wrong-procedure, wrong-patient surgery is a disturbingly common
+occurrence in healthcare organisations. These errors are the result of ineffective or
+inadequate communication between members of the surgical team, lack of patient
+involvement in site marking and lack of procedures for verifying the operative sites. In
+addition, inadequate patient assessment, inadequate medical record review, a culture that
+does not support open communication among surgical team members, problems related to
+illegible handwriting and the use of abbreviations are frequent contributing factors.
+  
+Organisations need to collaboratively develop policies and/or procedures that are effective
+in eliminating these problems.
+  
+Marking the operative site involves the patient and is done with an unambiguous mark. The
+mark should be consistent throughout the organisation, should be made by the person
+performing the procedure, should take place with the patient awake and aware if possible,
+and must be visible after the patient is prepped and draped. The operative site is marked in
+all cases involving laterality, multiple structures (fingers, toes, lesions) or multiple levels
+(spine).
+  
+Criterion Comments
+Recommendations
+Criterion  7.2.4.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and/or procedures
+that establish uniform
+processes to ensure the
+identification of the correct
+site, correct procedure and
+correct patient are
+implemented.
+Criterion  7.2.4.2
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation uses a
+clearly understood mark for
+surgical site identification and
+involves the patient in the
+marking process.
+Criterion  7.2.4.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation uses a
+process to verify that all
+documents and equipment
+needed to perform the
+marking are on hand, correct
+and functional.
+Page 9 of
+ 21 Page 9 of
+ 21 Page 9 of
+ 21 Page 9 of
+ 21 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.2.5 Standard
+The organisation develops an approach to reduce the risk of   patient harm resulting
+from falls.
+Standard Intent: Falls account for a significant portion of injuries in hospitalised patients.  In the
+context of the population it serves, the services it provides and its facilities, the organisation
+should evaluate its patients' risk of falls and injuries and take action to reduce the risks and
+injuries. The evaluation could include assessing environmental factors (wet floors,
+unprotected ramps, etc.) and patient factors (fall history, medications and alcohol
+consumption review, gait and balance screening, use of walking aids, etc.).  The
+organisation establishes and implements a fall-risk reduction programme based on
+appropriate policies and/or procedures.
+Criterion Comments
+Recommendations
+Criterion  7.2.5.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures that
+address reducing the risk of
+patient harm resulting from
+falls in the organisation are
+implemented.
+Criterion  7.2.5.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation implements
+a process for the initial
+assessment of patients for fall
+risk and reassessment of
+patients when indicated by a
+change in condition,
+medications, etc.
+Criterion  7.2.5.3
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Measures are implemented to
+reduce fall risk for those
+assessed to be at risk.
+Page 10 of
+ 21 Page 10 of
+ 21 Page 10 of
+ 21 Page 10 of
+ 21 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.2.6 Standard
+The organisation uses a defined process for identifying and managing sentinel
+events.
+Standard Intent: Each organisation establishes an operational definition of a sentinel event that
+includes at least:
+a)     unanticipated death unrelated to the natural course of the patient's illness or underlying
+condition
+b)    major permanent loss of function unrelated to the natural course of the patient's illness
+or underlying condition,  and
+c)     wrong-site, wrong-procedure, wrong-patient surgery.
+  
+The organisation's definition of a sentinel event includes a) to c) above and may include
+others as may be required by law or regulation or viewed by the organisation as appropriate
+to add to its list of sentinel events.  All events that meet the definition are assessed by
+performing a credible root cause analysis.  When the root cause analysis reveals that
+systems improvement or other actions can prevent or reduce the risk of such sentinel events
+recurring, the organisation redesigns the processes and takes whatever other actions are
+appropriate to do so.
+  
+It is important to note that the term "sentinel event" does not always refer to an error or
+mistake or suggest any particular legal liability.
+  
+Certain events related to specific processes always result in intense analysis to understand
+the cause and prevent recurrence. When appropriate to the organisation's services, these
+events include:
+•       confirmed transfusion reactions
+•       significant adverse drug reactions
+•       significant medication errors
+•       significant discrepancy between preoperative and postoperative diagnoses and
+•       significant adverse anaesthetic events.
+Criterion Comments
+Recommendations
+Criterion  7.2.6.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation's leaders
+have established a definition
+of a sentinel event that at
+least includes a) to c) found in
+the intent statement.
+Criterion  7.2.6.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation conducts a
+root cause analysis on all
+sentinel events in a time
+period specified by the
+organisation’s leaders.
+Page 11 of
+ 21 Page 11 of
+ 21 Page 11 of
+ 21 Page 11 of
+ 21 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.2.6.3
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Events are analysed when
+they occur.
+Criterion  7.2.6.4
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation's leaders
+take action on the results of
+the root cause analysis.
+Criterion  7.2.6.5
+Critical: ¨
+Catg: Evaluation + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Intense analysis of data and
+implementation of corrective
+measures take place when
+adverse levels, patterns or
+trends occur.
+Page 12 of
+ 21 Page 12 of
+ 21 Page 12 of
+ 21 Page 12 of
+ 21 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.3 Occupational Health and Safety
+7.3.1 Standard
+As part of risk management an occupational health and safety system is
+implemented in accordance with current legislation.
+Standard Intent: Legislation may describe the health and safety measures to be implemented
+by organisations.  In terms of such legislation, where it exists, the organisation must ensure
+the safety of staff, patients and visitors.
+  
+The provision of health and safety services, emergency planning and other aspects of
+providing a safe environment all require staff to have the necessary knowledge and skills for
+their implementation.
+  
+To plan effectively, the organisation must be aware of all the risks present in the facility and
+to develop a proactive plan to reduce those risks, e.g. TB screening, manual handling,
+needle stick injuries, etc. Personnel who are exposed to high risk should receive appropriate
+protective measures, such as Hepatitis B immunisation.  The legal requirements, where they
+exist regarding the reporting of incidents and occupational diseases such as TB, HIV,
+Hepatitis B and C, injury on duty, etc., must be met.
+  
+It is expected that every organisation will provide an occupational health service.  However,
+it is not expected that the organisation provide all components of the service itself; it may be
+provided by another service provider.  In the latter case, only relevant criteria will be scored.
+The occupational health service here refers to the service rendered to the employees of the
+organisation and not, as is the practice in some organisations, pre-employment
+examinations and surveillance for commerce or industry in the catchment area of the health
+service.
+Criterion Comments
+Recommendations
+Criterion  7.3.1.1
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A health and safety
+committee, where applicable,
+is constituted in terms of
+current legislation.
+Criterion  7.3.1.2
+Critical: ¨
+Catg: Basic Management + Pat &
+Staff Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures on
+all aspects of health and
+safety that guide staff in
+maintaining a safe work
+environment are
+implemented.
+Page 13 of
+ 21 Page 13 of
+ 21 Page 13 of
+ 21 Page 13 of
+ 21 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.3.1.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Management makes
+provision for occupational
+health services according to a
+documented policy
+framework.
+Criterion  7.3.1.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation has access
+to the services of a
+knowledgeable and
+experienced person in the
+field of occupational health.
+Criterion  7.3.1.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation provides
+information and training on
+risks specific to the
+healthcare workers.
+Page 14 of
+ 21 Page 14 of
+ 21 Page 14 of
+ 21 Page 14 of
+ 21 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.4 Security
+7.4.1 Standard
+A security system is maintained for the routine monitoring and safeguarding of the
+premises, equipment, property, patients, staff, volunteers and visitors.
+Standard Intent: The organisation has a responsibility to ensure that staff, volunteers, patients
+and visitors are safe from attacks or theft by intruders. The organisation identifies areas and
+groups that are vulnerable and require added security.
+ 
+Systems are developed and implemented to provide protection. The loss of organisational
+property must be prevented.
+  
+This can be an in-house or a contracted service but it must include both the external and
+internal security monitoring of the organisation.
+  
+The powers and duties of the security personnel must be documented, either as part of the
+health and safety systems or in the agreement with a contracted service provider. This is
+particularly important in emergency planning where the role of the security service in, for
+example, crowd control, must be clearly defined.     
+There should be evidence of the monitoring of the activities of the security personnel, where
+available.
+Criterion Comments
+Recommendations
+Criterion  7.4.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Internal security is provided
+24 hours per day, seven days
+per  week.
+Criterion  7.4.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+External security is provided
+24 hours per day, seven days
+per week.
+Criterion  7.4.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies on the management
+of weapons are implemented.
+Page 15 of
+ 21 Page 15 of
+ 21 Page 15 of
+ 21 Page 15 of
+ 21 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.4.1.4
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where vulnerable patients
+are cared for, special safety
+and security measures are
+implemented.
+Criterion  7.4.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a mechanism known
+to staff for summoning the
+assistance of the local
+security/police/protection
+service in case of an
+emergency.
+Page 16 of
+ 21 Page 16 of
+ 21 Page 16 of
+ 21 Page 16 of
+ 21 
+--- Page 17 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+7.5 Fire Safety
+7.5.1 Standard
+As part of risk management, the organisation implements structured systems to
+ensure fire safety.
+Standard Intent: Fire is an ever-present risk in a healthcare organisation.  An organisation
+needs to plan for:
+•         The prevention of fires through the reduction of risks, such as the safe storage and
+handling of potentially flammable materials
+•         Safe and unobstructed means of exit in the event of fire
+•         Clearly depicted fire escape routes
+•         Demarcated assembly points, known to all personnel
+•         Inspection reports from the local fire departments,  and
+•         Suppression mechanisms such as water hoses, chemical suppressants or sprinkler
+systems. These actions, when combined, give patients, families, staff and visitors adequate
+time to safely exit the facility in the event of a fire or smoke. These actions are effective no
+matter what the age, size or construction of the facility.
+  
+The organisation's fire safety plan identifies the:
+•         Frequency of inspection, testing and maintenance of fire protection and safety systems,
+consistent with requirements
+•         Process for testing, at least annually, the plan for the safe evacuation of the facility in
+the event of a fire or smoke
+•         Necessary education of staff to effectively protect and evacuate patients when an
+emergency occurs,  and
+•         Participation of each staff member in at least one emergency preparedness test per
+year.
+  
+All inspections, testing and maintenance are documented.
+The organisation develops and implements a policy and plan to eliminate smoking in the
+organisation's facilities, or to limit smoking to designated non-patient care areas.
+  
+As the application of fire safety regulations differs vastly between countries and different
+authorities within the same country, it is essential that some form of fire safety certification is
+made by relevant authorities, either in a letter or a formal certificate. This certification
+documentation should state the norms/standards/regulations against which such certification
+of compliance was issued.
+  
+In most instances, this certification remains valid until building alterations or additions take
+place. However, where this is not the case, the organisation must ensure that the certificate
+remains current.
+Criterion Comments
+Recommendations
+Criterion  7.5.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are structured systems
+and processes in place to
+ensure that all occupants of
+the organisation’s facilities
+are safe from fire or smoke.
+Page 17 of
+ 21 Page 17 of
+ 21 Page 17 of
+ 21 Page 17 of
+ 21 
+--- Page 18 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.5.1.2
+Critical: þ
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Documented evidence is
+available from the relevant
+authority that the facility
+complies with applicable laws
+and regulations in relation to
+fire safety.
+Criterion  7.5.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Fire fighting equipment is
+regularly inspected and
+serviced at least annually with
+the date of service recorded
+on the apparatus.
+Criterion  7.5.1.4
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Flammable materials are
+clearly labelled and safely
+stored.
+Criterion  7.5.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Easily recognised and
+understood signs prohibiting
+smoking are displayed in
+areas where flammable
+materials and combustible
+gases are stored.
+Criterion  7.5.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A floor plan is displayed
+which shows the location of
+fire fighting equipment,
+evacuation routes,
+emergency exits and
+assembly points.
+Page 18 of
+ 21 Page 18 of
+ 21 Page 18 of
+ 21 Page 18 of
+ 21 
+--- Page 19 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.5.1.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Annual staff training in fire
+prevention and evacuation
+procedures is documented.
+Criterion  7.5.1.8
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has
+implemented a policy
+regarding smoking which
+applies to patients, families,
+visitors and staff/volunteers.
+7.6 Emergency Planning
+7.6.1 Standard
+As part of risk management the organisation develops a written plan to respond to
+emergencies and major incidents.
+Standard Intent: Community emergencies, epidemics and major incidents such as damage to
+patient care areas as a result of a natural disaster, or flu that affects the staff, may directly
+involve the organisation. Organisations should also be prepared for bomb threats, fire,
+flooding, natural disasters, failure of water and electrical supplies, hostage taking,
+explosions and the consequent loss of vital services.
+  
+There may be a time when it is necessary to evacuate patients. This can only be done
+efficiently and effectively if the members of staff are trained in evacuation procedures.
+  
+To respond effectively, the organisation develops a plan and tests it. The plan provides
+processes for alternate care sites, if needed, and alternate sources of medical supplies,
+communications equipment, and other materials such as food and water if an inpatient unit
+or day care centre exists on the premises.
+Criterion Comments
+Recommendations
+Criterion  7.6.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a written plan to deal
+with internal and external
+emergencies.
+Page 19 of
+ 21 Page 19 of
+ 21 Page 19 of
+ 21 Page 19 of
+ 21 
+--- Page 20 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.6.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Documented evidence is
+available that staff participate
+in a rehearsal of the plan at
+least annually.
+7.7 Waste Management
+7.7.1 Standard
+The organisation has documented control systems for the handling, storage and
+disposal of waste.
+Standard Intent: Household waste, hazardous wastes such as chemicals, hazardous gases and
+vapours, pharmaceutical, laboratory and healthcare waste are identified by the organisation
+and safely controlled according to documented systems. 
+  
+According to the World Health Organisation (WHO), "healthcare waste (HCW) is a by-
+product of healthcare that includes sharps, non-sharps, blood, body parts, chemicals,
+pharmaceuticals, medical devices and radioactive materials. Poor management of HCW
+exposes healthcare workers, waste handlers and the community to infections, toxic effects
+and injuries."  All healthcare waste is regarded as hazardous or potentially hazardous. The
+plan is included in the organisation's risk management systems.
+Criterion Comments
+Recommendations
+Criterion  7.7.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Waste is managed according
+to documented systems
+consistent with legislation,
+local by-laws and regulations.
+Criterion  7.7.1.2
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Control systems include safe
+handling of different types of
+waste.
+Page 20 of
+ 21 Page 20 of
+ 21 Page 20 of
+ 21 Page 20 of
+ 21 
+--- Page 21 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+7.Risk Management
+Criterion  7.7.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Control systems include safe
+storage of different types of
+waste.
+Criterion  7.7.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Control systems include safe
+disposal of different types of
+waste.
+Criterion  7.7.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Control systems include the
+procedures to be adopted if
+spills occur.
+Criterion  7.7.1.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Control systems include the
+use of personal protective
+equipment when handling
+waste.
+Criterion  7.7.1.7
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a colour-coding
+system for bags to be used
+for the segregation of
+different types of waste.
+Page 21 of
+ 21 Page 21 of
+ 21 Page 21 of
+ 21 Page 21 of
+ 21 

@@ -1,0 +1,503 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 9 Page 1 of
+ 9 Page 1 of
+ 9 Page 1 of
+ 9 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+Page 2 of
+ 9 Page 2 of
+ 9 Page 2 of
+ 9 Page 2 of
+ 9 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+6.1 Planning
+6.1.1 Standard
+The organisation plans and implements processes to meet the information needs of
+clinical and managerial services and those outside the organisation that require
+data and information from the organisation.
+Standard Intent: Information is generated and used during patient care and for safely and
+effectively managing an organisation. The ability to capture and provide information requires
+effective planning. Planning incorporates input from a variety of sources:
+•       the care providers
+•       the organisation's managers and leaders,  and
+•       those outside the organisation who need or require data or information about the
+organisation's operational and care processes.
+  
+The most urgent information needs of those sources influence the organisation's information
+management strategies and its ability to implement those strategies. The strategies are
+appropriate for the organisation's size, complexity of services, availability of trained
+personnel and other human and technical resources. The plan is comprehensive and
+includes all the departments and services of the organization.
+Criterion Comments
+Recommendations
+Criterion  6.1.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Information systems are
+developed and implemented
+in the organisation.
+Criterion  6.1.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Those who provide clinical
+and managerial services
+identify their information
+needs.
+Criterion  6.1.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Clinical and managerial
+personnel participate in
+information technology
+decisions.
+Page 3 of
+ 9 Page 3 of
+ 9 Page 3 of
+ 9 Page 3 of
+ 9 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+6.1.2 Standard
+Confidentiality, security and integrity of data and information is maintained.
+Standard Intent: The organisation determines the level of security and confidentiality to be
+maintained for different categories of information. Access to each category of information is
+based on need and defined by job title and function. An effective process defines:
+•       who has access to information
+•       the information to which an individual has access
+•       the user's obligation to keep information confidential,  and
+•       the process followed when confidentiality and security are violated.
+  
+One aspect of maintaining security of patient information is to determine who is authorised
+to obtain a patient record and who makes entries into the patient record. The organisation
+develops a policy to authorise such individuals and identifies the contents and format for
+entries into patient records. There is a process to ensure that only authorised individuals
+make entries in patient records.
+  
+The organisation maintains the security and confidentiality of data and information and is
+especially careful about preserving the confidentially of sensitive data and information. The
+balance between data sharing and data confidentiality is addressed.
+  
+Adequate and appropriate back-up systems are in place.
+Criterion Comments
+Recommendations
+Criterion  6.1.2.1
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Confidentiality of data and
+information is maintained.
+Criterion  6.1.2.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Security and integrity of data
+and information is
+maintained.
+Page 4 of
+ 9 Page 4 of
+ 9 Page 4 of
+ 9 Page 4 of
+ 9 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+6.2 Information Management Support
+6.2.1 Standard
+The information systems are implemented and supported by sufficient personnel
+and other resources.
+Standard Intent: The organisation's information management systems, once completed and
+approved as necessary, are implemented. The organisation provides the personnel,
+technology and other resources necessary to implement the information systems and meet
+the identified information needs of the healthcare providers, managers and others.
+  
+Individuals in the organisation who generate, collect, analyse and use data and information
+are educated and trained to effectively participate in managing information.  Such education
+and training enables these individuals to:
+•       understand the security and confidentiality of data and information
+•       use measurement instruments, statistical tools and data analysis methods
+•       assist in interpreting data
+•       use data and information to help in decision making
+•       educate and support the participation of patients and families in care processes,  and
+•       use indicators to assess and improve care and work processes.
+  
+Individuals are appropriately educated and trained in regard to their responsibilities, job
+descriptions, and data and information needs.
+  
+Information management technology represents a major investment of resources for a
+healthcare organisation. For this reason, technology is carefully matched to the current and
+future needs of the organisation and the organisation's resources.  Available technology
+needs to be integrated with existing information management processes and serves to
+integrate the activities of all the departments and services of the organisation. This level of
+coordination requires that key clinical and managerial personnel participate in the selection
+process. The management of the organisation ensures that the personnel have the required
+supplies, registers, check lists, forms, etc. required for data management.
+Criterion Comments
+Recommendations
+Criterion  6.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Sufficient personnel support
+the implementation.
+Criterion  6.2.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Decision-makers and others
+are provided with appropriate
+training in the principles of
+information management.
+Page 5 of
+ 9 Page 5 of
+ 9 Page 5 of
+ 9 Page 5 of
+ 9 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+Criterion  6.2.1.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Required technology and
+other resources support the
+implementation.
+6.2.2 Standard
+Where information, communication and technology (ICT) equipment is available, it
+is properly maintained to meet the needs of the services.
+Standard Intent: Organisations have a responsibility to ensure that appropriate ICT equipment
+is available and ready for use at all times. There is an accountable, systematic approach to
+ensuring that cost-effective, safe and appropriate information technology equipment is
+available to meet organisational demands.
+  
+Managers take responsibility for ensuring that ICT equipment is available, appropriately
+maintained and calibrated and that personnel are competent in the use thereof. Policies and
+procedures are available to guide personnel in the back-up of data.
+Criterion Comments
+Recommendations
+Criterion  6.2.2.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A designated individual
+supervises the management
+of ICT equipment in the
+organisation.
+Criterion  6.2.2.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures that
+guide the management of ICT
+equipment are implemented.
+Criterion  6.2.2.3
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+All desktop and server
+computers are attached to an
+uninterrupted power supply
+(UPS) with surge protection.
+Page 6 of
+ 9 Page 6 of
+ 9 Page 6 of
+ 9 Page 6 of
+ 9 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+Criterion  6.2.2.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Records are kept of the
+maintenance of ICT
+equipment.
+Criterion  6.2.2.5
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Where technical ICT support
+is not available at facility
+level, an arrangement is in
+place to obtain such support
+from outside.
+Criterion  6.2.2.6
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a documented
+procedure known to
+personnel for reporting
+defects in ICT equipment
+during and after normal
+working hours.
+6.3 Data Processing and Information Management
+6.3.1 Standard
+The organisation has a process to aggregate data for user needs.
+Standard Intent: The organisation collects and analyses aggregated data to support patient
+care and management of the organisation. Aggregated data provide a profile of the
+organisation over time and allow for comparison between the organisation's various
+performance improvement activities. In particular, aggregated data from risk management,
+utility system management, infection control and utilisation review can help the organisation
+to understand its current performance and identify opportunities for improvement.
+Criterion Comments
+Recommendations
+Criterion  6.3.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation has a
+process to aggregate data.
+Page 7 of
+ 9 Page 7 of
+ 9 Page 7 of
+ 9 Page 7 of
+ 9 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+Criterion  6.3.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Clinical and managerial data
+and information are
+integrated as needed to
+support decision-making.
+Criterion  6.3.1.3
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Aggregated data and
+information are used to
+support
+patient care.
+Criterion  6.3.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Aggregated data and
+information are used to
+support management of the
+organisation.
+Criterion  6.3.1.5
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Aggregated data and
+information are used to
+support the quality
+management programmes.
+Page 8 of
+ 9 Page 8 of
+ 9 Page 8 of
+ 9 Page 8 of
+ 9 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+6.Management of Information
+6.3.2 Standard
+The organisation contributes to external databases when required by laws or
+regulations.
+Standard Intent: By participating in external performance databases, an organisation can
+compare its performance with that of other similar organisations locally, nationally or
+internationally. Performance comparison is an effective tool for identifying opportunities for
+improvement and documenting the organisation's performance level. Healthcare networks
+and those purchasing or paying for health care often ask for such information.
+Criterion Comments
+Recommendations
+Criterion  6.3.2.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation has a
+process to participate in or
+use information from external
+databases.
+Criterion  6.3.2.2
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Data or information is
+contributed to external
+databases as required by law
+or regulation, where
+applicable.
+Criterion  6.3.2.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation compares
+its performance with that of
+other similar organisations
+using external reference
+databases.
+Page 9 of
+ 9 Page 9 of
+ 9 Page 9 of
+ 9 Page 9 of
+ 9 

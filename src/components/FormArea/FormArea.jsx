@@ -5,39 +5,61 @@ import { api } from '../../services/api';
 import indexedDBService from '../../services/indexedDBService';
 import emsConfig from '../../assets/ems_config.json';
 import mortuaryConfig from '../../assets/mortuary_config.json';
+import clinicsConfig from '../../assets/clinics_config.json';
+import hospitalConfig from '../../assets/hospital_config.json';
 import emsLinks from '../../assets/ems_links.json';
 import mortuaryLinks from '../../assets/mortuary_links.json';
+import clinicsLinks from '../../assets/clinics_links.json';
+import hospitalLinks from '../../assets/hospital_links.json';
 import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
 import { normalizeCriterionCode } from '../../utils/normalization';
 import { createAssessmentSnapshot } from '../../utils/createAssessmentSnapshot';
 
-// Build a fast lookup from EMS criterion ID (e.g. "1.2.1.3") to its
-// standard statement and intent text.
+// Build a fast lookup from criterion ID (e.g. "1.2.1.3") to its
+// standard statement, intent text, critical flag, and severity.
 const buildCriterionIndex = (configData) => {
-    const index = {};
-    try {
-        // Handle both EMS and Mortuary config keys
-        const config = configData?.ems_full_configuration || configData?.mortuary_full_configuration || [];
-        config.forEach(se => {
-            (se.sections || []).forEach(section => {
-                (section.standards || []).forEach(standard => {
-                    (standard.criteria || []).forEach(crit => {
-                        if (!crit || !crit.id) return;
-                        index[crit.id] = {
-                            statement: standard.statement || '',
-                            intent: standard.intent_tooltip || '',
-                            is_critical: crit.is_critical || false,
-                            severity: crit.severity || 1
-                        };
-                    });
-                });
-            });
-        });
-    } catch (e) {
-        console.error('FormArea: Failed to build EMS criterion index', e);
-    }
-    return index;
+	    const index = {};
+	    try {
+	        // Support EMS, Mortuary, Clinics, and Hospital configs.
+	        // Accept either a single array of SE objects or an object with *_full_configuration keys.
+	        let seArray = [];
+
+	        if (Array.isArray(configData)) {
+	            seArray = configData;
+	        } else if (configData && typeof configData === 'object') {
+	            const possibleKeys = [
+	                'ems_full_configuration',
+	                'mortuary_full_configuration',
+	                'clinics_full_configuration',
+	                'hospital_full_configuration',
+	            ];
+	            possibleKeys.forEach((key) => {
+	                if (Array.isArray(configData[key])) {
+	                    seArray = seArray.concat(configData[key]);
+	                }
+	            });
+	        }
+
+	        seArray.forEach(se => {
+	            (se.sections || []).forEach(section => {
+	                (section.standards || []).forEach(standard => {
+	                    (standard.criteria || []).forEach(crit => {
+	                        if (!crit || !crit.id) return;
+	                        index[crit.id] = {
+	                            statement: standard.statement || '',
+	                            intent: standard.intent_tooltip || '',
+	                            is_critical: crit.is_critical || false,
+	                            severity: crit.severity || 1
+	                        };
+	                    });
+	                });
+	            });
+	        });
+	    } catch (e) {
+	        console.error('FormArea: Failed to build criterion index', e);
+	    }
+	    return index;
 };
 
 // Default index for helper functions that don't have access to component state
@@ -307,12 +329,59 @@ const FormArea = ({
         }
     }, []);
 
-    const activeGroup = groups.find(g => g.sections?.some(s => s.id === activeSection?.id));
-    const isMortuary = activeGroup?.id === 'SURV-MORTUARY' || activeGroup?.id === 'GENERAL' || activeGroup?.name === 'Mortuary';
-    const activeLinks = customLinks || (isMortuary ? mortuaryLinks : emsLinks);
-    const activeConfig = customConfig || (isMortuary ? mortuaryConfig : emsConfig);
+	    const activeGroup = groups.find(g => g.sections?.some(s => s.id === activeSection?.id));
 
-    const criterionIndex = useMemo(() => buildCriterionIndex(activeConfig), [activeConfig]);
+	    const programmeType = (() => {
+	        if (activeGroup?.id === 'SURV-MORTUARY' || activeGroup?.id === 'GENERAL' || activeGroup?.name === 'Mortuary') {
+	            return 'mortuary';
+	        }
+	        if (activeGroup?.id === 'CLINICS' || activeGroup?.name === 'Clinics') {
+	            return 'clinics';
+	        }
+	        if (activeGroup?.id === 'HOSPITAL' || activeGroup?.name === 'Hospital') {
+	            return 'hospital';
+	        }
+	        return 'ems';
+	    })();
+
+	    // Resolve configuration for the current programme (EMS, Mortuary, Clinics, Hospital)
+	    const baseConfig = customConfig || { ...emsConfig, ...mortuaryConfig, ...clinicsConfig, ...hospitalConfig };
+	    const configKeyMap = {
+	        ems: 'ems_full_configuration',
+	        mortuary: 'mortuary_full_configuration',
+	        clinics: 'clinics_full_configuration',
+	        hospital: 'hospital_full_configuration',
+	    };
+	    const activeConfigArray = (() => {
+	        const key = configKeyMap[programmeType];
+	        if (baseConfig && key && Array.isArray(baseConfig[key])) {
+	            return baseConfig[key];
+	        }
+	        return Array.isArray(baseConfig) ? baseConfig : [];
+	    })();
+
+	    // Resolve links for the current programme
+	    const staticLinksMap = {
+	        ems: emsLinks,
+	        mortuary: mortuaryLinks,
+	        clinics: clinicsLinks,
+	        hospital: hospitalLinks,
+	    };
+	    const activeLinks = (() => {
+	        if (customLinks) {
+	            // New-style customLinks stored as { ems: [...], mortuary: [...], clinics: [...], hospital: [...] }
+	            if (!Array.isArray(customLinks) && typeof customLinks === 'object') {
+	                return customLinks[programmeType] || staticLinksMap[programmeType] || [];
+	            }
+	            // Backwards-compat: treat array value as override for all programmes
+	            if (Array.isArray(customLinks)) {
+	                return customLinks;
+	            }
+	        }
+	        return staticLinksMap[programmeType] || [];
+	    })();
+
+	    const criterionIndex = useMemo(() => buildCriterionIndex(activeConfigArray), [activeConfigArray]);
     // DEBUG: Validate props on render
     React.useEffect(() => {
         if (!activeSection) console.warn("FormArea: No active section provided");
@@ -380,20 +449,36 @@ const FormArea = ({
         }
 
 
-        return activeSubsectionFields.map((field) => {
+	        return activeSubsectionFields.map((field) => {
             // Safety check for field
             if (!field || !field.id) {
                 console.warn("FormArea: Invalid field in section:", field);
                 return null;
             }
 
-            if (field.type === 'header') {
-                return (
-                    <div key={field.id} className="form-header-separator">
-                        <h3>{field.code ? `${field.code} ${field.label}` : field.label}</h3>
-                    </div>
-                );
-            }
+		            if (field.type === 'header') {
+		                // Subheading within a section: show only the human-readable label, no codes
+		                // and drop any leading prefixes that contain underscores (e.g. SURV_HOSP_1.1)
+		                const displayLabel = (() => {
+		                    const raw = field.label || '';
+		                    if (!raw) return '';
+		                    const parts = raw.split(/\s+/);
+		                    const kept = [];
+		                    let dropping = true;
+		                    for (const p of parts) {
+		                        if (dropping && p.includes('_')) continue;
+		                        dropping = false;
+		                        kept.push(p);
+		                    }
+		                    const cleaned = kept.join(' ').trim();
+		                    return cleaned || raw.trim();
+		                })();
+		                return (
+		                    <div key={field.id} className="form-header-separator">
+		                        <h3>{displayLabel}</h3>
+		                    </div>
+		                );
+		            }
 
             // Extract calculated score for this field if it exists
             let calculatedFieldScore = null;
@@ -433,6 +518,10 @@ const FormArea = ({
             // Check if comment field is disabled (parent question not answered)
             const parentQuestionId = field.questionFieldId;
             const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
+
+            // Check if this is a technical field that should be read-only (Enrollment ID, TEI ID)
+            const labelLower = (field.label || '').toLowerCase();
+            const isTechnicalField = isADSection && (labelLower.includes('enrollment') || labelLower.includes('tei id'));
 
             // Look up EMS standard/intent tooltip for this data element code
             const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex, calculatedFieldScore) : '';
@@ -547,7 +636,7 @@ const FormArea = ({
                                 value={isRoot && calculatedFieldScore ? (calculatedFieldScore.normalizedValue || calculatedFieldScore.response) : (formData[field.id] || '')}
                                 onChange={(e) => handleInputChange(e, field.id)}
                                 id={`field-${field.id}`} // Helper for testing
-                                disabled={isRoot || (!isParentAnswered && isCommentField)}
+                                disabled={isRoot || (!isParentAnswered && isCommentField) || isTechnicalField}
                             >
                                 <option value="">{isRoot ? "Auto-calculated from linked criteria..." : "Select..."}</option>
                                 {isRoot && calculatedFieldScore?.response === 'Pending' && (
@@ -615,7 +704,7 @@ const FormArea = ({
                             onChange={(e) => handleInputChange(e, field.id)}
                             onBlur={isCommentField ? () => handleCommentBlur(field.id) : undefined}
                             id={`field-${field.id}`}
-                            disabled={!isParentAnswered && isCommentField}
+                            disabled={(!isParentAnswered && isCommentField) || isTechnicalField}
                         />
                     )}
                 </div>
@@ -861,13 +950,30 @@ const FormArea = ({
         }
     };
 
-    return (
-        <div className="form-area">
-            <div className="form-header">
-                <div className="header-content">
-                    <h2>
-                        {activeSection.code ? `${activeSection.code} ${activeSection.name}` : activeSection.name}
-                        {subsections.length > 1 && (
+	    return (
+	        <div className="form-area">
+		            <div className="form-header">
+		                <div className="header-content">
+			                    <h2>
+			                        {(() => {
+			                            const raw = activeSection?.name || '';
+			                            if (!raw) return '';
+			                            const upper = raw.toUpperCase();
+			                            // If already starts with SE, just use it
+			                            if (upper.trim().startsWith('SE')) return raw.trim();
+			                            // Try to derive SE code from HOSP patterns, e.g. "1-HOSPITAL_1 HOSP_SE1 ..." or "SURV_HOSP_1.1 ..."
+			                            const hospMatch = upper.match(/HOSP[_\s-]*(SE)?(\d+(?:\.\d+)*)/);
+			                            if (hospMatch) {
+			                                const numPart = hospMatch[2]; // e.g. "1" or "1.1"
+			                                const seToken = `SE${numPart}`;
+			                                const rest = raw
+			                                    .slice(hospMatch.index + hospMatch[0].length)
+			                                    .replace(/^[\s\-_:]+/, '');
+			                                return rest ? `${seToken} ${rest}` : seToken;
+			                            }
+			                            return raw.trim();
+			                        })()}
+	                        {subsections.length > 1 && (
                             <span style={{ fontSize: '0.6em', opacity: 0.8, marginLeft: '10px', verticalAlign: 'middle', backgroundColor: 'rgba(255,255,255,0.15)', padding: '2px 8px', borderRadius: '4px' }}>
                                 Part {currentSubsectionIndex + 1} of {subsections.length}
                             </span>

@@ -1,0 +1,723 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 13 Page 1 of
+ 13 Page 1 of
+ 13 Page 1 of
+ 13 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+Page 2 of
+ 13 Page 2 of
+ 13 Page 2 of
+ 13 Page 2 of
+ 13 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+8.1 Quality Leadership and Design
+8.1.1 Standard
+There are written organisation-wide quality management and improvement
+processes.
+Standard Intent: If an organisation is to initiate and maintain improvement, leadership and
+planning are essential.
+  
+The governing leaders of the organisation are as important as the managers and clinical
+care providers in the organisation. Each leader participates in establishing the organisation's
+commitment, approach to improvement and processes management and supervision. The
+leaders through their vision and support shape the quality culture of the organisation.
+  
+Improvement processess are most effective when they are planned and implemented
+organisation wide.  The framework for these is provided in documents describing the
+processes, which is inclusive of all services in the organisation, and of all related quality
+activities such as infection control and risk management activities.   The framework for these
+is provided in documents describing the processes AND is inclusive of all services in the
+organisation, and all related quality activities such as infection control and risk management
+activities.
+  
+  
+Well-designed services draw on a variety of information sources.  Good process design:
+•       is consistent with the organisation's mission and plans
+•       meets the needs of patients, families, the staff and others
+•       uses current practice guidelines, clinical standards, scientific literature and other relevant
+evidence-based information on clinical practice design
+•       is consistent with sound business practices
+•       considers relevant risk management information
+•       uses information from related improvement activities, and
+•       integrates and connects  systems.
+  
+A primary responsibility of leaders is to set priorities. Organisations typically find more
+opportunities for quality monitoring and improvement than they have human and other other
+resources to accomplish. Therefore the leaders provide focus for the organisastion's quality
+monitoring and improvement activities. The leaders prioritise those critical, high-risk or
+problem-prone processes or activities that most directly relate to the quality of care and the
+safety of the environment. The leaders use available data and information to identify areas
+that must be prioritised. 
+Criterion Comments
+Recommendations
+Criterion  8.1.1.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a system for the
+implementation of quality
+management and
+improvement processes.
+Page 3 of
+ 13 Page 3 of
+ 13 Page 3 of
+ 13 Page 3 of
+ 13 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+Criterion  8.1.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Managerial and clinical
+leaders and relevant
+stakeholders participate in the
+implementation of the quality
+management and
+improvement processes.
+Criterion  8.1.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The processes reflect the
+scope of service delivery in
+relation to managerial, clinical
+and support services
+(including formal educational
+services where applicable).
+Criterion  8.1.1.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The leaders identify priorities
+for monitoring activities.
+Criterion  8.1.1.5
+Critical: þ
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The processes reflect all
+components and quality
+activities in relation to
+standard and indicator
+development, monitoring,
+evaluation and remedial
+action.
+Criterion  8.1.1.6
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a regular reporting
+system on quality activities to
+all stakeholders, including
+governance and the
+community.
+Page 4 of
+ 13 Page 4 of
+ 13 Page 4 of
+ 13 Page 4 of
+ 13 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+8.1.2 Standard
+The leaders coordinate the quality management and improvement processes and
+provide technological and other support.
+Standard Intent: Available resources are used well when the quality management and
+improvement activities are centrally coordinated. This coordination is achieved through a
+quality steering group or a committee that provides for effective supervision of quality
+management and improvement activities throughout the organisation. One of the
+responsibilities of such a group is to communicate information about the quality
+management and improvement processes to the staff on a regular basis.
+  
+The monitoring of clinical and managerial functions in a healthcare organisation results in
+the accumulation of data and information. An understanding of how well the organisation is
+doing rests on the analysis of the data and information over time and comparison with other
+organisations. For large or complex organisations this tracking and comparison may require
+technology and/or staff members with data management experience. The leaders of an
+organisation understand the monitoring and improvement priorities in terms of this
+necessary support. They provide the support consistent with the resources and quality
+management priorities of the organisation.
+  
+Participation in data collection and analysis and the planning and implementation of quality
+improvements require knowledge and skills that most staff members do not have or do not
+use regularly.  Thus, when asked to participate in the processes the personnel receive
+training consistent with their role in the planned activity.  The organisation identifies or
+provides a knowledgeable trainer for this education.
+  
+The staff selected to participate in management and improvement processess are those
+closest to the activities or processes being monitored, studied or improved.  Both
+managerial and clinical staff participate.  Over time, a larger and larger number of staff have
+the opportunity to be trained and to participate.
+Criterion Comments
+Recommendations
+Criterion  8.1.2.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is coordination of the
+organisation's quality
+management and
+improvement processes with
+all services.
+Criterion  8.1.2.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The leaders provide the
+required technology and
+support.
+Page 5 of
+ 13 Page 5 of
+ 13 Page 5 of
+ 13 Page 5 of
+ 13 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+Criterion  8.1.2.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There are relevant training
+processes to equip staff with
+the necessary competencies
+for the design,
+implementation and
+evaluation of quality
+management and
+improvement processes.
+Page 6 of
+ 13 Page 6 of
+ 13 Page 6 of
+ 13 Page 6 of
+ 13 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+8.2 Clinical and Managerial Quality Monitoring
+8.2.1 Standard
+Clinical practice guidelines are used to guide clinical care.
+Standard Intent: The goals of healthcare organisations include:
+•         standardising clinical care
+•         reducing risks within care, particularly those associated with critical decision steps,  and
+•         providing clinical care in a timely, effective manner using available resources efficiently.
+  
+Organisations use a variety of tools to reach these and other goals, e.g care providers seek
+to develop clinical care and make clinical decisions based on the best scientific evidence-
+based guidelines. Clinical practice guidelines are useful tools in this effort to understand and
+apply the best science to a particular diagnosis or condition.
+  
+In addition, care providers seek to standardise care. Clinical care pathways are useful tools
+in this effort to ensure effective integration and coordination of care and efficient use of
+available resources.
+  
+Clinical practice guidelines relevant to the organisation's patient population and mission are:
+a)     selected from among those applicable to the service and patients of the organisation
+(mandatory national guidelines are included in this process, if present)
+b)    evaluated for their applicability and science
+c)     focused on high-volume, high-risk, high-cost and problem-prone conditions
+d)    adapted when needed to the technology, drugs and other resources of the organisation
+or to accepted national professional norms
+e)     formally approved or adopted by the organisation
+f)     implemented and monitored for consistent use and effectiveness
+g)    supported by staff trained to apply the guidelines or pathways,  and
+h)     periodically updated.
+  
+Each organisation has a process to assess the quality and completeness of patient records.
+That process is a part of the organisation's performance improvement activities and is
+carried out regularly. Clinical record review is based on a representative sample (a sample
+representing the practitioners providing care and of the types of care provided). The medical
+staff, nursing staff and other relevant clinical professionals, who are authorised to make
+entries in the patient record conduct the review process. The focus of the review is on the
+quality of the record and clinical information available during the care process. Thus, the
+organisation's record review process includes the review of the records of patients currently
+receiving care as well as the records of discharged patients.
+Criterion Comments
+Recommendations
+Criterion  8.2.1.1
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The leaders identify key
+measures to monitor the
+quality of clinical processes.
+Page 7 of
+ 13 Page 7 of
+ 13 Page 7 of
+ 13 Page 7 of
+ 13 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+Criterion  8.2.1.2
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Leaders use clinical practice
+guidelines to guide patient
+care processes.
+Criterion  8.2.1.3
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation follows the
+process described in a) to h)
+of the intent by means of
+clinical audits to monitor the
+quality of care provided.
+Criterion  8.2.1.4
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medical, nursing and other
+clinical leaders use available
+and relevant clinical practice
+guidelines in clinical
+monitoring as part of a
+structured clinical audit.
+Criterion  8.2.1.5
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Patient clinical records are
+reviewed regularly.
+Criterion  8.2.1.6
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The review is conducted by
+medical, nursing and other
+staff who are authorised to
+make entries in patient
+records or to manage patient
+information.
+Page 8 of
+ 13 Page 8 of
+ 13 Page 8 of
+ 13 Page 8 of
+ 13 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+Criterion  8.2.1.7
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Records of active and
+discharged patients are
+included in the review
+process.
+Criterion  8.2.1.8
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Professional performance is
+monitored as part of clinical
+monitoring.
+8.2.2 Standard
+There are relevant managerial quality monitoring systems.
+Standard Intent: Quality management and improvement are data driven. Because most
+organisations have limited resources, they cannot collect data to monitor everything they
+want. Thus, each organisation must choose which managerial and support service and
+outcomes are most important to monitor based on its mission, patient needs and services
+provided. Monitoring often focuses on those that are high-risk, high volume or problem-
+prone at organisation and department level.
+  
+The leaders of an organisation have the responsibility to make the final selection of the key
+measures to be included in the organisation's monitoring activities. The measures selected
+relate to those important areas identified.  Important measures to be monitored could
+include financial issues, stock control, loss control.
+  
+For each of these areas leaders decide:
+•       the process, procedure or outcome to be measured
+•       how measurement will be accomplished,  and
+•       the frequency of measurement.
+  
+Identification of the process, procedure or outcome to be measured is clearly the most
+important step. The measure needs to focus on, for example:
+•       risk points in procedures that frequently present problems or are performed in high
+volume,  and
+•       outcomes that can be clearly defined and are under the control of the organisation.
+Criterion Comments
+Recommendations
+Criterion  8.2.2.1
+Critical: þ
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Management and all
+departments identify key
+measures to monitor quality
+assurance and improvement
+processes.
+Page 9 of
+ 13 Page 9 of
+ 13 Page 9 of
+ 13 Page 9 of
+ 13 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+Criterion  8.2.2.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Data collection is used to
+study areas targeted for
+improvement.
+Criterion  8.2.2.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Data collection is used to
+monitor and evaluate the
+effectiveness of
+improvements.
+Criterion  8.2.2.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The results of monitoring are
+communicated to the leaders
+and governance structure of
+the organisation.
+Page 10 of
+ 13 Page 10 of
+ 13 Page 10 of
+ 13 Page 10 of
+ 13 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+8.3 Use of Analysed Data
+8.3.1 Standard
+Analysed data are used to improve the quality of managerial and clinical services.
+Standard Intent: To reach conclusions and make decisions, data must be aggregated, analysed
+and transformed into useful information. Data analysis involves individuals with an
+understanding of information management and skills in data aggregation methods, and in
+the use of various statistical tools. Data analysis involves the individuals responsible for the
+process or outcome being measured. These individuals may be representative of clinical,
+managerial or any other departments and services in the organisation. Thus, data analysis
+provides continuous feedback of quality management information to help those individuals
+make decisions and continuously improve clinical and managerial processes.
+  
+The organisation determines how often data are aggregated and analysed. The frequency
+depends on the activity or area being measured, the frequency of measurement and the
+organisation's priorities.  For example, clinical data may be analysed weekly to meet local
+regulations, and patient fall data may be analysed monthly if falls are infrequent. Thus
+aggregation of data at points in time enables the organisation to judge a particular process's
+stability or a particular outcome's predictability in relation to expectations.
+ 
+When an organisation detects or suspects undesirable change from what is expected, it
+initiates intense analysis to determine where best to focus improvement.   In particular,
+intense analysis is initiated when levels, patterns or trends vary significantly or undesirably
+from:
+•       what is expected
+•       that of other organisations,  or
+•       recognised standards.
+  
+Each organisation establishes which events are significant and the process for their intense
+analysis. When undesirable events can be prevented, the organisation works to carry out
+preventive changes.
+  
+The goal of data analysis is to be able to compare an organisation in four ways:
+•       with itself over time, such as month to month or one year to the next
+•       with other similar organisations such as through reference databases
+•       with standards such as those set by accrediting and professional bodies, or those set by
+laws or regulations,  and
+•       with desirable practices identified in the literature such as practice guidelines.
+  
+These comparisons help the organisation to understand the source and nature of
+undesirable change and to focus on improvement efforts.
+  
+Understanding statistical techniques is helpful in data analysis, especially in interpreting
+variation and in deciding where improvement needs to occur.  Run charts, control charts,
+histograms and Pareto charts are examples of statistical tools useful in understanding
+trends and variations in health care.
+  
+Take note of this standard's link with 6.1.3. in Service Element 6 Management of
+Information.
+Criterion Comments
+Recommendations
+Page 11 of
+ 13 Page 11 of
+ 13 Page 11 of
+ 13 Page 11 of
+ 13 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+Criterion  8.3.1.1
+Critical: ¨
+Catg: Evaluation + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Clinical monitoring data are
+used to monitor and evaluate
+the effectiveness of
+improvements.
+Criterion  8.3.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Managerial data are used to
+monitor and evaluate the
+effectiveness of
+improvements.
+Criterion  8.3.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Comparisons are made over
+time within the organisation.
+Criterion  8.3.1.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Comparisons are made with
+similar organisations, when
+possible.
+Criterion  8.3.1.5
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Comparisons are made with
+standards and desirable
+practices.
+Page 12 of
+ 13 Page 12 of
+ 13 Page 12 of
+ 13 Page 12 of
+ 13 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+8.Quality Management and Improvement
+8.4 Achieving and Sustaining Quality
+8.4.1 Standard
+Improvement in quality is achieved and sustained.
+Standard Intent: The organisation uses the information from data analysis to identify potential
+improvements or reduce (or prevent) adverse events.   Routine monitoring data as well as
+data from intensive assessments,contribute to an understanding of where improvement
+should be planned and what priority should be given to the improvement.  In particular,
+clinical and managerial leaders plan improvements to those data collection areas requiring
+priority.
+  
+The organisation uses appropriate resources and involves those individuals, disciplines and
+departments closest to the activities to be improved.  Responsibility for planning and
+carrying out improvement is assigned to individuals or to a team. Any needed training is
+provided and information management or other resources are made available.
+  
+Once planned, data are collected during a test period to demonstrate that the planned
+change was actually an improvement.  To ensure that the improvement is sustained,
+monitoring data are then collected for ongoing analysis. Effective changes are incorporated
+into standard operating procedures and any necessary staff education is carried out.  The
+organisation documents those improvements achieved and sustained as part of its quality
+management and improvement processes.
+Criterion Comments
+Recommendations
+Criterion  8.4.1.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation documents
+the improvements achieved
+and sustained.
+Criterion  8.4.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+This information leads to the
+development of processes to
+ensure that quality is
+sustained.
+Page 13 of
+ 13 Page 13 of
+ 13 Page 13 of
+ 13 Page 13 of
+ 13 

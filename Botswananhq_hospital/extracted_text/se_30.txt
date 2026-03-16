@@ -1,0 +1,583 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 11 Page 1 of
+ 11 Page 1 of
+ 11 Page 1 of
+ 11 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+Page 2 of
+ 11 Page 2 of
+ 11 Page 2 of
+ 11 Page 2 of
+ 11 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+30.1 Resuscitation Committee
+30.1.1 Standard
+A resuscitation committee coordinates the management of resuscitation equipment,
+procedures, training and audit systems.
+Standard Intent: Resuscitation equipment and procedures need to be uniform throughout the
+organisation.  This requires:
+•       coordination among those who provide and maintain the equipment
+•       training (initial and on-going) of personnel to carry out procedures and to use the
+equipment
+•       ensuring the availability of the required equipment
+•       maintaining and monitoring equipment,  and
+•       ensuring that required drugs are available.
+  
+A competent individual who has the necessary knowledge and expertise with regard to
+resuscitation and the equipment required provides this coordination. The resuscitation
+coordinator should be a registered healthcare professional with at least Basic Life Support
+(BLS) or equivalent and have the necessary authority to be able to oversee and ensure the
+safe and efficient functioning of the resuscitation service throughout the institution.
+  
+ Deficiencies in the system regarding equipment, its use and the knowledge and skills
+required by those who carry out resuscitation are identified, documented and acted upon. 
+Each organisation identifies those members of personnel to be trained in emergency life-
+support, and the level of training (basic or advanced) appropriate to their role in the
+organisation.
+  
+The person(s) providing the training must be currently registered/accredited with a
+recognised body as a resuscitation trainer. Training in many instances can be outsourced.
+Criterion Comments
+Recommendations
+Criterion  30.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation establishes
+a Resuscitation Committee to
+advise on the required
+resuscitation equipment and
+procedures.
+Criterion  30.1.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Each committee member's
+responsibility for resuscitation
+is documented in a written job
+description.
+Page 3 of
+ 11 Page 3 of
+ 11 Page 3 of
+ 11 Page 3 of
+ 11 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+Criterion  30.1.1.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A suitably qualified and
+experienced health
+professional is appointed as
+the resuscitation coordinator.
+Criterion  30.1.1.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The medical equipment
+coordinator is on the
+committee.
+Criterion  30.1.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A person designated to be a
+resuscitation coordinator
+provides information,
+instruction and training on
+resuscitation to the personnel
+of the organisation.
+Criterion  30.1.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The committee checks and
+documents that systems for
+the provision of emergency
+power are regularly checked.
+Criterion  30.1.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The committee checks and
+documents that the the
+supply of gases and vacuum
+are regularly checked.
+Page 4 of
+ 11 Page 4 of
+ 11 Page 4 of
+ 11 Page 4 of
+ 11 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+Criterion  30.1.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A member of the resuscitation
+committee visits (at least
+monthly) all clinical
+departments where
+resuscitation equipment is
+used to monitor all aspects
+relating to resuscitation and
+equipment.
+Criterion  30.1.1.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Records of these visits are
+kept, with reports on
+problems experienced, advice
+given and any remedial action
+taken.
+Criterion  30.1.1.10
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures
+relating to the acquisition,
+maintenance and checking of
+resuscitation equipment are
+implemented.
+Page 5 of
+ 11 Page 5 of
+ 11 Page 5 of
+ 11 Page 5 of
+ 11 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+30.2 Equipment and Medications
+30.2.1 Standard
+Essential resuscitation equipment and medications are available for each patient
+care area.
+Standard Intent: The resuscitation committee ensures that the correct equipment is available for
+resuscitation. This requires agreeing to and listing those items of equipment deemed to be
+necessary for resuscitation. 
+  
+A resuscitation trolley should be available within one minute of any patient. The resuscitation
+committee or equivalent ensures that each patient care area has access to a defibrillator or
+automated external defibrillator (AED) within three minutes of any collapsed patient. 
+  
+Resuscitation equipment, with paediatric sizes where applicable, includes at least:
+•                A defibrillator with adult paddles/pads (and infant paddles/pads where applicable)
+•                An ECG monitor
+•                A CPR board (if required, e.g. not required for certain types of beds such as ICU or
+certain trauma beds)
+•                Suction apparatus (electrical and/or alternative) plus range of soft and hard suction
+catheters
+•                A bag-valve-mask manual ventilator
+•                Range of endotracheal tubes and  two laryngoscopes with a range of straight and
+curved blades, spare batteries, spare globes, where applicable
+•                Introducer/stylet for endotracheal intubation
+•                Syringe to inflate ETT cuff
+•                Oropharyngeal tubes
+•                Equipment to perform an emergency cricothyroidotomy, either by needle or
+surgically.
+•                Appropriate facilities for intravenous therapy and drug administration (including
+paediatric sizes)
+•                Medication for cardiac arrest, coma, seizures, anaphylactic shock, etc. (including
+paediatric doses),  and
+•                Intravenous fluids, including plasma expanders.
+  
+Members of the committee ensure that regular equipment checks are carried out. 
+Individuals in patient care areas are responsible for the checking of resuscitation equipment
+daily, or after each use, whichever comes first. Records of these tests are maintained.
+Documented policies and procedures detailing what these checks will encompass and who
+will be responsible for their implementation should be in place. Documented policy and
+procedures as well as evidence in the form of a visitation logbook or similar record system
+are required.
+  
+Proper checklists need to be available and should indicate both the recommended minimum
+quantities and the quantities actually present. These checks must also include expiry dates
+with regard to all limited lifespan items such as medication, ECG electrodes, tubes,
+catheters, etc.
+Criterion Comments
+Recommendations
+Page 6 of
+ 11 Page 6 of
+ 11 Page 6 of
+ 11 Page 6 of
+ 11 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+Criterion  30.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has an
+updated list of equipment
+required for resuscitation in
+each area, including items as
+listed in the intent statement.
+Criterion  30.2.1.2
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The committee ensures that
+resuscitation equipment is
+readily accessible to every
+patient care area in the
+organisation.
+Criterion  30.2.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The committee checks and
+documents that resuscitation
+equipment and drugs are
+checked daily, or immediately
+after use, by persons
+identified to be responsible
+for this.
+Page 7 of
+ 11 Page 7 of
+ 11 Page 7 of
+ 11 Page 7 of
+ 11 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+30.3 Education and Training
+30.3.1 Standard
+All personnel are suitably trained and educated to provide resuscitation and
+competencies are regularly measured.
+Standard Intent: It is the responsibility of the management to ensure that training and education
+needs for resuscitation are identified, that appropriate training and education are provided,
+and that personnel show proof of competence.
+  
+The standards do not specify levels of training as this will be decided on by management
+and included in the policy framework/continuing education strategy.  Every person employed
+in a hospital should be trained in at least basic CPR and their on-going competence tested
+at intervals specified in facility policy.
+  
+Evidence of training of different levels of personnel is required to assess compliance. It is
+recommended that 80% of the clinical staff complement on duty in patient care units have
+been trained.
+Criterion Comments
+Recommendations
+Criterion  30.3.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The Resuscitation Committee
+develops a continuing
+education strategy to ensure
+that all personnel in the
+organisation are trained in
+cardio-pulmonary
+resuscitation.
+Criterion  30.3.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is evidence that all
+members of the Resuscitation
+Committee, as well as
+relevant personnel, attend
+courses and seminars on
+resuscitation and that records
+of attendance are kept.
+Criterion  30.3.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+New healthcare professionals
+employed in clinical
+wards/units are provided with
+resuscitation training within
+one month of appointment.
+Page 8 of
+ 11 Page 8 of
+ 11 Page 8 of
+ 11 Page 8 of
+ 11 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+Criterion  30.3.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The continuing education
+strategy ensures that
+resuscitation training of
+personnel is kept current.
+Criterion  30.3.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Dated records are kept of
+attendance at in-service
+training programmes.
+Criterion  30.3.1.6
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a mechanism
+whereby personnel show
+proficiency in resuscitation
+techniques.
+Page 9 of
+ 11 Page 9 of
+ 11 Page 9 of
+ 11 Page 9 of
+ 11 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+30.4 Quality Improvement
+30.4.1 Standard
+A formalised proactive quality improvement approach is maintained in the
+resuscitation service.
+Standard Intent: This refers to the implementation of organisational quality improvement
+processes (Service Element 8). 
+  
+It is the responsibility of management of the organisation to ensure that standards are set
+throughout the organisation.  Within each department or service, it is the responsibility of
+managers to ensure that standards are set for the particular department. This requires
+coordination with the organisation's central/management/coordinating quality improvement
+structures or systems. Departmental managers use available data and information to identify
+priority areas for quality monitoring and improvement.
+  
+Quality monitoring could include:
+a)         Clinical audits on resuscitations performed and documented evidence of remedial
+actions undertaken
+b)         Progress made in the number of staff members trained according to the education
+strategy
+c)         Monitoring adherence to policies and procedures with regard to daily checking of the
+emergency trolleys
+d)         Monitoring the frequency and causes of adverse events related to the operations of the
+resuscitation service
+e)         Monitoring the frequency of resuscitations and why these patients were not identified
+pre-arrest, and
+f)          The minimum requirement would be the evaluation of resuscitation events.
+    The following will be evaluated:
+•                problems identified in this service for which quality improvement activities were
+initiated
+•                the processes put in place to resolve the problems
+•                the identification of indicators to measure improvement
+•                the tool(s) used to evaluate these indicators
+•                the monitoring of these indicators and corrective steps taken when goals were not
+achieved, and
+•                graphed and/or tabled results, as appropriate.
+Criterion Comments
+Recommendations
+Criterion  30.4.1.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are formalised quality
+improvement processes for
+the service that have been
+developed and agreed upon
+by the personnel of the
+service.
+Criterion  30.4.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Indicators of performance are
+identified to evaluate the
+quality of the service.
+Page 10 of
+ 11 Page 10 of
+ 11 Page 10 of
+ 11 Page 10 of
+ 11 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+30.Resuscitation System
+Criterion  30.4.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The quality improvement
+cycle includes the monitoring
+and evaluation of the
+standards set and the
+remedial action implemented.
+Criterion  30.4.1.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A documentation audit
+system is in place.
+Page 11 of
+ 11 Page 11 of
+ 11 Page 11 of
+ 11 Page 11 of
+ 11 

@@ -27,6 +27,25 @@ const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSe
           const nameLower = (sec.name || '').toLowerCase().trim();
           const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
           const isSectionLocked = !isADSection && !isADComplete;
+	  
+	          const label = (() => {
+	            const raw = sec.name || '';
+	            if (!raw) return '';
+	            const upper = raw.toUpperCase();
+	            // If already starts with SE, just use it
+	            if (upper.trim().startsWith('SE')) return raw.trim();
+	            // Try to derive SE code from HOSP patterns
+	            const hospMatch = upper.match(/HOSP[_\s-]*(SE)?(\d+(?:\.\d+)*)/);
+	            if (hospMatch) {
+	              const numPart = hospMatch[2];
+	              const seToken = `SE${numPart}`;
+	              const rest = raw
+	                .slice(hospMatch.index + hospMatch[0].length)
+	                .replace(/^[\s\-_:]+/, '');
+	              return rest ? `${seToken} ${rest}` : seToken;
+	            }
+	            return raw.trim();
+	          })();
 
           return (
             <li
@@ -36,7 +55,7 @@ const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSe
               title={isSectionLocked ? "Please complete Assessment Details first" : ""}
             >
               <div className="section-info">
-                <span>{sec.code ? `${sec.code} ${sec.name}` : sec.name}</span>
+	                <span>{label}</span>
                 {isSectionLocked && <span className="lock-badge">🔒</span>}
               </div>
               <span className="status">{sec.fields.length}</span>

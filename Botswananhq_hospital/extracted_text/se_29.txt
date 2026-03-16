@@ -1,0 +1,979 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 17 Page 1 of
+ 17 Page 1 of
+ 17 Page 1 of
+ 17 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Page 2 of
+ 17 Page 2 of
+ 17 Page 2 of
+ 17 Page 2 of
+ 17 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+29.1 Management of the Service
+29.1.1 Standard
+The maintenance service is managed to ensure the provision of a safe and effective
+service.
+Standard Intent: An individual, who is suitably qualified and with proven competence, is
+appointed to manage the service. The accountabilities and responsibilities of this individual
+are clearly defined.
+  
+The manager possesses documentation outlining relevant laws, regulations and other
+requirements applicable to the organisation's facilities.
+  
+The national legislation referred to in criterion 29.1.1.5 is that which relates to safety of the
+buildings, plant , machinery, electrical installations, water supplies and any other
+components of the physical facility that require specific legally-mandated attention, such as
+mandatory safety inspections, etc.
+Criterion Comments
+Recommendations
+Criterion  29.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A designated individual is
+assigned responsibility for
+management of the service.
+Criterion  29.1.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The responsibilities of the
+manager are defined in
+writing.
+Criterion  29.1.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The maintenance manager
+identifies the requirements of
+the organisation's
+maintenance programme
+which informs the budgeting
+process.
+Page 3 of
+ 17 Page 3 of
+ 17 Page 3 of
+ 17 Page 3 of
+ 17 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.1.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The manager works with the
+multidisciplinary team to
+develop and implement risk
+management systems
+according to organisation
+policy.
+Criterion  29.1.1.5
+Critical: ¨
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Policies and procedures to
+enable the organisation to
+comply with national
+legislation are implemented.
+29.1.2 Standard
+There is an adequate number of suitably qualified and/or experienced personnel to
+provide a safe and effective service.
+Standard Intent: Management ensures that there is an adequate number of competent
+personnel available to manage routine and emergency functions to meet the needs of a safe
+and effective health service. Personnel may be in the employ of the organisation or
+contracted out. Where contracted personnel are utilised, there need to be clear contracts
+which outline their responsibilities. Personnel need to have their roles clearly defined and
+management needs to ensure that they maintain competence.
+Criterion Comments
+Recommendations
+Criterion  29.1.2.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are sufficient, suitably
+trained and/or experienced
+personnel to manage the
+organisation's buildings, plant
+and machinery.
+Criterion  29.1.2.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 2
+Moderate
+Where there are no in-house
+personnel to perform these
+functions, the services of
+consultants/service providers
+are utilised.
+Page 4 of
+ 17 Page 4 of
+ 17 Page 4 of
+ 17 Page 4 of
+ 17 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.1.2.3
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Names of specialist service
+contractors for buildings,
+plant and machinery are
+available, with their locations,
+telephone numbers and the
+responsible persons
+specified.
+Criterion  29.1.2.4
+Critical: þ
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a system for the
+provision of emergency
+technical backup, twenty four
+(24) hours a day, seven (7)
+days a week.
+Page 5 of
+ 17 Page 5 of
+ 17 Page 5 of
+ 17 Page 5 of
+ 17 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+29.2 Facility Management
+29.2.1 Standard
+The organisation provides planned maintenance and replacement processes, to
+ensure the safety of facilities, plant and machinery.
+Standard Intent: The first consideration for any physical facility is the laws, regulations and
+other requirements related to that facility.  Such requirements may differ depending on the
+age of the facility, the location of the facility and other factors.  The organisation's leaders,
+including governance and senior management, are responsible for knowing what national
+and local laws, regulations and other requirements are applicable to the organisation's
+facilities, and for implementing the applicable requirements.
+  
+Prevention and planning are essential to creating a safe and supportive patient care facility.
+The organisation's leaders, including governance and senior management, are responsible
+for planning and budgeting for the necessary upgrading or replacement and for showing
+progress made in meeting those plans.  It should be evident that available resources are
+optimally utilised in providing a safe, effective and efficient facility.
+  
+The maintenance manager ensures that organisational policies and procedures are
+implemented.  These policies comply with current legislation.
+  
+Monitoring essential systems helps the organisation to prevent problems and provides the
+information necessary to make decisions on system improvements and to plan for the
+upgrading or replacement of utility systems.  
+Criterion Comments
+Recommendations
+Criterion  29.2.1.1
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The facility has a documented
+preventive maintenance
+management programme or
+systems in place.
+Criterion  29.2.1.2
+Critical: þ
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department holds
+regular, documented, current
+and accurate inspections of
+its physical facility, plant and
+machinery.
+Page 6 of
+ 17 Page 6 of
+ 17 Page 6 of
+ 17 Page 6 of
+ 17 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.2.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The inspection identifies
+remedial action required to
+address situations that could
+have an impact on health and
+safety issues.
+Criterion  29.2.1.4
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Air-conditioning is installed in
+theatres and sterilising
+departments and is tested
+and maintained.
+Criterion  29.2.1.5
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Temperature and ventilation
+control mechanisms are
+installed and maintained in
+the pharmacies, kitchens,
+laundries and other relevant
+areas.
+Criterion  29.2.1.6
+Critical: þ
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Emergency generators are
+tested on full load according
+to manufacturers'
+specifications.
+Criterion  29.2.1.7
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There are site and floor plans
+that depict the locations and
+layout of the main services
+(viz. water, sanitation,
+electricity supply).
+Page 7 of
+ 17 Page 7 of
+ 17 Page 7 of
+ 17 Page 7 of
+ 17 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+29.2.2 Standard
+Medical gas systems are regularly inspected, maintained and, when appropriate,
+improved.
+Standard Intent: The organisation plans its needs for oxygen supplies according to the needs of
+the patients served.
+ 
+Policies and procedures are available and followed relating to the storage, testing and safety
+of gas supplies.
+  
+Gas cylinders are stored chained in the upright position in outside storage areas that have
+appropriate safety warning signs in the form of "no entry", "no naked flames", "no smoking"
+and, in the case of oxygen, "no oil".
+  
+Portable gas supplies are stored in appropriate brackets or specific holders, in designated
+areas only.
+  
+Emergency oxygen supplies ensure that the number of available outlet points meet patient
+needs. Where there is no piped oxygen and vacuum supply, there is at least one mobile
+oxygen supply and one suction machine per ward, and more depending on the number of
+beds/cots in the ward. All necessary fittings for oxygen and suction are suitable for all
+patients, including children, and are in good working condition.
+Criterion Comments
+Recommendations
+Criterion  29.2.2.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medical gases (oxygen,
+nitrous oxide and medical air)
+supplies are available
+according to the operational
+requirements of the
+institution.
+Criterion  29.2.2.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medical gas supply systems
+comply with safety standards.
+Criterion  29.2.2.3
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where there is piped gas, the
+enclosure, gas bank,
+pressure regulators, related
+control/alarm systems and all
+outlet points are clean and in
+good operating condition.
+Page 8 of
+ 17 Page 8 of
+ 17 Page 8 of
+ 17 Page 8 of
+ 17 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.2.2.4
+Critical: þ
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where there is piped gas, the
+main oxygen supply system is
+fitted with an alarm which
+operates automatically in the
+event of low pressure in the
+gas supplies and is regularly
+tested and documented.
+Criterion  29.2.2.5
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medical gas alarm systems
+are regularly tested and
+documented.
+Criterion  29.2.2.6
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Backup supplies of medical
+gases are available and
+strategically positioned to
+ensure timely deployment in
+emergencies.
+29.2.3 Standard
+Medical vacuum systems are regularly inspected, maintained and, when
+appropriate, improved.
+Standard Intent: The organisation plans its needs for vacuum supplies according to the needs
+of the patients served. 
+  
+Policies and procedures are available and followed relating to the testing and safety of
+pipeline vacuum systems and mobile/portable electric suction units.
+Vacuum systems are regularly tested in accordance with national arrangements or
+manufacturers' instructions.
+Criterion Comments
+Recommendations
+Criterion  29.2.3.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where there is a piped
+vacuum system, it is
+externally ventilated and able
+to provide sufficient suction to
+all piped vacuum points in the
+hospital.
+Page 9 of
+ 17 Page 9 of
+ 17 Page 9 of
+ 17 Page 9 of
+ 17 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.2.3.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where there is piped vacuum,
+backup facilities are provided.
+Page 10 of
+ 17 Page 10 of
+ 17 Page 10 of
+ 17 Page 10 of
+ 17 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+29.3 Emergency Preparedness
+29.3.1 Standard
+The organisation has a process, which is tested on a regular basis, to protect facility
+occupants in the event of water or electrical system disruption, contamination or
+failure.
+Standard Intent: The organisation needs to protect patients and personnel in emergencies such
+as system failure, interruption or contamination.
+  
+To prepare for such emergencies, the organisation identifies the equipment, systems and
+locations that pose the highest risk to patients and personnel.  For example it:
+•       Identifies, where there is a need for illumination, refrigeration, life-support, and clean
+water for cleaning and sterilisation supplies
+•       assesses and minimises the risks of total utility system failures in these areas
+•       tests the availability and reliability of emergency sources of  power and water, and
+•       documents the results of tests.
+  
+Water quality can change suddenly due to many causes, some of which can be outside the
+organisation, such as a break in the supply line to the organisation, or contamination of the
+city's water source.  An uninterrupted source of clean water is essential to meet patient care
+needs, both routine and urgent, 24 hours a day. Regular and alternate sources such as
+boreholes can be used. In the event of the overhead reservoir tank being the only alternative
+source, note that if the problem is due to contamination of the town's supply, then it is likely
+that the contents of the tank will also be contaminated. It is thus necessary to have
+contingency plans in place for the provision of drinkable water via tanker from some other
+source.
+  
+Water quality is also a critical factor in clinical care processes such as chronic renal
+dialysis.  Thus, the organisation establishes a process to regularly monitor water quality,
+including the regular biological testing of water used in chronic dialysis.  The frequency of
+monitoring is based in part on previous experience with water quality problems.  The
+monitoring can be carried out by individuals designated by the organisation, such as
+personnel from the clinical laboratory, or by public health or water control authorities outside
+the organisation.
+  
+An uninterrupted source of electricity is essential to meet patient care needs, both routine
+and urgent, 24 hours a day.  Regular and alternate sources can be used.
+Critical points to be lighted by emergency power are identified and listed.  These include:
+•       operating theatres and recovery rooms
+•       delivery rooms' lights and sockets
+•       strategic lights and sockets in ward corridors
+•       critical care wards
+•       the neonatal nursery,  and
+•       casualty and trauma areas.
+  
+Emergency electricity supplies:
+•       each bed/cot/crib is serviced by at least two electricity socket outlets
+•       each patient care area is provided with a socket outlet which is connected to the
+emergency power supply, provided that at least one emergency supply socket is available
+per three beds
+•       all emergency supply socket outlets are appropriately demarcated.
+  
+Records of all checks are available.
+Monitoring data are collected and documented for the medical utility management
+programme and monitoring data are used for the purposes of planning and improvement.
+Criterion Comments
+Recommendations
+Page 11 of
+ 17 Page 11 of
+ 17 Page 11 of
+ 17 Page 11 of
+ 17 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.3.1.1
+Critical: þ
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Electrical power is available
+24 hours a day, seven days a
+week, from regular or
+emergency sources.
+Criterion  29.3.1.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The areas and services at
+greatest risk when power fails
+have been identified and
+provision has been made for
+an emergency electrical
+supply.
+Criterion  29.3.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation ensures that
+relevant personnel are trained
+to use/operate electrical
+supply systems to access
+power in emergencies.
+Criterion  29.3.1.4
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Servicing and testing of the
+uninterruptible power supplies
+(UPS) and/or battery backup
+systems is documented.
+Criterion  29.3.1.5
+Critical: þ
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Regular and/or emergency
+water supplies, including
+drinkable water, are available
+24 hours a day, seven days a
+week.
+Page 12 of
+ 17 Page 12 of
+ 17 Page 12 of
+ 17 Page 12 of
+ 17 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.3.1.6
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Should the water supply be
+contaminated or interrupted,
+the areas and services at risk
+have been identified and
+provision has been made for
+an alternative water supply.
+Criterion  29.3.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Relevant personnel are
+trained to ensure that all
+operations to secure safe
+water are properly performed.
+Criterion  29.3.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+All water supplies are tested
+and the results are
+documented on a regular
+basis.
+Page 13 of
+ 17 Page 13 of
+ 17 Page 13 of
+ 17 Page 13 of
+ 17 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+29.4 Quality Improvement
+29.4.1 Standard
+A formalised proactive quality improvement approach is maintained in the service.
+Standard Intent: This refers to the implementation of organisational quality improvement
+processes (Service Element 8). 
+  
+It is the responsibility of management of the organisation to ensure that standards are set
+throughout the organisation. Within each department or service, it is the responsibility of
+managers to ensure that standards are set for the particular department. This requires
+coordination with the organisation's central/management/coordinating quality improvement
+structures or systems.  Departmental managers use available data and information to
+identify priority areas for quality monitoring and improvement.
+  
+Quality monitoring could include:
+a)         percentage of backlog in repairs
+b)         number of call backs (repeat-repairs)
+c)         number of preventive maintenance inspections done
+d)         number of call-outs
+e)         downtime on equipment/plant/machinery
+f)          personnel productivity indexes
+g)         number of negative incidents
+h)         number of operator errors, and
+i)           compliance to periodic operator maintenance schedule.
+  
+The following will be evaluated:
+•                problems identified in this service for which quality improvement activities were
+initiated
+•                the processes put in place to resolve the problems
+•                the identification of indicators to measure improvement
+•                the tool(s) used to evaluate these indicators
+•                the monitoring of these indicators and corrective steps taken when goals were not
+achieved
+•                graphed and/or tabled results, as appropriate.
+Criterion Comments
+Recommendations
+Criterion  29.4.1.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are formalised quality
+improvement processes for
+the service that have been
+developed and agreed upon
+by the personnel of the
+service.
+Criterion  29.4.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Indicators of performance are
+identified to evaluate the
+quality of the service.
+Page 14 of
+ 17 Page 14 of
+ 17 Page 14 of
+ 17 Page 14 of
+ 17 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.4.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The quality improvement
+cycle includes the monitoring
+and evaluation of the
+standards set, and remedial
+action implemented.
+29.5 Prevention and Control of Infection
+29.5.1 Standard
+The department/service implements infection prevention and control processes.
+Standard Intent: This refers to the implementation of organisational processes for infection
+prevention and control (Service Element 9).
+Criterion Comments
+Recommendations
+Criterion  29.5.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Infection control processes
+include prevention of infection
+by using appropriate
+protective clothing in high risk
+clinical areas.
+Criterion  29.5.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Infection control processes
+include effective hand
+washing procedures.
+Criterion  29.5.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department identifies the
+procedures and processes
+associated with the risk of
+infection and implements
+strategies to reduce risk.
+Page 15 of
+ 17 Page 15 of
+ 17 Page 15 of
+ 17 Page 15 of
+ 17 
+--- Page 16 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+29.6 Risk Management
+29.6.1 Standard
+The department/service implements risk management processes.
+Standard Intent: This refers to the implementation of organisational risk management
+processes (Service Element 7). 
+Criterion Comments
+Recommendations
+Criterion  29.6.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department conducts
+ongoing monitoring of risks
+through documented
+assessments as part of
+organisational risk
+management processes.
+Criterion  29.6.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A system for monitoring
+incidents/near
+misses/sentinel/adverse
+events is available and
+includes the documentation of
+interventions and responses
+to recorded incidents.
+Criterion  29.6.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Security measures are in
+place and are implemented to
+ensure the safety of patients,
+personnel and visitors.
+Criterion  29.6.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Fire safety measures are
+implemented.
+Page 16 of
+ 17 Page 16 of
+ 17 Page 16 of
+ 17 Page 16 of
+ 17 
+--- Page 17 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+29.Maintenance Service
+Criterion  29.6.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Organisation policy on
+handling, storing and
+disposing of healthcare waste
+is implemented.
+Page 17 of
+ 17 Page 17 of
+ 17 Page 17 of
+ 17 Page 17 of
+ 17 

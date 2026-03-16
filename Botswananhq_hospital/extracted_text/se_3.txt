@@ -1,0 +1,908 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 15 Page 1 of
+ 15 Page 1 of
+ 15 Page 1 of
+ 15 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Page 2 of
+ 15 Page 2 of
+ 15 Page 2 of
+ 15 Page 2 of
+ 15 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+3.1 Financial Management Support
+3.1.1 Standard
+Budgeting, reporting and auditing processes are consistent with statutory
+requirements and accepted standards.
+Standard Intent: Financial planning and management needs to be conducted by a person who
+is suitably qualified and experienced in all matters relating to the organisation's finances. 
+Clinical and other leaders need to be included in planning their financial requirements. They
+also require information relating to the funds available to them for the management of their
+departments and up-to-date statements of current expenditure.  Sound accounting and
+auditing practices are implemented to ensure transparency.
+  
+Financial managers improve their services through quality improvement methods.
+Criterion Comments
+Recommendations
+Criterion  3.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A designated financial
+manager is responsible for
+the implementation and
+maintenance of the financial
+strategy.
+Criterion  3.1.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The financial manager
+ensures that policies and
+procedures are available to
+guide the staff and that they
+are implemented.
+Criterion  3.1.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a mechanism for
+allowing the personnel to
+participate in the
+development and
+management of budgets (e.g.
+cost centres).
+Criterion  3.1.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A monthly report is produced
+for the organisation's
+management, setting out the
+financial position to date.
+Page 3 of
+ 15 Page 3 of
+ 15 Page 3 of
+ 15 Page 3 of
+ 15 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.1.1.5
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a mechanism for
+establishing the reason for
+budget variation in either
+income or expenditure.
+Criterion  3.1.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Annual financial statements
+are produced at the end of
+the financial year.
+Criterion  3.1.1.7
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Internal/external audit reports
+and responses thereto are
+available.
+Criterion  3.1.1.8
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a capital asset
+register which is routinely
+maintained.
+Criterion  3.1.1.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a capital asset
+replacement programme.
+Page 4 of
+ 15 Page 4 of
+ 15 Page 4 of
+ 15 Page 4 of
+ 15 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.1.1.10
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a mechanism to
+ensure that the level of
+debtors is kept to a minimum.
+3.2 Health Record Management
+3.2.1 Standard
+There is a system for the management of health records which meets the needs of
+confidentiality and safety.
+Standard Intent: Health record management must be implemented by a person with suitable
+training and experience. The manager controls the safe storage and retrieval of health
+records. Health records must be readily available each time the patient visits a healthcare
+professional, and therefore must be filed in such a way that they are easily identified. 
+Policies and procedures as well as managerial supervision ensure the safety and
+confidentiality of health records. Loss of information may be through electronic failure, fire,
+flood or natural or man made disasters. The organisation develops and implements a policy
+that guides the retention of health records and other data and information. Health records
+and other data and information are retained for sufficient periods to comply with laws and
+regulations and support patient care, the management of the organisation, legal
+documentation, research and education. The retention policy is consistent with the
+confidentiality and security of such information. When the retention period is complete,
+health records and other data and information are destroyed appropriately.
+  
+Facilities make more use of electronic systems, requiring these standards and criteria to be
+assessed appropriately in such instances. These electronic systems vary greatly in their
+application and can range from a simple spreadsheet which registers all patient
+admissions/folders to very sophisticated systems where the entire health record is kept
+electronically.
+  
+Often organisations do not have a single central location from where records are managed
+and it is important to apply the standards and criteria to all areas where health records are
+being handled, stored or archived. All these areas (that are under the control/management
+of the organisation) need to be assessed, even if located off-site, e.g. across the street, on
+an adjacent plot (within reasonable travelling distance). This assessment does not include
+warehouses of private companies to whom the archiving of records has been contracted as
+the service agreement/contract will have to make provision for the monitoring of compliance
+with specifications (refer to standard 1.2.7).
+Criterion Comments
+Recommendations
+Criterion  3.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A designated individual is
+responsible for the storage,
+maintenance and retrieval of
+health records.
+Page 5 of
+ 15 Page 5 of
+ 15 Page 5 of
+ 15 Page 5 of
+ 15 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.2.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The health record manager
+ensures that policies and
+procedures are available to
+guide the personnel and that
+they are implemented.
+Criterion  3.2.1.3
+Critical: þ
+Catg: Basic Management + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a written policy for
+addressing the privacy and
+confidentiality of information
+that is based on and
+consistent with laws and
+regulations.
+Criterion  3.2.1.4
+Critical: ¨
+Catg: Basic Process + Patient Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Originals of all reports by
+medical, nursing and other
+health professionals are filed
+in the records.
+Criterion  3.2.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A documented policy
+regarding records that are
+kept separately (e.g.
+psychiatric, social work,
+motor vehicle accidents) is
+implemented.
+Criterion  3.2.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a system that allows
+for the rapid retrieval and
+distribution of health records.
+Page 6 of
+ 15 Page 6 of
+ 15 Page 6 of
+ 15 Page 6 of
+ 15 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.2.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a communication
+system for the request of
+health records.
+Criterion  3.2.1.8
+Critical: ¨
+Catg: Basic Management + Patient
+Care
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation implements
+a policy regarding patients
+having access to their health
+information and the process
+for gaining access when
+permitted.
+Criterion  3.2.1.9
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is an effective
+monitoring system (e.g. by
+using tracer cards) whereby
+records can be traced within
+the facility at all times.
+Criterion  3.2.1.10
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The filing system allows for
+incorrectly filed records to be
+easily identified (e.g. by using
+colour coding).
+Criterion  3.2.1.11
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is provision for
+authorised access to health
+records at all times.
+Page 7 of
+ 15 Page 7 of
+ 15 Page 7 of
+ 15 Page 7 of
+ 15 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.2.1.12
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where electronic health
+records are used, there is a
+system to protect the integrity
+of the records.
+Criterion  3.2.1.13
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All storage areas for health
+records are secure against
+unauthorised entry.
+Criterion  3.2.1.14
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation's policy on
+the retention of health records
+and other data and
+information is implemented.
+Criterion  3.2.1.15
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Policies and procedures for
+health record destruction,
+specifying the criteria for
+selection and the method of
+destruction of records, are
+implemented.
+Page 8 of
+ 15 Page 8 of
+ 15 Page 8 of
+ 15 Page 8 of
+ 15 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+3.3 Procurement and Provisioning of Supplies
+3.3.1 Standard
+There is a system to ensure that equipment and supplies are ordered, available,
+stored and distributed from a central point.
+Standard Intent: A competent and qualified person ensures the effective administration of the
+provisioning department. This includes the timely ordering of equipment and supplies, safe
+storage, prevention and notification of losses, effective distribution to departments on
+request and maintenance of information relating to ordering, receipt, storage and distribution
+of equipment and supplies. Managers need to be assured that all equipment and supplies
+needed by departments will be immediately available on request.
+  
+Policies and procedures guide the processes of provisioning management.  Such policies
+could include the ordering of and the payment for supplies and equipment, the safe storage
+of supplies, condemning procedures and the security of order books, prescription pads and
+other face-value documents.
+  
+The organisation's leaders need to ensure that finances are made available for the purchase
+of those items of equipment and supplies which have been identified as needed by clinical
+and managerial leaders. The provisioning managers therefore need to work closely with the
+financial manager.
+  
+The high costs of hospital supplies and equipment make it essential that sound auditing
+practices are in place to ensure control of the financial aspects of provisioning. A
+management information system must track all inventory.  Expenditure on equipment and
+supplies is transparent and all records must be monitored and available to managers and
+auditors for accounting.
+Criterion Comments
+Recommendations
+Criterion  3.3.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+An individual is designated to
+control the ordering, storage,
+distribution and control of
+equipment and supplies used
+in the organisation.
+Criterion  3.3.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The provisioning manager
+ensures that policies and
+procedures are available to
+guide the personnel and that
+they are implemented.
+Page 9 of
+ 15 Page 9 of
+ 15 Page 9 of
+ 15 Page 9 of
+ 15 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.3.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A record is kept of goods
+received and goods issued.
+Criterion  3.3.1.4
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Records are audited.
+Criterion  3.3.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All losses are investigated,
+reported and recorded.
+Criterion  3.3.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is an inventory of all
+goods stored.
+Page 10 of
+ 15 Page 10 of
+ 15 Page 10 of
+ 15 Page 10 of
+ 15 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+3.3.2 Standard
+All equipment and supplies are safely stored.
+Standard Intent: The storage of equipment and supplies must allow for security, ease of access
+and effective inventory taking.  Acts and regulations, as well as policies and procedures,
+guide the storage of equipment and supplies.
+  
+The administrative support service ensures that supplies and provisions are ordered,
+received and provided to departments in time to meet their needs.
+  
+This standard is scored NA if the physical facility (central main store) does not exist, e.g. in
+small hospitals or private hospitals where ordered items go straight to ward/department on
+delivery.
+  
+Please note that 3.3.2.2 (storage of hazardous and flammable materials) applies to this
+central store ONLY. Criteria in other SEs should be used to assess such storage in other
+areas of the facility.
+Criterion Comments
+Recommendations
+Criterion  3.3.2.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Secure storage facilities are
+available.
+Criterion  3.3.2.2
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Hazardous and flammable
+materials are stored in
+accordance with relevant
+regulations.
+Criterion  3.3.2.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Separate designated storage
+areas for a) receiving and b)
+unpacking incoming goods
+are provided.
+Page 11 of
+ 15 Page 11 of
+ 15 Page 11 of
+ 15 Page 11 of
+ 15 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.3.2.4
+Critical: ¨
+Catg: Basic Process + Physical
+Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Arrangements, including
+alarm systems and door
+access controls, are used to
+provide security.
+Criterion  3.3.2.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is adequate storage
+space to enable the retrieval
+and removal of equipment
+and supplies, when needed.
+3.4 Use of Motor Vehicles
+3.4.1 Standard
+The use of organisational motor vehicles by personnel is planned and monitored to
+ensure safety and legality.
+Standard Intent: The use of vehicles needs to be controlled because of the cost of acquiring
+and maintaining vehicles and the legal aspects of driving motor vehicles and transporting
+passengers.
+Criterion Comments
+Recommendations
+Criterion  3.4.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A specific manager is
+identified for the control, use
+and maintenance of vehicles.
+Criterion  3.4.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The need to use transport is
+established by the
+management of the
+organisation in consultation
+with the users of vehicles and
+is reviewed annually.
+Page 12 of
+ 15 Page 12 of
+ 15 Page 12 of
+ 15 Page 12 of
+ 15 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.4.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a system for
+monitoring the use of vehicles
+(e.g. permission, records).
+Criterion  3.4.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a system for booking
+vehicles in advance.
+Criterion  3.4.1.5
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a control system for
+mileage travelled.
+Criterion  3.4.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a vehicle
+maintenance plan.
+Criterion  3.4.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is proof of vehicle
+maintenance.
+Page 13 of
+ 15 Page 13 of
+ 15 Page 13 of
+ 15 Page 13 of
+ 15 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.4.1.8
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is proof of current
+licensing of vehicles.
+Criterion  3.4.1.9
+Critical: þ
+Catg: Basic Process + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Drivers of vehicles are
+suitably licensed.
+3.4.2 Standard
+The organisation provides a medical transport/ambulance service in line with
+relevant laws and regulations.
+Standard Intent: A comprehensive response and deployment plan addresses the location of
+facilities and distribution of vehicles, personnel and other resources. These should be
+deployed in a way that optimises their use and provides uniform care across the area
+served. 
+Criterion Comments
+Recommendations
+Criterion  3.4.2.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation has a
+written response and
+deployment plan including the
+identification of response
+areas and availability of
+response units.
+Criterion  3.4.2.2
+Critical: þ
+Catg: Evaluation + Legality
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Response time standards are
+monitored against national
+laws, regulations, policies or
+guidelines.
+Page 14 of
+ 15 Page 14 of
+ 15 Page 14 of
+ 15 Page 14 of
+ 15 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+3.Administrative Support
+Criterion  3.4.2.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The organisation designs and
+implements processes to
+provide coordination of
+services among other
+organisations and agencies in
+the community.
+Criterion  3.4.2.4
+Critical: þ
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The individuals who provide
+patient care in the ambulance
+services have the required
+training and experience.
+Criterion  3.4.2.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation plans and
+implements processes for
+inspecting, testing and
+maintaining equipment and
+supplies.
+Criterion  3.4.2.6
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation maintains its
+medical transport/ambulance
+vehicles to reduce risk and
+promote safety.
+Criterion  3.4.2.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Medical transport/ambulance
+vehicles are clean.
+Page 15 of
+ 15 Page 15 of
+ 15 Page 15 of
+ 15 Page 15 of
+ 15 

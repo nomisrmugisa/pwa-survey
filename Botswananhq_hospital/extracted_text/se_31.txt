@@ -1,0 +1,922 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 15 Page 1 of
+ 15 Page 1 of
+ 15 Page 1 of
+ 15 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Page 2 of
+ 15 Page 2 of
+ 15 Page 2 of
+ 15 Page 2 of
+ 15 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+31.1 Medical Equipment Support
+31.1.1 Standard
+Adequate human resources are available for the Medical Equipment Management
+Services (MEMS) to ensure safety and the correct management, usage and
+operation of medical equipment.
+Standard Intent: Healthcare organisations have a responsibility to ensure that appropriate
+medical equipment is available and ready for use at all times.  Suitably qualified or trained
+individuals take responsibility for ensuring the provision, maintenance, checking and
+servicing of medical equipment.  These responsibilities are defined in writing.
+  
+There is an accountable systematic approach to ensure that cost-effective, safe, efficacious
+and appropriate medical equipment is available to meet the demands of quality patient care.
+  
+The mission and objectives of the organisation, level of technology and geographic location
+determine the scope of medical equipment support which may include:
+•                an in-house medical equipment management and maintenance service, or
+•                a medical equipment management and maintenance service at a national or district
+level, or
+•                the use of outside service providers for equipment maintenance and repairs.
+  
+The management of this service can only take place if there is adequate documentation of
+protocols to provide support and guidance.
+  
+Policies and procedures are developed in line with current legislation and include the
+acquisition, allocation, utilisation and technical support for MEMS.
+•           Policies and procedures relating to the acquisition of equipment include technical
+support requirements and spares, regulatory compliance (compliance with IEC [International
+Electrotechnical Commission]) and other international and/or national standards  and where
+are applicable for the equipment under consideration.
+•           Policies and procedures for equipment acquisition also consider compatibility with
+other equipment suitability for the stated clinical function(s), life cycle costing/cost of
+ownership, supplier evaluation, past experience and accessories.
+•           Policies and procedures relating to deployment of equipment include availability and
+preparation of facilities, installation and commissioning, safety checks, final acceptance
+checks, connectivity, integration, interfacing, user training and storage and usage of
+disposables/consumables with limited shelf life.
+  
+Where the organisation employs its own clinical engineering personnel (an in-house clinical
+engineering department) the medical equipment manager would refer to a clinical engineer,
+clinical engineering technician, medical equipment technician or other suitably trained and/or
+experienced person, as permitted by legislation.
+  
+Matters relating to healthcare technology and the management thereof normally fall within
+the general ambit of Clinical Engineering (CE). In-house CE departments (CEDs) vary in
+both size and level of capability according to the size and category of the institution
+concerned.
+  
+For the purposes of this document, the description "Clinical Engineering Department" (or its
+acronym "CED") shall be taken to mean any formally organised in-house facility or service
+intended to actively manage, maintain or repair medical and/or surgical equipment, devices
+and instrumentation regardless of the organisation's internal description for such a facility or
+service.
+  
+The onus is on the organisation's management to ensure that personnel are suitably
+qualified/competent and that CEDs are appropriately equipped to perform all functions
+expected of them. This should be according to any requirements as may be laid down by
+legislation and/or included in guidelines provided by relevant standards, organisations
+and/or recognised professional bodies.
+  
+Large tertiary-level institutions are likely to have a CED consisting of separate departments
+Page 3 of
+ 15 Page 3 of
+ 15 Page 3 of
+ 15 Page 3 of
+ 15 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+or workshops for each of the main equipment categories (e.g. anaesthesia-related, life-
+support and resuscitation, respiratory, surgical instrumentation and radiology). In some
+cases this level of CED serves the needs of a number of other hospitals as well as its own.
+  
+CEDs at smaller regional and district level hospitals may vary from small multidisciplinary
+workshops to a mere CE presence, the main functions of which would be to handle first line
+emergencies, implement risk management, monitor the activities of outside service
+providers and be involved in user training. This system may also apply in smaller private
+hospitals.
+  
+Whatever the size and complexity of the in-house CED, a suitably qualified and experienced
+person is responsible for ensuring the safety, correct management, usage and operation of
+the medical equipment within the institution concerned.
+Criterion Comments
+Recommendations
+Criterion  31.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A medical equipment
+maintenance manager is
+designated by the
+organisation.
+Criterion  31.1.1.2
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The responsibilities of the
+medical equipment
+maintenance manager are
+defined in writing.
+Criterion  31.1.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+A Multidisciplinary advisory
+committee is appointed to
+represent managers and
+clinical and technical
+personnel involved in the
+management and use of
+medical equipment.
+Criterion  31.1.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Members of the committee
+are appointed in writing
+based on their competence in
+the area of healthcare
+technology management.
+Page 4 of
+ 15 Page 4 of
+ 15 Page 4 of
+ 15 Page 4 of
+ 15 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Criterion  31.1.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The responsibilities of the
+committee are documented.
+Criterion  31.1.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The committee meets
+regularly to discuss and
+advise on issues relating to
+healthcare technology
+management and these
+meetings are minuted.
+Criterion  31.1.1.7
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The committee has ready
+access to a reliable source of
+expertise relating to
+healthcare technology.
+Page 5 of
+ 15 Page 5 of
+ 15 Page 5 of
+ 15 Page 5 of
+ 15 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+31.2 Medical Equipment Management
+31.2.1 Standard
+Medical equipment is managed and maintained throughout the organisation.
+Standard Intent: To ensure that medical equipment is available for use and is functioning
+properly the organisation:
+•       performs an audit on available medical equipment
+•       takes an inventory of medical equipment which includes description, make,
+manufacturer, model, serial number, tracing number, date of purchase, purchase price, list
+of accessories, supplier details and guarantee expiry dates.
+•       conducts regular inspections of medical equipment
+•       tests medical equipment, as appropriate to its use and requirements,  and
+•       provides for a preventive maintenance plan.
+  
+Equipment is inspected and tested when new and then on an on-going basis as appropriate
+to the age and use of the equipment or based on the manufacturer's instructions. 
+Inspections, testing results and any maintenance are documented.  This helps to ensure the
+continuity of the maintenance process and helps when capital planning for replacements,
+upgrades and other changes is being undertaken.
+Criterion Comments
+Recommendations
+Criterion  31.2.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+An audit of medical
+equipment is conducted.
+Criterion  31.2.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a comprehensive
+inventory of all medical
+equipment which lists
+equipment type, make,
+model, serial number,
+location and supplier/service
+provider, date of purchase
+and service requirements.
+Criterion  31.2.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Operator and/or service
+manuals are available to
+operators and technicians at
+all times.
+Page 6 of
+ 15 Page 6 of
+ 15 Page 6 of
+ 15 Page 6 of
+ 15 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Criterion  31.2.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Initial commissioning records
+are available for all high-risk
+medical equipment which
+include details of tests
+performed and training given.
+Criterion  31.2.1.5
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The organisation plans and
+implements a planned
+preventive inspection and
+maintenance system
+according to the service
+requirements specified by the
+manufacturers.
+Criterion  31.2.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a service history for
+each piece of equipment
+which includes signed and
+dated job-cards detailing all
+procedures carried out, parts
+fitted, etc.
+Criterion  31.2.1.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Departmental managers have
+access to information on
+service and repairs of
+equipment.
+Criterion  31.2.1.8
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A documented system,
+known to all relevant persons,
+is in place which addresses
+the provision of basic
+technical support in first-line
+emergency situations.
+Page 7 of
+ 15 Page 7 of
+ 15 Page 7 of
+ 15 Page 7 of
+ 15 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+31.3 Personnel Training
+31.3.1 Standard
+There are systems in place to ensure that all users of medical equipment and
+devices are competent in the use thereof.
+Standard Intent: The complexity of medical equipment requires that all users and operators
+receive training and education in its operation. Also those ancillary personnel who impact on
+technology utilisation and/or availability (e.g. stores department personnel) should receive
+basic appropriate training, which may include identification of medical equipment, devices,
+accessories and common spare parts.
+  
+All personnel need to be trained in risk management, infection control and resuscitation.
+Those persons involved in medical equipment management participate in the organisation's
+in-service training programme on these issues and also ensure that education and training
+are provided, which is specific for their own department.
+  
+The organisation has a responsibility to facilitate professional development and competence
+of its personnel in matters relating to medical equipment management and personnel have a
+responsibility to maintain their own competence and current knowledge.
+Criterion Comments
+Recommendations
+Criterion  31.3.1.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Training is provided for all
+users of basic medical
+equipment with a record of all
+such training given and
+successfully completed.
+Criterion  31.3.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Training is provided for all
+users of complex and/or
+critical life-support equipment
+with a record of all such
+training given and
+successfully completed.
+Criterion  31.3.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+All users of medical
+equipment are provided with
+training in basic infection
+control and decontamination
+procedures.
+Page 8 of
+ 15 Page 8 of
+ 15 Page 8 of
+ 15 Page 8 of
+ 15 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Criterion  31.3.1.4
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Training in basic electrical
+safety is provided to all
+personnel involved in the use
+of electrically-operated
+equipment.
+Criterion  31.3.1.5
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where clinical engineering
+personnel are employed, they
+are provided with appropriate
+training in respect of all
+medical equipment, devices
+and instruments which they
+are expected to maintain
+and/or repair.
+Criterion  31.3.1.6
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Where clinical engineering
+personnel are employed, they
+are encouraged and assisted
+by management to attend
+seminars, congresses,
+conferences and training
+sessions which could improve
+their knowledge of and
+proficiency in medical
+technology matters.
+Page 9 of
+ 15 Page 9 of
+ 15 Page 9 of
+ 15 Page 9 of
+ 15 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+31.4 Equipment Safety
+31.4.1 Standard
+Where clinical engineering personnel are employed, systems are in place to ensure
+safe working conditions and the safety of equipment in clinical engineering
+workshops.
+Standard Intent: Personnel ensure that equipment is tested and maintained in a safe working
+environment. Risk management includes identifying possible hazards to both patients and
+personnel and formulating and implementing processes or procedures that could minimise
+the risks associated with these hazards. Those working with equipment are responsible for
+ensuring that the environment is safe.
+  
+Such hazards can arise from faulty or out-of-calibration equipment or user error as a result
+of unfamiliarity with the operation of a specific device. It is the responsibility of those working
+with equipment to ensure that both it and the environment are safe.
+  
+Regardless of whether there is an in-house clinical engineering department/service or not
+the medical equipment management committee, together with the management of the
+organisation, is responsible for ensuring that safety standards are maintained.
+  
+It is of the utmost importance to note that safety and risk management considerations go
+beyond just the medical devices themselves and include all hazards associated with the
+usage, maintenance, repair, storage and disposal of such devices/equipment with regard to
+the patient, user/operator, other personnel and the general public. Examples of such
+hazards would include gases such as ethylene oxide, nitrous oxide, nitric oxide (and its by-
+product nitrogen dioxide), mercury, mercury vapour and the vapours of volatile anaesthetic
+agents and cleaning fluids such as benzene, trichloroethylene, thinners.
+  
+In order to ensure that personnel are aware of their responsibilities regarding the handling
+and disposal of hazardous substances it is necessary that they are familiar with both the
+possible dangers and the requirements of the relevant country-specific legislation. To this
+end personnel need to have ready access to pertinent documentation such as a toxicology
+or material safety data sheet (MSDS) for each substance and copies of all relevant acts,
+regulations and standards.
+  
+(MSDS: A fact sheet summarising information about material identification, hazardous
+ingredients, health, physical and fire hazards, first aid, chemical reactions and
+incompatibilities, spill, leak and disposal procedures, protective measures required for safe
+handling and storage).
+  
+Copies of relevant Acts and regulations would include those controlling the occupational
+health and safety, the hazardous substances and environment conservation.
+Criterion Comments
+Recommendations
+Criterion  31.4.1.1
+Critical: þ
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Clinical engineering
+personnel implement risk
+management processes in
+terms of the organisational
+risk management systems.
+Page 10 of
+ 15 Page 10 of
+ 15 Page 10 of
+ 15 Page 10 of
+ 15 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Criterion  31.4.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is an adequate
+scavenging system for the
+removal of nitrous oxide and
+volatile anaesthetic agents in
+the medical equipment
+workshop.
+Criterion  31.4.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where anaesthetic vaporisers
+are tested and serviced in the
+workshop, a suitable fume
+extraction chamber is
+provided.
+Criterion  31.4.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where extensive soldering
+work is undertaken, soldering
+stations are provided with a
+suitable fume extraction
+system.
+Criterion  31.4.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where volatile cleaning
+agents are used, an
+appropriate fume extraction
+chamber is provided for the
+safe dispersal of hazardous
+vapours, e.g. ether.
+Criterion  31.4.1.6
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The medical equipment
+workshop has adequate 15
+ampere surge-protected
+electrical power outlets.
+Page 11 of
+ 15 Page 11 of
+ 15 Page 11 of
+ 15 Page 11 of
+ 15 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Criterion  31.4.1.7
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The medical equipment
+workshop is fitted with air-
+conditioning capable of
+maintaining a year-round
+constant temperature of
+21 °C.
+31.5 Quality Improvement
+31.5.1 Standard
+A formalised proactive quality improvement approach is maintained in the service.
+Standard Intent: This refers to the implementation of organisational quality improvement
+processes (Service Element 8). 
+  
+It is the responsibility of management of the organisation to ensure that standards are set
+throughout the organisation. Within each department or service, it is the responsibility of
+managers to ensure that standards are set for the particular department. This requires
+coordination with the organisation's central/management/coordinating quality improvement
+structures/ or systems. Departmental managers use available data and information to
+identify priority areas for quality monitoring and improvement.
+  
+Quality monitoring could include:
+a)     frequency and duration of use
+b)    user acceptance
+c)     user training and training evaluation
+d)    equipment downtime
+e)     number and type of faults, failures, incidents,  and
+f)     cost-effectiveness.
+  
+The following will be evaluated:
+•         problems identified in this service for which quality improvement activities were initiated
+•         the processes put in place to resolve the problems
+•         the identification of indicators to measure improvement
+•         the tool(s) used to evaluate these indicators
+•         the monitoring of these indicators and corrective steps taken when goals were not
+achieved, and
+•         graphed and/or tabled results, as appropriate.
+Criterion Comments
+Recommendations
+Criterion  31.5.1.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are formalised quality
+improvement processes for
+the service that are
+developed and agreed upon
+by the personnel of the
+service.
+Page 12 of
+ 15 Page 12 of
+ 15 Page 12 of
+ 15 Page 12 of
+ 15 
+--- Page 13 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Criterion  31.5.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Indicators of performance are
+identified to evaluate the
+quality of the service.
+Criterion  31.5.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The quality improvement
+cycle includes the monitoring
+and evaluation of the
+standards set and remedial
+action implemented.
+31.6 Prevention and Control of Infection
+31.6.1 Standard
+The department/service implements infection prevention and control processes.
+Standard Intent: This refers to the implementation of organisational processes for infection
+prevention and control (Service Element 9). 
+Criterion Comments
+Recommendations
+Criterion  31.6.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department identifies the
+procedures and processes
+associated with the risk of
+infection and implements
+strategies to reduce risk.
+Criterion  31.6.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Infection control processes
+include prevention of infection
+by using appropriate
+protective clothing in high risk
+clinical area.
+Page 13 of
+ 15 Page 13 of
+ 15 Page 13 of
+ 15 Page 13 of
+ 15 
+--- Page 14 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Criterion  31.6.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Infection control processes
+include effective hand-
+washing
+procedures.
+31.7 Risk Management
+31.7.1 Standard
+The department/service implements risk management processes.
+Standard Intent: This refers to the implementation of organisational processes for risk
+management (Service Element 7).
+Criterion Comments
+Recommendations
+Criterion  31.7.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department conducts on-
+going monitoring of risks
+through documented
+assessments as part of
+organisational risk
+management processes.
+Criterion  31.7.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A system for the monitoring of
+negative incidents/near
+misses/ adverse (sentinel)
+events is available which
+includes the documentation of
+interventions and responses
+to recorded incidents.
+Criterion  31.7.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Security measures are in
+place and implemented to
+safeguard and protect
+personnel.
+Page 14 of
+ 15 Page 14 of
+ 15 Page 14 of
+ 15 Page 14 of
+ 15 
+--- Page 15 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+31.Medical Equipment Management Service
+Criterion  31.7.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Fire safety measures are
+implemented.
+Criterion  31.7.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Organisation policy on
+handling, segregation,
+storage and disposal of waste
+is implemented.
+Page 15 of
+ 15 Page 15 of
+ 15 Page 15 of
+ 15 Page 15 of
+ 15 

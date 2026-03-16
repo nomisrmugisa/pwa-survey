@@ -1,0 +1,684 @@
+--- Page 1 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+These forms are	designed to be used by both hospital personnel and external surveyors.  The following
+information must be provided	after each survey, before submitting the completed survey forms.
+ 
+1.NAME OF HOSPITAL/CLINIC/FACILITY:________________________________________________
+ 
+2.	BASELINE/INTERNAL SURVEY INFORMATION:
+Title and name of person who completed this	document: _________________________________________
+Post and position held: ____________________________________________________________________
+Date of survey: __________________________________________________________________________
+ 
+3.	EXTERNAL SURVEY	INFORMATION:
+Name of external surveyor: _________________________________________________________________
+Date of external survey:  ___________________________________________________________________
+ 
+N.B. Hospital staff are please to use BLACK ink at	all times.  The	external surveyors are requested to
+use	RED ink	at all times. 
+Please circle the rated	compliance with	the criterion, e.g. NA (Not applicable), NC (Non-compliant), PC
+(Partially compliant), C (Compliant).
+ 
+The	default	category affected is designated	on the form for	
+	each criterion as follows:
+1. patient and staff safety 
+2. legality 
+3. patient care 
+4. efficiency 
+5. structure 
+6. basic management 
+7. basic process 
+8. evaluation 
+ 
+The seriousness	of the default is designated on	the
+	form for each criterion	as follows:
+1. mild 
+2. moderate 
+3. serious 
+4. very	serious 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+GUIDE TO COMPLETION OF FORM
+Documents Checked
+ Surveyor: ..............................
+ Surveyor: ..............................
+Page 1 of
+ 12 Page 1 of
+ 12 Page 1 of
+ 12 Page 1 of
+ 12 
+--- Page 2 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+Page 2 of
+ 12 Page 2 of
+ 12 Page 2 of
+ 12 Page 2 of
+ 12 
+--- Page 3 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+25.1 Management
+25.1.1 Standard
+The sterilising and disinfecting unit (SDU) is managed to ensure the provision of a
+safe and effective service.
+Standard Intent: Departmental and service managers are primarily responsible for ensuring that
+the mission of the organisation is met through the provision of management and leadership
+at departmental level. Good departmental or service performances require clear leadership
+from a suitably qualified individual.  The responsibilities of each role in the department are
+defined in writing. Documents prepared by each department define its goals as well as
+identifying current and planned services. Lines of communication within each department
+are documented to ensure clear accountability.
+  
+Often the person in charge of the operating theatre assumes responsibility for the
+SDU/CSSD as well.  Where the unit is physically separated from the theatre suite this may
+not be possible and another person assumes this function.
+  
+The person in charge of the unit should preferably be a professional nurse who can liaise
+with surgeons and other operating theatre personnel regarding their needs.  This person
+should have knowledge of infection control processes and sterilising methods.
+  
+Policies and procedures are essential in a department to ensure that staff receive guidance
+in the functions carried out. Departmental policies may be standardised for similar
+departments, or unique to the particular department. They need to be indexed, available,
+signed, dated and have the authority of the organisational leaders. A system needs to be in
+place to ensure that departmental policies and procedures are known and implemented.
+Monitoring provides the information needed to ensure that the policies and procedures are
+adequately implemented and followed for all relevant services.
+  
+Of particular concern is that the policies or procedures should identify:
+•         how planning will occur
+•         the documentation required for the care team to work effectively
+•         special considerations
+•         monitoring requirements,  and
+•         special qualifications or skills of staff.
+  
+Policies and procedures should cover at least:
+a)     processes for cleaning sterilising equipment
+b)    ordering of sterile supplies from suppliers
+c)     receiving, checking and packing supplies received from the suppliers
+d)    storage of sterile supplies
+e)     recording of issues of stock and maintaining stock levels
+f)     ensuring that supplies are kept sterile
+g)    acting on incidents where the sterility of supplies has not been maintained
+h)     provision of emergency and after-hours sterile supply/sterilisation services
+i)      safe use of SDU equipment, including autoclaves
+j)      sterilisation of liquids
+k)     use of ethylene oxide.
+Criterion Comments
+Recommendations
+Page 3 of
+ 12 Page 3 of
+ 12 Page 3 of
+ 12 Page 3 of
+ 12 
+--- Page 4 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+Criterion  25.1.1.1
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A designated individual is
+responsible for the sterilising
+and disinfecting service.
+Criterion  25.1.1.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The manager ensures that
+policies and procedures,
+which include at least items
+a) to k) in the intent above,
+are available to guide the
+staff in the service and that
+they are implemented.
+Criterion  25.1.1.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The manager plans and
+implements an effective
+organisational structure to
+support his/her
+responsibilities and authority.
+Criterion  25.1.1.4
+Critical: ¨
+Catg: Basic Management +
+Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+The responsibilities of the unit
+manager are defined in
+writing.
+Page 4 of
+ 12 Page 4 of
+ 12 Page 4 of
+ 12 Page 4 of
+ 12 
+--- Page 5 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+25.2 Facilities and Equipment
+25.2.1 Standard
+The unit is designed to allow for effective sterilising and disinfecting of equipment
+and supplies.
+Standard Intent: Departmental managers need to work closely with organisational managers to
+ensure that facilities and equipment are adequate. Departmental managers keep
+organisational managers informed of facilities which are inadequate, additional equipment
+requirements and the current state of facilities and equipment.
+  
+Even in a small one-room unit, the separation of activity sites and the flow of work can be
+achieved by careful planning.  There should be a dedicated area for the cleaning of
+equipment and instruments. 
+Criterion Comments
+Recommendations
+Criterion  25.2.1.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The design of the sterilising
+and disinfecting unit and the
+layout of equipment ensure
+flow of work from the soiled to
+the clean side of the unit.
+Criterion  25.2.1.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a washing and
+decontamination area with
+clean running water and a
+sink connected to the sewage
+system.
+Criterion  25.2.1.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a pre-packing area
+with storage facilities for
+clean materials.
+Page 5 of
+ 12 Page 5 of
+ 12 Page 5 of
+ 12 Page 5 of
+ 12 
+--- Page 6 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+Criterion  25.2.1.4
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a storage area for
+sterile packs with racks which
+allow for an adequate
+circulation of air.
+Criterion  25.2.1.5
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Adequate light and ventilation
+are available.
+25.2.2 Standard
+Sterilising equipment is suited to its use.
+Standard Intent: There are many methods of sterilising equipment.  Whatever methods are
+used, staff members need to ensure that the equipment used is effective.  Systems must
+therefore be in place which will ensure that sterility is obtained through the sterilisation
+processes.
+  
+The number of autoclaves required will depend upon the size of the hospital and the
+services provided.  It will also depend upon how much is processed on site and how much is
+acquired pre-packed and sterilised. It will also depend on whether the needs of both the
+operating theatre suite and other departments/services are catered for.
+Criterion Comments
+Recommendations
+Criterion  25.2.2.1
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are one or more
+autoclaves or their
+equivalents capable of
+sterilising porous loads
+(gowns, drapes and
+dressings) as well as
+wrapped and unwrapped
+instruments.
+Page 6 of
+ 12 Page 6 of
+ 12 Page 6 of
+ 12 Page 6 of
+ 12 
+--- Page 7 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+Criterion  25.2.2.2
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Autoclaves are appropriate to
+their use and the
+manufacturer’s instructions
+are complied with.
+Criterion  25.2.2.3
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Sterilising equipment is
+included in the organisation’s
+equipment replacement and
+maintenance programme.
+Criterion  25.2.2.4
+Critical: ¨
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+Where liquids are sterilised,
+an autoclave with a fluid cycle
+and a reverse osmosis or
+distillation plant are also
+provided.
+Criterion  25.2.2.5
+Critical: þ
+Catg: Basic Management +
+Physical Struct
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Where ethylene oxide is used
+as a sterilising agent, the
+installation complies with
+relevant safety standards and
+legislation.6
+Criterion  25.2.2.6
+Critical: þ
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Autoclave sterilising ability is
+tested daily and the results
+thereof are recorded.
+Page 7 of
+ 12 Page 7 of
+ 12 Page 7 of
+ 12 Page 7 of
+ 12 
+--- Page 8 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+Criterion  25.2.2.7
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The sterility of each pack is
+shown on indicator tapes
+which are suited to the
+processes used.
+25.2.3 Standard
+The sterility of equipment and supplies is maintained.
+Standard Intent: Once sterility has been obtained, it is possible that this sterility may be lost in
+the storage, issue or distribution of sterile supplies. Systems need to be in place to ensure
+that packages reach the user sterile and intact.
+Criterion Comments
+Recommendations
+Criterion  25.2.3.1
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There is a mechanism to
+ensure that sterile supplies in
+stock are dated and used on
+a first in, first out basis.
+Criterion  25.2.3.2
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The maintenance of sterility is
+checked before any sterile
+packs are distributed.
+Criterion  25.2.3.3
+Critical: ¨
+Catg: Basic Process + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 3
+Serious
+There is a system for the
+ordering, storage,
+maintenance and distribution
+of sterile supplies.
+Page 8 of
+ 12 Page 8 of
+ 12 Page 8 of
+ 12 Page 8 of
+ 12 
+--- Page 9 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+25.3 Quality Improvement
+25.3.1 Standard
+A formalised proactive quality improvement approach is maintained in the service.
+Standard Intent: This refers to the implementation of organisational quality improvement
+processes (Service Element 8).
+  
+It is the responsibility of the management of the organisation to ensure that standards are
+set throughout the organisation.  Within each department or service, it is the responsibility of
+the managers to ensure that standards are set for that particular department. This requires
+coordination with the organisation's central/management/coordinating quality improvement
+structures or systems.  Departmental managers use available data and information to
+identify priority areas for quality monitoring and improvement.
+  
+Quality monitoring could include:
+a)     availability of required items for the departments/services
+b)    loss of instruments
+c)     loss of sterility of packs
+d)    handling complaints related to the service.
+Criterion Comments
+Recommendations
+Criterion  25.3.1.1
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+There are formalised quality
+improvement processes for
+the service that have been
+developed and agreed upon
+by the personnel of the
+service.
+Criterion  25.3.1.2
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Indicators of performance are
+identified to evaluate the
+quality of the service.
+Criterion  25.3.1.3
+Critical: ¨
+Catg: Evaluation + Efficiency
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The quality improvement
+cycle includes the monitoring
+and evaluation of the
+standards set and the
+remedial action implemented.
+Page 9 of
+ 12 Page 9 of
+ 12 Page 9 of
+ 12 Page 9 of
+ 12 
+--- Page 10 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+25.4 Prevention and Control of Infection
+25.4.1 Standard
+The department/service implements infection prevention and control processes.
+Standard Intent: This refers to the implementation of organisational processes for infection
+prevention and control (Service Element 9). 
+ 
+Criterion Comments
+Recommendations
+Criterion  25.4.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department identifies the
+procedures and processes
+associated
+with the risk of infection and
+implements strategies to
+reduce risk.
+Criterion  25.4.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Infection control processes
+include prevention of infection
+from contaminated
+instruments.
+Criterion  25.4.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Infection control processes
+include the provision and
+correct usage of
+disinfectants/bactericidal
+agents.
+Criterion  25.4.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Infection control processes
+include prevention of infection
+by the provision and correct
+use of personal protective
+equipment.
+Page 10 of
+ 12 Page 10 of
+ 12 Page 10 of
+ 12 Page 10 of
+ 12 
+--- Page 11 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+25.5 Risk Management
+25.5.1 Standard
+The department/service implements risk management processes.
+Standard Intent: This refers to the implementation of organisational risk management
+processes (Service Element 7). 
+Criterion Comments
+Recommendations
+Criterion  25.5.1.1
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+The department conducts on-
+going monitoring of risks
+through documented
+assessments as part of the
+organisational risk
+management processes.
+Criterion  25.5.1.2
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+A system for the monitoring of
+negative incidents/near
+misses/sentinel events is
+available and includes the
+documentation of
+interventions and responses
+to recorded incidents.
+Criterion  25.5.1.3
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Security measures are in
+place and implemented for
+the safeguarding and
+protection of staff.
+Criterion  25.5.1.4
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Fire safety measures are
+implemented.
+Page 11 of
+ 12 Page 11 of
+ 12 Page 11 of
+ 12 Page 11 of
+ 12 
+--- Page 12 ---
+ Assessment Instrument Document 
+ Date generated: 24/10/2014
+ 
+ 
+BOTSWANA NATIONAL HEALTH QUALITY
+STANDARDS FOR HOSPITALS
+25.Sterilising And Disinfecting Unit
+Criterion  25.5.1.5
+Critical: ¨
+Catg: Basic Process + Pat & Staff
+Safety
+Compliance
+ NA       NC        PC        C
+Default Severity for NC or PC = 4
+Very Serious
+Organisation policy on
+handling, storage,
+transporting and
+disposal of healthcare waste
+is implemented.
+Page 12 of
+ 12 Page 12 of
+ 12 Page 12 of
+ 12 Page 12 of
+ 12 

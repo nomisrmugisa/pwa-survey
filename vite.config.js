@@ -10,7 +10,8 @@ export default defineConfig({
     port: 5173,
     strictPort: true, // Fail if port is busy
     allowedHosts: true,
-    hmr: false,
+    hmr: true,
+
     proxy: {
       '/qims': {
         target: 'https://qimsdev.5am.co.bw',

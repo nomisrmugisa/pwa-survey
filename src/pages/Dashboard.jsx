@@ -5,12 +5,14 @@ import { useStorage } from '../hooks/useStorage';
 import { useUserAssessments } from '../hooks/useUserAssessments';
 import { SurveyPreview } from '../components/SurveyPreview.jsx';
 import indexedDBService from '../services/indexedDBService';
-import emsConfig from '../assets/ems_config.json';
-import mortuaryConfig from '../assets/mortuary_config.json';
-import clinicsConfig from '../assets/clinics_config.json';
-import emsLinks from '../assets/ems_links.json';
-import mortuaryLinks from '../assets/mortuary_links.json';
-import clinicsLinks from '../assets/clinics_links.json';
+	import emsConfig from '../assets/ems_config.json';
+	import mortuaryConfig from '../assets/mortuary_config.json';
+	import clinicsConfig from '../assets/clinics_config.json';
+	import hospitalConfig from '../assets/hospital_config.json';
+	import emsLinks from '../assets/ems_links.json';
+	import mortuaryLinks from '../assets/mortuary_links.json';
+	import clinicsLinks from '../assets/clinics_links.json';
+	import hospitalLinks from '../assets/hospital_links.json';
 import {
     Dialog,
     DialogTitle,
@@ -168,14 +170,19 @@ export function Dashboard() {
         }
     }, [storage.isReady, user]);
 
-    // Use custom config if available, otherwise fallback to imported JSON
-    const currentConfig = useMemo(() => {
-        return customEmsConfig || { ...emsConfig, ...mortuaryConfig, ...clinicsConfig };
-    }, [customEmsConfig]);
+	    // Use custom config if available, otherwise fallback to imported JSON
+	    const currentConfig = useMemo(() => {
+	        return customEmsConfig || { ...emsConfig, ...mortuaryConfig, ...clinicsConfig, ...hospitalConfig };
+	    }, [customEmsConfig]);
 
-    const currentLinks = useMemo(() => {
-        return customEmsLinks || { ems: emsLinks, mortuary: mortuaryLinks, clinics: clinicsLinks };
-    }, [customEmsLinks]);
+	    const currentLinks = useMemo(() => {
+	        return customEmsLinks || {
+	            ems: emsLinks,
+	            mortuary: mortuaryLinks,
+	            clinics: clinicsLinks,
+	            hospital: hospitalLinks,
+	        };
+	    }, [customEmsLinks]);
 
     // Filter events
     const filteredEvents = useMemo(() => {
@@ -348,7 +355,8 @@ export function Dashboard() {
                                                         )}
                                                     </div>
                                                 </div>
-                                                <p>Date: {assessment.sortDate} | Enr: {assessment.eventId} | TEI: {assessment.scheduleTeiId || assessment.trackedEntityInstance}</p>
+                                                <p>Date: {assessment.sortDate} | OU: {assessment.orgUnit} | Enr: {assessment.eventId} | TEI: {assessment.scheduleTeiId || assessment.trackedEntityInstance}</p>
+
                                             </div>
                                             <div className="form-actions">
                                                 <button
@@ -461,64 +469,82 @@ export function Dashboard() {
                     <div className="settings-content">
                         {!selectedSE && !showLinksEditor ? (
                             <>
-                                <div className="settings-section">
-                                    <h4>Service Element Configuration</h4>
-                                    <p className="settings-subtitle">EMS Standards (SE 1 - SE 10)</p>
-                                    <div className="se-config-list">
-                                        {(currentConfig.ems_full_configuration || []).map(se => (
-                                            <div
-                                                key={`ems-${se.se_id}`}
-                                                className="se-config-item clickable"
-                                                onClick={() => {
-                                                    setSelectedSE({ ...se, _type: 'ems' });
-                                                    setEditedJson(JSON.stringify(se, null, 2));
-                                                    setIsEditingJson(false);
-                                                }}
-                                            >
-                                                <span className="se-id-badge">SE {se.se_id}</span>
-                                                <span className="se-name-text">{se.se_name}</span>
-                                                <span className="chevron-right">›</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Mortuary Standards (SE 1 - SE 6)</p>
-                                    <div className="se-config-list">
-                                        {(currentConfig.mortuary_full_configuration || []).map(se => (
-                                            <div
-                                                key={`mort-${se.se_id}`}
-                                                className="se-config-item clickable"
-                                                onClick={() => {
-                                                    setSelectedSE({ ...se, _type: 'mortuary' });
-                                                    setEditedJson(JSON.stringify(se, null, 2));
-                                                    setIsEditingJson(false);
-                                                }}
-                                            >
-                                                <span className="se-id-badge">SE {se.se_id}</span>
-                                                <span className="se-name-text">{se.se_name}</span>
-                                                <span className="chevron-right">›</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Clinics Standards (SE 1 - SE 13)</p>
-                                    <div className="se-config-list">
-                                        {(currentConfig.clinics_full_configuration || []).map(se => (
-                                            <div
-                                                key={`clinics-${se.se_id}`}
-                                                className="se-config-item clickable"
-                                                onClick={() => {
-                                                    setSelectedSE({ ...se, _type: 'clinics' });
-                                                    setEditedJson(JSON.stringify(se, null, 2));
-                                                    setIsEditingJson(false);
-                                                }}
-                                            >
-                                                <span className="se-id-badge">SE {se.se_id}</span>
-                                                <span className="se-name-text">{se.se_name}</span>
-                                                <span className="chevron-right">›</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className="config-status-tag success" style={{ marginTop: '10px' }}>STABLE</div>
-                                </div>
+	                                <div className="settings-section">
+	                                    <h4>Service Element Configuration</h4>
+	                                    <p className="settings-subtitle">EMS Standards (SE 1 - SE 10)</p>
+	                                    <div className="se-config-list">
+	                                        {(currentConfig.ems_full_configuration || []).map(se => (
+	                                            <div
+	                                                key={`ems-${se.se_id}`}
+	                                                className="se-config-item clickable"
+	                                                onClick={() => {
+	                                                    setSelectedSE({ ...se, _type: 'ems' });
+	                                                    setEditedJson(JSON.stringify(se, null, 2));
+	                                                    setIsEditingJson(false);
+	                                                }}
+	                                            >
+	                                                <span className="se-id-badge">SE {se.se_id}</span>
+	                                                <span className="se-name-text">{se.se_name}</span>
+	                                                <span className="chevron-right">›</span>
+	                                            </div>
+	                                        ))}
+	                                    </div>
+	                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Hospital Standards (SE 1 - SE 38)</p>
+	                                    <div className="se-config-list">
+	                                        {(currentConfig.hospital_full_configuration || []).map(se => (
+	                                            <div
+	                                                key={`hospital-${se.se_id}`}
+	                                                className="se-config-item clickable"
+	                                                onClick={() => {
+	                                                    setSelectedSE({ ...se, _type: 'hospital' });
+	                                                    setEditedJson(JSON.stringify(se, null, 2));
+	                                                    setIsEditingJson(false);
+	                                                }}
+	                                            >
+	                                                <span className="se-id-badge">SE {se.se_id}</span>
+	                                                <span className="se-name-text">{se.se_name}</span>
+	                                                <span className="chevron-right">›</span>
+	                                            </div>
+	                                        ))}
+	                                    </div>
+	                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Mortuary Standards (SE 1 - SE 6)</p>
+	                                    <div className="se-config-list">
+	                                        {(currentConfig.mortuary_full_configuration || []).map(se => (
+	                                            <div
+	                                                key={`mort-${se.se_id}`}
+	                                                className="se-config-item clickable"
+	                                                onClick={() => {
+	                                                    setSelectedSE({ ...se, _type: 'mortuary' });
+	                                                    setEditedJson(JSON.stringify(se, null, 2));
+	                                                    setIsEditingJson(false);
+	                                                }}
+	                                            >
+	                                                <span className="se-id-badge">SE {se.se_id}</span>
+	                                                <span className="se-name-text">{se.se_name}</span>
+	                                                <span className="chevron-right">›</span>
+	                                            </div>
+	                                        ))}
+	                                    </div>
+	                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Clinics Standards (SE 1 - SE 13)</p>
+	                                    <div className="se-config-list">
+	                                        {(currentConfig.clinics_full_configuration || []).map(se => (
+	                                            <div
+	                                                key={`clinics-${se.se_id}`}
+	                                                className="se-config-item clickable"
+	                                                onClick={() => {
+	                                                    setSelectedSE({ ...se, _type: 'clinics' });
+	                                                    setEditedJson(JSON.stringify(se, null, 2));
+	                                                    setIsEditingJson(false);
+	                                                }}
+	                                            >
+	                                                <span className="se-id-badge">SE {se.se_id}</span>
+	                                                <span className="se-name-text">{se.se_name}</span>
+	                                                <span className="chevron-right">›</span>
+	                                            </div>
+	                                        ))}
+	                                    </div>
+	                                    <div className="config-status-tag success" style={{ marginTop: '10px' }}>STABLE</div>
+	                                </div>
                                 <div className="settings-section">
                                     <h4>Criteria Linking Configuration</h4>
                                     <p className="settings-subtitle">EMS Criteria dependencies and associations</p>
@@ -534,7 +560,20 @@ export function Dashboard() {
                                         <span className="se-name-text">View/Edit EMS Linked Criteria Map</span>
                                         <span className="chevron-right">›</span>
                                     </div>
-                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Mortuary Criteria dependencies and associations</p>
+	                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Hospital Criteria dependencies and associations</p>
+	                                    <div
+	                                        className="se-config-item clickable"
+	                                        onClick={() => {
+	                                            setShowLinksEditor('hospital');
+	                                            setEditedLinksJson(JSON.stringify(currentLinks.hospital || currentLinks, null, 2));
+	                                            setIsEditingLinks(false);
+	                                        }}
+		                                    >
+		                                        <span className="se-id-badge">HOSP LINKS</span>
+		                                        <span className="se-name-text">View/Edit Hospital Linked Criteria Map</span>
+		                                        <span className="chevron-right">›</span>
+		                                    </div>
+	                                    <p className="settings-subtitle" style={{ marginTop: '1rem' }}>Mortuary Criteria dependencies and associations</p>
                                     <div
                                         className="se-config-item clickable"
                                         onClick={() => {
@@ -589,12 +628,18 @@ export function Dashboard() {
                                                 variant="contained"
                                                 color="success"
                                                 onClick={() => {
-                                                    try {
-                                                        const parsed = JSON.parse(editedJson);
-                                                        // Update full config
-                                                        const newConfig = { ...currentConfig };
-                                                        const key = selectedSE._type === 'mortuary' ? 'mortuary_full_configuration' : (selectedSE._type === 'clinics' ? 'clinics_full_configuration' : 'ems_full_configuration');
-                                                        const index = newConfig[key].findIndex(se => se.se_id === selectedSE.se_id);
+	                                                    try {
+	                                                        const parsed = JSON.parse(editedJson);
+	                                                        // Update full config for the relevant programme type
+	                                                        const newConfig = { ...currentConfig };
+	                                                        const typeToKeyMap = {
+	                                                            ems: 'ems_full_configuration',
+	                                                            mortuary: 'mortuary_full_configuration',
+	                                                            clinics: 'clinics_full_configuration',
+	                                                            hospital: 'hospital_full_configuration',
+	                                                        };
+	                                                        const key = typeToKeyMap[selectedSE._type] || 'ems_full_configuration';
+	                                                        const index = newConfig[key].findIndex(se => se.se_id === selectedSE.se_id);
                                                         if (index !== -1) {
                                                             newConfig[key][index] = parsed;
                                                             setCustomEmsConfig(newConfig);
@@ -645,28 +690,52 @@ export function Dashboard() {
                                             >
                                                 Copy JSON
                                             </Button>
-                                            {customEmsConfig && (
-                                                <Button
-                                                    size="small"
-                                                    variant="outlined"
-                                                    color="error"
-                                                    onClick={() => {
-                                                        if (window.confirm('Are you sure you want to reset this SE to default?')) {
-                                                            const defaultConfig = emsConfig.ems_full_configuration.find(se => se.se_id === selectedSE.se_id);
-                                                            const newCustomConfig = { ...customEmsConfig };
-                                                            newCustomConfig.ems_full_configuration = newCustomConfig.ems_full_configuration.map(se =>
-                                                                se.se_id === selectedSE.se_id ? defaultConfig : se
-                                                            );
-                                                            setCustomEmsConfig(newCustomConfig);
-                                                            localStorage.setItem('custom_ems_config', JSON.stringify(newCustomConfig));
-                                                            setSelectedSE(defaultConfig);
-                                                            showToast('Reset to default', 'info');
-                                                        }
-                                                    }}
-                                                >
-                                                    Reset
-                                                </Button>
-                                            )}
+	                                            {customEmsConfig && (
+	                                                <Button
+	                                                    size="small"
+	                                                    variant="outlined"
+	                                                    color="error"
+	                                                    onClick={() => {
+	                                                        if (window.confirm('Are you sure you want to reset this SE to default?')) {
+	                                                            const typeToKeyMap = {
+	                                                                ems: 'ems_full_configuration',
+	                                                                mortuary: 'mortuary_full_configuration',
+	                                                                clinics: 'clinics_full_configuration',
+	                                                                hospital: 'hospital_full_configuration',
+	                                                            };
+	                                                            const key = typeToKeyMap[selectedSE._type] || 'ems_full_configuration';
+	                                                            const defaultSourceMap = {
+	                                                                ems: emsConfig,
+	                                                                mortuary: mortuaryConfig,
+	                                                                clinics: clinicsConfig,
+	                                                                hospital: hospitalConfig,
+	                                                            };
+	                                                            const defaultSource = defaultSourceMap[selectedSE._type] || emsConfig;
+	                                                            const defaultListKey = key;
+	                                                            const defaultConfig = (defaultSource[defaultListKey] || []).find(se => se.se_id === selectedSE.se_id);
+	
+	                                                            if (!defaultConfig) {
+	                                                                showToast('Default configuration not found for this SE.', 'error');
+	                                                                return;
+	                                                            }
+	
+	                                                            const newCustomConfig = { ...customEmsConfig };
+	                                                            if (!newCustomConfig[key]) {
+	                                                                newCustomConfig[key] = [...(currentConfig[key] || [])];
+	                                                            }
+	                                                            newCustomConfig[key] = newCustomConfig[key].map(se =>
+	                                                                se.se_id === selectedSE.se_id ? defaultConfig : se
+	                                                            );
+	                                                            setCustomEmsConfig(newCustomConfig);
+	                                                            localStorage.setItem('custom_ems_config', JSON.stringify(newCustomConfig));
+	                                                            setSelectedSE({ ...defaultConfig, _type: selectedSE._type });
+	                                                            showToast('Reset to default', 'info');
+	                                                        }
+	                                                    }}
+	                                                >
+	                                                    Reset
+	                                                </Button>
+	                                            )}
                                         </>
                                     )}
                                 </div>
