@@ -163,6 +163,17 @@
     margin-bottom: 0 !important;
 }
 
+.severity-pill {
+    background-color: #edf2f7;
+    color: #2d3748;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    border: 1px solid #cbd5e0;
+}
+
 .ems-info-icon {
     border: none;
     background-color: #2b3a8e;

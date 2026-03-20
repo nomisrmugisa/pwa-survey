@@ -1,24 +1,24 @@
-import React from 'react';
-import './Sidebar.css';
-
-const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSection, isADComplete }) => {
-  return (
-    <div className="sidebar">
-      <div className="sidebar-header">
-        <h3>Group</h3>
-        <select
-          className="category-select"
-          value={activeGroup?.id || ''}
-          onChange={(e) => {
-            const selected = groups.find(g => g.id === e.target.value);
-            onSelectGroup(selected);
-          }}
-        >
-          {groups.map(group => (
-            <option key={group.id} value={group.id}>{group.name}</option>
-          ))}
-        </select>
-      </div>
+		import React from 'react';
+		import './Sidebar.css';
+		
+		const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSection, isADComplete }) => {
+		  return (
+		    <div className="sidebar">
+		      <div className="sidebar-header">
+		        <h3>Group</h3>
+		        <select
+		          className="category-select"
+		          value={activeGroup?.id || ''}
+		          onChange={(e) => {
+		            const selected = groups.find(g => g.id === e.target.value);
+		            onSelectGroup(selected);
+		          }}
+		        >
+		          {groups.map(group => (
+		            <option key={group.id} value={group.id}>{group.name}</option>
+		          ))}
+		        </select>
+		      </div>
       <div className="sidebar-subheader">
         <h4>Sections</h4>
       </div>

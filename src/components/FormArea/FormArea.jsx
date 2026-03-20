@@ -15,6 +15,7 @@ import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
 import { normalizeCriterionCode } from '../../utils/normalization';
 import { createAssessmentSnapshot } from '../../utils/createAssessmentSnapshot';
+import { calculatePointsForLink } from '../../utils/scoring';
 
 // Build a fast lookup from criterion ID (e.g. "1.2.1.3") to its
 // standard statement, intent text, critical flag, and severity.
@@ -67,6 +68,20 @@ const DEFAULT_CRITERION_INDEX = buildCriterionIndex(emsConfig);
 
 // Shared utility normalizeCriterionCode is now imported
 
+const SEVERITY_LABELS = {
+    1: '1 – Minor',
+    2: '2 – Moderate',
+    3: '3 – Serious',
+    4: '4 – Very Serious',
+};
+
+const formatSeverityLabel = (severity) => {
+    if (severity === undefined || severity === null) return '';
+    const sevNumber = parseInt(severity, 10);
+    if (Number.isNaN(sevNumber)) return String(severity);
+    return SEVERITY_LABELS[sevNumber] || `Severity ${sevNumber}`;
+};
+
 const getCriterionTooltip = (code, links, index, scoreResult) => {
     const normalized = normalizeCriterionCode(code);
     if (!normalized) return '';
@@ -76,6 +91,30 @@ const getCriterionTooltip = (code, links, index, scoreResult) => {
     const parts = [];
     if (info.statement) parts.push(`Statement:\n${info.statement.trim().replace(/^Standard\s*/i, '')}`);
     if (info.intent) parts.push(`Intent:\n${info.intent.trim()}`);
+    if (info.severity !== undefined && info.severity !== null) {
+        const sevLabel = formatSeverityLabel(info.severity);
+        if (sevLabel) {
+            parts.push(`Severity:\n${sevLabel}`);
+        }
+
+        // Explain how this severity level influences scoring thresholds
+        const sevNumber = parseInt(info.severity, 10);
+        if (!Number.isNaN(sevNumber)) {
+            const cPts = calculatePointsForLink('C', sevNumber);
+            const pcPts = calculatePointsForLink('PC', sevNumber);
+            const ncPts = calculatePointsForLink('NC', sevNumber);
+
+            if (cPts !== null && pcPts !== null && ncPts !== null) {
+                parts.push(
+                    `Severity impact on scoring:\n` +
+                    `• C (Compliant): about ${cPts} pts\n` +
+                    `• PC (Partial): about ${pcPts} pts\n` +
+                    `• NC (Non-compliant): about ${ncPts} pts\n` +
+                    `Higher severity means PC/NC scores are lower (stricter penalty).`
+                );
+            }
+        }
+    }
 
     // Add Linked Criteria if available
     if (links && Array.isArray(links)) {
@@ -501,12 +540,14 @@ const FormArea = ({
             const associatedCommentId = field.commentFieldId;
             const currentCommentValue = associatedCommentId ? (formData[associatedCommentId] || '') : '';
 
-            // Logic to determine if it's critical: 
-            // 1. Check formData helper state
-            // 2. Fallback to index (from Config)
-            // 3. Fallback to comment tag presence
-            const normalizedCode = normalizeCriterionCode(field.code);
-            const configIsCritical = criterionIndex[normalizedCode]?.is_critical || false;
+	            // Logic to determine if it's critical: 
+	            // 1. Check formData helper state
+	            // 2. Fallback to index (from Config)
+	            // 3. Fallback to comment tag presence
+	            const normalizedCode = normalizeCriterionCode(field.code);
+	            const configEntry = criterionIndex[normalizedCode] || {};
+	            const configIsCritical = configEntry.is_critical || false;
+	            const configSeverity = configEntry.severity;
 
             const isCritical = formData[`is_critical_${associatedCommentId}`] !== undefined
                 ? formData[`is_critical_${associatedCommentId}`]
@@ -533,23 +574,28 @@ const FormArea = ({
                     data-tooltip={(!isParentAnswered && isCommentField) ? "Please answer the main question first" : ""}
                 >
                     <div className="field-label-container">
-                        <div className="field-label-main">
-                            <label>
-                                {isCommentField
-                                    ? (field.label || 'Unnamed Field')
-                                    : (field.code ? `${field.code} ${field.label || 'Unnamed Field'}` : field.label || 'Unnamed Field')}
-                            </label>
-                            {criterionTooltip && (
-                                <button
-                                    type="button"
-                                    className="ems-info-icon"
-                                    data-ems-tooltip={criterionTooltip}
-                                    aria-label="View EMS standard and intent"
-                                >
-                                    ?
-                                </button>
-                            )}
-                        </div>
+	                        <div className="field-label-main">
+	                            <label>
+	                                {isCommentField
+	                                    ? (field.label || 'Unnamed Field')
+	                                    : (field.code ? `${field.code} ${field.label || 'Unnamed Field'}` : field.label || 'Unnamed Field')}
+	                            </label>
+	                            {!isCommentField && configSeverity !== undefined && configSeverity !== null && (
+	                                <span className="severity-pill">
+	                                    {formatSeverityLabel(configSeverity)}
+	                                </span>
+	                            )}
+	                            {criterionTooltip && (
+	                                <button
+	                                    type="button"
+	                                    className="ems-info-icon"
+	                                    data-ems-tooltip={criterionTooltip}
+	                                    aria-label="View EMS standard and intent"
+	                                >
+	                                    ?
+	                                </button>
+	                            )}
+	                        </div>
                         {isCritical && <span className="critical-badge">CRITICAL</span>}
                         {associatedCommentId && !isCommentField && (
                             <div
@@ -936,11 +982,11 @@ const FormArea = ({
             // Extract the Event ID using our unified helper (handles v41 tracker vs legacy)
             const dhis2EventId = api.extractEventId(result);
 
-            if (activeEventId) {
-                await indexedDBService.markAsSynced(activeEventId, dhis2EventId || 'synced');
-            }
-
-            setSubmitResult({ success: true, message: '✅ DHIS2 Sync Successful (Data persists under original IDs)!' });
+	            if (activeEventId) {
+	                await indexedDBService.markAsSynced(activeEventId, dhis2EventId || 'synced');
+	            }
+	
+	            setSubmitResult({ success: true, message: '✅ Saved successfully (data will sync to DHIS2 when online).' });
         } catch (err) {
             console.error('❌ Tracker workflow failed:', err);
             if (activeEventId) await indexedDBService.markAsFailed(activeEventId, err.message);
@@ -1093,28 +1139,32 @@ const FormArea = ({
                         </button>
                     </div>
                 )}
-                {isLastSubsection && (
-                    <button
-                        className="nav-btn submit-btn"
-                        onClick={handleSubmit}
-                        disabled={isSubmitting || isSaving || submitResult?.success}
-                        style={{
-                            marginTop: '12px',
-                            width: '100%',
-                            background: (isSubmitting || isSaving) ? '#6c757d' : submitResult?.success ? '#2ecc71' : '#28a745',
-                            color: '#fff',
-                            border: 'none',
-                            padding: '10px',
-                            borderRadius: '4px',
-                            cursor: (isSubmitting || isSaving || submitResult?.success) ? 'not-allowed' : 'pointer',
-                            fontWeight: 600,
-                            fontSize: '1em',
-                            opacity: submitResult?.success ? 0.8 : 1
-                        }}
-                    >
-                        {isSubmitting ? 'Submitting...' : submitResult?.success ? '✓ Successfully Submitted' : 'Submit to DHIS2'}
-                    </button>
-                )}
+	                {isLastSubsection && (
+	                    <button
+	                        className="nav-btn submit-btn"
+	                        onClick={handleSubmit}
+	                        disabled={isSubmitting || isSaving || submitResult?.success}
+	                        style={{
+	                            marginTop: '12px',
+	                            width: '100%',
+	                            background: (isSubmitting || isSaving) ? '#6c757d' : submitResult?.success ? '#2ecc71' : '#28a745',
+	                            color: '#fff',
+	                            border: 'none',
+	                            padding: '10px',
+	                            borderRadius: '4px',
+	                            cursor: (isSubmitting || isSaving || submitResult?.success) ? 'not-allowed' : 'pointer',
+	                            fontWeight: 600,
+	                            fontSize: '1em',
+	                            opacity: submitResult?.success ? 0.8 : 1
+	                        }}
+	                    >
+	                        {isSubmitting
+	                            ? 'Saving...'
+	                            : submitResult?.success
+	                                ? '✓ Successfully Saved'
+	                                : 'Save'}
+	                    </button>
+	                )}
             </div>
         </div>
     );

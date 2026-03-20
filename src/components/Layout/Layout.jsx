@@ -3,19 +3,19 @@ import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import './Layout.css';
 
-const Layout = ({
-    groups,
-    activeGroup,
-    onSelectGroup,
-    activeSection,
-    onSelectSection,
-    isADComplete,
-    children,
-    assignments,
-    selectedFacility,
-    onSelectFacility,
-    scoringResults
-}) => {
+	const Layout = ({
+	    groups,
+	    activeGroup,
+	    onSelectGroup,
+	    activeSection,
+	    onSelectSection,
+	    isADComplete,
+	    children,
+	    assignments,
+	    selectedFacility,
+	    onSelectFacility,
+	    scoringResults
+	}) => {
     return (
         <div className="layout-container">
             <Header
@@ -31,7 +31,7 @@ const Layout = ({
                     onSelectGroup={onSelectGroup}
                     activeSection={activeSection}
                     onSelectSection={onSelectSection}
-                    isADComplete={isADComplete}
+	                    isADComplete={isADComplete}
                 />
                 <main className="main-content">
                     {children}

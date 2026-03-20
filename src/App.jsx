@@ -36,19 +36,31 @@ const AppContent = () => {
   const [activeGroup, setActiveGroup] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
 
-  // Data State
-  const [assignments, setAssignments] = useState([]);
-  const [selectedFacility, setSelectedFacility] = useState(null);
-
-  // Generate Event ID safely - unique per assessment if available
-  const activeEventId = React.useMemo(() => {
-    const assessmentId = searchParams.get('assessmentId');
-    if (assessmentId) return `draft-assessment-${assessmentId}`;
-
-    if (!selectedFacility || (!selectedFacility.trackedEntityInstance && !selectedFacility.orgUnit)) return null;
-    const identifier = selectedFacility.trackedEntityInstance || selectedFacility.orgUnit;
-    return `draft-facility-${identifier}`;
-  }, [selectedFacility, searchParams]);
+	  // Data State
+	  const [assignments, setAssignments] = useState([]);
+	  const [selectedFacility, setSelectedFacility] = useState(null);
+	
+	  // Data element ID for "SURV-Facility Assessment Group"
+	  const FACILITY_GROUP_DE_ID = 'pzenrgsSny3';
+	
+	  const getGroupLabelForStorage = (group) => {
+	    if (!group) return '';
+	    // Prefer human-readable name for clarity in the Assessment Details section
+	    return group.name || group.id || '';
+	  };
+	
+	  // Generate Event ID safely - unique per assessment *and group*
+	  // so each (assessment, group) gets its own draft/event.
+	  const activeEventId = React.useMemo(() => {
+	    const assessmentId = searchParams.get('assessmentId');
+	    const groupKey = activeGroup?.id || 'no-group';
+	
+	    if (assessmentId) return `draft-assessment-${assessmentId}-group-${groupKey}`;
+	
+	    if (!selectedFacility || (!selectedFacility.trackedEntityInstance && !selectedFacility.orgUnit)) return null;
+	    const identifier = selectedFacility.trackedEntityInstance || selectedFacility.orgUnit;
+	    return `draft-facility-${identifier}-group-${groupKey}`;
+	  }, [selectedFacility, searchParams, activeGroup]);
 
   // Unified Incremental Save (Moved from FormArea)
   const {
@@ -131,32 +143,42 @@ const AppContent = () => {
     }
   }, [searchParams, assignments]);
 
-  // Auto-populate Assessment Details from selected assessment
-  useEffect(() => {
-    const nameLower = (activeSection?.name || '').toLowerCase().trim();
-    const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
-
-    // Corrected keys for raw data from api.getAssignments
-    const enrollmentId = selectedFacility?.enrollment || selectedFacility?.eventId;
-    const teiId = selectedFacility?.trackedEntityInstance || selectedFacility?.scheduleTeiId;
-
-    if (selectedFacility && isADSection && enrollmentId) {
-      const adFields = activeSection.fields || [];
-
-      // Find fields for TEI ID and Enrollment
-      const teiField = adFields.find(f => (f.label || '').includes('TEI ID'));
-      const enrField = adFields.find(f => (f.label || '').toLowerCase().includes('enrollment'));
-
-      if (teiField && teiId && !formData[teiField.id]) {
-        console.log(`📝 App: Auto-populating TEI ID: ${teiId}`);
-        saveField(teiField.id, teiId);
-      }
-      if (enrField && enrollmentId && !formData[enrField.id]) {
-        console.log(`📝 App: Auto-populating Enrollment ID: ${enrollmentId}`);
-        saveField(enrField.id, enrollmentId);
-      }
-    }
-  }, [selectedFacility, activeSection, saveField, formData]);
+	  // Auto-populate Assessment Details from selected assessment
+	  useEffect(() => {
+	    const nameLower = (activeSection?.name || '').toLowerCase().trim();
+	    const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
+	
+	    // Corrected keys for raw data from api.getAssignments
+	    const enrollmentId = selectedFacility?.enrollment || selectedFacility?.eventId;
+	    const teiId = selectedFacility?.trackedEntityInstance || selectedFacility?.scheduleTeiId;
+	
+	    if (selectedFacility && isADSection && enrollmentId) {
+	      const adFields = activeSection.fields || [];
+	
+	      // Find fields for TEI ID, Enrollment, and Facility Assessment Group
+	      const teiField = adFields.find(f => (f.label || '').includes('TEI ID'));
+	      const enrField = adFields.find(f => (f.label || '').toLowerCase().includes('enrollment'));
+	      const groupField = adFields.find(
+	        f => f.id === FACILITY_GROUP_DE_ID || (f.label || '').toLowerCase().includes('facility assessment group')
+	      );
+	
+	      if (teiField && teiId && !formData[teiField.id]) {
+	        console.log(`📝 App: Auto-populating TEI ID: ${teiId}`);
+	        saveField(teiField.id, teiId);
+	      }
+	      if (enrField && enrollmentId && !formData[enrField.id]) {
+	        console.log(`📝 App: Auto-populating Enrollment ID: ${enrollmentId}`);
+	        saveField(enrField.id, enrollmentId);
+	      }
+	      if (groupField && activeGroup && !formData[groupField.id]) {
+	        const groupLabel = getGroupLabelForStorage(activeGroup);
+	        if (groupLabel) {
+	          console.log(`📝 App: Auto-populating Facility Assessment Group: ${groupLabel}`);
+	          saveField(groupField.id, groupLabel);
+	        }
+	      }
+	    }
+	  }, [selectedFacility, activeSection, activeGroup, saveField, formData]);
 
   // Assessment Details Prerequisite Check
   const isADComplete = React.useMemo(() => {
@@ -177,8 +199,8 @@ const AppContent = () => {
       });
   }, [groups, formData]);
 
-  // Scoring Integration: Map flat formData to hierarchical structure for the scoring hook
-  const assessmentDetailsForScoring = React.useMemo(() => {
+	  // Scoring Integration: Map flat formData to hierarchical structure for the scoring hook
+	  const assessmentDetailsForScoring = React.useMemo(() => {
     if (!groups || groups.length === 0 || !formData) return { sections: [] };
 
     // Determine which configuration to use based on the active group
@@ -244,51 +266,53 @@ const AppContent = () => {
       console.error("App: Error building severity lookup", e);
     }
 
-    const allSections = groups.flatMap(g => g.sections || []);
+	    const allSections = groups.flatMap(g => g.sections || []);
 
-    return {
-      sections: allSections.map(section => ({
-        id: section.id,
-        standards: [{
-          id: section.code || section.id,
-          // Only score select fields (dropdowns) as they correspond to criteria responses
-          criteria: (section.fields || [])
-            .filter(f => f.type === 'select')
-            .map(f => {
-              const code = f.code || f.id;
-              const normalizedCode = normalizeCriterionCode(code);
-              const linksData = linksDataLookup[normalizedCode] || linksDataLookup[code] || { roots: [], linked_criteria: [] };
-              const isRoot = linksData.linked_criteria.length > 0; // Auto-calculated ONLY if it calculates from others
-              const severity = severityLookup[normalizedCode] || severityLookup[code] || 1;
+	    return {
+	      sections: allSections.map(section => ({
+	        id: section.id,
+	        standards: [{
+	          id: section.code || section.id,
+	          // Only score select fields (dropdowns) as they correspond to criteria responses
+	          criteria: (section.fields || [])
+	            .filter(f => f.type === 'select')
+	            .map(f => {
+	              const code = f.code || f.id;
+	              const normalizedCode = normalizeCriterionCode(code);
+	              const linksData = linksDataLookup[normalizedCode] || linksDataLookup[code] || { roots: [], linked_criteria: [] };
+	              const isRoot = linksData.linked_criteria.length > 0; // Auto-calculated ONLY if it calculates from others
+	              const severity = severityLookup[normalizedCode] || severityLookup[code] || 1;
+	
+	              return {
+	                id: f.id,
+	                code: code,
+	                response: formData[f.id] || 'NA',
+	                // Check for critical flag in formData (appended by FormArea toggle)
+	                isCritical: Boolean(formData[`is_critical_${f.commentFieldId}`] || formData[`is_critical_${f.id}`]),
+	                isRoot,
+	                links: linksData.linked_criteria,
+	                roots: linksData.roots,
+	                severity
+	              };
+	            })
+	        }]
+	      }))
+	    };
+	  }, [activeGroup, formData]);
 
-              return {
-                id: f.id,
-                code: code,
-                response: formData[f.id] || 'NA',
-                // Check for critical flag in formData (appended by FormArea toggle)
-                isCritical: Boolean(formData[`is_critical_${f.commentFieldId}`] || formData[`is_critical_${f.id}`]),
-                isRoot,
-                links: linksData.linked_criteria,
-                roots: linksData.roots,
-                severity
-              };
-            })
-        }]
-      }))
-    };
-  }, [activeGroup, formData]);
+	  const scoringResults = useAssessmentScoring(assessmentDetailsForScoring);
 
-  const scoringResults = useAssessmentScoring(assessmentDetailsForScoring);
-
-  const handleGroupChange = (group) => {
-    setActiveGroup(group);
-    // Auto-select first section of the new group
-    if (group.sections && group.sections.length > 0) {
-      setActiveSection(group.sections[0]);
-    } else {
-      setActiveSection(null);
-    }
-  };
+	  // Simple group change handler: switch active group and reset section
+	  // to the first section of that group (if any). The event ID is already
+	  // group-aware via activeEventId, so each group gets its own draft/event.
+	  const handleGroupChange = (group) => {
+	    setActiveGroup(group);
+	    if (group?.sections && group.sections.length > 0) {
+	      setActiveSection(group.sections[0]);
+	    } else {
+	      setActiveSection(null);
+	    }
+	  };
 
   return (
     <Routes>
@@ -317,7 +341,7 @@ const AppContent = () => {
                 onSelectGroup={handleGroupChange}
                 activeSection={activeSection}
                 onSelectSection={setActiveSection}
-                isADComplete={isADComplete}
+	                isADComplete={isADComplete}
 
                 // Header Props
                 assignments={assignments}
