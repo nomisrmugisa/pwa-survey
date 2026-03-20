@@ -300,6 +300,9 @@
     /* respect \n in text */
     width: 90vw;
     max-width: 1200px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-sizing: border-box;
     text-align: left;
     line-height: 1.6;
     padding: 2rem;
