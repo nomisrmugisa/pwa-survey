@@ -30,6 +30,25 @@
     align-items: center;
 }
 
+.preview-header-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.preview-title {
+    margin: 0;
+}
+
+.preview-meta {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.preview-event-details span + span {
+    margin-left: 0.5rem;
+}
+
 .close-btn {
     background: none;
     border: none;

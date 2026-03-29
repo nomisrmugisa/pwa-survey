@@ -75,6 +75,29 @@ const AppContent = () => {
     onSaveError: (error) => console.error('❌ App: Save failed:', error)
   });
 
+	  // Always store a friendly facility name in the draft so the
+	  // Dashboard and Survey Preview can display it instead of
+	  // falling back to "Unknown Facility".
+	  const facilityNameInternal = formData?.facilityName_internal;
+	  useEffect(() => {
+	    if (!selectedFacility) return;
+
+	    const targetName =
+	      selectedFacility.orgUnitName ||
+	      selectedFacility.name ||
+	      selectedFacility.facilityId ||
+	      selectedFacility.orgUnitId ||
+	      (typeof selectedFacility.orgUnit === 'string'
+	        ? selectedFacility.orgUnit
+	        : selectedFacility.orgUnit?.id) ||
+	      'Unknown Facility';
+
+	    if (facilityNameInternal === targetName) return;
+
+	    console.log('📝 App: Storing facilityName_internal:', targetName);
+	    saveField('facilityName_internal', targetName);
+	  }, [selectedFacility, facilityNameInternal, saveField]);
+
   // Load data when activeEventId changes
   useEffect(() => {
     if (activeEventId) {

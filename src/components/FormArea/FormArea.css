@@ -401,9 +401,11 @@
     background: white;
     width: 90%;
     max-width: 800px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
     border-radius: 12px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    overflow: hidden;
     animation: modalAppear 0.3s ease-out;
 }
 
@@ -444,6 +446,8 @@
 
 .scoring-modal-body {
     padding: 2rem;
+    overflow-y: auto;
+    flex: 1 1 auto;
 }
 
 .scoring-guide-table {
