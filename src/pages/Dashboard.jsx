@@ -74,7 +74,8 @@ export function Dashboard() {
         pending: pendingAssessments,
         stats: assessmentStats,
         loading: assessmentsLoading,
-        respondToAssignment
+	        respondToAssignment,
+	        debug: assignmentsDebug
     } = assessmentHook;
 
     const handleConfirmClear = async () => {
@@ -306,6 +307,23 @@ export function Dashboard() {
                         <h3>Assigned Assessments</h3>
                     </div>
                 </div>
+	                {!isAssessmentsCollapsed && (
+	                    <div style={{ fontSize: '0.8rem', color: '#666', padding: '0.25rem 1rem' }}>
+	                        <strong>User:</strong> {user?.username || 'unknown'} ({user?.id || 'no-id'})
+	                    </div>
+	                )}
+	                {!isAssessmentsCollapsed && assignmentsDebug && (
+	                    <div style={{ fontSize: '0.8rem', color: '#666', padding: '0.25rem 1rem' }}>
+	                        <strong>Debug:</strong>
+	                        {' '}teamEvents={assignmentsDebug.teamEventsCount ?? 0},
+	                        {' '}enrollments={assignmentsDebug.enrollmentsCount ?? 0},
+	                        {' '}qualifying={assignmentsDebug.qualifyingCount ?? 0},
+	                        {' '}assignments={assignmentsDebug.assignmentsCount ?? 0},
+	                        {' '}filtered={assignmentsDebug.filteredCount ?? 0},
+	                        {' '}upcoming={assignmentsDebug.upcomingCount ?? 0},
+	                        {' '}pending={assignmentsDebug.pendingCount ?? 0}
+	                    </div>
+	                )}
                 {!isAssessmentsCollapsed && (
                     <div className="forms-list">
                         {assessmentsLoading ? (
@@ -359,10 +377,12 @@ export function Dashboard() {
 
                                             </div>
                                             <div className="form-actions">
-                                                <button
-                                                    className={`btn ${isSynced ? 'btn-secondary' : 'btn-primary'} btn-sm`}
-                                                    onClick={() => navigate(`/form?assessmentId=${assessment.eventId}`)}
-                                                >
+                                                            <button
+                                                                className={`btn ${isSynced ? 'btn-secondary' : 'btn-primary'} btn-sm`}
+                                                                onClick={() => navigate(`/form?assessmentId=${assessment.eventId}`,
+                                                                    { state: { selectedAssignment: assessment } }
+                                                                )}
+                                                            >
                                                     {isSynced ? 'Update Survey' : existingDraft ? 'Resume Survey' : 'Conduct Survey'}
                                                 </button>
                                             </div>

@@ -52,42 +52,63 @@ class AssessmentTeamAssignmentService {
      * Fetch assignments for a specific user and year from DHIS2.
      * Returns objects shaped as: { eventId, scheduleTeiId, statusCode, sortDate, orgUnitName }
      */
-    async getUserAssignmentsDomain({ userId, year }) {
-        try {
-            // Pass userId so DHIS2 filters by attribute Rh87cVTZ8b6 (Inspection Final List)
-            const enrollments = await api.getAssignments('G2gULe4jsfs', userId);
+	    async getUserAssignmentsDomain({ userId, year }) {
+	        try {
+	            // NEW: Use scheduling workflow assignments derived from program K9O5fdoBmKf
+	            // via api.getSchedulingAssignments, which already enforces:
+	            //  - Team Assignment stage has this user with FAC_ASS_ASSIGN_ACCEPTED
+	            //  - Programme Setup stage status is Approved.
+	            const enrollments = await api.getSchedulingAssignments(userId);
 
-            return enrollments.map(item => {
-                // Try to find a stored status code from data values
-                let storedStatusCode = null;
-                if (STATUS_DATA_ELEMENT_UID && item.events) {
-                    for (const event of item.events) {
-                        const dv = (event.dataValues || []).find(
-                            d => d.dataElement === STATUS_DATA_ELEMENT_UID
-                        );
-                        if (dv) { storedStatusCode = dv.value; break; }
-                    }
-                }
+	            return enrollments.map(item => {
+	                // Try to infer a stored status code from team events (preferred),
+	                // falling back to any explicit STATUS_DATA_ELEMENT_UID, and
+	                // finally to enrollment.status via mapStatus.
+	                let storedStatusCode = null;
 
-                return {
-                    eventId: item.enrollment || item.trackedEntityInstance,
-                    scheduleTeiId: item.trackedEntityInstance,
-                    statusCode: mapStatus(item.status, storedStatusCode),
-                    sortDate: extractDate(item),
-                    // Use enriched fields from api.js
-                    orgUnitName: item.orgUnitName,
-                    orgUnit: item.orgUnitId || item.orgUnit?.id || item.orgUnit,
-                    facilityId: item.facilityId,
-                    parentOrgUnitName: item.parentOrgUnitName,
-                    enrollmentDate: item.enrollmentDate,
-                    attributes: item.attributes || [],
-                };
-            });
-        } catch (error) {
-            console.error('Error fetching user assignments:', error);
-            throw error;
-        }
-    }
+	                // If api.getSchedulingAssignments attached team info, derive status
+	                if (item.team && item.team.length > 0) {
+	                    const myEvents = item.team.filter(t => t.assignedUserId === userId);
+	                    const relevant = (myEvents.length > 0 ? myEvents : item.team)[myEvents.length > 0 ? myEvents.length - 1 : item.team.length - 1];
+	                    if (relevant && relevant.assignmentStatus) {
+	                        storedStatusCode = relevant.assignmentStatus;
+	                    }
+	                }
+
+	                // Legacy path: look for a dedicated status data element if configured
+	                if (!storedStatusCode && STATUS_DATA_ELEMENT_UID && item.events) {
+	                    for (const event of item.events) {
+	                        const dv = (event.dataValues || []).find(
+	                            d => d.dataElement === STATUS_DATA_ELEMENT_UID
+	                        );
+	                        if (dv) { storedStatusCode = dv.value; break; }
+	                    }
+	                }
+
+	                return {
+	                    eventId: item.enrollment || item.trackedEntityInstance,
+	                    scheduleTeiId: item.trackedEntityInstance,
+	                    statusCode: mapStatus(item.status, storedStatusCode),
+	                    sortDate: extractDate(item),
+	                    // Use enriched fields from api.js
+	                    orgUnitName: item.orgUnitName,
+	                    orgUnit: item.orgUnitId || item.orgUnit?.id || item.orgUnit,
+	                    facilityId: item.facilityId,
+	                    // programOrgUnitId is the org unit used for the main
+	                    // survey program (e.g. district like Gaborone). This is
+	                    // what FormArea uses when creating the TEI/enrollment so
+	                    // that the program/OU assignment is valid in DHIS2.
+	                    programOrgUnitId: item.programOrgUnitId,
+	                    parentOrgUnitName: item.parentOrgUnitName,
+	                    enrollmentDate: item.enrollmentDate,
+	                    attributes: item.attributes || [],
+	                };
+	            });
+	        } catch (error) {
+	            console.error('Error fetching user assignments:', error);
+	            throw error;
+	        }
+	    }
 
     async respondToAssignment({ eventId, statusCode, reason }) {
         console.log(`Responding to assignment ${eventId} with status ${statusCode}`);

@@ -8,36 +8,51 @@ import Tooltip from '@mui/material/Tooltip';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
+import { useApp } from '../../contexts/AppContext';
 
-const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringResults }) => {
-    const navigate = useNavigate();
-    const [showSettings, setShowSettings] = React.useState(false);
+const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringResults, isAssignedAssessment }) => {
+	    const navigate = useNavigate();
+	    const { logout } = useApp();
+	    const [showSettings, setShowSettings] = React.useState(false);
+
+	    const handleLogout = async () => {
+	        try {
+	            await logout();
+	            navigate('/login');
+	        } catch (e) {
+	            console.error('Error during logout:', e);
+	        }
+	    };
 
     return (
         <header className="app-header">
-            <div className="header-left">
-                <img src={logo} alt="Ministry of Health" className="header-logo" />
-                <div className="header-dropdown">
-                    {assignments.length > 0 ? (
-                        <select
-                            className="facility-select"
-                            value={selectedFacility?.trackedEntityInstance || ''}
-                            onChange={(e) => {
-                                const selected = assignments.find(a => a.trackedEntityInstance === e.target.value);
-                                onSelectFacility(selected);
-                            }}
-                        >
-                            {assignments.map(a => (
-                                <option key={a.trackedEntityInstance} value={a.trackedEntityInstance}>
-                                    {a.orgUnitName || 'Unknown Facility'}
-                                </option>
-                            ))}
-                        </select>
-                    ) : (
-                        <span className="no-facilities">No Assigned Facilities</span>
-                    )}
-                </div>
-            </div>
+	            <div className="header-left">
+	                <img src={logo} alt="Ministry of Health" className="header-logo" />
+	                <div className="header-dropdown">
+	                    {isAssignedAssessment && selectedFacility ? (
+	                        <span className="facility-label">
+	                            {selectedFacility.orgUnitName || 'Unknown Facility'}
+	                        </span>
+	                    ) : assignments.length > 0 ? (
+	                        <select
+	                            className="facility-select"
+	                            value={selectedFacility?.trackedEntityInstance || ''}
+	                            onChange={(e) => {
+	                                const selected = assignments.find(a => a.trackedEntityInstance === e.target.value);
+	                                onSelectFacility(selected);
+	                            }}
+	                        >
+	                            {assignments.map(a => (
+	                                <option key={a.trackedEntityInstance} value={a.trackedEntityInstance}>
+	                                    {a.orgUnitName || 'Unknown Facility'}
+	                                </option>
+	                            ))}
+	                        </select>
+	                    ) : (
+	                        <span className="no-facilities">No Assigned Facilities</span>
+	                    )}
+	                </div>
+	            </div>
 
             {scoringResults?.overall && (
                 <div className="header-center">
@@ -61,18 +76,18 @@ const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringR
                 </div>
             )}
 
-            <div className="header-right">
-                <nav className="header-nav">
-                    <button className="nav-link-btn" onClick={() => navigate('/')}>Dashboard</button>
-                    <button className="action-btn sync-btn">↻ Sync</button>
-                    <Tooltip title="App Settings">
-                        <IconButton onClick={() => setShowSettings(true)} size="small" style={{ color: 'white', margin: '0 10px' }}>
-                            <SettingsIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
-                    <button className="action-btn logout-btn">Logout</button>
-                </nav>
-            </div>
+	            <div className="header-right">
+	                <nav className="header-nav">
+	                    <button className="nav-link-btn" onClick={() => navigate('/')}>Dashboard</button>
+	                    <button className="action-btn sync-btn">↻ Sync</button>
+	                    <Tooltip title="App Settings">
+	                        <IconButton onClick={() => setShowSettings(true)} size="small" style={{ color: 'white', margin: '0 10px' }}>
+	                            <SettingsIcon fontSize="small" />
+	                        </IconButton>
+	                    </Tooltip>
+	                    <button className="action-btn logout-btn" onClick={handleLogout}>Logout</button>
+	                </nav>
+	            </div>
 
             {/* Simple Settings Modal for Header */}
             <Dialog open={showSettings} onClose={() => setShowSettings(false)}>

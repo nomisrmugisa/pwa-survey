@@ -21,15 +21,24 @@ import hospitalLinks from './assets/hospital_links.json';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
-  const { user } = useApp();
-  const location = useLocation();
-  return user ? children : <Navigate to="/login" state={{ from: location }} replace />;
+	  const { user, authInitializing } = useApp();
+	  const location = useLocation();
+
+	  // While we're still checking for an existing session (e.g. after a
+	  // refresh with stored auth), render a lightweight loading state rather
+	  // than redirecting to /login immediately.
+	  if (authInitializing) {
+	    return <div className="loading-screen">Checking session...</div>;
+	  }
+
+	  return user ? children : <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 const AppContent = () => {
   const { user, setUser, setConfiguration, setUserAssignments, configuration } = useApp();
-  const [searchParams] = useSearchParams();
+	  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
+  const [initialDataLoaded, setInitialDataLoaded] = useState(false);
 
   // Navigation State
   const [groups, setGroups] = useState([]);
@@ -63,7 +72,7 @@ const AppContent = () => {
 	  }, [selectedFacility, searchParams, activeGroup]);
 
   // Unified Incremental Save (Moved from FormArea)
-  const {
+	  const {
     formData,
     saveField,
     loadFormData,
@@ -105,14 +114,16 @@ const AppContent = () => {
     }
   }, [activeEventId, loadFormData]);
 
-  const location = useLocation();
+	  const location = useLocation();
+	  const assessmentIdParam = searchParams.get('assessmentId');
 
-  // Load initial data when user is set
+  // Load initial data once when the user is available. This is resilient to
+  // hot-reloads or remounts where `configuration` or `groups` might be reset.
   useEffect(() => {
-    if (user && !configuration) {
-      loadInitialData();
-    }
-  }, [user]);
+    if (!user) return;
+    if (initialDataLoaded) return;
+    loadInitialData();
+  }, [user, initialDataLoaded]);
 
   const loadInitialData = async () => {
     setIsLoading(true);
@@ -124,9 +135,14 @@ const AppContent = () => {
 
       const transformedGroups = transformMetadata(metadata);
       setGroups(transformedGroups);
+
+      // Prefer the program object returned by metadata so that we have the
+      // correct program id and trackedEntityType id for tracker submission.
+      const programFromMetadata = metadata.program || { id: 'G2gULe4jsfs', displayName: 'MOH Survey Dashboard' };
+
       setConfiguration({
         programStage: metadata,
-        program: { displayName: 'MOH Survey Dashboard' },
+        program: programFromMetadata,
         organisationUnits: msgAssignments.map(a => a.orgUnit)
       });
 
@@ -150,21 +166,29 @@ const AppContent = () => {
       console.error("Failed to load data", error);
     } finally {
       setIsLoading(false);
+      setInitialDataLoaded(true);
     }
   };
 
-  // Auto-select facility based on URL parameter
-  useEffect(() => {
-    const assessmentId = searchParams.get('assessmentId');
-    if (assessmentId && assignments.length > 0) {
-      // Corrected: Check both eventId and enrollment (api.getAssignments uses enrollment)
-      const matched = assignments.find(a => (a.eventId || a.enrollment) === assessmentId);
-      if (matched) {
-        console.log(`🎯 App: Auto-selecting facility for assessment ${assessmentId}:`, matched.orgUnitName);
-        setSelectedFacility(matched);
-      }
-    }
-  }, [searchParams, assignments]);
+	  // Auto-select facility based on navigation state or URL parameter
+	  useEffect(() => {
+	    const stateAssignment = location.state && location.state.selectedAssignment;
+	    if (stateAssignment) {
+	      console.log('🎯 App: Auto-selecting facility from navigation state:', stateAssignment.orgUnitName);
+	      setSelectedFacility(stateAssignment);
+	      return;
+	    }
+
+	    const assessmentId = searchParams.get('assessmentId');
+	    if (assessmentId && assignments.length > 0) {
+	      // Fallback: match against locally loaded assignments (older workflow)
+	      const matched = assignments.find(a => (a.eventId || a.enrollment) === assessmentId);
+	      if (matched) {
+	        console.log(`🎯 App: Auto-selecting facility for assessment ${assessmentId}:`, matched.orgUnitName);
+	        setSelectedFacility(matched);
+	      }
+	    }
+	  }, [location.state, searchParams, assignments]);
 
 	  // Auto-populate Assessment Details from selected assessment
 	  useEffect(() => {
@@ -370,7 +394,8 @@ const AppContent = () => {
                 assignments={assignments}
                 selectedFacility={selectedFacility}
                 onSelectFacility={setSelectedFacility}
-                scoringResults={scoringResults}
+	                scoringResults={scoringResults}
+	                isAssignedAssessment={Boolean(assessmentIdParam)}
               >
                 <FormArea
                   activeSection={activeSection}

@@ -18,7 +18,10 @@ const getHeaders = (username, password) => {
 };
 
 export const api = {
-    login: async (username, password) => {
+	    // Debug info for scheduling assignments; populated by getSchedulingAssignments
+	    _schedulingDebug: null,
+
+	    login: async (username, password) => {
         const url = `${BASE_URL}/api/me?fields=id,displayName,username,organisationUnits[id,name]`;
         const response = await fetch(url, {
             headers: getHeaders(username, password)
@@ -55,8 +58,9 @@ export const api = {
 
     getFormMetadata: async (programStageId = 'HpHD6u6MV37') => {
         const params = [
-            // Include program[id] so we can use it when submitting events
-            'fields=id,name,displayName,description,sortOrder,repeatable,program[id,displayName]',
+            // Include program + its trackedEntityType so we can use them when
+            // submitting tracker payloads (TEI + enrollment + event).
+            'fields=id,name,displayName,description,sortOrder,repeatable,program[id,displayName,trackedEntityType[id,displayName]]',
             'programStageSections[id,name,displayName,code,sortOrder,dataElements[id,formName,displayFormName,name,displayName,shortName,code,description,valueType,compulsory,allowProvidedElsewhere,lastUpdated,optionSet[id,displayName,options[id,displayName,code,sortOrder]]]]',
             'programStageDataElements[id,displayName,sortOrder,compulsory,allowProvidedElsewhere,dataElement[id,formName,displayFormName,name,displayName,shortName,code,description,valueType,aggregationType,lastUpdated,optionSet[id,displayName,options[id,displayName,code,sortOrder]]]]'
         ].join(',');
@@ -219,6 +223,317 @@ export const api = {
         });
     },
 
+	    /**
+	     * Fetch assignments for the External Facility Assessment Scheduling Workflow
+	     * (program K9O5fdoBmKf) based on DHIS2 stages and data elements.
+	     *
+	     * For the logged-in user, return one row per enrollment where BOTH are true:
+	     *  1) There is a Team Assignment and Acceptance event (stage UQmvnyPZLk2)
+	     *     with:
+	     *        - Assigned User ID (AXvpO8KR1Mw) == current user ID
+	     *        - Assignment Status (yVVbhT02L6G) == FAC_ASS_ASSIGN_ACCEPTED
+	     *  2) There is an Assessment Programme Setup event (stage M2RdEI7Tbqr)
+	     *     with:
+	     *        - Assessment Program Status (xFQOt5o6DSz) == "Approved".
+	     *
+	     * No deduplication by facility is done: each qualifying enrollment is
+	     * returned as a separate assignment row.
+	     */
+	    getSchedulingAssignments: async (userId) => {
+	        if (!userId) throw new Error('getSchedulingAssignments requires a userId');
+
+	        // Program and stage IDs
+	        const PROGRAM_ID = 'K9O5fdoBmKf';
+	        const SETUP_STAGE_ID = 'M2RdEI7Tbqr'; // Assessment Programme Setup
+	        const TEAM_STAGE_ID = 'UQmvnyPZLk2';   // Team Assignment and Acceptance
+
+	        // Data element IDs
+	        const DE_ASSIGNED_USER_ID = 'AXvpO8KR1Mw';      // Assigned User ID
+	        const DE_ASSIGN_STATUS = 'yVVbhT02L6G';        // Assignment Status
+	        const DE_PROGRAM_STATUS = 'xFQOt5o6DSz';       // Assessment Program Status
+	        const DE_TEAM_ROLE = 'GixEay7pfpl';            // Team Role
+
+	        // Value codes from DHIS2 option sets.
+	        const ASSIGN_STATUS_ACCEPTED = 'FAC_ASS_ASSIGN_ACCEPTED';
+	        // In K9O5fdoBmKf, "approved" programmes use this status code
+	        // on xFQOt5o6DSz (Assessment Program Status).
+	        const PROGRAM_STATUS_APPROVED = 'FAC_ASS_PROGRAM_FINAL_CONFIRMED';
+
+	        // 1) Fetch all team-assignment events for this user where assignment
+	        //    status is FAC_ASS_ASSIGN_ACCEPTED.
+	        const teamFields = [
+	            'event',
+	            'enrollment',
+	            'orgUnit',
+	            'orgUnitName',
+	            'programStage',
+	            'eventDate',
+	            'status',
+	            'dataValues[dataElement,value]'
+	        ].join(',');
+
+	        const teamUrl = `${BASE_URL}/api/events?paging=false&ouMode=ALL&program=${PROGRAM_ID}` +
+	            `&programStage=${TEAM_STAGE_ID}&fields=${teamFields}` +
+	            // Filter only by Assigned User ID; we'll interpret Assignment Status
+	            // (FAC_ASS_ASSIGN_ACCEPTED, etc.) on the client side from dataValues.
+	            `&filter=${DE_ASSIGNED_USER_ID}:EQ:${encodeURIComponent(userId)}`;
+
+	        const teamResponse = await fetch(teamUrl, { headers: getHeaders() });
+	        if (!teamResponse.ok) throw new Error('Failed to fetch team assignment events');
+	        const teamData = await teamResponse.json();
+	        const teamEvents = teamData.events || [];
+	        console.log('[SchedulingAssignments] teamEvents count for user', userId, teamEvents.length);
+
+	        // Initialize debug snapshot early so the UI can see at least
+	        // the teamEvents count even when we return early.
+	        api._schedulingDebug = {
+	            userId,
+	            teamEventsCount: teamEvents.length,
+	            enrollmentIds: [],
+	            enrollmentsCount: 0,
+	            qualifyingCount: 0,
+	        };
+
+	        if (teamEvents.length === 0) {
+	            return [];
+	        }
+
+	        // Group team events by enrollment and collect enrollment IDs
+	        const teamByEnrollment = {};
+	        const enrollmentIds = new Set();
+	        for (const ev of teamEvents) {
+	            const enr = ev.enrollment;
+	            if (!enr) continue;
+	            enrollmentIds.add(enr);
+	            if (!teamByEnrollment[enr]) teamByEnrollment[enr] = [];
+	            teamByEnrollment[enr].push(ev);
+	        }
+
+	        if (enrollmentIds.size === 0) {
+	            api._schedulingDebug = {
+	                ...api._schedulingDebug,
+	                enrollmentIds: [],
+	                enrollmentsCount: 0,
+	                qualifyingCount: 0,
+	            };
+	            return [];
+	        }
+
+	        // 2) Fetch enrollments with events so we can check programme setup
+	        // 2) Build lightweight "enrollment-like" objects directly from the
+	        //    team events. This avoids relying on embedded events within
+	        //    enrollments, which may not be visible to all users, and is
+	        //    sufficient for displaying assigned facilities.
+	        const enrollments = [...enrollmentIds].map(enrId => {
+	            const evts = teamByEnrollment[enrId] || [];
+	            const primary = evts[0] || {};
+	            return {
+	                enrollment: enrId,
+		                // trackedEntityInstance will be hydrated from a lightweight
+		                // /enrollments call below so that the UI can auto-populate
+		                // the "Facility Assessment TEI ID" field when a user
+		                // opens an assigned assessment.
+		                trackedEntityInstance: null,
+	                orgUnit: primary.orgUnit || null,
+	                orgUnitName: primary.orgUnitName || null,
+	                status: primary.status || 'ACTIVE',
+	                enrollmentDate: primary.eventDate || new Date().toISOString(),
+	                incidentDate: primary.eventDate || new Date().toISOString(),
+	                events: evts,
+	            };
+	        });
+	        console.log('[SchedulingAssignments] synthetic enrollments from team events', enrollments.length);
+
+	        // 2b) Hydrate trackedEntityInstance for each enrollment from a
+	        //     minimal /enrollments call. Inspector users are allowed to
+	        //     view enrollments (but not necessarily embedded events),
+	        //     and we only need the TEI ID plus the *program-level orgUnit*
+	        //     (the enrollment's orgUnit, typically a district like
+	        //     "Gaborone"). This lets the UI submit surveys against the
+	        //     correct orgUnit for the main survey program while still
+	        //     displaying the facility orgUnit from the team events.
+	        try {
+	            const enrFieldsTei = ['enrollment', 'trackedEntityInstance', 'orgUnit'].join(',');
+		            const enrParamsTei = [...enrollmentIds].map(id => `enrollment=${id}`).join('&');
+		            const enrUrlTei = `${BASE_URL}/api/enrollments?paging=false&program=${PROGRAM_ID}&fields=${enrFieldsTei}&${enrParamsTei}`;
+		            const enrRespTei = await fetch(enrUrlTei, { headers: getHeaders() });
+	            if (enrRespTei.ok) {
+	                const enrJson = await enrRespTei.json();
+	                const teiByEnrollment = {};
+	                const progOuByEnrollment = {};
+	                (enrJson.enrollments || []).forEach(enr => {
+	                    if (!enr.enrollment) return;
+	                    if (enr.trackedEntityInstance) {
+	                        teiByEnrollment[enr.enrollment] = enr.trackedEntityInstance;
+	                    }
+	                    if (enr.orgUnit) {
+	                        progOuByEnrollment[enr.enrollment] =
+	                            typeof enr.orgUnit === 'string' ? enr.orgUnit : (enr.orgUnit.id || null);
+	                    }
+	                });
+	                enrollments.forEach(e => {
+	                    const enrId = e.enrollment;
+	                    if (!e.trackedEntityInstance && teiByEnrollment[enrId]) {
+	                        e.trackedEntityInstance = teiByEnrollment[enrId];
+	                    }
+	                    if (progOuByEnrollment[enrId]) {
+	                        // programOrgUnitId: org unit attached to the scheduling
+	                        // enrollment (e.g. district). We submit the main survey
+	                        // program against this OU to satisfy DHIS2 program
+	                        // assignment rules.
+	                        e.programOrgUnitId = progOuByEnrollment[enrId];
+	                    }
+	                });
+	                console.log('[SchedulingAssignments] hydrated TEIs and programme orgUnits for enrollments', Object.keys(teiByEnrollment).length);
+		            } else {
+		                console.warn('⚠️ api.js: Failed to hydrate TEIs for scheduling enrollments', enrRespTei.status, enrRespTei.statusText);
+		            }
+		        } catch (err) {
+		            console.warn('⚠️ api.js: Error hydrating TEIs for scheduling enrollments', err);
+		        }
+
+	        // 3) Fetch Programme Setup events separately (event-level join by enrollment)
+	        const setupFields = [
+	            'event',
+	            'enrollment',
+	            'orgUnit',
+	            'orgUnitName',
+	            'eventDate',
+	            'status',
+	            'dataValues[dataElement,value]'
+	        ].join(',');
+
+	        const setupParams = [...enrollmentIds].map(id => `enrollment=${id}`).join('&');
+	        const setupUrl = `${BASE_URL}/api/events?paging=false&program=${PROGRAM_ID}` +
+	            `&programStage=${SETUP_STAGE_ID}&fields=${setupFields}&${setupParams}`;
+
+	        const setupResponse = await fetch(setupUrl, { headers: getHeaders() });
+	        if (!setupResponse.ok) throw new Error('Failed to fetch programme setup events');
+	        const setupData = await setupResponse.json();
+	        const setupEvents = setupData.events || [];
+	        console.log('[SchedulingAssignments] setup events fetched', setupEvents.length);
+
+	        // Index setup events by enrollment, taking the latest event per enrollment
+	        const setupByEnrollment = {};
+	        for (const ev of setupEvents) {
+	            const enr = ev.enrollment;
+	            if (!enr) continue;
+	            if (!setupByEnrollment[enr]) setupByEnrollment[enr] = [];
+	            setupByEnrollment[enr].push(ev);
+	        }
+
+	        const pickLatestSetupEvent = (enrId) => {
+	            const list = setupByEnrollment[enrId];
+	            if (!list || list.length === 0) return null;
+	            return list.slice().sort((a, b) => new Date(b.eventDate) - new Date(a.eventDate))[0];
+	        };
+
+	        // 4) NEW: For now, treat all enrollments that have team events as
+	        //    "assigned" regardless of programme status. We still attach
+	        //    programmeStatus from setup events when available, but we don't
+	        //    filter by it.
+	        const qualifying = enrollments;
+
+	        console.log('[SchedulingAssignments] qualifying enrollments (no status filter)', qualifying.length);
+
+	        // Expose a small debug snapshot for the UI/debug tools
+	        api._schedulingDebug = {
+	            userId,
+	            teamEventsCount: teamEvents.length,
+	            enrollmentIds: [...enrollmentIds],
+	            enrollmentsCount: enrollments.length,
+	            qualifyingCount: qualifying.length,
+	        };
+
+	        if (qualifying.length === 0) {
+	            return [];
+	        }
+
+	        // 5) Enrich org unit details based on the facility org unit from team
+	        //    events (rather than the enrollment org unit, which may be a
+	        //    district/administrative level).
+	        const ouIds = [...new Set(qualifying.map(e => {
+	            const teamEvts = teamByEnrollment[e.enrollment] || [];
+	            const firstTeam = teamEvts[0];
+	            if (firstTeam && firstTeam.orgUnit) return firstTeam.orgUnit;
+	            const rawOu = e.orgUnit;
+	            return typeof rawOu === 'string' ? rawOu : rawOu?.id;
+	        }).filter(Boolean))];
+
+	        let ouMap = {};
+	        if (ouIds.length > 0) {
+	            try {
+	                const ouResponse = await fetch(
+	                    `${BASE_URL}/api/organisationUnits?paging=false&filter=id:in:[${ouIds.join(',')}]` +
+	                    `&fields=id,displayName,name,parent[id,displayName,name]`,
+	                    { headers: getHeaders() }
+	                );
+	                if (ouResponse.ok) {
+	                    const ouJson = await ouResponse.json();
+	                    (ouJson.organisationUnits || []).forEach(ou => {
+	                        ouMap[ou.id] = ou;
+	                    });
+	                }
+	            } catch (err) {
+	                console.warn('⚠️ api.js: Failed to fetch bulk org unit details for scheduling assignments.', err);
+	            }
+	        }
+
+	        // Helper to extract team info from team events
+	        const buildTeamForEnrollment = (enrId) => {
+	            const evts = teamByEnrollment[enrId] || [];
+	            return evts.map(ev => {
+	                const dvs = ev.dataValues || [];
+	                const userDv = dvs.find(d => d.dataElement === DE_ASSIGNED_USER_ID);
+	                const statusDv = dvs.find(d => d.dataElement === DE_ASSIGN_STATUS);
+	                const roleDv = dvs.find(d => d.dataElement === DE_TEAM_ROLE);
+	                return {
+	                    event: ev.event,
+	                    assignedUserId: userDv?.value || null,
+	                    assignmentStatus: statusDv?.value || null,
+	                    teamRole: roleDv?.value || null,
+	                    eventDate: ev.eventDate || null,
+	                    orgUnit: ev.orgUnit || null,
+	                    orgUnitName: ev.orgUnitName || null
+	                };
+	            });
+	        };
+
+	        // 6) Map to assignment objects (one per enrollment, no deduplication)
+	        return qualifying.map(enrollment => {
+	            const enrId = enrollment.enrollment;
+	            const teamEvts = teamByEnrollment[enrId] || [];
+	            const firstTeam = teamEvts[0] || null;
+
+	            const rawOu = firstTeam?.orgUnit || enrollment.orgUnit;
+	            const ouId = typeof rawOu === 'string' ? rawOu : (rawOu?.id || null);
+	            const fullOu = ouMap[ouId];
+
+	            const parentName = fullOu?.parent?.displayName || fullOu?.parent?.name || fullOu?.parent?.shortName || null;
+
+	            const setupEvent = pickLatestSetupEvent(enrId);
+	            const setupDv = setupEvent?.dataValues?.find(d => d.dataElement === DE_PROGRAM_STATUS) || null;
+	            const programmeStatus = setupDv?.value || null;
+
+	            return {
+	                ...enrollment,
+	                program: PROGRAM_ID,
+	                orgUnit: fullOu || rawOu,
+	                orgUnitId: ouId,
+	                // programOrgUnitId is the orgUnit attached to the underlying
+	                // scheduling enrollment (often a district like Gaborone).
+	                // We use this when submitting the main survey program
+	                // (G2gULe4jsfs) so that DHIS2 does not reject the
+	                // enrollment with "OrganisationUnit and Program don't match".
+	                programOrgUnitId: enrollment.programOrgUnitId || ouId,
+	                orgUnitName: fullOu?.displayName || fullOu?.name || firstTeam?.orgUnitName || enrollment.orgUnitName || 'Unknown Facility',
+	                parentOrgUnitName: parentName,
+	                programmeStatus,
+	                team: buildTeamForEnrollment(enrId)
+	            };
+	        });
+	    },
+
     getTrackedEntityInstances: async (teiIds) => {
         if (!teiIds || teiIds.length === 0) return [];
         const response = await fetch(`${BASE_URL}/api/trackedEntityInstances?trackedEntityInstance=${teiIds.join(';')}&fields=*`, {
@@ -258,9 +573,9 @@ export const api = {
      * Bundles TEI, Enrollment, and Event in ONE request.
      */
     submitTrackerAssessment: async (formData, configuration, orgUnitId, onIdGenerated) => {
-        const PROGRAM_ID = configuration?.program?.id || 'G2gULe4jsfs';
-        const STAGE_ID = configuration?.programStage?.id || 'HpHD6u6MV37';
-        const TE_TYPE = 'uTTDt3fuXZK';
+	        const PROGRAM_ID = configuration?.program?.id || 'G2gULe4jsfs';
+	        const STAGE_ID = configuration?.programStage?.id || 'HpHD6u6MV37';
+	        const TE_TYPE = configuration?.program?.trackedEntityType?.id || 'uTTDt3fuXZK';
         const ATTR_ID = 'Bw4PZ8NsYFd';
         const ATTR_VALUE = 'FAC_ASS_TYPE_INTERNAL';
 

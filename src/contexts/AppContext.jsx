@@ -10,6 +10,8 @@ export const AppProvider = ({ children }) => {
     const [configuration, setConfiguration] = useState(null);
     const [userAssignments, setUserAssignments] = useState([]);
     const [isOnline, setIsOnline] = useState(navigator.onLine);
+	    // Track whether we are still checking for an existing session on load.
+	    const [authInitializing, setAuthInitializing] = useState(true);
     const storage = useStorage();
 
     // Stats
@@ -22,48 +24,57 @@ export const AppProvider = ({ children }) => {
 
     const [pendingEvents, setPendingEvents] = useState([]);
 
-    useEffect(() => {
-        const handleOnline = () => setIsOnline(true);
-        const handleOffline = () => setIsOnline(false);
-        window.addEventListener('online', handleOnline);
-        window.addEventListener('offline', handleOffline);
-        return () => {
-            window.removeEventListener('online', handleOnline);
-            window.removeEventListener('offline', handleOffline);
-        };
-    }, []);
+	    useEffect(() => {
+	        const handleOnline = () => setIsOnline(true);
+	        const handleOffline = () => setIsOnline(false);
+	        window.addEventListener('online', handleOnline);
+	        window.addEventListener('offline', handleOffline);
+	        return () => {
+	            window.removeEventListener('online', handleOnline);
+	            window.removeEventListener('offline', handleOffline);
+	        };
+	    }, []);
 
-    // Load initial user session and their facility assignments
-    useEffect(() => {
-        const checkAuth = async () => {
-            try {
-                const currentUser = await api.getCurrentUser();
-                setUser(currentUser);
+	    // Load initial user session and their facility assignments.
+	    // To avoid unnecessary network traffic on the login page, we only
+	    // call /api/me when a Basic auth header is already stored
+	    // (i.e. after a previous successful login).
+	    useEffect(() => {
+	        const checkAuth = async () => {
+	            try {
+	                const storedAuth = localStorage.getItem('dhis2_auth');
+	                if (!storedAuth) {
+	                    // No credentials persisted yet; skip the /api/me call.
+	                    console.log('[AppContext] No stored auth, skipping initial /api/me check');
+	                    return;
+	                }
 
-                // Fetch facility assignments for this user:
-                // Filter enrollments in program K9O5fdoBmKf where
-                // attribute Rh87cVTZ8b6 (Inspection Final List) contains this user's ID,
-                // then extract attribute R0e1pnpjkaW (Inspection Facility ID) as the assigned facility.
-                if (currentUser?.id) {
-                    try {
-                        const assignments = await api.getAssignments('K9O5fdoBmKf', currentUser.id);
-                        setUserAssignments(assignments);
-                    } catch (assignErr) {
-                        console.warn('Could not load user assignments:', assignErr);
-                    }
-                }
-            } catch (error) {
-                console.warn("No active session", error);
-            }
-        };
-        checkAuth();
-    }, []);
+	                const currentUser = await api.getCurrentUser();
+	                setUser(currentUser);
 
-    const logout = async () => {
-        await storage.clearAuth();
-        setUser(null);
-        // Additional cleanup if needed
-    };
+	                if (currentUser?.id) {
+	                    try {
+	                        const assignments = await api.getAssignments('K9O5fdoBmKf', currentUser.id);
+	                        setUserAssignments(assignments);
+	                    } catch (assignErr) {
+	                        console.warn('Could not load user assignments:', assignErr);
+	                    }
+	                }
+	            } catch (error) {
+	                console.warn('No active session', error);
+	            } finally {
+	                setAuthInitializing(false);
+	            }
+	        };
+	        checkAuth();
+	    }, []);
+
+	    const logout = async () => {
+	        await storage.clearAuth();
+	        setUser(null);
+	        setUserAssignments([]);
+	        // Additional cleanup if needed
+	    };
 
     const showToast = (message, type = 'info') => {
         console.log(`[TOAST] ${type.toUpperCase()}: ${message}`);
@@ -199,23 +210,24 @@ export const AppProvider = ({ children }) => {
     };
 
 
-    const value = useMemo(() => ({
-        user,
-        setUser,
-        configuration,
-        setConfiguration,
-        userAssignments,
-        setUserAssignments,
-        isOnline,
-        stats,
-        pendingEvents,
-        syncEvents,
-        retryEvent,
-        deleteEvent,
-        clearAllInspections,
-        showToast,
-        logout
-    }), [user, configuration, userAssignments, isOnline, stats, pendingEvents]);
+	    const value = useMemo(() => ({
+	        user,
+	        setUser,
+	        configuration,
+	        setConfiguration,
+	        userAssignments,
+	        setUserAssignments,
+	        isOnline,
+	        stats,
+	        pendingEvents,
+	        syncEvents,
+	        retryEvent,
+	        deleteEvent,
+	        clearAllInspections,
+	        showToast,
+	        logout,
+	        authInitializing,
+	    }), [user, configuration, userAssignments, isOnline, stats, pendingEvents, authInitializing]);
 
     return (
         <AppContext.Provider value={value}>

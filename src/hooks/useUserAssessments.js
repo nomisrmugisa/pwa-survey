@@ -4,6 +4,7 @@ import AssessmentTeamAssignmentService from '../services/assessment/teamAssignme
 import AssessmentSchedulingService from '../services/assessment/scheduling.service';
 import { eventBus, EVENTS } from '../events';
 import { getMetadata } from '../services/metadata.service';
+import { api } from '../services/api';
 
 /**
  * useUserAssessments hook ported and adapted for the Survey 2 environment.
@@ -36,6 +37,7 @@ export const useUserAssessments = (options = {}) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [initialized, setInitialized] = useState(false);
+	    const [debug, setDebug] = useState(null);
 
     // Initialize services
     useEffect(() => {
@@ -107,9 +109,12 @@ export const useUserAssessments = (options = {}) => {
 
             const filtered = enrichedAssignments.filter(assignment => {
                 // Filter by status
-                if (!includeCompleted && assignment.isConfirmed && assignment.sortDate < today) {
-                    return false;
-                }
+	                // Treat only explicit COMPLETED status as completed; accepted
+	                // assignments (FAC_ASS_ASSIGN_ACCEPTED) should still show up as
+	                // active, even if their sortDate is in the past.
+	                if (!includeCompleted && assignment.statusCode === 'FAC_ASS_ASSIGN_COMPLETED') {
+	                    return false;
+	                }
                 if (!includeDeclined && assignment.isDeclined) {
                     return false;
                 }
@@ -120,11 +125,10 @@ export const useUserAssessments = (options = {}) => {
             });
 
             // 6. Categorize assignments
-            const upcoming = filtered.filter(a =>
-                a.sortDate >= today &&
-                (a.statusCode === 'FAC_ASS_ASSIGN_PENDING' ||
-                    a.statusCode === 'FAC_ASS_ASSIGN_ACCEPTED')
-            );
+	            const upcoming = filtered.filter(a =>
+	                a.statusCode === 'FAC_ASS_ASSIGN_PENDING' ||
+	                a.statusCode === 'FAC_ASS_ASSIGN_ACCEPTED'
+	            );
 
             const past = filtered.filter(a =>
                 a.sortDate < today ||
@@ -136,7 +140,7 @@ export const useUserAssessments = (options = {}) => {
             );
 
             // 7. Calculate stats
-            const stats = {
+	            const stats = {
                 total: filtered.length,
                 upcoming: upcoming.length,
                 pending: pending.length,
@@ -144,15 +148,25 @@ export const useUserAssessments = (options = {}) => {
                 declined: filtered.filter(a => a.isDeclined).length
             };
 
-            setData({
-                assignments: filtered,
-                schedules,
-                upcoming,
-                past,
-                pending,
-                stats,
-                enriched: enrichedAssignments // Keep original enriched data
-            });
+	            // Capture latest debug snapshot from the API (if any), plus
+	            // local counts so we can see where items are being filtered.
+	            setDebug({
+	                ...(api._schedulingDebug || {}),
+	                assignmentsCount: assignments.length,
+	                filteredCount: filtered.length,
+	                upcomingCount: upcoming.length,
+	                pendingCount: pending.length,
+	            });
+
+	            setData({
+	                assignments: filtered,
+	                schedules,
+	                upcoming,
+	                past,
+	                pending,
+	                stats,
+	                enriched: enrichedAssignments // Keep original enriched data
+	            });
 
         } catch (err) {
             console.error('Error fetching user assessments:', err);
@@ -208,6 +222,7 @@ export const useUserAssessments = (options = {}) => {
         loading,
         error,
         initialized,
+	        debug,
         refresh,
         respondToAssignment,
         getAssignmentDetails,

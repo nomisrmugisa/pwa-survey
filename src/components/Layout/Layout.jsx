@@ -14,7 +14,8 @@ import './Layout.css';
 	    assignments,
 	    selectedFacility,
 	    onSelectFacility,
-	    scoringResults
+	    scoringResults,
+	    isAssignedAssessment
 	}) => {
     return (
         <div className="layout-container">
@@ -22,7 +23,8 @@ import './Layout.css';
                 assignments={assignments}
                 selectedFacility={selectedFacility}
                 onSelectFacility={onSelectFacility}
-                scoringResults={scoringResults}
+	                scoringResults={scoringResults}
+	                isAssignedAssessment={isAssignedAssessment}
             />
             <div className="layout-body">
                 <Sidebar

@@ -933,7 +933,16 @@ const FormArea = ({
             setSubmitResult({ success: false, message: 'Form configuration not loaded yet.' });
             return;
         }
-        const orgUnit = selectedFacility?.orgUnit || selectedFacility?.facilityId || selectedFacility?.trackedEntityInstance;
+	        // Use the program-level orgUnit attached to the scheduling enrollment
+	        // when submitting the main survey program. This is typically a
+	        // district/administrative OU (e.g. Gaborone) that is actually
+	        // assigned to the survey program in DHIS2. We still display the
+	        // facility name from the team-assignment orgUnit.
+	        const orgUnit =
+	            selectedFacility?.programOrgUnitId ||
+	            selectedFacility?.orgUnitId ||
+	            (typeof selectedFacility?.orgUnit === 'string' ? selectedFacility.orgUnit : selectedFacility?.orgUnit?.id) ||
+	            selectedFacility?.facilityId;
         if (!orgUnit) {
             setSubmitResult({ success: false, message: 'No facility selected.' });
             return;
@@ -959,13 +968,21 @@ const FormArea = ({
         try {
             // Priority 1: Official Assignment IDs (The Source of Truth)
             // Priority 2: Locally saved internal IDs (From previous successes)
-            const enrichedData = {
-                ...formData,
-                teiId_internal: selectedFacility?.trackedEntityInstance || formData.teiId_internal,
-                enrollmentId_internal: selectedFacility?.enrollment || formData.enrollmentId_internal,
-                // Add point-in-time scoring snapshot for auditing
-                scoringSnapshot: createAssessmentSnapshot(scoringResults)
-            };
+	            const enrichedData = {
+	                ...formData,
+	                // Reuse the facility TEI from the scheduling workflow if
+	                // available, but NEVER reuse its enrollment ID for the
+	                // main survey program. That enrollment belongs to the
+	                // scheduling program (K9O5fdoBmKf), so we let DHIS2 create
+	                // a fresh enrollment for G2gULe4jsfs. If a survey-specific
+	                // enrollment already exists, it will be stored in
+	                // formData.enrollmentId_internal from a previous
+	                // successful submission.
+	                teiId_internal: selectedFacility?.trackedEntityInstance || formData.teiId_internal,
+	                enrollmentId_internal: formData.enrollmentId_internal,
+	                // Add point-in-time scoring snapshot for auditing
+	                scoringSnapshot: createAssessmentSnapshot(scoringResults)
+	            };
 
             console.log('🚀 Starting Tracker Enrollment Workflow...');
             // Capture generated IDs to prevent duplicates on retry
