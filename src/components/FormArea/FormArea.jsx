@@ -560,25 +560,63 @@ const FormArea = ({
             const parentQuestionId = field.questionFieldId;
             const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
 
-            // Check if this is a technical field that should be read-only (Enrollment ID, TEI ID)
-            const labelLower = (field.label || '').toLowerCase();
-            const isTechnicalField = isADSection && (labelLower.includes('enrollment') || labelLower.includes('tei id'));
+	            // Check if this is a technical field that should be read-only
+	            // (Enrollment ID, TEI ID, Assessor User ID, Facility Assessment
+	            // Group) in the Assessment Details section. These are
+	            // populated automatically and should not be editable by the
+	            // assessor.
+	            const rawLabel = field.label || '';
+	            const labelLower = rawLabel.toLowerCase();
+	            const labelUpper = rawLabel.toUpperCase();
+	            const isEnrollmentField = labelLower.includes('enrollment');
+	            const isTeiField = labelLower.includes('tei id');
+	            const isAssessorUserField =
+	                labelUpper.includes('FAC_ASS_ASSESSOR_USER_ID') ||
+	                labelUpper.includes('ASSESSOR USER ID');
+	            const isFacilityGroupField =
+	                field.id === 'pzenrgsSny3' ||
+	                labelLower.includes('facility assessment group');
+	            const isTechnicalField =
+	                isADSection &&
+	                (isEnrollmentField ||
+	                    isTeiField ||
+	                    isAssessorUserField ||
+	                    isFacilityGroupField);
 
             // Look up EMS standard/intent tooltip for this data element code
             const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex, calculatedFieldScore) : '';
 
             return (
-                <div
-                    key={field.id}
-                    className={`form-field ${isCritical ? 'is-critical' : ''} ${(!isParentAnswered && isCommentField) ? 'field-disabled' : ''}`}
-                    data-tooltip={(!isParentAnswered && isCommentField) ? "Please answer the main question first" : ""}
-                >
-                    <div className="field-label-container">
+	                <div
+	                    key={field.id}
+	                    className={`form-field ${isCritical ? 'is-critical' : ''} ${(!isParentAnswered && isCommentField) ? 'field-disabled' : ''}`}
+	                    data-tooltip={(!isParentAnswered && isCommentField) ? "Please answer the main question first" : ""}
+	                >
+	                    <div className="field-label-container">
 	                        <div className="field-label-main">
 	                            <label>
-	                                {isCommentField
-	                                    ? (field.label || 'Unnamed Field')
-	                                    : (field.code ? `${field.code} ${field.label || 'Unnamed Field'}` : field.label || 'Unnamed Field')}
+	                                {(() => {
+	                                    if (isCommentField) {
+	                                        return rawLabel || 'Unnamed Field';
+	                                    }
+
+	                                    // For Assessment Details, show only the human-friendly
+	                                    // part of the label (e.g. "Facility Assessment Assessor
+	                                    // User ID"), dropping any leading technical code such as
+	                                    // "FAC_ASS_ASSESSOR_USER_ID".
+	                                    if (isADSection) {
+	                                        const parts = rawLabel.split(/\s+/);
+	                                        if (parts.length > 1 && /^[A-Z0-9_]+$/.test(parts[0])) {
+	                                            return parts.slice(1).join(' ');
+	                                        }
+	                                        return rawLabel || 'Unnamed Field';
+	                                    }
+
+	                                    // Other sections keep the criterion code prefix for context.
+	                                    return field.code
+	                                        ? `${field.code} ${rawLabel || 'Unnamed Field'}`
+	                                        : (rawLabel || 'Unnamed Field');
+	                                })()}
 	                            </label>
 	                            {!isCommentField && configSeverity !== undefined && configSeverity !== null && (
 	                                <span className="severity-pill">

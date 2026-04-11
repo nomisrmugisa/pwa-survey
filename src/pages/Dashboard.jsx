@@ -14,35 +14,36 @@ import indexedDBService from '../services/indexedDBService';
 	import clinicsLinks from '../assets/clinics_links.json';
 	import hospitalLinks from '../assets/hospital_links.json';
 import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button,
-    IconButton,
-    Tooltip
-} from '@mui/material';
+	    Dialog,
+	    DialogTitle,
+	    DialogContent,
+	    DialogActions,
+	    Button,
+	    IconButton,
+	    Tooltip
+	} from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
 import './Dashboard.css';
 
 export function Dashboard() {
-    const navigate = useNavigate();
-    const [searchParams] = useSearchParams();
-    const {
-        configuration,
-        stats,
-        pendingEvents,
-        isOnline,
-        syncEvents,
-        retryEvent,
-        deleteEvent,
-        clearAllSurveys,
-        showToast,
-        userAssignments,
-        user
-    } = useApp();
+	    const navigate = useNavigate();
+	    const [searchParams] = useSearchParams();
+	    const {
+	        configuration,
+	        stats,
+	        pendingEvents,
+	        isOnline,
+	        syncEvents,
+	        retryEvent,
+	        deleteEvent,
+	        clearAllSurveys,
+	        showToast,
+	        userAssignments,
+	        user,
+	        logout,
+	    } = useApp();
     const storage = useStorage();
     const [searchTerm, setSearchTerm] = useState('');
     const [events, setEvents] = useState([]);
@@ -60,7 +61,7 @@ export function Dashboard() {
     const [selectedSE, setSelectedSE] = useState(null);
     const [isEditingJson, setIsEditingJson] = useState(false);
     const [editedJson, setEditedJson] = useState('');
-    const [jsonError, setJsonError] = useState(null);
+	    const [jsonError, setJsonError] = useState(null);
     const [customEmsConfig, setCustomEmsConfig] = useState(null);
     const [customEmsLinks, setCustomEmsLinks] = useState(null);
     const [isEditingLinks, setIsEditingLinks] = useState(false);
@@ -68,15 +69,24 @@ export function Dashboard() {
     const [showLinksEditor, setShowLinksEditor] = useState(false);
 
     // Integrated Hook
-    const assessmentHook = useUserAssessments();
-    const {
-        upcoming: upcomingAssessments,
-        pending: pendingAssessments,
-        stats: assessmentStats,
-        loading: assessmentsLoading,
+	    const assessmentHook = useUserAssessments();
+	    const {
+	        upcoming: upcomingAssessments,
+	        pending: pendingAssessments,
+	        stats: assessmentStats,
+	        loading: assessmentsLoading,
 	        respondToAssignment,
-	        debug: assignmentsDebug
-    } = assessmentHook;
+	        debug: assignmentsDebug,
+	    } = assessmentHook;
+
+	    const handleLogout = async () => {
+	        try {
+	            await logout();
+	            navigate('/login');
+	        } catch (e) {
+	            console.error('Error during logout from dashboard:', e);
+	        }
+	    };
 
     const handleConfirmClear = async () => {
         const success = await clearAllSurveys();
@@ -213,10 +223,6 @@ export function Dashboard() {
         };
     }, [events]);
 
-    const handleNewForm = () => {
-        navigate('/form?new=true');
-    };
-
     const handleEditForm = (event) => {
         // Resume drafts or failed submissions
         if (event.syncStatus === 'draft' || event.syncStatus === 'pending' || event.syncStatus === 'error') {
@@ -257,9 +263,11 @@ export function Dashboard() {
                             <SettingsIcon />
                         </IconButton>
                     </Tooltip>
-                    <button className="btn btn-primary btn-large new-form-btn" onClick={handleNewForm}>
-                        New Survey
-                    </button>
+	                    <Tooltip title="Logout">
+	                        <IconButton onClick={handleLogout} color="primary" className="action-icon-btn">
+	                            <LogoutIcon />
+	                        </IconButton>
+	                    </Tooltip>
                 </div>
             </div>
 

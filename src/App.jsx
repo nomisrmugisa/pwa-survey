@@ -190,42 +190,76 @@ const AppContent = () => {
 	    }
 	  }, [location.state, searchParams, assignments]);
 
-	  // Auto-populate Assessment Details from selected assessment
-	  useEffect(() => {
-	    const nameLower = (activeSection?.name || '').toLowerCase().trim();
-	    const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
-	
-	    // Corrected keys for raw data from api.getAssignments
-	    const enrollmentId = selectedFacility?.enrollment || selectedFacility?.eventId;
-	    const teiId = selectedFacility?.trackedEntityInstance || selectedFacility?.scheduleTeiId;
-	
-	    if (selectedFacility && isADSection && enrollmentId) {
-	      const adFields = activeSection.fields || [];
-	
-	      // Find fields for TEI ID, Enrollment, and Facility Assessment Group
-	      const teiField = adFields.find(f => (f.label || '').includes('TEI ID'));
-	      const enrField = adFields.find(f => (f.label || '').toLowerCase().includes('enrollment'));
-	      const groupField = adFields.find(
-	        f => f.id === FACILITY_GROUP_DE_ID || (f.label || '').toLowerCase().includes('facility assessment group')
-	      );
-	
-	      if (teiField && teiId && !formData[teiField.id]) {
-	        console.log(`📝 App: Auto-populating TEI ID: ${teiId}`);
-	        saveField(teiField.id, teiId);
-	      }
-	      if (enrField && enrollmentId && !formData[enrField.id]) {
-	        console.log(`📝 App: Auto-populating Enrollment ID: ${enrollmentId}`);
-	        saveField(enrField.id, enrollmentId);
-	      }
-	      if (groupField && activeGroup && !formData[groupField.id]) {
-	        const groupLabel = getGroupLabelForStorage(activeGroup);
-	        if (groupLabel) {
-	          console.log(`📝 App: Auto-populating Facility Assessment Group: ${groupLabel}`);
-	          saveField(groupField.id, groupLabel);
-	        }
-	      }
-	    }
-	  }, [selectedFacility, activeSection, activeGroup, saveField, formData]);
+  // Auto-populate Assessment Details from selected assessment
+  useEffect(() => {
+    const nameLower = (activeSection?.name || '').toLowerCase().trim();
+    const isADSection =
+      nameLower === 'assessment details' || nameLower === 'assessment_details';
+
+    // Corrected keys for raw data from api.getAssignments
+    const enrollmentId =
+      selectedFacility?.enrollment || selectedFacility?.eventId;
+    // TEI priority:
+    // 1) survey-specific internal TEI if we already created one
+    // 2) TEI from the scheduling workflow (hydrated from /enrollments)
+    const teiId =
+      formData.teiId_internal ||
+      selectedFacility?.trackedEntityInstance ||
+      selectedFacility?.scheduleTeiId;
+
+    if (selectedFacility && isADSection && enrollmentId) {
+      const adFields = activeSection.fields || [];
+
+      // Find fields for TEI ID, Enrollment, Facility Assessment Group,
+      // and Assessor User ID
+      const teiField = adFields.find(f =>
+        (f.label || '').toUpperCase().includes('TEI ID')
+      );
+      const enrField = adFields.find(f =>
+        (f.label || '').toLowerCase().includes('enrollment')
+      );
+      const groupField = adFields.find(
+        f =>
+          f.id === FACILITY_GROUP_DE_ID ||
+          (f.label || '')
+            .toLowerCase()
+            .includes('facility assessment group')
+      );
+      const assessorField = adFields.find(f => {
+        const label = (f.label || '').toUpperCase();
+        return (
+          label.includes('FAC_ASS_ASSESSOR_USER_ID') ||
+          label.includes('ASSESSOR USER ID')
+        );
+      });
+
+      if (teiField && teiId && !formData[teiField.id]) {
+        console.log(`📝 App: Auto-populating TEI ID: ${teiId}`);
+        saveField(teiField.id, teiId);
+      }
+      if (enrField && enrollmentId && !formData[enrField.id]) {
+        console.log(
+          `📝 App: Auto-populating Enrollment ID: ${enrollmentId}`
+        );
+        saveField(enrField.id, enrollmentId);
+      }
+      if (groupField && activeGroup && !formData[groupField.id]) {
+        const groupLabel = getGroupLabelForStorage(activeGroup);
+        if (groupLabel) {
+          console.log(
+            `📝 App: Auto-populating Facility Assessment Group: ${groupLabel}`
+          );
+          saveField(groupField.id, groupLabel);
+        }
+      }
+      if (assessorField && user?.id && !formData[assessorField.id]) {
+        console.log(
+          `📝 App: Auto-populating Assessor User ID with DHIS2 user id: ${user.id}`
+        );
+        saveField(assessorField.id, user.id);
+      }
+    }
+  }, [selectedFacility, activeSection, activeGroup, saveField, formData, user?.id]);
 
   // Assessment Details Prerequisite Check
   const isADComplete = React.useMemo(() => {
