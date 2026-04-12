@@ -87,7 +87,11 @@ class AssessmentTeamAssignmentService {
 
 	                return {
 	                    eventId: item.enrollment || item.trackedEntityInstance,
-	                    scheduleTeiId: item.trackedEntityInstance,
+			            // Keep explicit reference to the TEI so other parts of the
+			            // app (e.g. App.jsx auto-population of Assessment Details)
+			            // can reliably access it.
+			            trackedEntityInstance: item.trackedEntityInstance,
+			            scheduleTeiId: item.trackedEntityInstance,
 	                    statusCode: mapStatus(item.status, storedStatusCode),
 	                    sortDate: extractDate(item),
 	                    // Use enriched fields from api.js
