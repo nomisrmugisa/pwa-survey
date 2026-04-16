@@ -82,15 +82,69 @@ const formatSeverityLabel = (severity) => {
     return SEVERITY_LABELS[sevNumber] || `Severity ${sevNumber}`;
 };
 
+// Split a full Standard Intent text into two parts:
+// - primaryIntent: the first one or two sentences (used as "Standard Intent")
+// - overviewText: any remaining sentences (used as "Overview")
+const splitIntentText = (fullIntent) => {
+    const trimmed = (fullIntent || '').trim();
+    if (!trimmed) return { primaryIntent: '', overviewText: '' };
+
+    const sentences = [];
+    let buffer = '';
+
+    for (let i = 0; i < trimmed.length; i += 1) {
+        const ch = trimmed[i];
+        buffer += ch;
+
+        if ((ch === '.' || ch === '!' || ch === '?') && i < trimmed.length - 1) {
+            const next = trimmed[i + 1];
+            if (next === ' ') {
+                sentences.push(buffer.trim());
+                buffer = '';
+
+                // Skip consecutive spaces after sentence terminator
+                while (i + 1 < trimmed.length && trimmed[i + 1] === ' ') {
+                    i += 1;
+                }
+            }
+        }
+    }
+
+    if (buffer.trim()) {
+        sentences.push(buffer.trim());
+    }
+
+    if (sentences.length <= 2) {
+        return { primaryIntent: trimmed, overviewText: '' };
+    }
+
+    const primaryIntent = sentences.slice(0, 2).join(' ');
+    const overviewText = sentences.slice(2).join(' ');
+    return { primaryIntent, overviewText };
+};
+
 const getCriterionTooltip = (code, links, index, scoreResult) => {
     const normalized = normalizeCriterionCode(code);
     if (!normalized) return '';
     const info = index[normalized];
     if (!info) return '';
 
-    const parts = [];
-    if (info.statement) parts.push(`Statement:\n${info.statement.trim().replace(/^Standard\s*/i, '')}`);
-    if (info.intent) parts.push(`Intent:\n${info.intent.trim()}`);
+	    const parts = [];
+	    // Show the correct domain terminology in the tooltip: this text is the
+	    // Standard, so label it "Standard" instead of "Statement".
+	    if (info.statement) {
+	        parts.push(`Standard:\n${info.statement.trim().replace(/^Standard\s*/i, '')}`);
+	    }
+
+	    if (info.intent) {
+	        const { primaryIntent, overviewText } = splitIntentText(info.intent);
+	        if (primaryIntent) {
+	            parts.push(`Intent:\n${primaryIntent}`);
+	        }
+	        if (overviewText) {
+	            parts.push(`Overview:\n${overviewText}`);
+	        }
+	    }
     if (info.severity !== undefined && info.severity !== null) {
         const sevLabel = formatSeverityLabel(info.severity);
         if (sevLabel) {
@@ -419,8 +473,67 @@ const FormArea = ({
 	        }
 	        return staticLinksMap[programmeType] || [];
 	    })();
-
-	    const criterionIndex = useMemo(() => buildCriterionIndex(activeConfigArray), [activeConfigArray]);
+		
+		    const criterionIndex = useMemo(() => buildCriterionIndex(activeConfigArray), [activeConfigArray]);
+		
+		    // Build an SE/Section overview object for the currently active section
+		    // so we can render a narrative page similar to the source PDFs (SE
+		    // title, Standard text, and Standard Intent paragraphs).
+		    const seOverview = useMemo(() => {
+		        if (!activeSection || !Array.isArray(activeConfigArray) || activeConfigArray.length === 0) {
+		            return null;
+		        }
+		
+		        const rawName = (activeSection._originalName || activeSection.name || '').trim();
+		        const rawCode = (activeSection.code || '').trim();
+		
+		        // Try to pull out a numeric PI id like "9.1" from the metadata
+		        // name/code so we can match it to section_pi_id in the
+		        // *_full_configuration arrays.
+		        const piMatch = rawName.match(/\b\d+\.\d+\b/) || rawCode.match(/\b\d+\.\d+\b/);
+		        const hintedPiId = piMatch ? piMatch[0] : null;
+		
+		        let matchedSe = null;
+		        let matchedSection = null;
+		
+		        outer: for (const se of activeConfigArray) {
+		            const seSections = se.sections || [];
+		            for (const sec of seSections) {
+		                const secPi = (sec.section_pi_id || '').trim();
+		                const secTitle = (sec.title || '').trim();
+		
+		                const numberMatches =
+		                    !!secPi && (
+		                        secPi === hintedPiId ||
+		                        rawName.includes(secPi) ||
+		                        rawCode.includes(secPi)
+		                    );
+		
+		                const titleLc = secTitle.toLowerCase();
+		                const nameLc = rawName.toLowerCase();
+		                const titleMatches = titleLc && (nameLc.includes(titleLc) || titleLc.includes(nameLc));
+		
+		                if (numberMatches || titleMatches) {
+		                    matchedSe = se;
+		                    matchedSection = sec;
+		                    break outer;
+		                }
+		            }
+		        }
+		
+		        if (!matchedSe || !matchedSection) return null;
+		
+		        const standards = matchedSection.standards || [];
+		        if (!standards.length) return null;
+		
+		        return {
+		            seId: matchedSe.se_id,
+		            seName: matchedSe.se_name,
+		            sectionPiId: matchedSection.section_pi_id,
+		            sectionTitle: matchedSection.title,
+		            standards,
+		        };
+		    }, [activeSection, activeConfigArray]);
     // DEBUG: Validate props on render
     React.useEffect(() => {
         if (!activeSection) console.warn("FormArea: No active section provided");
@@ -545,6 +658,13 @@ const FormArea = ({
 	            // 2. Fallback to index (from Config)
 	            // 3. Fallback to comment tag presence
 	            const normalizedCode = normalizeCriterionCode(field.code);
+	            // Standards (x.x.x) should be display-only in the UI: no
+	            // input controls, just bolded text. We detect them by a
+	            // three-level numeric code (e.g. "1.2.3").
+	            const isStandardCriterion =
+	                !isCommentField &&
+	                normalizedCode &&
+	                /^\d+(\.\d+){2}$/.test(normalizedCode);
 	            const configEntry = criterionIndex[normalizedCode] || {};
 	            const configIsCritical = configEntry.is_critical || false;
 	            const configSeverity = configEntry.severity;
@@ -553,12 +673,23 @@ const FormArea = ({
                 ? formData[`is_critical_${associatedCommentId}`]
                 : (configIsCritical || currentCommentValue.includes('[CRITICAL]'));
 
-            const questionValue = formData[field.id];
-            const isQuestionAnswered = questionValue !== undefined && questionValue !== null && questionValue !== '';
+	            const questionValue = formData[field.id];
+	            const isQuestionAnswered = questionValue !== undefined && questionValue !== null && questionValue !== '';
 
-            // Check if comment field is disabled (parent question not answered)
-            const parentQuestionId = field.questionFieldId;
-            const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
+	            // Check if comment field is disabled (parent question not answered)
+	            const parentQuestionId = field.questionFieldId;
+	            const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
+
+	            // If this is a comment attached to a Standard (x.x.x), hide the
+	            // comment row entirely in the UI.
+	            if (isCommentField && parentQuestionId) {
+	                const parentField = activeSection.fields.find(f => f.id === parentQuestionId);
+	                const parentNorm = parentField?.code ? normalizeCriterionCode(parentField.code) : '';
+	                const parentIsStandard = parentNorm && /^\d+(\.\d+){2}$/.test(parentNorm);
+	                if (parentIsStandard) {
+	                    return null;
+	                }
+	            }
 
 	            // Check if this is a technical field that should be read-only
 	            // (Enrollment ID, TEI ID, Assessor User ID, Facility Assessment
@@ -583,10 +714,49 @@ const FormArea = ({
 	                    isAssessorUserField ||
 	                    isFacilityGroupField);
 
-            // Look up EMS standard/intent tooltip for this data element code
-            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex, calculatedFieldScore) : '';
+	            // Look up EMS standard/intent tooltip for this data element code
+	            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex, calculatedFieldScore) : '';
 
-            return (
+	            // Compute the human-friendly label once, so we can reuse it
+	            // for both normal and standard (display-only) rows.
+	            const displayLabel = (() => {
+	                // For all fields we want to hide any technical
+	                // prefixes that appear before underscores in the
+	                // underlying codes (e.g. "SURV_EMS_", "FAC_ASS_"),
+	                // but we still allow a clean, human-readable
+	                // criterion number such as "1.2.3.4".
+	                const cleanedCode = field.code ? normalizeCriterionCode(field.code) : '';
+	                const shouldShowCode = !!cleanedCode && /\d/.test(cleanedCode) && !cleanedCode.includes('_');
+
+	                if (isCommentField) {
+	                    return rawLabel || 'Unnamed Field';
+	                }
+
+	                // For Assessment Details, show only the human-friendly
+	                // part of the label (e.g. "Facility Assessment Assessor
+	                // User ID"), dropping any leading technical code such as
+	                // "FAC_ASS_ASSESSOR_USER_ID".
+	                if (isADSection) {
+	                    const parts = rawLabel.split(/\s+/);
+	                    if (parts.length > 1 && /^[A-Z0-9_]+$/.test(parts[0])) {
+	                        return parts.slice(1).join(' ');
+	                    }
+	                    return rawLabel || 'Unnamed Field';
+	                }
+
+	                // For other sections, optionally prepend the
+	                // cleaned criterion number (without any
+	                // SURV_/FAC_/etc. prefixes) if it adds
+	                // information and does not duplicate the
+	                // start of the label.
+	                if (shouldShowCode && rawLabel && !rawLabel.startsWith(cleanedCode)) {
+	                    return `${cleanedCode} ${rawLabel}`;
+	                }
+
+	                return rawLabel || 'Unnamed Field';
+	            })();
+
+	            return (
 	                <div
 	                    key={field.id}
 	                    className={`form-field ${isCritical ? 'is-critical' : ''} ${(!isParentAnswered && isCommentField) ? 'field-disabled' : ''}`}
@@ -594,30 +764,13 @@ const FormArea = ({
 	                >
 	                    <div className="field-label-container">
 	                        <div className="field-label-main">
-	                            <label>
-	                                {(() => {
-	                                    if (isCommentField) {
-	                                        return rawLabel || 'Unnamed Field';
-	                                    }
-
-	                                    // For Assessment Details, show only the human-friendly
-	                                    // part of the label (e.g. "Facility Assessment Assessor
-	                                    // User ID"), dropping any leading technical code such as
-	                                    // "FAC_ASS_ASSESSOR_USER_ID".
-	                                    if (isADSection) {
-	                                        const parts = rawLabel.split(/\s+/);
-	                                        if (parts.length > 1 && /^[A-Z0-9_]+$/.test(parts[0])) {
-	                                            return parts.slice(1).join(' ');
-	                                        }
-	                                        return rawLabel || 'Unnamed Field';
-	                                    }
-
-	                                    // Other sections keep the criterion code prefix for context.
-	                                    return field.code
-	                                        ? `${field.code} ${rawLabel || 'Unnamed Field'}`
-	                                        : (rawLabel || 'Unnamed Field');
-	                                })()}
-	                            </label>
+		                            <label>
+		                                {isStandardCriterion ? (
+		                                    <strong style={{ fontSize: '1.6em' }}>{displayLabel}</strong>
+		                                ) : (
+		                                    displayLabel
+		                                )}
+		                            </label>
 	                            {!isCommentField && configSeverity !== undefined && configSeverity !== null && (
 	                                <span className="severity-pill">
 	                                    {formatSeverityLabel(configSeverity)}
@@ -634,44 +787,12 @@ const FormArea = ({
 	                                </button>
 	                            )}
 	                        </div>
-                        {isCritical && <span className="critical-badge">CRITICAL</span>}
-                        {associatedCommentId && !isCommentField && (
-                            <div
-                                className={`critical-toggle-container ${!isQuestionAnswered ? 'disabled' : ''}`}
-                                data-tooltip={!isQuestionAnswered ? "Please answer the main question first" : ""}
-                            >
-                                <span className="toggle-label">Critical?</span>
-                                <div className="critical-radio-group">
-                                    <label className="radio-label">
-                                        <input
-                                            type="radio"
-                                            name={`critical-${field.id}`}
-                                            value="yes"
-                                            checked={isCritical === true}
-                                            onChange={() => handleCriticalToggle(field.id, associatedCommentId, true)}
-                                            disabled={!isQuestionAnswered}
-                                        />
-                                        <span>Yes</span>
-                                    </label>
-                                    <label className="radio-label">
-                                        <input
-                                            type="radio"
-                                            name={`critical-${field.id}`}
-                                            value="no"
-                                            checked={isCritical === false}
-                                            onChange={() => handleCriticalToggle(field.id, associatedCommentId, false)}
-                                            disabled={!isQuestionAnswered}
-                                        />
-                                        <span>No</span>
-                                    </label>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                    {formData[`is_critical_${field.id}`] && isCommentField && (
-                        <div className="mandatory-label">Comment is required for Critical issues.</div>
-                    )}
-                    {field.type === 'select' ? (
+	                        {isCritical && <span className="critical-badge">CRITICAL</span>}
+	                    </div>
+	                    {formData[`is_critical_${field.id}`] && isCommentField && (
+	                        <div className="mandatory-label">Comment is required for Critical issues.</div>
+	                    )}
+	                    {!isStandardCriterion && (field.type === 'select' ? (
                         <>
                             {calculatedFieldScore && (calculatedFieldScore.points !== null || isRoot) && (
                                 <div className={`${isRoot ? 'root-score-display' : 'linked-score-display'}`} style={{ marginBottom: '10px', padding: '10px', backgroundColor: isRoot ? '#e2e8f0' : '#f0f4f8', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: isRoot ? '1px solid #cbd5e1' : '1px dashed #cbd5e1' }}>
@@ -778,19 +899,19 @@ const FormArea = ({
                                         </>
                                     );
                                 })()}
-                            </select>
-                        </>
-                    ) : (
-                        <FieldInput
-                            type={isCommentField ? 'textarea' : field.type}
-                            className={`form-control ${formData[`is_critical_${field.id}`] && (!questionValue || questionValue === '') ? 'mandatory-warning' : ''}`}
-                            value={formData[field.id] || ''}
-                            onChange={(e) => handleInputChange(e, field.id)}
-                            onBlur={isCommentField ? () => handleCommentBlur(field.id) : undefined}
-                            id={`field-${field.id}`}
-                            disabled={(!isParentAnswered && isCommentField) || isTechnicalField}
-                        />
-                    )}
+	                            </select>
+	                        </>
+	                    ) : (
+	                        <FieldInput
+	                            type={isCommentField ? 'textarea' : field.type}
+	                            className={`form-control ${formData[`is_critical_${field.id}`] && (!questionValue || questionValue === '') ? 'mandatory-warning' : ''}`}
+	                            value={formData[field.id] || ''}
+	                            onChange={(e) => handleInputChange(e, field.id)}
+	                            onBlur={isCommentField ? () => handleCommentBlur(field.id) : undefined}
+	                            id={`field-${field.id}`}
+	                            disabled={(!isParentAnswered && isCommentField) || isTechnicalField}
+	                        />
+	                    ))}
                 </div>
             );
         });
@@ -1141,17 +1262,79 @@ const FormArea = ({
                 scoreResult={viewingRootCalc?.result}
                 onClose={() => setViewingRootCalc(null)}
             />
-            <div className="form-content">
-                {isLocked ? (
-                    <div className="blocking-overlay">
-                        <div className="overlay-message">
-                            <span className="lock-icon">🔒</span>
-                            <h3>Section Locked</h3>
-                            <p>Please complete <strong>"Assessment Details"</strong> questions first to proceed.</p>
-                        </div>
-                    </div>
-                ) : renderFields()}
-            </div>
+	            <div className="form-content">
+	                {seOverview && (
+	                    <div className="se-overview-card">
+	                        <div className="se-overview-header">
+	                            <div className="se-overview-title">
+	                                {seOverview.seId
+	                                    ? `SE ${seOverview.seId} ${seOverview.seName || ''}`.trim()
+	                                    : (seOverview.seName || '')}
+	                            </div>
+	                            {seOverview.sectionPiId && (
+	                                <div className="se-overview-section">
+	                                    {`${seOverview.sectionPiId} ${seOverview.sectionTitle || ''}`.trim()}
+	                                </div>
+	                            )}
+	                        </div>
+	                        {seOverview.standards.map((std) => {
+	                            const stdId = std.standard_id || std.standardId;
+	                            const rawStatement = (std.statement || '').trim();
+	                            const cleanedStatement = rawStatement.replace(/^Standard\s*/i, '').trim();
+	                            const fullIntent = (std.intent_tooltip || '').trim();
+
+	                            const { primaryIntent, overviewText } = splitIntentText(fullIntent);
+
+	                            return (
+	                                <div
+	                                    key={stdId || cleanedStatement}
+	                                    className="se-overview-standard-block"
+	                                >
+	                                    {stdId && (
+	                                        <div className="se-overview-standard-title">
+	                                            {`${stdId} Standard`}
+	                                        </div>
+	                                    )}
+	                                    {cleanedStatement && (
+	                                        <p className="se-overview-standard-text">
+	                                            {cleanedStatement}
+	                                        </p>
+	                                    )}
+	                                    {primaryIntent && (
+	                                        <>
+	                                            <div className="se-overview-intent-label">
+	                                                Standard Intent
+	                                            </div>
+	                                            <p className="se-overview-intent-text">
+	                                                {primaryIntent}
+	                                            </p>
+	                                        </>
+	                                    )}
+	                                    {overviewText && (
+	                                        <>
+	                                            <div className="se-overview-overview-label">
+	                                                Overview
+	                                            </div>
+	                                            <p className="se-overview-overview-text">
+	                                                {overviewText}
+	                                            </p>
+	                                        </>
+	                                    )}
+	                                </div>
+	                            );
+	                        })}
+	                    </div>
+	                )}
+	                {isLocked ? (
+	                    <div className="blocking-overlay">
+	                        <div className="overlay-message">
+	                            <span className="lock-icon">🔒</span>
+	                            <h3>Section Locked</h3>
+	                            <p>Please complete <strong>"Assessment Details"</strong> questions first to proceed.</p>
+	                        </div>
+	                    </div>
+	                ) : renderFields()}
+	            </div>
             <div className="form-footer">
                 {submitResult && (
                     <div style={{

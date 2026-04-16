@@ -26,11 +26,17 @@ class AssessmentSchedulingService {
                 ...tei,
                 id: tei.trackedEntityInstance
             }));
-        } catch (error) {
-            console.error('Error fetching schedule TEIs:', error);
-            if (options.silent) return [];
-            throw error;
-        }
+	        } catch (error) {
+	            // This enrichment call is optional. When `silent` is true we
+	            // don't want to spam the console with hard errors or block the
+	            // rest of the scheduling/assignment pipeline.
+	            if (options.silent) {
+	                console.warn('Error fetching schedule TEIs (non-fatal):', error);
+	                return [];
+	            }
+	            console.error('Error fetching schedule TEIs:', error);
+	            throw error;
+	        }
     }
 }
 

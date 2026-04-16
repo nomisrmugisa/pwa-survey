@@ -137,6 +137,47 @@ export const transformMetadata = (metadata) => {
         return cleaned;
     };
 
+	    // Normalizes field labels so that they show the criterion number and
+	    // human-readable name, without technical SURV_/prefixes.
+	    //
+	    // Examples this is designed for:
+	    //   "SURV_HOSP_SE7_7.2.2.1 Policies and/or procedures ..." ->
+	    //         "7.2.2.1 Policies and/or procedures ..."
+	    //   "SURV_EMS_1.1.1.1_The organisation has ..." ->
+	    //         "1.1.1.1 The organisation has ..."
+	    //   "FAC_ASS_ASSESSOR_USER_ID" -> "ASSESSOR USER ID" (fallback)
+	    const normalizeFieldLabel = (raw) => {
+	        if (!raw) return '';
+	        let label = String(raw).trim();
+
+	        // 1) If there is a 4-level criterion code, keep that code and
+	        //    everything that follows it, stripping any prefixes.
+	        const critMatch = label.match(/(\d+\.\d+\.\d+\.\d+)(.*)/);
+	        if (critMatch) {
+	            const code = critMatch[1];
+	            let rest = critMatch[2] || '';
+	            // Drop separators right after the code
+	            rest = rest.replace(/^[_\-\s:]+/, ' ');
+	            // Replace remaining underscores with spaces and normalize
+	            rest = rest.replace(/_+/g, ' ');
+	            rest = rest.replace(/\s+/g, ' ').trim();
+	            return rest ? `${code} ${rest}`.trim() : code;
+	        }
+
+	        // 2) No explicit criterion code – strip anything up to and
+	        //    including the first underscore (common for SURV_/FAC_ASS_).
+	        const firstUnderscore = label.indexOf('_');
+	        if (firstUnderscore !== -1) {
+	            label = label.slice(firstUnderscore + 1).trim();
+	        }
+
+	        // 3) Replace remaining underscores with spaces and collapse
+	        //    repeated whitespace.
+	        label = label.replace(/_+/g, ' ');
+	        label = label.replace(/\s+/g, ' ').trim();
+	        return label;
+	    };
+
     const transformedSections = metadata.programStageSections.map(section => {
         const fields = [];
         const sectionName = section.displayName || section.name || '';
@@ -171,10 +212,11 @@ export const transformMetadata = (metadata) => {
                 if (options.length === 0 && (de.valueType === 'BOOLEAN' || de.valueType === 'TRUE_ONLY')) {
                     options = [{ value: 'true', label: 'Yes' }, { value: 'false', label: 'No' }];
                 }
-                const isComment = deName && (deName.toLowerCase().endsWith('-comments') || deName.toLowerCase().endsWith('-comment'));
-                fields.push({
-                    id: de.id || deId,
-                    label: isComment ? 'Comment' : deName,
+	                const isComment = deName && (deName.toLowerCase().endsWith('-comments') || deName.toLowerCase().endsWith('-comment'));
+	                const finalLabel = isComment ? 'Comment' : normalizeFieldLabel(deName);
+	                fields.push({
+	                    id: de.id || deId,
+	                    label: finalLabel,
                     type: mapValueTypeToInputType(de.valueType, options.length > 0),
                     options: options,
                     compulsory: sectionName.toLowerCase().includes('assessment details') ? true : de.compulsory,
