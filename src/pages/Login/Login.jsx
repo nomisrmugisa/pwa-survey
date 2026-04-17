@@ -8,26 +8,38 @@ const Login = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
     const storage = useStorage();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (username && password) {
-            try {
-                const user = await api.login(username, password);
+        console.log('[Login] Submit clicked');
+        setError(null);
 
-                // Persist user to storage for indexedDBService access
-                await storage.setAuth({ user: user });
-
-                onLogin(user);
-                navigate('/');
-            } catch (err) {
-                console.error("Login error:", err);
-                setError('Login failed. Please checks credentials.');
-            }
-        } else {
+        if (!username || !password) {
             setError('Please enter username and password');
+            return;
+        }
+
+        try {
+            setIsSubmitting(true);
+            console.log('[Login] Calling api.login for', username);
+            const user = await api.login(username, password);
+            console.log('[Login] api.login success for', user?.username || username);
+
+            // Persist user to storage for indexedDBService access
+            await storage.setAuth({ user: user });
+
+            if (onLogin) {
+                onLogin(user);
+            }
+            navigate('/');
+        } catch (err) {
+            console.error('[Login] Login error:', err);
+            setError('Login failed. Please check credentials or network.');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -55,8 +67,15 @@ const Login = ({ onLogin }) => {
                             placeholder="Enter password"
                         />
                     </div>
-                    <button type="submit" className="login-btn">Login</button>
+                        <button type="submit" className="login-btn" disabled={isSubmitting}>
+                            {isSubmitting ? 'Logging in…' : 'Login'}
+                        </button>
                 </form>
+                <div style={{ marginTop: '8px', fontSize: '0.75rem', color: '#666' }}>
+                    <strong>Debug:</strong> When you press Login, check the browser console for
+                    messages starting with <code>[Login]</code> and the Network tab for a request
+                    to <code>/qims/api/me</code>.
+                </div>
             </div>
         </div>
     );

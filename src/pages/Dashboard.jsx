@@ -248,10 +248,14 @@ export function Dashboard() {
     return (
         <div className="home-page dashboard-container">
             {/* Program Header */}
-            <div className="program-header">
-                <div className="program-info">
-                    <h1 className="program-title">{configuration?.program?.displayName || 'MOH Survey Dashboard'}</h1>
-                </div>
+	            <div className="program-header">
+	                <div className="program-info">
+	                    <h1 className="program-title">
+	                        {(configuration?.program?.displayName && configuration.program.displayName !== 'Facility Assessment Data Manifest Version')
+	                            ? configuration.program.displayName
+	                            : 'MOH Survey Dashboard'}
+	                    </h1>
+	                </div>
                 <div className="quick-actions">
                     <Tooltip title="Refresh/Sync Data">
                         <IconButton onClick={handleSync} color="primary" className="action-icon-btn">
@@ -332,6 +336,18 @@ export function Dashboard() {
 	                        {' '}pending={assignmentsDebug.pendingCount ?? 0}
 	                    </div>
 	                )}
+	                {!isAssessmentsCollapsed && assignmentsDebug && Array.isArray(assignmentsDebug.requests) && assignmentsDebug.requests.length > 0 && (
+	                    <div style={{ fontSize: '0.8rem', color: '#555', padding: '0.25rem 1rem 0.5rem 1rem' }}>
+	                        <div><strong>API calls while loading assignments:</strong></div>
+	                        <ul style={{ margin: '2px 0 0 1.1rem', padding: 0, listStyleType: 'disc' }}>
+	                            {assignmentsDebug.requests.map((req, idx) => (
+	                                <li key={idx}>
+	                                    {req.kind || 'request'}: {req.path || ''} (status {req.status}, ok={String(req.ok)}, count={req.count ?? 'n/a'})
+	                                </li>
+	                            ))}
+	                        </ul>
+	                    </div>
+	                )}
                 {!isAssessmentsCollapsed && (
                     <div className="forms-list">
                         {assessmentsLoading ? (
@@ -359,6 +375,13 @@ export function Dashboard() {
                                     const displayId = (facilityId && facilityId !== 'N/A')
                                         ? ` (${facilityId})`
                                         : '';
+		
+		                                    const plannedDate = assessment.scheduledAt
+		                                        ? (assessment.scheduledAt.slice(0, 10))
+		                                        : 'N/A';
+		                                    const lastUpdated = assessment.updatedAt
+		                                        ? (assessment.updatedAt.slice(0, 10))
+		                                        : 'N/A';
 
                                     return (
                                         <div key={assessment.eventId} className="form-item assessment-item">
@@ -381,7 +404,14 @@ export function Dashboard() {
                                                         )}
                                                     </div>
                                                 </div>
-                                                <p>Date: {assessment.sortDate} | OU: {assessment.orgUnit} | Enr: {assessment.eventId} | TEI: {assessment.scheduleTeiId || assessment.trackedEntityInstance}</p>
+		                                                <p>
+		                                                    Date: {assessment.sortDate}
+		                                                    {' '}| Planned: {plannedDate}
+		                                                    {' '}| Last updated: {lastUpdated}
+		                                                    {' '}| OU: {assessment.orgUnit}
+		                                                    {' '}| Enr: {assessment.eventId}
+		                                                    {' '}| TEI: {assessment.scheduleTeiId || assessment.trackedEntityInstance}
+		                                                </p>
 
                                             </div>
                                             <div className="form-actions">

@@ -19,49 +19,61 @@ import { calculatePointsForLink } from '../../utils/scoring';
 
 // Build a fast lookup from criterion ID (e.g. "1.2.1.3") to its
 // standard statement, intent text, critical flag, and severity.
-const buildCriterionIndex = (configData) => {
-	    const index = {};
-	    try {
-	        // Support EMS, Mortuary, Clinics, and Hospital configs.
-	        // Accept either a single array of SE objects or an object with *_full_configuration keys.
-	        let seArray = [];
+	const buildCriterionIndex = (configData) => {
+		    const index = {};
+		    try {
+		        // Support EMS, Mortuary, Clinics, and Hospital configs.
+		        // Accept either a single array of SE objects or an object with *_full_configuration keys.
+		        let seArray = [];
 
-	        if (Array.isArray(configData)) {
-	            seArray = configData;
-	        } else if (configData && typeof configData === 'object') {
-	            const possibleKeys = [
-	                'ems_full_configuration',
-	                'mortuary_full_configuration',
-	                'clinics_full_configuration',
-	                'hospital_full_configuration',
-	            ];
-	            possibleKeys.forEach((key) => {
-	                if (Array.isArray(configData[key])) {
-	                    seArray = seArray.concat(configData[key]);
-	                }
-	            });
-	        }
+		        if (Array.isArray(configData)) {
+		            seArray = configData;
+		        } else if (configData && typeof configData === 'object') {
+		            const possibleKeys = [
+		                'ems_full_configuration',
+		                'mortuary_full_configuration',
+		                'clinics_full_configuration',
+		                'hospital_full_configuration',
+		            ];
+		            possibleKeys.forEach((key) => {
+		                if (Array.isArray(configData[key])) {
+		                    seArray = seArray.concat(configData[key]);
+		                }
+		            });
+		        }
 
-	        seArray.forEach(se => {
-	            (se.sections || []).forEach(section => {
-	                (section.standards || []).forEach(standard => {
-	                    (standard.criteria || []).forEach(crit => {
-	                        if (!crit || !crit.id) return;
-	                        index[crit.id] = {
-	                            statement: standard.statement || '',
-	                            intent: standard.intent_tooltip || '',
-	                            is_critical: crit.is_critical || false,
-	                            severity: crit.severity || 1
-	                        };
-	                    });
-	                });
-	            });
-	        });
-	    } catch (e) {
-	        console.error('FormArea: Failed to build criterion index', e);
-	    }
-	    return index;
-};
+		        seArray.forEach(se => {
+		            (se.sections || []).forEach(section => {
+		                (section.standards || []).forEach(standard => {
+		                    const stdId = (standard.standard_id || standard.standardId || '').trim();
+		                    // Add a lookup entry for the Standard itself (e.g. "7.1.1")
+		                    // so that display-only x.x.x rows can show Intent tooltips.
+		                    if (stdId && !index[stdId]) {
+		                        index[stdId] = {
+		                            statement: standard.statement || '',
+		                            intent: standard.intent_tooltip || '',
+		                            is_critical: false,
+		                            severity: null,
+		                        };
+		                    }
+
+		                    (standard.criteria || []).forEach(crit => {
+		                        if (!crit || !crit.id) return;
+		                        index[crit.id] = {
+		                            statement: standard.statement || '',
+		                            intent: standard.intent_tooltip || '',
+		                            is_critical: crit.is_critical || false,
+		                            severity: crit.severity || 1,
+		                        };
+		                    });
+		                });
+		            });
+		        });
+		    } catch (e) {
+		        console.error('FormArea: Failed to build criterion index', e);
+		    }
+		    return index;
+		};
 
 // Default index for helper functions that don't have access to component state
 const DEFAULT_CRITERION_INDEX = buildCriterionIndex(emsConfig);
@@ -123,29 +135,33 @@ const splitIntentText = (fullIntent) => {
     return { primaryIntent, overviewText };
 };
 
-const getCriterionTooltip = (code, links, index, scoreResult) => {
-    const normalized = normalizeCriterionCode(code);
-    if (!normalized) return '';
-    const info = index[normalized];
-    if (!info) return '';
-
-	    const parts = [];
-	    // Show the correct domain terminology in the tooltip: this text is the
-	    // Standard, so label it "Standard" instead of "Statement".
-	    if (info.statement) {
-	        parts.push(`Standard:\n${info.statement.trim().replace(/^Standard\s*/i, '')}`);
-	    }
-
-	    if (info.intent) {
-	        const { primaryIntent, overviewText } = splitIntentText(info.intent);
-	        if (primaryIntent) {
-	            parts.push(`Intent:\n${primaryIntent}`);
-	        }
-	        if (overviewText) {
-	            parts.push(`Overview:\n${overviewText}`);
-	        }
-	    }
-    if (info.severity !== undefined && info.severity !== null) {
+	const getCriterionTooltip = (code, links, index, scoreResult) => {
+		    const normalized = normalizeCriterionCode(code);
+		    if (!normalized) return '';
+		    const info = index[normalized];
+		    if (!info) return '';
+		
+		    const isStandardCode = /^\d+(\.\d+){2}$/.test(normalized); // x.x.x display-only rows
+		    const isCriterionCode = /^\d+(\.\d+){3}$/.test(normalized); // x.x.x.x question rows
+		
+			    const parts = [];
+			    // For criterion (x.x.x.x) rows we no longer include the textual
+			    // Standard / Intent / Overview blocks in the tooltip. Those remain
+			    // only for higher-level rows (e.g. x.x.x display-only standards).
+			    if (!isStandardCode && !isCriterionCode && info.statement) {
+			        parts.push(`Standard:\n${info.statement.trim().replace(/^Standard\s*/i, '')}`);
+			    }
+		
+			    if (!isCriterionCode && info.intent) {
+			        const { primaryIntent, overviewText } = splitIntentText(info.intent);
+			        if (primaryIntent) {
+			            parts.push(`Intent:\n${primaryIntent}`);
+			        }
+			        if (!isStandardCode && overviewText) {
+			            parts.push(`Overview:\n${overviewText}`);
+			        }
+			    }
+		    if (!isStandardCode && info.severity !== undefined && info.severity !== null) {
         const sevLabel = formatSeverityLabel(info.severity);
         if (sevLabel) {
             parts.push(`Severity:\n${sevLabel}`);
@@ -555,8 +571,10 @@ const FormArea = ({
         }
     }, [formData]);
 
-    const isADSection = activeSection?.name === "Assessment Details";
-    const isLocked = !isADSection && !isADComplete;
+	    const isADSection = activeSection?.name === "Assessment Details";
+	    // Sections are no longer locked based on Assessment Details
+	    // completion; users can navigate and edit any section at any time.
+	    const isLocked = false;
 
     // Group fields into subsections based on headers
     const subsections = useMemo(() => {
@@ -600,8 +618,55 @@ const FormArea = ({
             return <div className="empty-fields-message">No fields in this subsection.</div>;
         }
 
+        // Pre-compute a draft standard-level score for the current subsection.
+        // We treat the "standard" as the group of select fields (x.x.x.x
+        // sub-criteria) that belong to this subsection and average their
+        // computed points. This value is displayed next to the x.x.x
+        // standard row as the user progresses, labelled as Not Saved.
+        let subsectionStandardScore = null;
+        if (scoringResults?.sections && activeSection) {
+            const sectionScore = scoringResults.sections.find(s => s.id === activeSection.id);
+            const standardResults = sectionScore?.standards?.[0];
+            if (standardResults) {
+                const criteriaScores = standardResults.criteriaScores || {};
+                const subsectionFieldIds = (activeSubsectionFields || [])
+                    .filter(f => f.type === 'select')
+                    .map(f => f.id);
 
-	        return activeSubsectionFields.map((field) => {
+                let totalPoints = 0;
+                let scoredCount = 0;
+                let hasCriticalFail = false;
+
+                subsectionFieldIds.forEach(id => {
+                    const score = criteriaScores[id];
+                    if (!score) return;
+                    if (score.criticalFail) {
+                        hasCriticalFail = true;
+                    }
+                    if (score.isScored && score.points !== null) {
+                        totalPoints += score.points;
+                        scoredCount += 1;
+                    }
+                });
+
+                if (scoredCount > 0 || hasCriticalFail) {
+                    let avgPercent = 0;
+                    if (scoredCount > 0) {
+                        avgPercent = totalPoints / scoredCount; // points are already 0–100
+                    }
+                    if (hasCriticalFail) {
+                        avgPercent = 0;
+                    }
+                    subsectionStandardScore = {
+                        percent: avgPercent,
+                        criticalFail: hasCriticalFail,
+                    };
+                }
+            }
+        }
+
+
+        return activeSubsectionFields.map((field) => {
             // Safety check for field
             if (!field || !field.id) {
                 console.warn("FormArea: Invalid field in section:", field);
@@ -763,19 +828,36 @@ const FormArea = ({
 	                    data-tooltip={(!isParentAnswered && isCommentField) ? "Please answer the main question first" : ""}
 	                >
 	                    <div className="field-label-container">
-	                        <div className="field-label-main">
-		                            <label>
-		                                {isStandardCriterion ? (
-		                                    <strong style={{ fontSize: '1.6em' }}>{displayLabel}</strong>
-		                                ) : (
-		                                    displayLabel
-		                                )}
-		                            </label>
-	                            {!isCommentField && configSeverity !== undefined && configSeverity !== null && (
-	                                <span className="severity-pill">
-	                                    {formatSeverityLabel(configSeverity)}
-	                                </span>
-	                            )}
+                        <div className="field-label-main">
+                            <label>
+                                {isStandardCriterion ? (
+                                    <strong style={{ fontSize: '1.6em' }}>{displayLabel}</strong>
+                                ) : (
+                                    displayLabel
+                                )}
+                            </label>
+                            {!isCommentField && configSeverity !== undefined && configSeverity !== null && (
+                                <span className="severity-pill">
+                                    {formatSeverityLabel(configSeverity)}
+                                </span>
+                            )}
+                            {isStandardCriterion && subsectionStandardScore && (
+                                <span
+                                    className="standard-score-pill"
+                                    style={{
+                                        marginLeft: '10px',
+                                        fontSize: '0.8em',
+                                        fontWeight: 600,
+                                        padding: '2px 8px',
+                                        borderRadius: '12px',
+                                        backgroundColor: 'rgba(43, 58, 142, 0.1)',
+                                        color: '#2b3a8e',
+                                        border: '1px solid rgba(43, 58, 142, 0.35)'
+                                    }}
+                                >
+                                    {subsectionStandardScore.percent.toFixed(1)}% Score (Not Saved)
+                                </span>
+                            )}
 	                            {criterionTooltip && (
 	                                <button
 	                                    type="button"
@@ -1216,31 +1298,9 @@ const FormArea = ({
                             )}
                         </div>
                     )}
-                    {scoringResults && (
-                        <div className="section-scoring-summary">
-                            {(() => {
-                                const sectionScore = scoringResults.sections?.find(s => s.id === activeSection?.id);
-                                if (!sectionScore) return null;
-
-                                const classification = classifyAssessment({
-                                    percent: sectionScore.percent,
-                                    criticalFail: sectionScore.criticalFail
-                                });
-
-                                return (
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '4px' }}>
-                                        <ScoreBadge
-                                            percent={sectionScore.percent}
-                                            criticalFail={sectionScore.criticalFail}
-                                        />
-                                        <span className="compliance-label" style={{ fontSize: '0.85em', fontWeight: '500', color: '#fff', backgroundColor: 'rgba(255,255,255,0.1)', padding: '2px 8px', borderRadius: '4px' }}>
-                                            {classification.statusLabel}
-                                        </span>
-                                    </div>
-                                );
-                            })()}
-                        </div>
-                    )}
+	                    {/* Section-level scoring summary was previously shown here.
+	                        The standard-level draft score is now displayed inline
+	                        next to the x.x.x standard row within the form body. */}
                     <div className="header-actions" style={{ marginLeft: 'auto' }}>
                         <button
                             className="scoring-logic-btn"
@@ -1256,85 +1316,15 @@ const FormArea = ({
                 isOpen={isScoringModalOpen}
                 onClose={() => setIsScoringModalOpen(false)}
             />
-            <RootCalculationModal
-                isOpen={!!viewingRootCalc}
-                rootCode={viewingRootCalc?.code}
-                scoreResult={viewingRootCalc?.result}
-                onClose={() => setViewingRootCalc(null)}
-            />
-	            <div className="form-content">
-	                {seOverview && (
-	                    <div className="se-overview-card">
-	                        <div className="se-overview-header">
-	                            <div className="se-overview-title">
-	                                {seOverview.seId
-	                                    ? `SE ${seOverview.seId} ${seOverview.seName || ''}`.trim()
-	                                    : (seOverview.seName || '')}
-	                            </div>
-	                            {seOverview.sectionPiId && (
-	                                <div className="se-overview-section">
-	                                    {`${seOverview.sectionPiId} ${seOverview.sectionTitle || ''}`.trim()}
-	                                </div>
-	                            )}
-	                        </div>
-	                        {seOverview.standards.map((std) => {
-	                            const stdId = std.standard_id || std.standardId;
-	                            const rawStatement = (std.statement || '').trim();
-	                            const cleanedStatement = rawStatement.replace(/^Standard\s*/i, '').trim();
-	                            const fullIntent = (std.intent_tooltip || '').trim();
-
-	                            const { primaryIntent, overviewText } = splitIntentText(fullIntent);
-
-	                            return (
-	                                <div
-	                                    key={stdId || cleanedStatement}
-	                                    className="se-overview-standard-block"
-	                                >
-	                                    {stdId && (
-	                                        <div className="se-overview-standard-title">
-	                                            {`${stdId} Standard`}
-	                                        </div>
-	                                    )}
-	                                    {cleanedStatement && (
-	                                        <p className="se-overview-standard-text">
-	                                            {cleanedStatement}
-	                                        </p>
-	                                    )}
-	                                    {primaryIntent && (
-	                                        <>
-	                                            <div className="se-overview-intent-label">
-	                                                Standard Intent
-	                                            </div>
-	                                            <p className="se-overview-intent-text">
-	                                                {primaryIntent}
-	                                            </p>
-	                                        </>
-	                                    )}
-	                                    {overviewText && (
-	                                        <>
-	                                            <div className="se-overview-overview-label">
-	                                                Overview
-	                                            </div>
-	                                            <p className="se-overview-overview-text">
-	                                                {overviewText}
-	                                            </p>
-	                                        </>
-	                                    )}
-	                                </div>
-	                            );
-	                        })}
-	                    </div>
-	                )}
-	                {isLocked ? (
-	                    <div className="blocking-overlay">
-	                        <div className="overlay-message">
-	                            <span className="lock-icon">🔒</span>
-	                            <h3>Section Locked</h3>
-	                            <p>Please complete <strong>"Assessment Details"</strong> questions first to proceed.</p>
-	                        </div>
-	                    </div>
-	                ) : renderFields()}
-	            </div>
+	            <RootCalculationModal
+	                isOpen={!!viewingRootCalc}
+	                rootCode={viewingRootCalc?.code}
+	                scoreResult={viewingRootCalc?.result}
+	                onClose={() => setViewingRootCalc(null)}
+	            />
+		            <div className="form-content">
+		                {renderFields()}
+		            </div>
             <div className="form-footer">
                 {submitResult && (
                     <div style={{

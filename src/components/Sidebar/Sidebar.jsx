@@ -22,13 +22,16 @@
       <div className="sidebar-subheader">
         <h4>Sections</h4>
       </div>
-      <ul className="section-list">
-        {activeGroup?.sections?.map((sec, index) => {
-          const nameLower = (sec.name || '').toLowerCase().trim();
-          const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
-          const isSectionLocked = !isADSection && !isADComplete;
-	  
-	          const label = (() => {
+		      <ul className="section-list">
+		        {activeGroup?.sections?.map((sec, index) => {
+		          const nameLower = (sec.name || '').toLowerCase().trim();
+		          const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
+		          // Sections are now always accessible, even if Assessment
+		          // Details is incomplete. We keep isADComplete only for
+		          // potential informational use elsewhere.
+		          const isSectionLocked = false;
+		  
+			          const label = (() => {
 	            const raw = sec.name || '';
 	            if (!raw) return '';
 	            const upper = raw.toUpperCase();
@@ -47,20 +50,18 @@
 	            return raw.trim();
 	          })();
 
-          return (
-            <li
-              key={sec.id}
-              className={`section-item ${activeSection?.id === sec.id ? 'active' : ''} ${isSectionLocked ? 'locked' : ''}`}
-              onClick={() => !isSectionLocked && onSelectSection(sec)}
-              title={isSectionLocked ? "Please complete Assessment Details first" : ""}
-            >
-              <div className="section-info">
-	                <span>{label}</span>
-                {isSectionLocked && <span className="lock-badge">🔒</span>}
-              </div>
-              <span className="status">{sec.fields.length}</span>
-            </li>
-          );
+		          return (
+		            <li
+		              key={sec.id}
+		              className={`section-item ${activeSection?.id === sec.id ? 'active' : ''}`}
+		              onClick={() => onSelectSection(sec)}
+		            >
+		              <div className="section-info">
+			                <span>{label}</span>
+		              </div>
+		              <span className="status">{sec.fields.length}</span>
+		            </li>
+		          );
         })}
       </ul>
     </div>

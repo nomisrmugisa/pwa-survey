@@ -24,15 +24,17 @@ function mapStatus(enrollmentStatus, storedStatusCode) {
 
 /**
  * Extracts the most relevant date from an enrollment.
- * Prefers the first event's eventDate, falls back to enrollmentDate / incidentDate.
+ * Prefers the first event's occurredAt/eventDate, falls back to enrollmentDate / incidentDate.
  */
 function extractDate(item) {
     if (item.events && item.events.length > 0) {
         const sorted = [...item.events].sort((a, b) =>
-            new Date(a.eventDate) - new Date(b.eventDate)
+	            new Date(a.occurredAt || a.eventDate) - new Date(b.occurredAt || b.eventDate)
         );
-        if (sorted[0].eventDate) {
-            return sorted[0].eventDate.slice(0, 10);
+	        const first = sorted[0];
+	        const dateStr = first.occurredAt || first.eventDate;
+	        if (dateStr) {
+	            return dateStr.slice(0, 10);
         }
     }
     return (item.enrollmentDate || item.incidentDate || new Date().toISOString()).slice(0, 10);
@@ -48,17 +50,17 @@ class AssessmentTeamAssignmentService {
         return true;
     }
 
-    /**
-     * Fetch assignments for a specific user and year from DHIS2.
-     * Returns objects shaped as: { eventId, scheduleTeiId, statusCode, sortDate, orgUnitName }
-     */
-	    async getUserAssignmentsDomain({ userId, year }) {
+	    /**
+	     * Fetch assignments for a specific user and year from DHIS2.
+	     * Returns objects shaped as: { eventId, scheduleTeiId, statusCode, sortDate, orgUnitName }
+	     */
+		    async getUserAssignmentsDomain({ userId, username, year }) {
 	        try {
-	            // NEW: Use scheduling workflow assignments derived from program K9O5fdoBmKf
-	            // via api.getSchedulingAssignments, which already enforces:
-	            //  - Team Assignment stage has this user with FAC_ASS_ASSIGN_ACCEPTED
-	            //  - Programme Setup stage status is Approved.
-	            const enrollments = await api.getSchedulingAssignments(userId);
+		            // NEW: Use scheduling workflow assignments derived from program K9O5fdoBmKf
+		            // via api.getSchedulingAssignments. Pass both userId and username
+		            // so the API can match whichever identifier is stored in the
+		            // Assigned User ID data element.
+		            const enrollments = await api.getSchedulingAssignments(userId, username);
 
 	            return enrollments.map(item => {
 	                // Try to infer a stored status code from team events (preferred),
@@ -105,6 +107,11 @@ class AssessmentTeamAssignmentService {
 	                    programOrgUnitId: item.programOrgUnitId,
 	                    parentOrgUnitName: item.parentOrgUnitName,
 	                    enrollmentDate: item.enrollmentDate,
+		                    // Optional Tracker scheduling / audit fields, not
+		                    // required by the current UI but available for
+		                    // troubleshooting or future features.
+		                    scheduledAt: item.scheduledAt || null,
+		                    updatedAt: item.updatedAt || null,
 	                    attributes: item.attributes || [],
 	                };
 	            });

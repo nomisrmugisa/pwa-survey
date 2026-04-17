@@ -239,8 +239,8 @@ export const api = {
 	     * No deduplication by facility is done: each qualifying enrollment is
 	     * returned as a separate assignment row.
 	     */
-	    getSchedulingAssignments: async (userId) => {
-	        if (!userId) throw new Error('getSchedulingAssignments requires a userId');
+		    getSchedulingAssignments: async (userId, username) => {
+		        if (!userId && !username) throw new Error('getSchedulingAssignments requires a userId or username');
 
 	        // Program and stage IDs
 	        const PROGRAM_ID = 'K9O5fdoBmKf';
@@ -264,39 +264,86 @@ export const api = {
 	        const teamFields = [
 	            'event',
 	            'enrollment',
+		            'trackedEntity',
 	            'orgUnit',
 	            'orgUnitName',
 	            'programStage',
-	            'eventDate',
+		            // Tracker API uses occurredAt for the event date; keep both
+		            // sides happy by requesting occurredAt and mapping to
+		            // eventDate further down.
+		            'occurredAt',
+			            // Optional Tracker fields that can be useful for
+			            // scheduling/debugging but are not required by the UI.
+			            'scheduledAt',
+			            'updatedAt',
 	            'status',
 	            'dataValues[dataElement,value]'
 	        ].join(',');
+		
+		        // Lightweight debug log of DHIS2 calls made while resolving
+		        // scheduling assignments so the Dashboard can surface them.
+		        const debugRequests = [];
+		
+		        const teamEvents = [];
+		        const seenEventIds = new Set();
+		        const idValues = [];
+		        if (userId) idValues.push(userId);
+		        if (username && username !== userId) idValues.push(username);
+		
+		        for (const idVal of idValues) {
+		            const teamUrl = `${BASE_URL}/api/tracker/events.json?paging=false&ouMode=ALL&program=${PROGRAM_ID}` +
+		                `&programStage=${TEAM_STAGE_ID}&fields=${teamFields}` +
+		                // Filter by Assigned User ID value (may be DHIS2 user id or username).
+		                `&filter=${DE_ASSIGNED_USER_ID}:EQ:${encodeURIComponent(idVal)}`;
+		
+		            const teamResponse = await fetch(teamUrl, { headers: getHeaders() });
+		            if (!teamResponse.ok) {
+		                debugRequests.push({
+		                    kind: 'teamEvents',
+		                    path: teamUrl.replace(BASE_URL, ''),
+		                    filter: idVal,
+		                    status: teamResponse.status,
+		                    ok: false,
+		                    count: 0,
+		                });
+		                throw new Error('Failed to fetch team assignment events');
+		            }
+		            const teamData = await teamResponse.json();
+		            // Tracker API returns "instances" for collections; fall back to
+		            // legacy "events" for safety in case of mixed environments.
+		            const events = teamData.instances || teamData.events || [];
+		            events.forEach(ev => {
+		                if (!seenEventIds.has(ev.event)) {
+		                    seenEventIds.add(ev.event);
+		                    teamEvents.push(ev);
+		                }
+		            });
+		            debugRequests.push({
+		                kind: 'teamEvents',
+		                path: teamUrl.replace(BASE_URL, ''),
+		                filter: idVal,
+		                status: teamResponse.status,
+		                ok: true,
+		                count: events.length,
+		            });
+		        }
+		        console.log('[SchedulingAssignments] teamEvents count for user', userId || username, teamEvents.length);
+		
+		        // Initialize debug snapshot early so the UI can see at least
+		        // the teamEvents count even when we return early.
+		        api._schedulingDebug = {
+		            userId,
+		            username,
+		            teamEventsCount: teamEvents.length,
+		            enrollmentIds: [],
+		            enrollmentsCount: 0,
+		            qualifyingCount: 0,
+		            requests: debugRequests,
+		        };
 
-	        const teamUrl = `${BASE_URL}/api/events?paging=false&ouMode=ALL&program=${PROGRAM_ID}` +
-	            `&programStage=${TEAM_STAGE_ID}&fields=${teamFields}` +
-	            // Filter only by Assigned User ID; we'll interpret Assignment Status
-	            // (FAC_ASS_ASSIGN_ACCEPTED, etc.) on the client side from dataValues.
-	            `&filter=${DE_ASSIGNED_USER_ID}:EQ:${encodeURIComponent(userId)}`;
-
-	        const teamResponse = await fetch(teamUrl, { headers: getHeaders() });
-	        if (!teamResponse.ok) throw new Error('Failed to fetch team assignment events');
-	        const teamData = await teamResponse.json();
-	        const teamEvents = teamData.events || [];
-	        console.log('[SchedulingAssignments] teamEvents count for user', userId, teamEvents.length);
-
-	        // Initialize debug snapshot early so the UI can see at least
-	        // the teamEvents count even when we return early.
-	        api._schedulingDebug = {
-	            userId,
-	            teamEventsCount: teamEvents.length,
-	            enrollmentIds: [],
-	            enrollmentsCount: 0,
-	            qualifyingCount: 0,
-	        };
-
-	        if (teamEvents.length === 0) {
-	            return [];
-	        }
+		        if (teamEvents.length === 0) {
+		            return [];
+		        }
 
 	        // Group team events by enrollment and collect enrollment IDs
 	        const teamByEnrollment = {};
@@ -309,15 +356,15 @@ export const api = {
 	            teamByEnrollment[enr].push(ev);
 	        }
 
-	        if (enrollmentIds.size === 0) {
-	            api._schedulingDebug = {
-	                ...api._schedulingDebug,
-	                enrollmentIds: [],
-	                enrollmentsCount: 0,
-	                qualifyingCount: 0,
-	            };
-	            return [];
-	        }
+		        if (enrollmentIds.size === 0) {
+		            api._schedulingDebug = {
+		                ...api._schedulingDebug,
+		                enrollmentIds: [],
+		                enrollmentsCount: 0,
+		                qualifyingCount: 0,
+		            };
+		            return [];
+		        }
 
 	        // 2) Fetch enrollments with events so we can check programme setup
 	        // 2) Build lightweight "enrollment-like" objects directly from the
@@ -334,11 +381,18 @@ export const api = {
 		                // the "Facility Assessment TEI ID" field when a user
 		                // opens an assigned assessment.
 		                trackedEntityInstance: null,
-	                orgUnit: primary.orgUnit || null,
-	                orgUnitName: primary.orgUnitName || null,
-	                status: primary.status || 'ACTIVE',
-	                enrollmentDate: primary.eventDate || new Date().toISOString(),
-	                incidentDate: primary.eventDate || new Date().toISOString(),
+		                orgUnit: primary.orgUnit || null,
+		                orgUnitName: primary.orgUnitName || null,
+			                status: primary.status || 'ACTIVE',
+			                // Prefer Tracker's occurredAt for dating the assignment,
+			                // but fall back to legacy eventDate if present.
+			                enrollmentDate: primary.occurredAt || primary.eventDate || new Date().toISOString(),
+			                incidentDate: primary.occurredAt || primary.eventDate || new Date().toISOString(),
+			                // Surface Tracker scheduling / audit timestamps from the
+			                // primary team event so downstream services can use them
+			                // if needed.
+			                scheduledAt: primary.scheduledAt || null,
+			                updatedAt: primary.updatedAt || null,
 	                events: evts,
 	            };
 	        });
@@ -352,12 +406,12 @@ export const api = {
 	        //     "Gaborone"). This lets the UI submit surveys against the
 	        //     correct orgUnit for the main survey program while still
 	        //     displaying the facility orgUnit from the team events.
-	        try {
-	            const enrFieldsTei = ['enrollment', 'trackedEntityInstance', 'orgUnit'].join(',');
-		            const enrParamsTei = [...enrollmentIds].map(id => `enrollment=${id}`).join('&');
-		            const enrUrlTei = `${BASE_URL}/api/enrollments?paging=false&program=${PROGRAM_ID}&fields=${enrFieldsTei}&${enrParamsTei}`;
-		            const enrRespTei = await fetch(enrUrlTei, { headers: getHeaders() });
-	            if (enrRespTei.ok) {
+		        try {
+		            const enrFieldsTei = ['enrollment', 'trackedEntityInstance', 'orgUnit'].join(',');
+			            const enrParamsTei = [...enrollmentIds].map(id => `enrollment=${id}`).join('&');
+			            const enrUrlTei = `${BASE_URL}/api/enrollments?paging=false&program=${PROGRAM_ID}&fields=${enrFieldsTei}&${enrParamsTei}`;
+			            const enrRespTei = await fetch(enrUrlTei, { headers: getHeaders() });
+		            if (enrRespTei.ok) {
 	                const enrJson = await enrRespTei.json();
 	                const teiByEnrollment = {};
 	                const progOuByEnrollment = {};
@@ -371,7 +425,7 @@ export const api = {
 	                            typeof enr.orgUnit === 'string' ? enr.orgUnit : (enr.orgUnit.id || null);
 	                    }
 	                });
-	                enrollments.forEach(e => {
+		                enrollments.forEach(e => {
 	                    const enrId = e.enrollment;
 	                    if (!e.trackedEntityInstance && teiByEnrollment[enrId]) {
 	                        e.trackedEntityInstance = teiByEnrollment[enrId];
@@ -384,12 +438,86 @@ export const api = {
 	                        e.programOrgUnitId = progOuByEnrollment[enrId];
 	                    }
 	                });
-	                console.log('[SchedulingAssignments] hydrated TEIs and programme orgUnits for enrollments', Object.keys(teiByEnrollment).length);
+		                const hydratedCount = Object.keys(teiByEnrollment).length;
+		                console.log('[SchedulingAssignments] hydrated TEIs and programme orgUnits for enrollments', hydratedCount);
+		                debugRequests.push({
+		                    kind: 'enrollmentsTei',
+		                    path: enrUrlTei.replace(BASE_URL, ''),
+		                    status: enrRespTei.status,
+		                    ok: true,
+		                    count: hydratedCount,
+		                });
 		            } else {
 		                console.warn('⚠️ api.js: Failed to hydrate TEIs for scheduling enrollments', enrRespTei.status, enrRespTei.statusText);
+		                debugRequests.push({
+		                    kind: 'enrollmentsTei',
+		                    path: enrUrlTei.replace(BASE_URL, ''),
+		                    status: enrRespTei.status,
+		                    ok: false,
+		                    count: 0,
+		                });
 		            }
 		        } catch (err) {
 		            console.warn('⚠️ api.js: Error hydrating TEIs for scheduling enrollments', err);
+		            debugRequests.push({
+		                kind: 'enrollmentsTei',
+		                path: '/api/enrollments',
+		                status: 'ERR',
+		                ok: false,
+		                count: 0,
+		            });
+		        }
+
+		        // 2c) Fallback: For any remaining enrollments without a TEI,
+		        //     use the Tracker enrollments endpoint
+		        //     /api/tracker/enrollments/{id}.json to resolve trackedEntity.
+		        const missingTeiEnrollments = enrollments.filter(e => !e.trackedEntityInstance && e.enrollment);
+		        if (missingTeiEnrollments.length > 0) {
+		            const trackerPromises = missingTeiEnrollments.map(async e => {
+		                const enrId = e.enrollment;
+		                const trackerUrl = `${BASE_URL}/api/tracker/enrollments/${enrId}.json?fields=enrollment,trackedEntity,orgUnit`;
+		                try {
+		                    const resp = await fetch(trackerUrl, { headers: getHeaders() });
+		                    if (!resp.ok) {
+		                        debugRequests.push({
+		                            kind: 'enrollmentsTeiTracker',
+		                            path: trackerUrl.replace(BASE_URL, ''),
+		                            status: resp.status,
+		                            ok: false,
+		                            count: 0,
+		                        });
+		                        return;
+		                    }
+		                    const trackerEnr = await resp.json();
+		                    const teiId = trackerEnr.trackedEntity || trackerEnr.trackedEntityInstance || trackerEnr.trackedEntityId;
+		                    if (teiId && !e.trackedEntityInstance) {
+		                        e.trackedEntityInstance = teiId;
+		                    }
+		                    if (trackerEnr.orgUnit) {
+		                        e.programOrgUnitId =
+		                            typeof trackerEnr.orgUnit === 'string'
+		                                ? trackerEnr.orgUnit
+		                                : (trackerEnr.orgUnit.id || e.programOrgUnitId || null);
+		                    }
+		                    debugRequests.push({
+		                        kind: 'enrollmentsTeiTracker',
+		                        path: trackerUrl.replace(BASE_URL, ''),
+		                        status: resp.status,
+		                        ok: true,
+		                        count: 1,
+		                    });
+		                } catch (err) {
+		                    console.warn('⚠️ api.js: Error hydrating TEI via Tracker enrollment', err);
+		                    debugRequests.push({
+		                        kind: 'enrollmentsTeiTracker',
+		                        path: trackerUrl.replace(BASE_URL, ''),
+		                        status: 'ERR',
+		                        ok: false,
+		                        count: 0,
+		                    });
+		                }
+		            });
+		            await Promise.all(trackerPromises);
 		        }
 
 	        // 3) Fetch Programme Setup events separately (event-level join by enrollment)
@@ -403,15 +531,31 @@ export const api = {
 	            'dataValues[dataElement,value]'
 	        ].join(',');
 
-	        const setupParams = [...enrollmentIds].map(id => `enrollment=${id}`).join('&');
-	        const setupUrl = `${BASE_URL}/api/events?paging=false&program=${PROGRAM_ID}` +
-	            `&programStage=${SETUP_STAGE_ID}&fields=${setupFields}&${setupParams}`;
-
-	        const setupResponse = await fetch(setupUrl, { headers: getHeaders() });
-	        if (!setupResponse.ok) throw new Error('Failed to fetch programme setup events');
-	        const setupData = await setupResponse.json();
-	        const setupEvents = setupData.events || [];
-	        console.log('[SchedulingAssignments] setup events fetched', setupEvents.length);
+		        const setupParams = [...enrollmentIds].map(id => `enrollment=${id}`).join('&');
+		        const setupUrl = `${BASE_URL}/api/events?paging=false&program=${PROGRAM_ID}` +
+		            `&programStage=${SETUP_STAGE_ID}&fields=${setupFields}&${setupParams}`;
+		
+		        const setupResponse = await fetch(setupUrl, { headers: getHeaders() });
+		        if (!setupResponse.ok) {
+		            debugRequests.push({
+		                kind: 'setupEvents',
+		                path: setupUrl.replace(BASE_URL, ''),
+		                status: setupResponse.status,
+		                ok: false,
+		                count: 0,
+		            });
+		            throw new Error('Failed to fetch programme setup events');
+		        }
+		        const setupData = await setupResponse.json();
+		        const setupEvents = setupData.events || [];
+		        console.log('[SchedulingAssignments] setup events fetched', setupEvents.length);
+		        debugRequests.push({
+		            kind: 'setupEvents',
+		            path: setupUrl.replace(BASE_URL, ''),
+		            status: setupResponse.status,
+		            ok: true,
+		            count: setupEvents.length,
+		        });
 
 	        // Index setup events by enrollment, taking the latest event per enrollment
 	        const setupByEnrollment = {};
@@ -436,14 +580,16 @@ export const api = {
 
 	        console.log('[SchedulingAssignments] qualifying enrollments (no status filter)', qualifying.length);
 
-	        // Expose a small debug snapshot for the UI/debug tools
-	        api._schedulingDebug = {
-	            userId,
-	            teamEventsCount: teamEvents.length,
-	            enrollmentIds: [...enrollmentIds],
-	            enrollmentsCount: enrollments.length,
-	            qualifyingCount: qualifying.length,
-	        };
+		        // Expose a small debug snapshot for the UI/debug tools
+		        api._schedulingDebug = {
+		            userId,
+		            username,
+		            teamEventsCount: teamEvents.length,
+		            enrollmentIds: [...enrollmentIds],
+		            enrollmentsCount: enrollments.length,
+		            qualifyingCount: qualifying.length,
+		            requests: debugRequests,
+		        };
 
 	        if (qualifying.length === 0) {
 	            return [];
@@ -460,24 +606,47 @@ export const api = {
 	            return typeof rawOu === 'string' ? rawOu : rawOu?.id;
 	        }).filter(Boolean))];
 
-	        let ouMap = {};
-	        if (ouIds.length > 0) {
-	            try {
-	                const ouResponse = await fetch(
-	                    `${BASE_URL}/api/organisationUnits?paging=false&filter=id:in:[${ouIds.join(',')}]` +
-	                    `&fields=id,displayName,name,parent[id,displayName,name]`,
-	                    { headers: getHeaders() }
-	                );
-	                if (ouResponse.ok) {
-	                    const ouJson = await ouResponse.json();
-	                    (ouJson.organisationUnits || []).forEach(ou => {
-	                        ouMap[ou.id] = ou;
-	                    });
-	                }
-	            } catch (err) {
-	                console.warn('⚠️ api.js: Failed to fetch bulk org unit details for scheduling assignments.', err);
-	            }
-	        }
+		        let ouMap = {};
+		        if (ouIds.length > 0) {
+		            try {
+		                const ouUrl = `${BASE_URL}/api/organisationUnits?paging=false&filter=id:in:[${ouIds.join(',')}]` +
+		                    `&fields=id,displayName,name,parent[id,displayName,name]`;
+		                const ouResponse = await fetch(
+		                    ouUrl,
+		                    { headers: getHeaders() }
+		                );
+		                if (ouResponse.ok) {
+		                    const ouJson = await ouResponse.json();
+		                    (ouJson.organisationUnits || []).forEach(ou => {
+		                        ouMap[ou.id] = ou;
+		                    });
+		                    debugRequests.push({
+		                        kind: 'organisationUnits',
+		                        path: ouUrl.replace(BASE_URL, ''),
+		                        status: ouResponse.status,
+		                        ok: true,
+		                        count: (ouJson.organisationUnits || []).length,
+		                    });
+		                } else {
+		                    debugRequests.push({
+		                        kind: 'organisationUnits',
+		                        path: ouUrl.replace(BASE_URL, ''),
+		                        status: ouResponse.status,
+		                        ok: false,
+		                        count: 0,
+		                    });
+		                }
+		            } catch (err) {
+		                console.warn('⚠️ api.js: Failed to fetch bulk org unit details for scheduling assignments.', err);
+		                debugRequests.push({
+		                    kind: 'organisationUnits',
+		                    path: '/api/organisationUnits',
+		                    status: 'ERR',
+		                    ok: false,
+		                    count: 0,
+		                });
+		            }
+		        }
 
 	        // Helper to extract team info from team events
 	        const buildTeamForEnrollment = (enrId) => {
@@ -492,7 +661,13 @@ export const api = {
 	                    assignedUserId: userDv?.value || null,
 	                    assignmentStatus: statusDv?.value || null,
 	                    teamRole: roleDv?.value || null,
-	                    eventDate: ev.eventDate || null,
+		                    // Map Tracker's occurredAt back to eventDate to keep
+		                    // the rest of the app API-compatible.
+		                    eventDate: ev.occurredAt || ev.eventDate || null,
+			                    // Expose Tracker scheduling / audit timestamps for
+			                    // debugging or future UI enhancements.
+			                    scheduledAt: ev.scheduledAt || null,
+			                    updatedAt: ev.updatedAt || null,
 	                    orgUnit: ev.orgUnit || null,
 	                    orgUnitName: ev.orgUnitName || null
 	                };
@@ -582,12 +757,12 @@ export const api = {
         const now = new Date().toISOString().slice(0, 10);
 
         // DHIS2 v41 Tracker Payload Structure
-        const trackerPayload = {
-            trackedEntities: [
-                {
-                    trackedEntityType: TE_TYPE,
-                    orgUnit: orgUnitId,
-                    attributes: [], // Add TEI attributes here if needed
+	    const trackerPayload = {
+	        trackedEntities: [
+	            {
+	                trackedEntityType: TE_TYPE,
+	                orgUnit: orgUnitId,
+	                attributes: [], // Add TEI attributes here if needed
                     enrollments: [
                         {
                             program: PROGRAM_ID,

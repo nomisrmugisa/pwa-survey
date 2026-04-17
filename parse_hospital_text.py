@@ -6,24 +6,57 @@ import sys
 def parse_text(file_paths):
     """Parse extracted Hospital standards text files into structured configuration.
 
-    Output schema mirrors EMS but under key 'hospital_full_configuration'.
+    Output schema mirrors EMS but under key ``hospital_full_configuration``.
     """
-    config = {"hospital_full_configuration": []}
-    se_ids_seen = set()
 
-    # Regex patterns (copied from EMS parser, adapted for hospital range)
-    # Service Element lines like "1.Management and Leadership" or "SE 2 Human ..."
-    se_pattern = re.compile(r"^\s*(?:SE\s+)?(\d+)(?:\.|\s+)([A-Za-z][A-Za-z0-9\s,&\-\(\)]{5,})", re.MULTILINE)
-    # Section IDs like "1.1 Governance of the Organisation"
-    section_pattern = re.compile(r"^(?:Section\s+)?(\d+\.\d+)\s+([A-Za-z].+)", re.IGNORECASE)
-    # Standard IDs like "1.1.1 Standard" or "1.1.1 The responsibilities..."
-    standard_pattern = re.compile(r"^(?:Standard\s+)?(\d+\.\d+\.\d+)\s*(.+)?", re.IGNORECASE)
-    # Criterion IDs like "1.1.1.1 The ..." or "Criterion 1.1.1.1 ..."
-    criterion_pattern = re.compile(r"(?:Criterion\s+)?(\d+\.\d+\.\d+\.\d+)\s*(.+)?", re.IGNORECASE)
+    config = {"hospital_full_configuration": []}
+    se_ids_seen: set[int] = set()
+
+    # ------------------------------------------------------------------
+    # Regex patterns (mirroring EMS parser but adapted for Hospital docs)
+    # ------------------------------------------------------------------
+    # Service Element lines like "1.Management and Leadership" or
+    # "SE 2 Human Resource Management".
+    se_pattern = re.compile(
+        r"^\s*(?:SE\s+)?(\d+)(?:\.|\s+)([A-Za-z][A-Za-z0-9\s,&\-\(\)]{5,})",
+        re.MULTILINE,
+    )
+
+    # Section IDs like "7.1 Risk Management".
+    section_pattern = re.compile(
+        r"^(?:Section\s+)?(\d+\.\d+)\s+([A-Za-z].+)",
+        re.IGNORECASE,
+    )
+
+    # Standard IDs like "7.1.1 Standard" or "7.1.1 The responsibilities...".
+    standard_pattern = re.compile(
+        r"^(?:Standard\s+)?(\d+\.\d+\.\d+)\s*(.+)?",
+        re.IGNORECASE,
+    )
+
+    # Criterion IDs like "7.1.1.1 There are documented ..." or
+    # "Criterion 7.1.1.1 There are documented ...".
+    criterion_pattern = re.compile(
+        r"(?:Criterion\s+)?(\d+\.\d+\.\d+\.\d+)\s*(.+)?",
+        re.IGNORECASE,
+    )
+
+    # Intent marker lines: "Intent of 7.1.1".
     intent_marker = re.compile(r"Intent of\s+(\d+\.\d+\.\d+)", re.IGNORECASE)
 
+    # Lines like "Default Severity for NC or PC = 4".
+    severity_pattern = re.compile(
+        r"Default Severity for NC or PC\s*=\s*([1-4])",
+        re.IGNORECASE,
+    )
+
+    # -----------------------
+    # Helper functions
+    # -----------------------
+
     def is_boundary(line: str) -> bool:
-        """Return True if the line looks like the start of a new structural element."""
+        """Return True if the line looks like the start of a new element."""
+
         if se_pattern.match(line):
             return True
         if section_pattern.match(line):
@@ -36,11 +69,12 @@ def parse_text(file_paths):
             return True
         return False
 
-    def split_standard_and_intent(statement: str):
+    def split_standard_and_intent(statement: str) -> tuple[str, str]:
         """Split combined 'Standard ... Standard Intent: ...' text.
 
-        Returns (pure_statement, intent_text).
+        Returns ``(pure_statement, intent_text)``.
         """
+
         if not statement:
             return "", ""
 
@@ -50,17 +84,21 @@ def parse_text(file_paths):
 
         pure_statement = statement[: m.start()].strip()
         intent_text = statement[m.end() :].strip()
+        # Strip trailing headings that occasionally get pulled in.
         intent_text = re.sub(
             r"Criterion Comments Recommendations.*$", "", intent_text, flags=re.IGNORECASE
         ).strip()
         return pure_statement, intent_text
 
-    def collect_following_lines(start_index: int, lines):
-        """Collect continuation lines until a structural boundary or blank line.
+    def collect_following_lines(start_index: int, lines: list[str]) -> tuple[str, int]:
+        """Collect continuation lines until a boundary or blank line.
 
         Joins them with spaces, skipping page markers and standalone numbers.
+        Returns ``(joined_text, next_index)`` where ``next_index`` is the first
+        line *after* the collected block.
         """
-        parts = []
+
+        parts: list[str] = []
         j = start_index
         while j < len(lines):
             raw = lines[j]
@@ -79,26 +117,51 @@ def parse_text(file_paths):
 
         return " ".join(parts), j
 
+    def extract_severity(start_index: int, lines: list[str]) -> int | None:
+        """Look ahead from a criterion line for an explicit default severity.
+
+        Hospital PDFs encode this as e.g. ``"Default Severity for NC or PC = 4"``
+        on a line shortly after the Criterion header. We scan a limited window of
+        following lines to avoid accidentally crossing into the next criterion.
+        Returns an int 1-4 if found, otherwise ``None``.
+        """
+
+        max_lookahead = 15
+        for j in range(start_index, min(len(lines), start_index + max_lookahead)):
+            text = lines[j].strip()
+            if not text:
+                continue
+            m = severity_pattern.search(text)
+            if m:
+                try:
+                    return int(m.group(1))
+                except ValueError:
+                    return None
+        return None
+
+    # -----------------------
+    # Main parse loop
+    # -----------------------
+
     for file_path in file_paths:
         with open(file_path, "r", encoding="utf-8") as f:
             lines = f.readlines()
 
-        current_se = None
-        current_section = None
-        current_standard = None
+        current_se: dict | None = None
+        current_section: dict | None = None
+        current_standard: dict | None = None
         skip_to = -1
 
-        for i, line in enumerate(lines):
+        for i, raw_line in enumerate(lines):
             if i <= skip_to:
                 continue
 
-            line = line.strip()
+            line = raw_line.strip()
             if not line:
                 continue
-
             if line.startswith("--- Page"):
                 continue
-            if re.match(r"^\d+$", line):
+            if re.match(r"^\d+$", line):  # bare page/line numbers
                 continue
 
             # 1) Service Element
@@ -120,6 +183,7 @@ def parse_text(file_paths):
                         current_standard = None
                         continue
                     else:
+                        # Reuse existing SE block if we've seen this ID already.
                         for existing in config["hospital_full_configuration"]:
                             if existing["se_id"] == se_id:
                                 current_se = existing
@@ -206,18 +270,44 @@ def parse_text(file_paths):
                         if not desc and i + 1 < len(lines):
                             desc = lines[i + 1].strip()
 
+                        # Determine critical flag from the nearby "Critical: ..." line, if present.
+                        # In the extracted Hospital texts this is encoded as:
+                        #   Critical: \\u00fe  -> critical
+                        #   Critical: \\u00a8  -> NOT critical
+                        is_critical = False
+                        crit_text = None
+
+                        if "CRITICAL" in line.upper():
+                            crit_text = line
+                        elif i + 1 < len(lines) and "CRITICAL" in lines[i + 1].upper():
+                            crit_text = lines[i + 1]
+
+                        if crit_text is not None:
+                            if "\u00fe" in crit_text:
+                                is_critical = True
+                            elif "\u00a8" in crit_text:
+                                is_critical = False
+                            else:
+                                # Fallback: if we see the word but no symbol, assume critical.
+                                is_critical = True
+
+                        # Attempt to read explicit severity from nearby
+                        # "Default Severity for NC or PC = N".
+                        sev_value = extract_severity(i, lines)
+                        if sev_value is None:
+                            sev_value = 3  # Conservative default, matching old behaviour.
+
                         current_criterion = {
                             "id": crit_id,
                             "description": desc,
-                            "is_critical": "CRITICAL" in line.upper()
-                            or (i + 1 < len(lines) and "CRITICAL" in lines[i + 1].upper()),
+                            "is_critical": is_critical,
                             "category": "Basic Process + Patient Care",
-                            "severity": 3,
+                            "severity": sev_value,
                         }
                         current_standard["criteria"].append(current_criterion)
                     continue
 
-            # 5) Intent paragraphs starting with "Intent of X.X.X"
+            # 5) Intent paragraphs starting with "Intent of X.X.X".
             intent_m = intent_marker.search(line)
             if intent_m and current_standard:
                 if intent_m.group(1) == current_standard["standard_id"]:

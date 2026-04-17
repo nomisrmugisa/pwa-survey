@@ -43,10 +43,12 @@ export const useUserAssessments = (options = {}) => {
     useEffect(() => {
         const initServices = async () => {
             try {
+                console.log('[useUserAssessments] Initializing services...');
                 const metadata = await getMetadata();
                 await AssessmentSchedulingService.init({ metadata });
                 await AssessmentTeamAssignmentService.init({ metadata });
                 setInitialized(true);
+                console.log('[useUserAssessments] Services initialized');
             } catch (err) {
                 console.error('Failed to initialize services:', err);
                 setError(err);
@@ -67,13 +69,20 @@ export const useUserAssessments = (options = {}) => {
         setError(null);
 
         try {
+            console.log('[useUserAssessments] Fetching user assessments for', user.id, user.username, 'with filters', {
+                year: filters.year || year,
+                includePast,
+                includeCompleted,
+                includeDeclined,
+            });
             eventBus.emit(EVENTS.LOADING_SHOW, { source: 'useUserAssessments' });
 
             // 1. Get all assignments for the user
-            const assignments = await AssessmentTeamAssignmentService.getUserAssignmentsDomain({
-                userId: user.id,
-                year: filters.year || year
-            });
+	            const assignments = await AssessmentTeamAssignmentService.getUserAssignmentsDomain({
+	                userId: user.id,
+	                username: user.username,
+	                year: filters.year || year
+	            });
 
             // 2. Get all schedules these assignments belong to
             const scheduleIds = [...new Set(assignments.map(a => a.scheduleTeiId))];
@@ -140,7 +149,7 @@ export const useUserAssessments = (options = {}) => {
             );
 
             // 7. Calculate stats
-	            const stats = {
+		    	    const stats = {
                 total: filtered.length,
                 upcoming: upcoming.length,
                 pending: pending.length,
@@ -148,17 +157,19 @@ export const useUserAssessments = (options = {}) => {
                 declined: filtered.filter(a => a.isDeclined).length
             };
 
-	            // Capture latest debug snapshot from the API (if any), plus
-	            // local counts so we can see where items are being filtered.
-	            setDebug({
-	                ...(api._schedulingDebug || {}),
-	                assignmentsCount: assignments.length,
-	                filteredCount: filtered.length,
-	                upcomingCount: upcoming.length,
-	                pendingCount: pending.length,
-	            });
+		            // Capture latest debug snapshot from the API (if any), plus
+		            // local counts so we can see where items are being filtered.
+		            const debugSnapshot = {
+		                ...(api._schedulingDebug || {}),
+		                assignmentsCount: assignments.length,
+		                filteredCount: filtered.length,
+		                upcomingCount: upcoming.length,
+		                pendingCount: pending.length,
+		            };
+		            console.log('[useUserAssessments] Debug snapshot', debugSnapshot);
+		            setDebug(debugSnapshot);
 
-	            setData({
+		            setData({
 	                assignments: filtered,
 	                schedules,
 	                upcoming,
@@ -167,6 +178,15 @@ export const useUserAssessments = (options = {}) => {
 	                stats,
 	                enriched: enrichedAssignments // Keep original enriched data
 	            });
+
+		            console.log('[useUserAssessments] Completed fetch:', {
+		                assignments: assignments.length,
+		                schedules: schedules.length,
+		                filtered: filtered.length,
+		                upcoming: upcoming.length,
+		                pending: pending.length,
+		                past: past.length,
+		            });
 
         } catch (err) {
             console.error('Error fetching user assessments:', err);

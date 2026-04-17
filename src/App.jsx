@@ -199,13 +199,14 @@ const AppContent = () => {
     // Corrected keys for raw data from api.getAssignments
     const enrollmentId =
       selectedFacility?.enrollment || selectedFacility?.eventId;
-    // TEI priority:
-    // 1) survey-specific internal TEI if we already created one
-    // 2) TEI from the scheduling workflow (hydrated from /enrollments)
+    // TEI priority (for UI):
+    // 1) TEI from the scheduling workflow (what the Assigned Assessments
+    //    list shows: trackedEntityInstance / scheduleTeiId)
+    // 2) survey-specific internal TEI if we already created one
     const teiId =
-      formData.teiId_internal ||
-      selectedFacility?.trackedEntityInstance ||
-      selectedFacility?.scheduleTeiId;
+	      selectedFacility?.trackedEntityInstance ||
+	      selectedFacility?.scheduleTeiId ||
+	      formData.teiId_internal;
 
     if (selectedFacility && isADSection && enrollmentId) {
       const adFields = activeSection.fields || [];

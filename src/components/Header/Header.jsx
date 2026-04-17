@@ -11,8 +11,8 @@ import { classifyAssessment } from '../../utils/classification';
 import { useApp } from '../../contexts/AppContext';
 
 const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringResults, isAssignedAssessment }) => {
-	    const navigate = useNavigate();
-	    const { logout } = useApp();
+		    const navigate = useNavigate();
+		    const { user, logout } = useApp();
 	    const [showSettings, setShowSettings] = React.useState(false);
 
 	    const handleLogout = async () => {
@@ -77,6 +77,11 @@ const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringR
             )}
 
 	            <div className="header-right">
+	                {user && (
+	                    <div className="user-info">
+	                        {user.displayName || user.username || 'User'}
+	                    </div>
+	                )}
 	                <nav className="header-nav">
 	                    <button className="nav-link-btn" onClick={() => navigate('/')}>Dashboard</button>
 	                    <button className="action-btn sync-btn">↻ Sync</button>
