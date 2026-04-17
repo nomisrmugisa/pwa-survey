@@ -69,15 +69,14 @@ export function Dashboard() {
     const [showLinksEditor, setShowLinksEditor] = useState(false);
 
     // Integrated Hook
-	    const assessmentHook = useUserAssessments();
-	    const {
-	        upcoming: upcomingAssessments,
-	        pending: pendingAssessments,
-	        stats: assessmentStats,
-	        loading: assessmentsLoading,
-	        respondToAssignment,
-	        debug: assignmentsDebug,
-	    } = assessmentHook;
+		    const assessmentHook = useUserAssessments();
+		    const {
+		        upcoming: upcomingAssessments,
+		        pending: pendingAssessments,
+		        stats: assessmentStats,
+		        loading: assessmentsLoading,
+		        respondToAssignment,
+		    } = assessmentHook;
 
 	    const handleLogout = async () => {
 	        try {
@@ -319,35 +318,11 @@ export function Dashboard() {
                         <h3>Assigned Assessments</h3>
                     </div>
                 </div>
-	                {!isAssessmentsCollapsed && (
-	                    <div style={{ fontSize: '0.8rem', color: '#666', padding: '0.25rem 1rem' }}>
-	                        <strong>User:</strong> {user?.username || 'unknown'} ({user?.id || 'no-id'})
-	                    </div>
-	                )}
-	                {!isAssessmentsCollapsed && assignmentsDebug && (
-	                    <div style={{ fontSize: '0.8rem', color: '#666', padding: '0.25rem 1rem' }}>
-	                        <strong>Debug:</strong>
-	                        {' '}teamEvents={assignmentsDebug.teamEventsCount ?? 0},
-	                        {' '}enrollments={assignmentsDebug.enrollmentsCount ?? 0},
-	                        {' '}qualifying={assignmentsDebug.qualifyingCount ?? 0},
-	                        {' '}assignments={assignmentsDebug.assignmentsCount ?? 0},
-	                        {' '}filtered={assignmentsDebug.filteredCount ?? 0},
-	                        {' '}upcoming={assignmentsDebug.upcomingCount ?? 0},
-	                        {' '}pending={assignmentsDebug.pendingCount ?? 0}
-	                    </div>
-	                )}
-	                {!isAssessmentsCollapsed && assignmentsDebug && Array.isArray(assignmentsDebug.requests) && assignmentsDebug.requests.length > 0 && (
-	                    <div style={{ fontSize: '0.8rem', color: '#555', padding: '0.25rem 1rem 0.5rem 1rem' }}>
-	                        <div><strong>API calls while loading assignments:</strong></div>
-	                        <ul style={{ margin: '2px 0 0 1.1rem', padding: 0, listStyleType: 'disc' }}>
-	                            {assignmentsDebug.requests.map((req, idx) => (
-	                                <li key={idx}>
-	                                    {req.kind || 'request'}: {req.path || ''} (status {req.status}, ok={String(req.ok)}, count={req.count ?? 'n/a'})
-	                                </li>
-	                            ))}
-	                        </ul>
-	                    </div>
-	                )}
+		                {!isAssessmentsCollapsed && (
+		                    <div style={{ fontSize: '0.8rem', color: '#666', padding: '0.25rem 1rem' }}>
+		                        <strong>User:</strong> {user?.username || 'unknown'} ({user?.id || 'no-id'})
+		                    </div>
+		                )}
                 {!isAssessmentsCollapsed && (
                     <div className="forms-list">
                         {assessmentsLoading ? (
