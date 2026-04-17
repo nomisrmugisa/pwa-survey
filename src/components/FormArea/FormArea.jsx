@@ -94,46 +94,15 @@ const formatSeverityLabel = (severity) => {
     return SEVERITY_LABELS[sevNumber] || `Severity ${sevNumber}`;
 };
 
-// Split a full Standard Intent text into two parts:
-// - primaryIntent: the first one or two sentences (used as "Standard Intent")
-// - overviewText: any remaining sentences (used as "Overview")
+// Preserve full intent text (including paragraphing) from the source.
+// We no longer try to break it into "Intent" vs "Overview" – the
+// tooltip simply shows the complete text, and CSS handles newlines.
 const splitIntentText = (fullIntent) => {
-    const trimmed = (fullIntent || '').trim();
-    if (!trimmed) return { primaryIntent: '', overviewText: '' };
-
-    const sentences = [];
-    let buffer = '';
-
-    for (let i = 0; i < trimmed.length; i += 1) {
-        const ch = trimmed[i];
-        buffer += ch;
-
-        if ((ch === '.' || ch === '!' || ch === '?') && i < trimmed.length - 1) {
-            const next = trimmed[i + 1];
-            if (next === ' ') {
-                sentences.push(buffer.trim());
-                buffer = '';
-
-                // Skip consecutive spaces after sentence terminator
-                while (i + 1 < trimmed.length && trimmed[i + 1] === ' ') {
-                    i += 1;
-                }
-            }
-        }
-    }
-
-    if (buffer.trim()) {
-        sentences.push(buffer.trim());
-    }
-
-    if (sentences.length <= 2) {
-        return { primaryIntent: trimmed, overviewText: '' };
-    }
-
-    const primaryIntent = sentences.slice(0, 2).join(' ');
-    const overviewText = sentences.slice(2).join(' ');
-    return { primaryIntent, overviewText };
-};
+	    const text = (fullIntent || '').trim();
+	    return text
+	        ? { primaryIntent: text, overviewText: '' }
+	        : { primaryIntent: '', overviewText: '' };
+	};
 
 	const getCriterionTooltip = (code, links, index, scoreResult) => {
 		    const normalized = normalizeCriterionCode(code);
@@ -576,30 +545,93 @@ const FormArea = ({
 	    // completion; users can navigate and edit any section at any time.
 	    const isLocked = false;
 
-    // Group fields into subsections based on headers
-    const subsections = useMemo(() => {
-        if (!activeSection?.fields) return [];
-        const groups = [];
-        let currentGroup = [];
-
-        activeSection.fields.forEach((field, index) => {
-            if (field.type === 'header' && index !== 0) {
-                // Start a new group if we hit a header (and it's not the very first thing)
-                if (currentGroup.length > 0) {
-                    groups.push(currentGroup);
-                }
-                currentGroup = [field];
-            } else {
-                currentGroup.push(field);
-            }
-        });
-
-        if (currentGroup.length > 0) {
-            groups.push(currentGroup);
-        }
-
-        return groups;
-    }, [activeSection?.fields]);
+	    	    // Group fields into subsections ("pages").
+	    	    //
+	    	    // Desired behaviour:
+	    	    //   - For coded assessment sections, treat each x.x.x "standard"
+	    	    //     row as the start of a new page, and keep all following
+	    	    //     fields (x.x.x.1 ... x.x.x.n, comments, etc.) on that same
+	    	    //     page until the next x.x.x standard.
+	    	    //   - For sections without such codes (e.g. Assessment Details),
+	    	    //     fall back to header-based grouping.
+	    	    const subsections = useMemo(() => {
+	    	        if (!activeSection?.fields) return [];
+	    	
+	    	        const groups = [];
+	    	        let currentGroup = [];
+	    	        let hasStandardInCurrentGroup = false;
+	    	
+	    	        // Helper: detect if a field is a display-only x.x.x standard row.
+	    	        const isStandardRow = (field) => {
+	    	            if (!field || !field.code) return false;
+	    	            const isCommentField = field.isComment || field.label === 'Comment' || field.id?.endsWith('-comments') || field.id?.endsWith('-comment');
+	    	            if (isCommentField) return false;
+	    	            const normalized = normalizeCriterionCode(field.code);
+	    	            if (!normalized) return false;
+	    	            // Exactly three numeric segments, e.g. "7.2.2".
+	    	            return /^\d+(?:\.\d+){2}$/.test(normalized);
+	    	        };
+	    	
+	    	        // First check whether this section actually has any standard rows.
+	    	        const hasStandardRows = activeSection.fields.some((field) => isStandardRow(field));
+	    	
+	    	        activeSection.fields.forEach((field, index) => {
+	    	            if (!field) return;
+	    	
+	    	            const isHeader = field.type === 'header';
+	    	
+	    	            if (!hasStandardRows) {
+	    	                // Fallback: original header-based grouping when there
+	    	                // are no coded standards in this section.
+	    	                if (isHeader && index !== 0) {
+	    	                    if (currentGroup.length > 0) {
+	    	                        groups.push(currentGroup);
+	    	                    }
+	    	                    currentGroup = [field];
+	    	                } else {
+	    	                    currentGroup.push(field);
+	    	                }
+	    	                return;
+	    	            }
+	    	
+	    	            const isStd = isStandardRow(field);
+	    	
+	    	            if (hasStandardRows) {
+	    	                // Coded sections:
+	    	                // - If we see a header *after* a standard has already
+	    	                //   appeared in the current group, treat that header as
+	    	                //   the start of the *next* page so that it sits above
+	    	                //   the following x.x.x standard (e.g. "PATIENT SAFETY"
+	    	                //   before 7.2.1).
+	    	                if (isHeader && hasStandardInCurrentGroup && currentGroup.length > 0) {
+	    	                    groups.push(currentGroup);
+	    	                    currentGroup = [];
+	    	                    hasStandardInCurrentGroup = false;
+	    	                }
+	    	
+	    	                // When we hit a standard row:
+	    	                // - if the current group already has a standard, this
+	    	                //   is the *next* x.x.x → start a new page;
+	    	                // - otherwise, just mark that this group now contains
+	    	                //   a standard (any intro/header lines stay with it).
+	    	                if (isStd) {
+	    	                    if (hasStandardInCurrentGroup && currentGroup.length > 0) {
+	    	                        groups.push(currentGroup);
+	    	                        currentGroup = [];
+	    	                    }
+	    	                    hasStandardInCurrentGroup = true;
+	    	                }
+	    	            }
+	    	
+	    	            currentGroup.push(field);
+	    	        });
+	    	
+	    	        if (currentGroup.length > 0) {
+	    	            groups.push(currentGroup);
+	    	        }
+	    	
+	    	        return groups;
+	    	    }, [activeSection?.fields]);
 
     const activeSubsectionFields = subsections[currentSubsectionIndex] || [];
     const isLastSubsection = currentSubsectionIndex === subsections.length - 1 || subsections.length === 0;
@@ -1322,6 +1354,59 @@ const FormArea = ({
 	                scoreResult={viewingRootCalc?.result}
 	                onClose={() => setViewingRootCalc(null)}
 	            />
+		            {/* Top pager: duplicate of the bottom Previous/Next controls so
+		                assessors can navigate subsections without scrolling all the
+		                way down. */}
+		            {subsections.length > 1 && (
+		                <div
+		                    className="subsection-nav subsection-nav-top"
+		                    style={{
+		                        display: 'flex',
+		                        justifyContent: 'space-between',
+		                        alignItems: 'center',
+		                        width: '100%',
+		                        margin: '0 0 0.75rem 0',
+		                    }}
+		                >
+		                    <button
+		                        className="nav-btn"
+		                        onClick={() => {
+		                            setCurrentSubsectionIndex((curr) => Math.max(0, curr - 1));
+		                            window.scrollTo(0, 0);
+		                        }}
+		                        disabled={currentSubsectionIndex === 0}
+		                        style={{ opacity: currentSubsectionIndex === 0 ? 0.5 : 1 }}
+		                    >
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        
+		                        ← Previous Page
+		                    </button>
+		                    <span
+		                        className="page-indicator"
+		                        style={{ fontWeight: 600, color: '#4a5568' }}
+		                    >
+		                        Subsection {currentSubsectionIndex + 1} of {subsections.length}
+		                    </span>
+		                    <button
+		                        className="nav-btn"
+		                        onClick={() => {
+		                            setCurrentSubsectionIndex((curr) =>
+		                                Math.min(subsections.length - 1, curr + 1),
+		                            );
+		                            window.scrollTo(0, 0);
+		                        }}
+		                        disabled={isLastSubsection}
+		                        style={{ opacity: isLastSubsection ? 0.5 : 1 }}
+		                    >
+		                        Next Page →
+		                    </button>
+		                </div>
+		            )}
 		            <div className="form-content">
 		                {renderFields()}
 		            </div>

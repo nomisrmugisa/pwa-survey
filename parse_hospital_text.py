@@ -72,7 +72,10 @@ def parse_text(file_paths):
     def split_standard_and_intent(statement: str) -> tuple[str, str]:
         """Split combined 'Standard ... Standard Intent: ...' text.
 
-        Returns ``(pure_statement, intent_text)``.
+        Returns ``(pure_statement, intent_text)``. ``intent_text`` may contain
+        embedded newlines to preserve paragraphing. Any trailing
+        "Criterion Comments" / "Recommendations" headings are removed, even if
+        they appear on separate lines in the source.
         """
 
         if not statement:
@@ -84,16 +87,35 @@ def parse_text(file_paths):
 
         pure_statement = statement[: m.start()].strip()
         intent_text = statement[m.end() :].strip()
-        # Strip trailing headings that occasionally get pulled in.
-        intent_text = re.sub(
-            r"Criterion Comments Recommendations.*$", "", intent_text, flags=re.IGNORECASE
-        ).strip()
+
+        # Drop trailing "Criterion Comments" / "Recommendations" blocks which
+        # are layout artefacts from the PDF forms, not part of the real intent.
+        cleaned_lines: list[str] = []
+        for line in intent_text.splitlines():
+            stripped = line.strip()
+            lower = stripped.lower()
+            if lower.startswith("criterion comments") or lower.startswith("recommendations"):
+                break
+            cleaned_lines.append(line)
+        intent_text = "\n".join(cleaned_lines).strip()
+
         return pure_statement, intent_text
 
     def collect_following_lines(start_index: int, lines: list[str]) -> tuple[str, int]:
-        """Collect continuation lines until a boundary or blank line.
+        """Collect continuation lines until a structural boundary.
 
-        Joins them with spaces, skipping page markers and standalone numbers.
+        For intents we want to preserve paragraphing and bullet layout as
+        closely as possible. To do that we:
+
+        - Treat blank lines as paragraph separators (they become empty
+          strings in ``parts``);
+        - Keep each non-structural line as its own entry; and
+        - Join everything with ``"\n"`` so the UI tooltips (which use
+          ``white-space: pre-line``) can render line breaks.
+
+        We still skip page markers / standalone numbers and stop when we hit a
+        new SE/section/standard/criterion/intent.
+
         Returns ``(joined_text, next_index)`` where ``next_index`` is the first
         line *after* the collected block.
         """
@@ -104,18 +126,21 @@ def parse_text(file_paths):
             raw = lines[j]
             text = raw.strip()
 
-            if not text:
-                break
+            # Page markers / bare numbers are never part of the prose.
             if text.startswith("--- Page") or re.match(r"^\d+$", text):
                 j += 1
                 continue
+
+            # Stop when we hit a new structural element.
             if is_boundary(text):
                 break
 
+            # Preserve paragraphing: blank lines become empty entries so the
+            # final join with "\n" yields visible paragraph breaks.
             parts.append(text)
             j += 1
 
-        return " ".join(parts), j
+        return "\n".join(parts), j
 
     def extract_severity(start_index: int, lines: list[str]) -> int | None:
         """Look ahead from a criterion line for an explicit default severity.
