@@ -991,6 +991,16 @@ const FormArea = ({
 		            // Precompute the raw label once so we can reuse it for
 		            // multiple checks (severity, display label, code fallback).
 		            const rawLabel = field.label || '';
+		            const rawLabelLower = typeof rawLabel === 'string' ? rawLabel.toLowerCase() : '';
+		
+		            // In the Assessment Details section, hide the technical
+		            // manifest/version field entirely so it does not appear in the
+		            // UI. The DHIS2 label for this is typically something like
+		            // "FAC_ASS_DATA_MANIFEST_VERSION Facility Assessment Data
+		            // Manifest Version".
+		            if (isADSection && rawLabelLower.includes('data manifest version')) {
+		                return null;
+		            }
 		
 		            // Normalise the criterion code early so we can also use it to
 		            // detect comment-style data elements whose codes end with

@@ -753,10 +753,10 @@ export const api = {
      * Unified orchestrator for DHIS2 v41 Tracker API.
      * Bundles TEI, Enrollment, and Event in ONE request.
      */
-    submitTrackerAssessment: async (formData, configuration, orgUnitId, onIdGenerated) => {
-	        const PROGRAM_ID = configuration?.program?.id || 'G2gULe4jsfs';
-	        const STAGE_ID = configuration?.programStage?.id || 'HpHD6u6MV37';
-	        const TE_TYPE = configuration?.program?.trackedEntityType?.id || 'uTTDt3fuXZK';
+	    submitTrackerAssessment: async (formData, configuration, orgUnitId, onIdGenerated) => {
+		        const PROGRAM_ID = configuration?.program?.id || 'G2gULe4jsfs';
+		        const STAGE_ID = configuration?.programStage?.id || 'HpHD6u6MV37';
+		        const TE_TYPE = configuration?.program?.trackedEntityType?.id || 'uTTDt3fuXZK';
         const ATTR_ID = 'Bw4PZ8NsYFd';
         const ATTR_VALUE = 'FAC_ASS_TYPE_INTERNAL';
 
@@ -779,50 +779,57 @@ export const api = {
 	            });
 
         // DHIS2 v41 Tracker Payload Structure
-	    const trackerPayload = {
-	        trackedEntities: [
-	            {
-	                trackedEntityType: TE_TYPE,
-	                orgUnit: orgUnitId,
-	                attributes: [], // Add TEI attributes here if needed
-                    enrollments: [
-                        {
-                            program: PROGRAM_ID,
-                            orgUnit: orgUnitId,
-                            status: 'ACTIVE',
-                            enrolledAt: now,
-                            occurredAt: now,
-                            attributes: [
-                                { attribute: ATTR_ID, value: ATTR_VALUE }
-                            ],
-                            events: [
-                                {
-                                    uid: formData.eventId_internal || undefined,
-                                    program: PROGRAM_ID,
-                                    programStage: STAGE_ID,
-                                    orgUnit: orgUnitId,
-                                    status: 'COMPLETED',
-                                    occurredAt: now,
-		                                    dataValues: api.formatDataValues(formData),
-		                                    // Persist SE narrative summaries as
-		                                    // standard DHIS2 event notes so that
-		                                    // they are visible alongside the
-		                                    // event in the Tracker UI.
-		                                    ...(seSummaryNotes.length > 0
-		                                        ? { notes: seSummaryNotes }
-		                                        : {})
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        };
-
-        // If we already have a TEI ID from a previous partial attempt, reuse it
-        if (formData.teiId_internal) {
-            trackerPayload.trackedEntities[0].trackedEntity = formData.teiId_internal;
-        }
+		    // Build the base Tracked Entity object. DHIS2 requires
+		    // `trackedEntityType` to be present on both create and update, but its
+		    // value is immutable once the TEI is created. Since you've aligned the
+		    // programs to use the same tracked entity type, we can safely always
+		    // send TE_TYPE here.
+		    const teiObject = {
+		        trackedEntityType: TE_TYPE,
+		        orgUnit: orgUnitId,
+		        attributes: [], // Add TEI attributes here if needed
+		            enrollments: [
+		                {
+		                    program: PROGRAM_ID,
+		                    orgUnit: orgUnitId,
+		                    status: 'ACTIVE',
+		                    enrolledAt: now,
+		                    occurredAt: now,
+		                    attributes: [
+		                        { attribute: ATTR_ID, value: ATTR_VALUE }
+		                    ],
+		                    events: [
+		                        {
+		                            uid: formData.eventId_internal || undefined,
+		                            program: PROGRAM_ID,
+		                            programStage: STAGE_ID,
+		                            orgUnit: orgUnitId,
+		                            status: 'COMPLETED',
+		                            occurredAt: now,
+			                            dataValues: api.formatDataValues(formData),
+			                            // Persist SE narrative summaries as
+			                            // standard DHIS2 event notes so that
+			                            // they are visible alongside the
+			                            // event in the Tracker UI.
+			                            ...(seSummaryNotes.length > 0
+			                                ? { notes: seSummaryNotes }
+			                                : {})
+		                        }
+		                    ]
+		                }
+		            ]
+		        };
+		
+		        // For existing TEIs, include the `trackedEntity` id so DHIS2 treats
+		        // this as an update. The trackedEntityType above must match the
+		        // type configured for that TEI.
+		        if (formData.teiId_internal) {
+		            teiObject.trackedEntity = formData.teiId_internal;
+		        }
+		
+		        const trackerPayload = {
+		            trackedEntities: [teiObject]
+		        };
 
         // If we have an Enrollment ID, reuse it
         if (formData.enrollmentId_internal) {
