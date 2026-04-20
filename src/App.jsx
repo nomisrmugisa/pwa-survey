@@ -35,7 +35,7 @@ const PrivateRoute = ({ children }) => {
 };
 
 const AppContent = () => {
-  const { user, setUser, setConfiguration, setUserAssignments, configuration } = useApp();
+	  const { user, setUser, setConfiguration, setUserAssignments, configuration, showToast } = useApp();
 	  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [initialDataLoaded, setInitialDataLoaded] = useState(false);
@@ -82,7 +82,27 @@ const AppContent = () => {
 	  } = useIncrementalSave(activeEventId, {
 	    user,
 	    onSaveSuccess: (details) => console.log('✅ App: Saved field:', details),
-	    onSaveError: (error) => console.error('❌ App: Save failed:', error)
+	    onSaveError: (error) => {
+	      console.error('❌ App: Save failed:', error);
+	      if (!error) return;
+	
+	      // Friendly messaging for local storage limits / draft limits.
+	      if (error.code === 'DRAFT_LIMIT_EXCEEDED') {
+	        showToast(
+	          'You already have 5 offline drafts stored for this user. Please sync your existing assessments from the Dashboard, then use Settings → Reset Local Data to clear space.',
+	          'warning'
+	        );
+	      } else if (
+	        error.code === 'LOCAL_QUOTA_EXCEEDED' ||
+	        error.name === 'QuotaExceededError' ||
+	        /quota/i.test(error.message || '')
+	      ) {
+	        showToast(
+	          'Local storage is full in this browser. Please sync your drafts from the Dashboard, then use Settings → Reset Local Data to free up space.',
+	          'error'
+	        );
+	      }
+	    }
 	  });
 
 	  const handleCriterionChange = React.useCallback(() => {
@@ -281,14 +301,37 @@ const AppContent = () => {
       return nameLower === "assessment details" || nameLower === "assessment_details";
     });
     if (!adSection) return true; // If AD section doesn't exist, don't block anything
-
-    return adSection.fields
-      .filter(f => f.type !== 'header')
-      .every(f => {
-        const val = formData[f.id];
-        return val !== undefined && val !== null && val !== '' && String(val).trim() !== '';
-      });
-  }, [groups, formData]);
+	
+	    const fields = adSection.fields || [];
+	
+	    // Only require a minimal, critical subset in Assessment Details before
+	    // unlocking other sections:
+	    // - TEI ID
+	    // - Assessor User ID
+	    // - Facility Assessment Group
+	    const teiField = fields.find(f =>
+	      (f.label || '').toUpperCase().includes('TEI ID')
+	    );
+	    const groupField = fields.find(f =>
+	      f.id === FACILITY_GROUP_DE_ID ||
+	      (f.label || '').toLowerCase().includes('facility assessment group')
+	    );
+	    const assessorField = fields.find(f => {
+	      const label = (f.label || '').toUpperCase();
+	      return (
+	        label.includes('FAC_ASS_ASSESSOR_USER_ID') ||
+	        label.includes('ASSESSOR USER ID')
+	      );
+	    });
+	
+	    const requiredFields = [teiField, groupField, assessorField].filter(Boolean);
+	    if (requiredFields.length === 0) return true; // nothing to enforce
+	
+	    return requiredFields.every(f => {
+	      const val = formData[f.id];
+	      return val !== undefined && val !== null && String(val).trim() !== '';
+	    });
+	  }, [groups, formData]);
 
 	  // Scoring Integration: Map flat formData to hierarchical structure for the scoring hook
 	  const assessmentDetailsForScoring = React.useMemo(() => {

@@ -26,10 +26,9 @@
 		        {activeGroup?.sections?.map((sec, index) => {
 		          const nameLower = (sec.name || '').toLowerCase().trim();
 		          const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
-		          // Sections are now always accessible, even if Assessment
-		          // Details is incomplete. We keep isADComplete only for
-		          // potential informational use elsewhere.
-		          const isSectionLocked = false;
+		          // When Assessment Details is incomplete, all other sections are
+		          // visually locked and cannot be selected.
+		          const isSectionLocked = !isADSection && !isADComplete;
 		  
 			          const label = (() => {
 	            const raw = sec.name || '';
@@ -53,8 +52,13 @@
 		          return (
 		            <li
 		              key={sec.id}
-		              className={`section-item ${activeSection?.id === sec.id ? 'active' : ''}`}
-		              onClick={() => onSelectSection(sec)}
+		              className={`section-item ${activeSection?.id === sec.id ? 'active' : ''} ${isSectionLocked ? 'locked' : ''}`}
+		              onClick={() => {
+		                if (isSectionLocked) return;
+		                onSelectSection(sec);
+		              }}
+		              aria-disabled={isSectionLocked}
+		              title={isSectionLocked ? 'Complete "Assessment Details" before accessing this section.' : ''}
 		            >
 		              <div className="section-info">
 			                <span>{label}</span>

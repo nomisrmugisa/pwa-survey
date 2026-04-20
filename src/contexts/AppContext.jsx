@@ -198,7 +198,7 @@ export const AppProvider = ({ children }) => {
         }
     };
 
-    const clearAllInspections = async () => {
+	    const clearAllInspections = async () => {
         try {
             await indexedDBService.clearStore();
             await refreshStats();
@@ -210,7 +210,7 @@ export const AppProvider = ({ children }) => {
     };
 
 
-	    const value = useMemo(() => ({
+		    const value = useMemo(() => ({
 	        user,
 	        setUser,
 	        configuration,
@@ -222,8 +222,10 @@ export const AppProvider = ({ children }) => {
 	        pendingEvents,
 	        syncEvents,
 	        retryEvent,
-	        deleteEvent,
-	        clearAllInspections,
+		        deleteEvent,
+		        clearAllInspections,
+		        // Backwards-compatible alias for Dashboard "Reset Local Data" button
+		        clearAllSurveys: clearAllInspections,
 	        showToast,
 	        logout,
 	        authInitializing,

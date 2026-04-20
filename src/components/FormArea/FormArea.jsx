@@ -581,10 +581,7 @@ const FormArea = ({
         }
     }, [formData]);
 
-	    const isADSection = activeSection?.name === "Assessment Details";
-	    // Sections are no longer locked based on Assessment Details
-	    // completion; users can navigate and edit any section at any time.
-	    const isLocked = false;
+		    const isADSection = activeSection?.name === "Assessment Details";
 
 	    	    // Group fields into subsections ("pages").
 	    	    //
@@ -718,10 +715,6 @@ const FormArea = ({
 		                }
 		            });
 		
-		            if (!scoredCount && !hasCriticalFail) {
-		                return;
-		            }
-		
 		            let avgPercent = scoredCount ? totalPoints / scoredCount : 0;
 		            if (hasCriticalFail) {
 		                avgPercent = 0;
@@ -846,36 +839,81 @@ const FormArea = ({
 		
 		        return result;
 		    }, [subsections, activeConfigArray]);
-
-		    // Draft PI score for the whole section: simple average of the
-		    // per-subsection Standard (x.x.x) draft scores that exist. This
-		    // powers the "PI" value shown next to the Standards summary label.
-		    const sectionPiDraftScore = useMemo(() => {
-		        const entries = Object.values(standardDraftScores || {}).filter(Boolean);
-		        if (!entries.length) return null;
-		
-		        let total = 0;
-		        let count = 0;
-		        entries.forEach((entry) => {
-		            const value = typeof entry.percent === 'number'
-		                ? entry.percent
-		                : parseFloat(entry.percent);
-		            if (!Number.isFinite(value)) return;
-		            total += value;
-		            count += 1;
-		        });
-		
-		        if (!count) return null;
-		        return total / count;
-		    }, [standardDraftScores]);
-		
-		    // PI-level critical fail: if any Standard within this PI has a
-		    // criticalFail flag, we treat the PI as having a critical failure for
-		    // summary purposes.
-		    const sectionPiHasCriticalFail = useMemo(() => {
-		        const entries = Object.values(standardDraftScores || {}).filter(Boolean);
-		        return entries.some((entry) => entry.criticalFail);
-		    }, [standardDraftScores]);
+			
+		        	// Draft PI score for the whole section: simple average of the
+		        	// per-subsection Standard (x.x.x) draft scores that exist. This
+		        	// powers the high-level "PI summary" header value.
+		        	const sectionPiDraftScore = useMemo(() => {
+		        	    const entries = Object.values(standardDraftScores || {}).filter(Boolean);
+		        	    if (!entries.length) return 0;
+		        	
+		        	    let total = 0;
+		        	    let count = 0;
+		        	    entries.forEach((entry) => {
+		        	        const value = typeof entry.percent === 'number'
+		        	            ? entry.percent
+		        	            : parseFloat(entry.percent);
+		        	        if (!Number.isFinite(value)) return;
+		        	        total += value;
+		        	        count += 1;
+		        	    });
+		        	
+		        	    if (!count) return 0;
+		        	    return total / count;
+		        	}, [standardDraftScores]);
+			
+		        	// PI-level critical fail: if any Standard within any PI has a
+		        	// criticalFail flag, we treat the section as having a critical
+		        	// failure for summary purposes.
+		        	const sectionPiHasCriticalFail = useMemo(() => {
+		        	    const entries = Object.values(standardDraftScores || {}).filter(Boolean);
+		        	    return entries.some((entry) => entry.criticalFail);
+		        	}, [standardDraftScores]);
+			
+		        	// Aggregate PI (x.x) summary rows across all subsections so that the
+		        	// PI summary panel lists every PI present in the SE (e.g. 7.1–7.7 for
+		        	// Hospital SE7), even when no criteria have been answered yet.
+		        	const piSummaryEntries = useMemo(() => {
+		        	    if (!Array.isArray(subsections) || subsections.length === 0) return [];
+		        	
+		        	    const buckets = {};
+		        	
+		        	    subsections.forEach((subFields, idx) => {
+		        	        const overview = subsectionPiOverviews[idx] || seOverview;
+		        	        const piCode = overview?.sectionPiId;
+		        	        if (!piCode) return;
+		        	
+		        	        if (!buckets[piCode]) {
+		        	            buckets[piCode] = {
+		        	                code: piCode,
+		        	                title: overview.sectionTitle || 'Performance Indicator',
+		        	                total: 0,
+		        	                count: 0,
+		        	                criticalFail: false,
+		        	            };
+		        	        }
+		        	
+		        	        const stdEntry = standardDraftScores[idx];
+		        	        let value = 0;
+		        	        if (stdEntry) {
+		        	            const raw = typeof stdEntry.percent === 'number'
+		        	                ? stdEntry.percent
+		        	                : parseFloat(stdEntry.percent);
+		        	            if (Number.isFinite(raw)) value = raw;
+		        	            if (stdEntry.criticalFail) buckets[piCode].criticalFail = true;
+		        	        }
+		        	
+		        	        buckets[piCode].total += value;
+		        	        buckets[piCode].count += 1;
+		        	    });
+		        	
+		        	    return Object.values(buckets).map((b) => ({
+		        	        code: b.code,
+		        	        title: b.title,
+		        	        percent: b.count ? b.total / b.count : 0,
+		        	        criticalFail: b.criticalFail,
+		        	    })).sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true }));
+		        	}, [subsections, subsectionPiOverviews, standardDraftScores, seOverview]);
 		
 		    const activeSubsectionFields = subsections[currentSubsectionIndex] || [];
 		    const currentPiOverview = subsectionPiOverviews[currentSubsectionIndex] || seOverview;
@@ -1986,19 +2024,18 @@ const FormArea = ({
 		                            >
 		                                <span>
 		                                    PI summary
-		                                    {sectionPiDraftScore !== null && !Number.isNaN(sectionPiDraftScore) && (
-		                                        <span className="standard-summary-pi-inline">
-		                                            {' Score: '}
-		                                            {sectionPiDraftScore.toFixed(1)}%
-		                                        </span>
-		                                    )}
+		                                    <span className="standard-summary-pi-inline">
+		                                        {' Overall: '}
+		                                        {Number(sectionPiDraftScore || 0).toFixed(1)}%
+		                                    </span>
 		                                </span>
 		                                <span>{showPiSummary ? '▾' : '▸'}</span>
 		                            </button>
 		                            {showPiSummary && (
 		                                <div className="standard-summary-body">
-		                                    {sectionPiDraftScore !== null && (currentPiOverview || seOverview)?.sectionPiId && (
+		                                    {piSummaryEntries.map((entry) => (
 		                                        <div
+		                                            key={entry.code}
 		                                            className="standard-summary-row standard-summary-row-clickable"
 		                                            role="button"
 		                                            tabIndex={0}
@@ -2013,30 +2050,30 @@ const FormArea = ({
 		                                            }}
 		                                        >
 		                                            <div className="standard-summary-code">
-		                                                {(currentPiOverview || seOverview).sectionPiId}
+		                                                {entry.code}
 		                                            </div>
 		                                            <div className="standard-summary-title">
-		                                                {(currentPiOverview || seOverview).sectionTitle || 'Performance Indicator'}
+		                                                {entry.title}
 		                                            </div>
 		                                            <div className="standard-summary-score">
 		                                                <span
 		                                                    className={
 		                                                        'standard-summary-score-value' +
-		                                                        (sectionPiHasCriticalFail
+		                                                        (entry.criticalFail
 		                                                            ? ' standard-summary-score-critical'
 		                                                            : '')
 		                                                    }
 		                                                >
-		                                                    {sectionPiDraftScore.toFixed(1)}%
+		                                                    {Number(entry.percent || 0).toFixed(1)}%
 		                                                </span>
-		                                                {sectionPiHasCriticalFail && (
+		                                                {entry.criticalFail && (
 		                                                    <span className="standard-summary-critical-flag">
 		                                                        CF
 		                                                    </span>
 		                                                )}
 		                                            </div>
 		                                        </div>
-		                                    )}
+		                                    ))}
 		                                </div>
 		                            )}
 		                        </div>

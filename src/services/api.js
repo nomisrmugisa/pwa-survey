@@ -761,7 +761,50 @@ export const api = {
         const ATTR_VALUE = 'FAC_ASS_TYPE_INTERNAL';
 
         const now = new Date().toISOString().slice(0, 10);
-	
+			
+	        // If we already know the survey-program enrollment ID for this TEI,
+	        // reuse it. Otherwise, if a TEI ID is present, look up existing
+	        // enrollments in DHIS2 so we don't try to create a second ACTIVE
+	        // enrollment in the same program (which DHIS2 forbids).
+	        let enrollmentIdToUse = formData.enrollmentId_internal || null;
+	        const teiIdForLookup = formData.teiId_internal;
+	        if (!enrollmentIdToUse && teiIdForLookup) {
+	            try {
+	                const teiResult = await api.getTrackedEntityInstances([teiIdForLookup]);
+	                const tei = (teiResult?.trackedEntityInstances || []).find(
+	                    (t) => t.trackedEntityInstance === teiIdForLookup
+	                );
+	                const existingEnrollment = tei?.enrollments?.find(
+	                    (enr) =>
+	                        enr.program === PROGRAM_ID &&
+	                        !enr.deleted &&
+	                        (!enr.status || enr.status === 'ACTIVE')
+	                );
+	                if (existingEnrollment?.enrollment) {
+	                    enrollmentIdToUse = existingEnrollment.enrollment;
+	                    if (onIdGenerated) {
+	                        // Persist for future saves so we don't need to
+	                        // re-query DHIS2 again for this draft.
+	                        onIdGenerated('enrollmentId_internal', enrollmentIdToUse);
+	                    }
+	                    console.log(
+	                        '🔁 Reusing existing ACTIVE enrollment for TEI',
+	                        teiIdForLookup,
+	                        'in program',
+	                        PROGRAM_ID,
+	                        '→',
+	                        enrollmentIdToUse
+	                    );
+	                }
+	            } catch (lookupErr) {
+	                console.warn(
+	                    '⚠️ submitTrackerAssessment: Failed to look up existing enrollments for TEI',
+	                    teiIdForLookup,
+	                    lookupErr
+	                );
+	            }
+	        }
+			
 	        // Collect any SE narrative summaries from the draft form data.
 	        // Each key is of the form `se_summary_<sectionId>` and will be
 	        // persisted to DHIS2 as an event note/comment rather than a
@@ -790,6 +833,10 @@ export const api = {
 		        attributes: [], // Add TEI attributes here if needed
 		            enrollments: [
 		                {
+		                    // If we discovered an existing ACTIVE enrollment in this
+		                    // program, reference it here so DHIS2 treats this as an
+		                    // update instead of trying to create a duplicate.
+		                    ...(enrollmentIdToUse ? { enrollment: enrollmentIdToUse } : {}),
 		                    program: PROGRAM_ID,
 		                    orgUnit: orgUnitId,
 		                    status: 'ACTIVE',
@@ -806,14 +853,14 @@ export const api = {
 		                            orgUnit: orgUnitId,
 		                            status: 'COMPLETED',
 		                            occurredAt: now,
-			                            dataValues: api.formatDataValues(formData),
-			                            // Persist SE narrative summaries as
-			                            // standard DHIS2 event notes so that
-			                            // they are visible alongside the
-			                            // event in the Tracker UI.
-			                            ...(seSummaryNotes.length > 0
-			                                ? { notes: seSummaryNotes }
-			                                : {})
+		                            dataValues: api.formatDataValues(formData),
+		                            // Persist SE narrative summaries as
+		                            // standard DHIS2 event notes so that
+		                            // they are visible alongside the
+		                            // event in the Tracker UI.
+		                            ...(seSummaryNotes.length > 0
+		                                ? { notes: seSummaryNotes }
+		                                : {})
 		                        }
 		                    ]
 		                }
@@ -827,14 +874,9 @@ export const api = {
 		            teiObject.trackedEntity = formData.teiId_internal;
 		        }
 		
-		        const trackerPayload = {
-		            trackedEntities: [teiObject]
-		        };
-
-        // If we have an Enrollment ID, reuse it
-        if (formData.enrollmentId_internal) {
-            trackerPayload.trackedEntities[0].enrollments[0].enrollment = formData.enrollmentId_internal;
-        }
+	        const trackerPayload = {
+	            trackedEntities: [teiObject]
+	        };
 
         console.log('📤 Submitting to DHIS2 v41 Unified Tracker:', trackerPayload);
 
