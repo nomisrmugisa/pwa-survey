@@ -374,13 +374,18 @@ const FormArea = ({
     lastSaved,
     isADComplete,
     activeEventId,
-    scoringResults
+    scoringResults,
+    isScoringPending,
+    onCriterionChange
 }) => {
     const [customLinks, setCustomLinks] = useState(null);
-    const [customConfig, setCustomConfig] = useState(null);
-    const [isScoringModalOpen, setIsScoringModalOpen] = useState(false);
-    const [viewingRootCalc, setViewingRootCalc] = useState(null); // { code, result }
-    const [currentSubsectionIndex, setCurrentSubsectionIndex] = useState(0);
+	    const [customConfig, setCustomConfig] = useState(null);
+	    const [isScoringModalOpen, setIsScoringModalOpen] = useState(false);
+	    const [viewingRootCalc, setViewingRootCalc] = useState(null); // { code, result }
+		    const [currentSubsectionIndex, setCurrentSubsectionIndex] = useState(0);
+		    const [showStandardSummary, setShowStandardSummary] = useState(true); // x.x.x list
+		    const [showPiSummary, setShowPiSummary] = useState(true); // x.x PI row
+		    const [openStandardSummaries, setOpenStandardSummaries] = useState({}); // keyed by x.x.x field id
 
     // Reset pagination when activeSection changes
     React.useEffect(() => {
@@ -474,9 +479,29 @@ const FormArea = ({
 		
 		        // Try to pull out a numeric PI id like "9.1" from the metadata
 		        // name/code so we can match it to section_pi_id in the
-		        // *_full_configuration arrays.
+		        // *_full_configuration arrays. If that fails (e.g. section name is
+		        // just "SE 9 PREVENTION..."), fall back to inspecting the
+		        // section's fields and derive the PI from the first coded
+		        // Standard/Criterion id such as "9.1.1.1".
+		        let hintedPiId = null;
 		        const piMatch = rawName.match(/\b\d+\.\d+\b/) || rawCode.match(/\b\d+\.\d+\b/);
-		        const hintedPiId = piMatch ? piMatch[0] : null;
+		        if (piMatch) {
+		            hintedPiId = piMatch[0];
+		        } else if (Array.isArray(activeSection.fields)) {
+		            for (const f of activeSection.fields) {
+		                const codeSrc = (f && (f.code || f.id)) ? String(f.code || f.id) : '';
+		                if (!codeSrc) continue;
+		                // Look for something like 9.1.1 or 9.1.1.1 and reduce it
+		                // to the PI level (9.1).
+		                const codeMatch = codeSrc.match(/\b\d+\.\d+(?:\.\d+){1,2}\b/);
+		                if (!codeMatch) continue;
+		                const parts = codeMatch[0].split('.');
+		                if (parts.length >= 2) {
+		                    hintedPiId = `${parts[0]}.${parts[1]}`;
+		                    break;
+		                }
+		            }
+		        }
 		
 		        let matchedSe = null;
 		        let matchedSection = null;
@@ -554,18 +579,23 @@ const FormArea = ({
 	    	    //     page until the next x.x.x standard.
 	    	    //   - For sections without such codes (e.g. Assessment Details),
 	    	    //     fall back to header-based grouping.
-	    	    const subsections = useMemo(() => {
+	    const subsections = useMemo(() => {
 	    	        if (!activeSection?.fields) return [];
 	    	
-	    	        const groups = [];
-	    	        let currentGroup = [];
-	    	        let hasStandardInCurrentGroup = false;
-	    	
-	    	        // Helper: detect if a field is a display-only x.x.x standard row.
-	    	        const isStandardRow = (field) => {
-	    	            if (!field || !field.code) return false;
-	    	            const isCommentField = field.isComment || field.label === 'Comment' || field.id?.endsWith('-comments') || field.id?.endsWith('-comment');
-	    	            if (isCommentField) return false;
+		        const groups = [];
+		        let currentGroup = [];
+		        let hasStandardInCurrentGroup = false;
+		
+		        // Helper: detect if a field is a display-only x.x.x standard row.
+		        const isStandardRow = (field) => {
+		            if (!field || !field.code) return false;
+		            const isCommentField =
+		                field.isComment ||
+		                field.label === 'Comment' ||
+		                (typeof field.label === 'string' && /-comments\b/i.test(field.label)) ||
+		                field.id?.endsWith('-comments') ||
+		                field.id?.endsWith('-comment');
+		            if (isCommentField) return false;
 	    	            const normalized = normalizeCriterionCode(field.code);
 	    	            if (!normalized) return false;
 	    	            // Exactly three numeric segments, e.g. "7.2.2".
@@ -630,10 +660,206 @@ const FormArea = ({
 	    	            groups.push(currentGroup);
 	    	        }
 	    	
-	    	        return groups;
-	    	    }, [activeSection?.fields]);
+	        	        return groups;
+	        	    }, [activeSection?.fields]);
+	
+	    // For each subsection (page), pre-compute a draft standard-level score
+	    // and metadata (x.x.x code + title). This powers both the inline
+	    // "x.x.x % Score (Not Saved)" pill next to the standard row and the
+	    // floating summary panel that shows all Standards in the section.
+		    const standardDraftScores = useMemo(() => {
+		        if (!scoringResults?.sections || !activeSection || !Array.isArray(subsections) || subsections.length === 0) {
+		            return {};
+		        }
+		
+		        const sectionScore = scoringResults.sections.find((s) => s.id === activeSection.id);
+		        const standardResults = sectionScore?.standards?.[0];
+		        if (!standardResults) return {};
+		
+		        const criteriaScores = standardResults.criteriaScores || {};
+		        const result = {};
+		
+		        subsections.forEach((subFields, subsectionIndex) => {
+		            if (!Array.isArray(subFields) || subFields.length === 0) return;
+		
+		            const selectIds = subFields
+		                .filter((f) => f && f.type === 'select')
+		                .map((f) => f.id);
+		            if (!selectIds.length) return;
+		
+		            let totalPoints = 0;
+		            let scoredCount = 0;
+		            let hasCriticalFail = false;
+		
+		            selectIds.forEach((id) => {
+		                const score = criteriaScores[id];
+		                if (!score) return;
+		                if (score.criticalFail) hasCriticalFail = true;
+		                if (score.isScored && score.points !== null) {
+		                    totalPoints += score.points;
+		                    scoredCount += 1;
+		                }
+		            });
+		
+		            if (!scoredCount && !hasCriticalFail) {
+		                return;
+		            }
+		
+		            let avgPercent = scoredCount ? totalPoints / scoredCount : 0;
+		            if (hasCriticalFail) {
+		                avgPercent = 0;
+		            }
+		
+		            // Find the first x.x.x Standard row in this subsection so we can
+		            // attach the draft score (and label) to a specific Standard.
+		            let standardCode = null;
+		            let standardTitle = '';
+		            for (const field of subFields) {
+		                if (!field) continue;
+		                const isCommentField =
+		                    field.isComment ||
+		                    field.label === 'Comment' ||
+		                    (typeof field.label === 'string' && /-comments\b/i.test(field.label)) ||
+		                    field.id?.endsWith('-comments') ||
+		                    field.id?.endsWith('-comment');
+		                if (isCommentField) continue;
+		
+		                const rawLabel = field.label || '';
+		                let norm = normalizeCriterionCode(field.code);
+		                if (!norm || !/\d/.test(norm)) {
+		                    const labelMatch = rawLabel.match(/\b\d+(?:\.\d+){2,3}\b/);
+		                    if (labelMatch) {
+		                        norm = labelMatch[0];
+		                    }
+		                }
+		
+		                if (norm && /^\d+(?:\.\d+){2}$/.test(norm)) {
+		                    standardCode = norm;
+		                    const info = criterionIndex[norm];
+		                    standardTitle = (info?.statement || rawLabel || '').trim();
+		                    break;
+		                }
+		            }
+		
+		            if (!standardCode) {
+		                return;
+		            }
+		
+		            result[subsectionIndex] = {
+		                code: standardCode,
+		                title: standardTitle || standardCode,
+		                percent: avgPercent,
+		                criticalFail: hasCriticalFail,
+		            };
+		        });
+		
+		        return result;
+		    }, [scoringResults, activeSection, subsections, criterionIndex]);
+		
+		    // For each subsection, derive the PI (x.x) overview from its Standard
+		    // code (x.x.x) so that sections like SE 9 correctly switch between 9.1
+		    // and 9.2 depending on which subsection the user is viewing.
+		    const subsectionPiOverviews = useMemo(() => {
+		        if (!Array.isArray(subsections) || subsections.length === 0 || !Array.isArray(activeConfigArray)) {
+		            return [];
+		        }
+		        const result = [];
+		
+		        subsections.forEach((subFields, subsectionIndex) => {
+		            if (!Array.isArray(subFields) || subFields.length === 0) return;
+		
+		            // Reuse the same detection as above to find the x.x.x Standard
+		            // code for this subsection.
+		            let standardCode = null;
+		            for (const field of subFields) {
+		                if (!field) continue;
+		                const isCommentField =
+		                    field.isComment ||
+		                    field.label === 'Comment' ||
+		                    (typeof field.label === 'string' && /-comments\b/i.test(field.label)) ||
+		                    field.id?.endsWith('-comments') ||
+		                    field.id?.endsWith('-comment');
+		                if (isCommentField) continue;
+		
+		                const rawLabel = field.label || '';
+		                let norm = normalizeCriterionCode(field.code);
+		                if (!norm || !/\d/.test(norm)) {
+		                    const labelMatch = rawLabel.match(/\b\d+(?:\.\d+){2,3}\b/);
+		                    if (labelMatch) {
+		                        norm = labelMatch[0];
+		                    }
+		                }
+		
+		                if (norm && /^\d+(?:\.\d+){2}$/.test(norm)) {
+		                    standardCode = norm;
+		                    break;
+		                }
+		            }
+		
+		            if (!standardCode) return;
+		
+		            const parts = standardCode.split('.');
+		            if (parts.length < 2) return;
+		            const piCode = `${parts[0]}.${parts[1]}`;
+		
+		            let matched = null;
+		            outer: for (const se of activeConfigArray) {
+		                const seSections = se.sections || [];
+		                for (const sec of seSections) {
+		                    const secPi = (sec.section_pi_id || '').trim();
+		                    if (secPi === piCode) {
+		                        matched = {
+		                            seId: se.se_id,
+		                            seName: se.se_name,
+		                            sectionPiId: sec.section_pi_id,
+		                            sectionTitle: sec.title,
+		                            standards: sec.standards || [],
+		                        };
+		                        break outer;
+		                    }
+		                }
+		            }
+		
+		            if (matched) {
+		                result[subsectionIndex] = matched;
+		            }
+		        });
+		
+		        return result;
+		    }, [subsections, activeConfigArray]);
 
-    const activeSubsectionFields = subsections[currentSubsectionIndex] || [];
+		    // Draft PI score for the whole section: simple average of the
+		    // per-subsection Standard (x.x.x) draft scores that exist. This
+		    // powers the "PI" value shown next to the Standards summary label.
+		    const sectionPiDraftScore = useMemo(() => {
+		        const entries = Object.values(standardDraftScores || {}).filter(Boolean);
+		        if (!entries.length) return null;
+		
+		        let total = 0;
+		        let count = 0;
+		        entries.forEach((entry) => {
+		            const value = typeof entry.percent === 'number'
+		                ? entry.percent
+		                : parseFloat(entry.percent);
+		            if (!Number.isFinite(value)) return;
+		            total += value;
+		            count += 1;
+		        });
+		
+		        if (!count) return null;
+		        return total / count;
+		    }, [standardDraftScores]);
+		
+		    // PI-level critical fail: if any Standard within this PI has a
+		    // criticalFail flag, we treat the PI as having a critical failure for
+		    // summary purposes.
+		    const sectionPiHasCriticalFail = useMemo(() => {
+		        const entries = Object.values(standardDraftScores || {}).filter(Boolean);
+		        return entries.some((entry) => entry.criticalFail);
+		    }, [standardDraftScores]);
+		
+		    const activeSubsectionFields = subsections[currentSubsectionIndex] || [];
+		    const currentPiOverview = subsectionPiOverviews[currentSubsectionIndex] || seOverview;
     const isLastSubsection = currentSubsectionIndex === subsections.length - 1 || subsections.length === 0;
 
     // Render Logic Helpers
@@ -646,59 +872,24 @@ const FormArea = ({
             return <div className="error-message">Error: Section data is malformed.</div>;
         }
 
-        if (activeSubsectionFields.length === 0) {
-            return <div className="empty-fields-message">No fields in this subsection.</div>;
-        }
+	    if (activeSubsectionFields.length === 0) {
+	        return <div className="empty-fields-message">No fields in this subsection.</div>;
+	    }
 
-        // Pre-compute a draft standard-level score for the current subsection.
-        // We treat the "standard" as the group of select fields (x.x.x.x
-        // sub-criteria) that belong to this subsection and average their
-        // computed points. This value is displayed next to the x.x.x
-        // standard row as the user progresses, labelled as Not Saved.
-        let subsectionStandardScore = null;
-        if (scoringResults?.sections && activeSection) {
-            const sectionScore = scoringResults.sections.find(s => s.id === activeSection.id);
-            const standardResults = sectionScore?.standards?.[0];
-            if (standardResults) {
-                const criteriaScores = standardResults.criteriaScores || {};
-                const subsectionFieldIds = (activeSubsectionFields || [])
-                    .filter(f => f.type === 'select')
-                    .map(f => f.id);
+	    // Track seen criterion question codes (x.x.x.x) so that if the
+	    // metadata contains two different fields with the same numeric code
+	    // (e.g. 7.1.1.1) we only render the first and silently skip
+	    // duplicates to avoid double rows in the UI.
+	    const seenQuestionCodes = new Set();
 
-                let totalPoints = 0;
-                let scoredCount = 0;
-                let hasCriticalFail = false;
-
-                subsectionFieldIds.forEach(id => {
-                    const score = criteriaScores[id];
-                    if (!score) return;
-                    if (score.criticalFail) {
-                        hasCriticalFail = true;
-                    }
-                    if (score.isScored && score.points !== null) {
-                        totalPoints += score.points;
-                        scoredCount += 1;
-                    }
-                });
-
-                if (scoredCount > 0 || hasCriticalFail) {
-                    let avgPercent = 0;
-                    if (scoredCount > 0) {
-                        avgPercent = totalPoints / scoredCount; // points are already 0–100
-                    }
-                    if (hasCriticalFail) {
-                        avgPercent = 0;
-                    }
-                    subsectionStandardScore = {
-                        percent: avgPercent,
-                        criticalFail: hasCriticalFail,
-                    };
-                }
-            }
-        }
-
-
-        return activeSubsectionFields.map((field) => {
+		    // Look up the pre-computed draft Standard-level score (x.x.x) for
+	        // this subsection, if any. These values come from the same
+	        // scoringResults object that powers the per-criterion score badges
+	        // and are also surfaced in the floating summary panel.
+	        const subsectionStandardScore = standardDraftScores[currentSubsectionIndex] || null;
+		
+		
+	    return activeSubsectionFields.map((field) => {
             // Safety check for field
             if (!field || !field.id) {
                 console.warn("FormArea: Invalid field in section:", field);
@@ -706,8 +897,10 @@ const FormArea = ({
             }
 
 		            if (field.type === 'header') {
-		                // Subheading within a section: show only the human-readable label, no codes
-		                // and drop any leading prefixes that contain underscores (e.g. SURV_HOSP_1.1)
+		                // Subheading within a section. For coded SE sections where we
+		                // have a matching configuration entry, we want to show the PI
+		                // id (e.g. "9.2") together with the PI title or the existing
+		                // header text, instead of a plain uppercase label.
 		                const displayLabel = (() => {
 		                    const raw = field.label || '';
 		                    if (!raw) return '';
@@ -720,7 +913,38 @@ const FormArea = ({
 		                        kept.push(p);
 		                    }
 		                    const cleaned = kept.join(' ').trim();
-		                    return cleaned || raw.trim();
+		                    const baseLabel = cleaned || raw.trim();
+		
+		                    const piInfo = currentPiOverview || seOverview;
+		                    if (piInfo?.sectionPiId && piInfo?.sectionTitle) {
+		                        const normaliseTitle = (str) =>
+		                            (str || '')
+		                                .toUpperCase()
+		                                .replace(/[^A-Z0-9]+/g, ' ')
+		                                .replace(/\s+/g, ' ')
+		                                .trim();
+		
+		                        const headerNorm = normaliseTitle(baseLabel);
+		                        const titleNorm = normaliseTitle(piInfo.sectionTitle);
+		
+		                        // If the header text essentially matches the PI title, use
+		                        // the canonical config title in nice case.
+		                        if (headerNorm && titleNorm && (headerNorm === titleNorm ||
+		                            headerNorm.includes(titleNorm) ||
+		                            titleNorm.includes(headerNorm))) {
+		                            const cleanTitle = piInfo.sectionTitle.replace(/[.\s]+$/g, '');
+		                            return `${piInfo.sectionPiId} ${cleanTitle}`;
+		                        }
+		
+		                        // Otherwise still prefix the existing header label with
+		                        // the PI id so sections like EMS SE8 also show "8.1 ...".
+		                        const alreadyHasCode = /^\d+(?:\.\d+)*\s/.test(baseLabel);
+		                        if (!alreadyHasCode) {
+		                            return `${piInfo.sectionPiId} ${baseLabel}`;
+		                        }
+		                    }
+		
+		                    return baseLabel;
 		                })();
 		                return (
 		                    <div key={field.id} className="form-header-separator">
@@ -745,24 +969,58 @@ const FormArea = ({
 
             const isRoot = calculatedFieldScore?.isRoot || false;
 
-            const isCommentField = field.isComment || field.label === 'Comment' || field.id?.endsWith('-comments') || field.id?.endsWith('-comment');
+		            const isCommentField =
+		                field.isComment ||
+		                field.label === 'Comment' ||
+		                (typeof field.label === 'string' && /-comments\b/i.test(field.label)) ||
+		                field.id?.endsWith('-comments') ||
+		                field.id?.endsWith('-comment');
 
-            const associatedCommentId = field.commentFieldId;
-            const currentCommentValue = associatedCommentId ? (formData[associatedCommentId] || '') : '';
+	            const associatedCommentId = field.commentFieldId;
+	            const currentCommentValue = associatedCommentId ? (formData[associatedCommentId] || '') : '';
 
-	            // Logic to determine if it's critical: 
-	            // 1. Check formData helper state
-	            // 2. Fallback to index (from Config)
-	            // 3. Fallback to comment tag presence
-	            const normalizedCode = normalizeCriterionCode(field.code);
-	            // Standards (x.x.x) should be display-only in the UI: no
-	            // input controls, just bolded text. We detect them by a
-	            // three-level numeric code (e.g. "1.2.3").
-	            const isStandardCriterion =
-	                !isCommentField &&
-	                normalizedCode &&
-	                /^\d+(\.\d+){2}$/.test(normalizedCode);
-	            const configEntry = criterionIndex[normalizedCode] || {};
+	            // Precompute the raw label once so we can reuse it for
+	            // multiple checks (severity, display label, code fallback).
+	            const rawLabel = field.label || '';
+
+		            // Logic to determine if it's critical: 
+		            // 1. Check formData helper state
+		            // 2. Fallback to index (from Config)
+		            // 3. Fallback to comment tag presence
+		            let normalizedCode = normalizeCriterionCode(field.code);
+		            // Hospital and some other programmes have a few data elements
+		            // where the DHIS2 dataElement.code is missing or not aligned
+		            // with the numeric criterion ID, but the label still begins
+		            // with something like "7.1.1.1 HOSP ...". As a fallback,
+		            // try to extract a 3- or 4-segment numeric id from the label
+		            // itself so that duplicates can still be de-duplicated and
+		            // severity lookups work.
+		            if (!normalizedCode || !/\d/.test(normalizedCode)) {
+		                const labelMatch = rawLabel.match(/\b\d+(?:\.\d+){2,3}\b/);
+		                if (labelMatch) {
+		                    normalizedCode = labelMatch[0];
+		                }
+		            }
+		            // Standards (x.x.x) should be display-only in the UI: no
+		            // input controls, just bolded text. We detect them by a
+		            // three-level numeric code (e.g. "1.2.3").
+		            const isStandardCriterion =
+		                !isCommentField &&
+		                normalizedCode &&
+		                /^\d+(\.\d+){2}$/.test(normalizedCode);
+		            const isCriterionQuestion =
+		                !isCommentField &&
+		                normalizedCode &&
+		                /^\d+(\.\d+){3}$/.test(normalizedCode);
+
+		            if (isCriterionQuestion) {
+		                if (seenQuestionCodes.has(normalizedCode)) {
+		                    console.warn('FormArea: hiding duplicate criterion field for code', normalizedCode, 'field', field.id);
+		                    return null;
+		                }
+		                seenQuestionCodes.add(normalizedCode);
+		            }
+		            const configEntry = normalizedCode ? (criterionIndex[normalizedCode] || {}) : {};
 	            const configIsCritical = configEntry.is_critical || false;
 	            const configSeverity = configEntry.severity;
 
@@ -770,7 +1028,7 @@ const FormArea = ({
                 ? formData[`is_critical_${associatedCommentId}`]
                 : (configIsCritical || currentCommentValue.includes('[CRITICAL]'));
 
-	            const questionValue = formData[field.id];
+		            const questionValue = formData[field.id];
 	            const isQuestionAnswered = questionValue !== undefined && questionValue !== null && questionValue !== '';
 
 	            // Check if comment field is disabled (parent question not answered)
@@ -793,7 +1051,6 @@ const FormArea = ({
 	            // Group) in the Assessment Details section. These are
 	            // populated automatically and should not be editable by the
 	            // assessor.
-	            const rawLabel = field.label || '';
 	            const labelLower = rawLabel.toLowerCase();
 	            const labelUpper = rawLabel.toUpperCase();
 	            const isEnrollmentField = labelLower.includes('enrollment');
@@ -811,23 +1068,42 @@ const FormArea = ({
 	                    isAssessorUserField ||
 	                    isFacilityGroupField);
 
-	            // Look up EMS standard/intent tooltip for this data element code
-	            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex, calculatedFieldScore) : '';
-
-	            // Compute the human-friendly label once, so we can reuse it
-	            // for both normal and standard (display-only) rows.
-	            const displayLabel = (() => {
-	                // For all fields we want to hide any technical
-	                // prefixes that appear before underscores in the
-	                // underlying codes (e.g. "SURV_EMS_", "FAC_ASS_"),
-	                // but we still allow a clean, human-readable
-	                // criterion number such as "1.2.3.4".
-	                const cleanedCode = field.code ? normalizeCriterionCode(field.code) : '';
-	                const shouldShowCode = !!cleanedCode && /\d/.test(cleanedCode) && !cleanedCode.includes('_');
-
-	                if (isCommentField) {
-	                    return rawLabel || 'Unnamed Field';
-	                }
+		            // Look up EMS standard/intent tooltip for this data element code
+		            const criterionTooltip = (!isCommentField && field.code) ? getCriterionTooltip(field.code, activeLinks, criterionIndex, calculatedFieldScore) : '';
+		
+		            // For Standard (x.x.x) rows, locate the hidden comment field we
+		            // want to reuse as the backing store for the "Standard
+		            // summary" text icon.
+		            const standardSummaryCommentId = isStandardCriterion ? field.commentFieldId : null;
+		            const standardSummaryValue = standardSummaryCommentId ? (formData[standardSummaryCommentId] || '') : '';
+		            const isStandardSummaryOpen = isStandardCriterion && !!openStandardSummaries[field.id];
+		
+		            // Compute the human-friendly label once, so we can reuse it
+		            // for both normal and standard (display-only) rows.
+		            const displayLabel = (() => {
+		                // For all fields we want to hide any technical
+		                // prefixes that appear before underscores in the
+		                // underlying codes (e.g. "SURV_EMS_", "FAC_ASS_"),
+		                // but we still allow a clean, human-readable
+		                // criterion number such as "1.2.3.4".
+		                const cleanedCode = field.code ? normalizeCriterionCode(field.code) : '';
+		                const shouldShowCode = !!cleanedCode && /\d/.test(cleanedCode) && !cleanedCode.includes('_');
+		                const isLabelComment = typeof rawLabel === 'string' && /-comments\b/i.test(rawLabel);
+		
+		                if (isCommentField || isLabelComment) {
+		                    // Many DHIS2 comment data elements repeat the full
+		                    // criterion statement in the label, e.g.
+		                    // "7.1.1.1-comments HOSP There are documented risk ...".
+		                    // For the assessor this just looks like a duplicate
+		                    // question, so in the UI we collapse it to a simple
+		                    // "Comment" label, optionally prefixed with the
+		                    // criterion code for context.
+		                    const codeMatch = rawLabel && rawLabel.match(/\b\d+(?:\.\d+){2,3}\b/);
+		                    if (codeMatch) {
+		                        return `${codeMatch[0]} Comment`;
+		                    }
+		                    return 'Comment';
+		                }
 
 	                // For Assessment Details, show only the human-friendly
 	                // part of the label (e.g. "Facility Assessment Assessor
@@ -873,23 +1149,40 @@ const FormArea = ({
                                     {formatSeverityLabel(configSeverity)}
                                 </span>
                             )}
-                            {isStandardCriterion && subsectionStandardScore && (
-                                <span
-                                    className="standard-score-pill"
-                                    style={{
-                                        marginLeft: '10px',
-                                        fontSize: '0.8em',
-                                        fontWeight: 600,
-                                        padding: '2px 8px',
-                                        borderRadius: '12px',
-                                        backgroundColor: 'rgba(43, 58, 142, 0.1)',
-                                        color: '#2b3a8e',
-                                        border: '1px solid rgba(43, 58, 142, 0.35)'
-                                    }}
-                                >
-                                    {subsectionStandardScore.percent.toFixed(1)}% Score (Not Saved)
-                                </span>
-                            )}
+		                            {isStandardCriterion && subsectionStandardScore && (
+		                                <span
+		                                    className="standard-score-pill"
+		                                    style={{
+		                                        marginLeft: '10px',
+		                                        fontSize: '0.8em',
+		                                        fontWeight: 600,
+		                                        padding: '2px 8px',
+		                                        borderRadius: '12px',
+		                                        backgroundColor: 'rgba(43, 58, 142, 0.1)',
+		                                        color: '#2b3a8e',
+		                                        border: '1px solid rgba(43, 58, 142, 0.35)'
+		                                    }}
+		                                >
+		                                    {isScoringPending && (
+		                                        <span className="score-spinner" aria-label="Recalculating standard score" />
+		                                    )}
+		                                    {subsectionStandardScore.percent.toFixed(1)}% Score (Not Saved)
+		                                </span>
+		                            )}
+		                            {isStandardCriterion && standardSummaryCommentId && (
+		                                <button
+		                                    type="button"
+		                                    className="standard-summary-icon"
+		                                    onClick={() => {
+		                                        setOpenStandardSummaries(prev => ({
+		                                            ...prev,
+		                                            [field.id]: !prev[field.id],
+		                                        }));
+		                                    }}
+		                                >
+		                                    Standard summary
+		                                </button>
+		                            )}
 	                            {criterionTooltip && (
 	                                <button
 	                                    type="button"
@@ -903,6 +1196,23 @@ const FormArea = ({
 	                        </div>
 	                        {isCritical && <span className="critical-badge">CRITICAL</span>}
 	                    </div>
+		                    {isStandardCriterion && standardSummaryCommentId && isStandardSummaryOpen && (
+		                        <div className="standard-summary-editor">
+		                            <label className="standard-summary-label" htmlFor={`standard-summary-${standardSummaryCommentId}`}>
+		                                Standard summary
+		                            </label>
+		                            <textarea
+		                                id={`standard-summary-${standardSummaryCommentId}`}
+		                                className="form-control standard-summary-textarea"
+		                                value={standardSummaryValue}
+		                                onChange={(e) => {
+		                                    const newVal = e.target.value;
+		                                    saveField(standardSummaryCommentId, newVal);
+		                                }}
+		                                rows={3}
+		                            />
+		                        </div>
+		                    )}
 	                    {formData[`is_critical_${field.id}`] && isCommentField && (
 	                        <div className="mandatory-label">Comment is required for Critical issues.</div>
 	                    )}
@@ -1015,17 +1325,44 @@ const FormArea = ({
                                 })()}
 	                            </select>
 	                        </>
-	                    ) : (
-	                        <FieldInput
-	                            type={isCommentField ? 'textarea' : field.type}
-	                            className={`form-control ${formData[`is_critical_${field.id}`] && (!questionValue || questionValue === '') ? 'mandatory-warning' : ''}`}
-	                            value={formData[field.id] || ''}
-	                            onChange={(e) => handleInputChange(e, field.id)}
-	                            onBlur={isCommentField ? () => handleCommentBlur(field.id) : undefined}
-	                            id={`field-${field.id}`}
-	                            disabled={(!isParentAnswered && isCommentField) || isTechnicalField}
-	                        />
-	                    ))}
+		                    ) : (
+		                        <FieldInput
+		                            type={isCommentField ? 'textarea' : field.type}
+		                            className={`form-control ${formData[`is_critical_${field.id}`] && (!questionValue || questionValue === '') ? 'mandatory-warning' : ''}`}
+		                            value={(() => {
+		                                const rawValue = formData[field.id] || '';
+		                                // Some DHIS2 comment data elements were
+		                                // initialised with the full criterion label
+		                                // as their value (e.g. "7.1.1.1-comments
+		                                // HOSP There are documented risk ...").
+		                                // This makes the comment box look like a
+		                                // duplicate question. If the stored value
+		                                // is just that label (optionally with only
+		                                // whitespace/newlines around it), treat it
+		                                // as placeholder/legacy noise and show an
+		                                // empty textarea instead.
+		                                const isCommentLike =
+		                                    isCommentField ||
+		                                    (typeof rawLabel === 'string' && /-comments\b/i.test(rawLabel));
+		                                if (isCommentLike && typeof rawLabel === 'string' && rawLabel) {
+		                                    const trimmedValue = rawValue.trim();
+		                                    const trimmedLabel = rawLabel.trim();
+		                                    if (
+		                                        trimmedValue === trimmedLabel ||
+		                                        (trimmedValue.startsWith(trimmedLabel) &&
+		                                            trimmedValue.length <= trimmedLabel.length + 5)
+		                                    ) {
+		                                        return '';
+		                                    }
+		                                }
+		                                return rawValue;
+		                            })()}
+		                            onChange={(e) => handleInputChange(e, field.id)}
+		                            onBlur={isCommentField ? () => handleCommentBlur(field.id) : undefined}
+		                            id={`field-${field.id}`}
+		                            disabled={(!isParentAnswered && isCommentField) || isTechnicalField}
+		                        />
+		                    ))}
                 </div>
             );
         });
@@ -1038,16 +1375,16 @@ const FormArea = ({
         return <div className="form-area-empty">Please select a section</div>;
     }
 
-    const handleInputChange = (e, fieldId) => {
-        const value = e.target.value;
-        console.log(`Dropdown change detected: fieldId=${fieldId}, value=${value}`);
-
-        // If it's a dropdown change (non-empty selection), trigger severity dialog FIRST
-        const field = activeSection.fields.find(f => f.id === fieldId);
-        console.log(`Field found: ${JSON.stringify(field)}`);
-
-        saveField(fieldId, value);
-    };
+	    const handleInputChange = (e, fieldId) => {
+	        const value = e.target.value;
+	
+	        const field = activeSection?.fields?.find(f => f.id === fieldId);
+	        if (field?.type === 'select' && typeof onCriterionChange === 'function') {
+	            onCriterionChange();
+	        }
+	
+	        saveField(fieldId, value);
+	    };
 
     React.useEffect(() => {
         if (!scoringResults?.sections || !activeSection?.fields) return;
@@ -1295,13 +1632,25 @@ const FormArea = ({
 			                            const raw = activeSection?.name || '';
 			                            if (!raw) return '';
 			                            const upper = raw.toUpperCase();
-			                            // If already starts with SE, just use it
-			                            if (upper.trim().startsWith('SE')) return raw.trim();
-			                            // Try to derive SE code from HOSP patterns, e.g. "1-HOSPITAL_1 HOSP_SE1 ..." or "SURV_HOSP_1.1 ..."
+
+			                            // If the name already starts with an SE prefix like
+			                            // "SE7 RISK MANAGEMENT" or "SE 7 RISK MANAGEMENT",
+			                            // normalise it to "SE 7 ..." (i.e. always include a
+			                            // space between SE and the number).
+			                            const sePrefixMatch = raw.match(/^\s*SE\s*([0-9]+(?:\.[0-9]+)*)\s*(.*)$/i);
+			                            if (sePrefixMatch) {
+			                                const num = sePrefixMatch[1];
+			                                const rest = sePrefixMatch[2].trim();
+			                                const seToken = `SE ${num}`;
+			                                return rest ? `${seToken} ${rest}` : seToken;
+			                            }
+
+			                            // Try to derive SE code from HOSP patterns, e.g.
+			                            // "1-HOSPITAL_1 HOSP_SE1 ..." or "SURV_HOSP_1.1 ...".
 			                            const hospMatch = upper.match(/HOSP[_\s-]*(SE)?(\d+(?:\.\d+)*)/);
 			                            if (hospMatch) {
 			                                const numPart = hospMatch[2]; // e.g. "1" or "1.1"
-			                                const seToken = `SE${numPart}`;
+			                                const seToken = `SE ${numPart}`;
 			                                const rest = raw
 			                                    .slice(hospMatch.index + hospMatch[0].length)
 			                                    .replace(/^[\s\-_:]+/, '');
@@ -1407,9 +1756,148 @@ const FormArea = ({
 		                    </button>
 		                </div>
 		            )}
-		            <div className="form-content">
-		                {renderFields()}
-		            </div>
+	            <div className="form-content">
+	                {Object.keys(standardDraftScores).length > 0 && (
+	                    <>
+	                        {/* 1. Standards (x.x.x) summary per subsection */}
+	                        <div className="standard-summary-panel">
+	                            <button
+	                                type="button"
+	                                className="standard-summary-toggle"
+	                                onClick={() => setShowStandardSummary(prev => !prev)}
+	                            >
+	                                <span>
+	                                    Standards summary ({Object.keys(standardDraftScores).length})
+	                                </span>
+	                                <span>{showStandardSummary ? '▾' : '▸'}</span>
+	                            </button>
+	                            {showStandardSummary && (
+	                                <div className="standard-summary-body">
+	                                    {subsections.map((subFields, idx) => {
+	                                        const entry = standardDraftScores[idx];
+	                                        if (!entry) return null;
+	                                        const isCurrent = idx === currentSubsectionIndex;
+	                                        const handleJumpToSubsection = () => {
+	                                            setCurrentSubsectionIndex(idx);
+	                                            window.scrollTo(0, 0);
+	                                        };
+	                                        return (
+	                                            <div
+	                                                key={`${entry.code}-${idx}`}
+	                                                className={
+	                                                    'standard-summary-row standard-summary-row-clickable' +
+	                                                    (isCurrent ? ' standard-summary-row-active' : '')
+	                                                }
+	                                                role="button"
+	                                                tabIndex={0}
+	                                                onClick={handleJumpToSubsection}
+	                                                onKeyDown={(e) => {
+	                                                    if (e.key === 'Enter' || e.key === ' ') {
+	                                                        e.preventDefault();
+	                                                        handleJumpToSubsection();
+	                                                    }
+	                                                }}
+	                                            >
+	                                                <div className="standard-summary-code">{entry.code}</div>
+	                                                <div className="standard-summary-title">
+	                                                    {entry.title}
+	                                                </div>
+	                                                <div className="standard-summary-score">
+	                                                    <span
+	                                                        className={
+	                                                            'standard-summary-score-value' +
+	                                                            (entry.criticalFail
+	                                                                ? ' standard-summary-score-critical'
+	                                                                : '')
+	                                                        }
+	                                                    >
+	                                                        {entry.percent.toFixed(1)}%
+	                                                    </span>
+	                                                    {entry.criticalFail && (
+	                                                        <span className="standard-summary-critical-flag">
+	                                                            CF
+	                                                        </span>
+	                                                    )}
+	                                                    {isCurrent && (
+	                                                        <span className="standard-summary-current-pill">
+	                                                            Current
+	                                                        </span>
+	                                                    )}
+	                                                </div>
+	                                            </div>
+	                                        );
+	                                    })}
+	                                </div>
+	                            )}
+	                        </div>
+
+	                        {/* 2. PI (x.x) aggregate summary for this section */}
+	                        <div className="standard-summary-panel">
+	                            <button
+	                                type="button"
+	                                className="standard-summary-toggle"
+	                                onClick={() => setShowPiSummary(prev => !prev)}
+	                            >
+	                                <span>
+	                                    PI summary
+	                                    {sectionPiDraftScore !== null && !Number.isNaN(sectionPiDraftScore) && (
+	                                        <span className="standard-summary-pi-inline">
+	                                            {' Score: '}
+	                                            {sectionPiDraftScore.toFixed(1)}%
+	                                        </span>
+	                                    )}
+	                                </span>
+	                                <span>{showPiSummary ? '▾' : '▸'}</span>
+	                            </button>
+	                        {showPiSummary && (
+	                            <div className="standard-summary-body">
+	                                {sectionPiDraftScore !== null && (currentPiOverview || seOverview)?.sectionPiId && (
+	                                    <div
+	                                        className="standard-summary-row standard-summary-row-clickable"
+	                                        role="button"
+	                                        tabIndex={0}
+	                                        onClick={() => {
+	                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+	                                        }}
+	                                        onKeyDown={(e) => {
+	                                            if (e.key === 'Enter' || e.key === ' ') {
+	                                                e.preventDefault();
+	                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+	                                            }
+	                                        }}
+	                                    >
+	                                        <div className="standard-summary-code">
+	                                            {(currentPiOverview || seOverview).sectionPiId}
+	                                        </div>
+	                                        <div className="standard-summary-title">
+	                                            {(currentPiOverview || seOverview).sectionTitle || 'Performance Indicator'}
+	                                        </div>
+	                                        <div className="standard-summary-score">
+	                                            <span
+	                                                className={
+	                                                    'standard-summary-score-value' +
+	                                                    (sectionPiHasCriticalFail
+	                                                        ? ' standard-summary-score-critical'
+	                                                        : '')
+	                                                }
+	                                            >
+	                                                {sectionPiDraftScore.toFixed(1)}%
+	                                            </span>
+	                                            {sectionPiHasCriticalFail && (
+	                                                <span className="standard-summary-critical-flag">
+	                                                    CF
+	                                                </span>
+	                                            )}
+	                                        </div>
+	                                    </div>
+	                                )}
+	                            </div>
+	                        )}
+	                        </div>
+	                    </>
+	                )}
+	                {renderFields()}
+	            </div>
             <div className="form-footer">
                 {submitResult && (
                     <div style={{

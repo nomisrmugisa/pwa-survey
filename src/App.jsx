@@ -71,18 +71,27 @@ const AppContent = () => {
 	    return `draft-facility-${identifier}-group-${groupKey}`;
 	  }, [selectedFacility, searchParams, activeGroup]);
 
-  // Unified Incremental Save (Moved from FormArea)
-	  const {
-    formData,
-    saveField,
-    loadFormData,
-    isSaving,
-    lastSaved
-  } = useIncrementalSave(activeEventId, {
-    user,
-    onSaveSuccess: (details) => console.log('✅ App: Saved field:', details),
-    onSaveError: (error) => console.error('❌ App: Save failed:', error)
-  });
+	  // Unified Incremental Save (Moved from FormArea)
+	  const [isScoringPending, setIsScoringPending] = React.useState(false);
+		  const {
+	    formData,
+	    saveField: baseSaveField,
+	    loadFormData,
+	    isSaving,
+	    lastSaved
+	  } = useIncrementalSave(activeEventId, {
+	    user,
+	    onSaveSuccess: (details) => console.log('✅ App: Saved field:', details),
+	    onSaveError: (error) => console.error('❌ App: Save failed:', error)
+	  });
+
+	  const handleCriterionChange = React.useCallback(() => {
+	    setIsScoringPending(true);
+	  }, []);
+
+	  const saveField = React.useCallback((fieldKey, fieldValue) => {
+	    baseSaveField(fieldKey, fieldValue);
+	  }, [baseSaveField]);
 
 	  // Always store a friendly facility name in the draft so the
 	  // Dashboard and Survey Preview can display it instead of
@@ -382,7 +391,15 @@ const AppContent = () => {
 	    };
 	  }, [activeGroup, formData]);
 
-	  const scoringResults = useAssessmentScoring(assessmentDetailsForScoring);
+		  const scoringResults = useAssessmentScoring(assessmentDetailsForScoring);
+
+		  useEffect(() => {
+	    if (!isScoringPending) return;
+	    const timer = setTimeout(() => {
+	      setIsScoringPending(false);
+	    }, 300);
+	    return () => clearTimeout(timer);
+	  }, [scoringResults, isScoringPending]);
 
 	  // Simple group change handler: switch active group and reset section
 	  // to the first section of that group (if any). The event ID is already
@@ -423,14 +440,15 @@ const AppContent = () => {
                 onSelectGroup={handleGroupChange}
                 activeSection={activeSection}
                 onSelectSection={setActiveSection}
-	                isADComplete={isADComplete}
+			                isADComplete={isADComplete}
 
                 // Header Props
                 assignments={assignments}
                 selectedFacility={selectedFacility}
-                onSelectFacility={setSelectedFacility}
-	                scoringResults={scoringResults}
-	                isAssignedAssessment={Boolean(assessmentIdParam)}
+			                onSelectFacility={setSelectedFacility}
+				                scoringResults={scoringResults}
+				                isAssignedAssessment={Boolean(assessmentIdParam)}
+				                isScoringPending={isScoringPending}
               >
                 <FormArea
                   activeSection={activeSection}
@@ -443,7 +461,9 @@ const AppContent = () => {
                   lastSaved={lastSaved}
                   isADComplete={isADComplete}
                   activeEventId={activeEventId}
-                  scoringResults={scoringResults}
+		                  scoringResults={scoringResults}
+		                  isScoringPending={isScoringPending}
+		                  onCriterionChange={handleCriterionChange}
                 />
               </Layout>
             )}

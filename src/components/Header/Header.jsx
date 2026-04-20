@@ -10,7 +10,7 @@ import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
 import { useApp } from '../../contexts/AppContext';
 
-const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringResults, isAssignedAssessment }) => {
+	const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringResults, isAssignedAssessment, isScoringPending }) => {
 		    const navigate = useNavigate();
 		    const { user, logout } = useApp();
 	    const [showSettings, setShowSettings] = React.useState(false);
@@ -54,13 +54,18 @@ const Header = ({ assignments = [], selectedFacility, onSelectFacility, scoringR
 	                </div>
 	            </div>
 
-            {scoringResults?.overall && (
+	            {scoringResults?.overall && (
                 <div className="header-center">
-                    <div className="header-scoring" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '4px 12px', borderRadius: '8px', minWidth: '120px' }}>
+	                    <div className="header-scoring" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '4px 12px', borderRadius: '8px', minWidth: '120px', position: 'relative' }}>
                         <ScoreBadge
                             percent={scoringResults.overall.percent}
                             criticalFail={scoringResults.overall.criticalFail}
                         />
+	                        {isScoringPending && (
+	                            <div style={{ marginTop: 2 }}>
+	                                <span className="score-spinner" aria-label="Recalculating scores" />
+	                            </div>
+	                        )}
                         <div className="overall-classification" style={{
                             fontSize: '10px',
                             color: 'rgba(255,255,255,0.9)',

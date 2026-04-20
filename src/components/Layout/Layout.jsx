@@ -6,16 +6,17 @@ import './Layout.css';
 	const Layout = ({
 	    groups,
 	    activeGroup,
-	    onSelectGroup,
-	    activeSection,
-	    onSelectSection,
-	    isADComplete,
-	    children,
-	    assignments,
-	    selectedFacility,
-	    onSelectFacility,
-	    scoringResults,
-	    isAssignedAssessment
+			onSelectGroup,
+			activeSection,
+			onSelectSection,
+			isADComplete,
+			children,
+			assignments,
+			selectedFacility,
+			onSelectFacility,
+				    scoringResults,
+				    isAssignedAssessment,
+				    isScoringPending
 	}) => {
     return (
         <div className="layout-container">
@@ -23,8 +24,9 @@ import './Layout.css';
                 assignments={assignments}
                 selectedFacility={selectedFacility}
                 onSelectFacility={onSelectFacility}
-	                scoringResults={scoringResults}
-	                isAssignedAssessment={isAssignedAssessment}
+		                		        scoringResults={scoringResults}
+		                		        isAssignedAssessment={isAssignedAssessment}
+		                		        isScoringPending={isScoringPending}
             />
             <div className="layout-body">
                 <Sidebar
