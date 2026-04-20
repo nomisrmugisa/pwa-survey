@@ -68,15 +68,33 @@ export function Dashboard() {
     const [editedLinksJson, setEditedLinksJson] = useState('');
     const [showLinksEditor, setShowLinksEditor] = useState(false);
 
-    // Integrated Hook
-		    const assessmentHook = useUserAssessments();
-		    const {
-		        upcoming: upcomingAssessments,
-		        pending: pendingAssessments,
-		        stats: assessmentStats,
-		        loading: assessmentsLoading,
-		        respondToAssignment,
-		    } = assessmentHook;
+    // Integrated Hook for new scheduling-based assignments. When this hook
+    // is unavailable or fails, we gracefully fall back to the legacy
+    // userAssignments loaded in AppContext from api.getAssignments.
+			    const assessmentHook = useUserAssessments();
+			    const {
+			        upcoming: hookUpcoming = [],
+			        pending: hookPending = [],
+			        stats: hookStats = null,
+			        loading: hookLoading = false,
+			        respondToAssignment,
+			    } = assessmentHook || {};
+
+			    // Legacy fallback: if the hook hasn't provided any assignments yet
+			    // but AppContext has userAssignments (from api.getAssignments), use
+			    // those as simple "pending" assignments so the UI still shows
+			    // something useful.
+			    const hasHookData = (hookUpcoming.length + hookPending.length) > 0;
+			    const upcomingAssessments = hasHookData ? hookUpcoming : [];
+			    const pendingAssessments = hasHookData ? hookPending : userAssignments || [];
+			    const assessmentStats = hookStats || {
+			        total: pendingAssessments.length,
+			        upcoming: 0,
+			        pending: pendingAssessments.length,
+			        completed: 0,
+			        declined: 0,
+			    };
+			    const assessmentsLoading = hookLoading;
 
 	    const handleLogout = async () => {
 	        try {

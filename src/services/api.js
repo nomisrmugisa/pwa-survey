@@ -289,12 +289,15 @@ export const api = {
 		        const idValues = [];
 		        if (userId) idValues.push(userId);
 		        if (username && username !== userId) idValues.push(username);
-		
+			
 		        for (const idVal of idValues) {
 		            const teamUrl = `${BASE_URL}/api/tracker/events.json?paging=false&ouMode=ALL&program=${PROGRAM_ID}` +
 		                `&programStage=${TEAM_STAGE_ID}&fields=${teamFields}` +
 		                // Filter by Assigned User ID value (may be DHIS2 user id or username).
-		                `&filter=${DE_ASSIGNED_USER_ID}:EQ:${encodeURIComponent(idVal)}`;
+		                // Use LIKE instead of EQ so we still match when the
+		                // scheduler stores additional context around the ID
+		                // (e.g. "uid|username" or similar composite values).
+		                `&filter=${DE_ASSIGNED_USER_ID}:LIKE:${encodeURIComponent(idVal)}`;
 		
 		            const teamResponse = await fetch(teamUrl, { headers: getHeaders() });
 		            if (!teamResponse.ok) {
@@ -734,6 +737,9 @@ export const api = {
             .filter(([key, value]) => {
                 if (key.startsWith('is_critical_')) return false;
                 if (key.endsWith('_internal')) return false;
+	                // SE narrative summaries are stored as event comments/notes,
+	                // not as data elements.
+	                if (key.startsWith('se_summary_')) return false;
                 if (key === 'scoringSnapshot') return false;
                 return value !== undefined && value !== null && value !== '';
             })
@@ -755,6 +761,22 @@ export const api = {
         const ATTR_VALUE = 'FAC_ASS_TYPE_INTERNAL';
 
         const now = new Date().toISOString().slice(0, 10);
+	
+	        // Collect any SE narrative summaries from the draft form data.
+	        // Each key is of the form `se_summary_<sectionId>` and will be
+	        // persisted to DHIS2 as an event note/comment rather than a
+	        // dataElement value.
+	        const seSummaryNotes = Object.entries(formData || {})
+	            .filter(([key, value]) =>
+	                key.startsWith('se_summary_') &&
+	                value !== undefined && value !== null && String(value).trim() !== ''
+	            )
+	            .map(([key, value]) => {
+	                const sectionId = key.replace('se_summary_', '') || 'unknown-section';
+	                return {
+	                    value: `SE summary (${sectionId}): ${String(value).trim()}`
+	                };
+	            });
 
         // DHIS2 v41 Tracker Payload Structure
 	    const trackerPayload = {
@@ -781,7 +803,14 @@ export const api = {
                                     orgUnit: orgUnitId,
                                     status: 'COMPLETED',
                                     occurredAt: now,
-                                    dataValues: api.formatDataValues(formData)
+		                                    dataValues: api.formatDataValues(formData),
+		                                    // Persist SE narrative summaries as
+		                                    // standard DHIS2 event notes so that
+		                                    // they are visible alongside the
+		                                    // event in the Tracker UI.
+		                                    ...(seSummaryNotes.length > 0
+		                                        ? { notes: seSummaryNotes }
+		                                        : {})
                                 }
                             ]
                         }

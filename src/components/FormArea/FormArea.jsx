@@ -81,11 +81,11 @@ const DEFAULT_CRITERION_INDEX = buildCriterionIndex(emsConfig);
 // Shared utility normalizeCriterionCode is now imported
 
 const SEVERITY_LABELS = {
-    1: '1 – Minor',
-    2: '2 – Moderate',
-    3: '3 – Serious',
-    4: '4 – Very Serious',
-};
+	    1: 'Minor',
+	    2: 'Moderate',
+	    3: 'Serious',
+	    4: 'Very Serious',
+	};
 
 const formatSeverityLabel = (severity) => {
     if (severity === undefined || severity === null) return '';
@@ -93,6 +93,21 @@ const formatSeverityLabel = (severity) => {
     if (Number.isNaN(sevNumber)) return String(severity);
     return SEVERITY_LABELS[sevNumber] || `Severity ${sevNumber}`;
 };
+
+	// Renders a label in italics when it represents a numeric
+	// **standard** (x.x.x). Criterion questions (x.x.x.x) stay normal.
+	// Other labels are returned unchanged.
+	const renderCriterionLabel = (labelText, { isStandardCriterion } = {}) => {
+	    if (!labelText || typeof labelText !== 'string') return labelText;
+	    const trimmed = labelText.trim();
+	    // Looks like a 3-level code at the start, but NOT a 4-level one
+	    // e.g. "7.1.1 Something" -> true, "7.1.1.1 Something" -> false
+	    const looksLikeStandard = /^\d+(?:\.\d+){2}(?!\.)/.test(trimmed);
+	    if (!(isStandardCriterion || looksLikeStandard)) {
+	        return labelText;
+	    }
+	    return <em>{labelText}</em>;
+	};
 
 // Preserve full intent text (including paragraphing) from the source.
 // We no longer try to break it into "Intent" vs "Overview" – the
@@ -202,28 +217,28 @@ const ScoringGuideModal = ({ isOpen, onClose }) => {
                         <tbody>
                             <tr>
                                 <td style={{ textAlign: 'center' }}><strong>3</strong></td>
-                                <td><strong>1.1.2.1</strong></td>
+	                                <td><strong><em>1.1.2.1</em></strong></td>
                                 <td>Mega-Root</td>
                                 <td style={{ textAlign: 'center' }}>3</td>
                                 <td><strong>Disabled.</strong> Calc: Avg of Level 2 results + other links.</td>
                             </tr>
                             <tr>
                                 <td style={{ textAlign: 'center' }}><strong>2</strong></td>
-                                <td><strong>1.2.2.1</strong></td>
+	                                <td><strong><em>1.2.2.1</em></strong></td>
                                 <td>Intermediate Root</td>
                                 <td style={{ textAlign: 'center' }}>3</td>
                                 <td><strong>Disabled.</strong> Calc: Avg of Level 1 results.</td>
                             </tr>
                             <tr>
                                 <td style={{ textAlign: 'center' }}><strong>1</strong></td>
-                                <td><strong>1.4.1.2</strong></td>
+	                                <td><strong><em>1.4.1.2</em></strong></td>
                                 <td>Data Point</td>
                                 <td style={{ textAlign: 'center' }}>3</td>
                                 <td><strong>Enabled.</strong> Manual Input (C, PC, NC).</td>
                             </tr>
                             <tr>
                                 <td style={{ textAlign: 'center' }}><strong>1</strong></td>
-                                <td><strong>1.4.1.3</strong></td>
+	                                <td><strong><em>1.4.1.3</em></strong></td>
                                 <td>Data Point</td>
                                 <td style={{ textAlign: 'center' }}>4</td>
                                 <td><strong>Enabled.</strong> Manual Input (C, PC, NC).</td>
@@ -285,7 +300,7 @@ const RootCalculationModal = ({ isOpen, onClose, rootCode, scoreResult }) => {
                             {sources.map((src, idx) => (
                                 <tr key={idx}>
                                     <td>
-                                        <strong>{src.code}</strong> {src.isCritical && <span style={{ color: '#c53030', fontWeight: 'bold' }} title="Critical Criterion">þ</span>}
+                                        <strong><em>{src.code}</em></strong> {src.isCritical && <span style={{ color: '#c53030', fontWeight: 'bold' }} title="Critical Criterion">þ</span>}
                                     </td>
                                     <td><span className={`status-pill status-${src.response?.toLowerCase()}`}>{src.response || 'Pending'}</span></td>
                                     <td style={{ textAlign: 'right' }}>
@@ -385,7 +400,8 @@ const FormArea = ({
 		    const [currentSubsectionIndex, setCurrentSubsectionIndex] = useState(0);
 		    const [showStandardSummary, setShowStandardSummary] = useState(true); // x.x.x list
 		    const [showPiSummary, setShowPiSummary] = useState(true); // x.x PI row
-		    const [openStandardSummaries, setOpenStandardSummaries] = useState({}); // keyed by x.x.x field id
+			    const [isSeSummaryOpen, setIsSeSummaryOpen] = useState(false); // collapsible SE summary textarea
+			    const [openStandardSummaries, setOpenStandardSummaries] = useState({}); // keyed by x.x.x field id
 
     // Reset pagination when activeSection changes
     React.useEffect(() => {
@@ -592,6 +608,7 @@ const FormArea = ({
 		            const isCommentField =
 		                field.isComment ||
 		                field.label === 'Comment' ||
+		                !!field.questionFieldId ||
 		                (typeof field.label === 'string' && /-comments\b/i.test(field.label)) ||
 		                field.id?.endsWith('-comments') ||
 		                field.id?.endsWith('-comment');
@@ -719,6 +736,7 @@ const FormArea = ({
 		                const isCommentField =
 		                    field.isComment ||
 		                    field.label === 'Comment' ||
+		                    !!field.questionFieldId ||
 		                    (typeof field.label === 'string' && /-comments\b/i.test(field.label)) ||
 		                    field.id?.endsWith('-comments') ||
 		                    field.id?.endsWith('-comment');
@@ -776,6 +794,7 @@ const FormArea = ({
 		                const isCommentField =
 		                    field.isComment ||
 		                    field.label === 'Comment' ||
+		                    !!field.questionFieldId ||
 		                    (typeof field.label === 'string' && /-comments\b/i.test(field.label)) ||
 		                    field.id?.endsWith('-comments') ||
 		                    field.id?.endsWith('-comment');
@@ -967,26 +986,15 @@ const FormArea = ({
                 }
             }
 
-            const isRoot = calculatedFieldScore?.isRoot || false;
-
-		            const isCommentField =
-		                field.isComment ||
-		                field.label === 'Comment' ||
-		                (typeof field.label === 'string' && /-comments\b/i.test(field.label)) ||
-		                field.id?.endsWith('-comments') ||
-		                field.id?.endsWith('-comment');
-
-	            const associatedCommentId = field.commentFieldId;
-	            const currentCommentValue = associatedCommentId ? (formData[associatedCommentId] || '') : '';
-
-	            // Precompute the raw label once so we can reuse it for
-	            // multiple checks (severity, display label, code fallback).
-	            const rawLabel = field.label || '';
-
-		            // Logic to determine if it's critical: 
-		            // 1. Check formData helper state
-		            // 2. Fallback to index (from Config)
-		            // 3. Fallback to comment tag presence
+		            const isRoot = calculatedFieldScore?.isRoot || false;
+		
+		            // Precompute the raw label once so we can reuse it for
+		            // multiple checks (severity, display label, code fallback).
+		            const rawLabel = field.label || '';
+		
+		            // Normalise the criterion code early so we can also use it to
+		            // detect comment-style data elements whose codes end with
+		            // "-comments" (a common DHIS2 pattern).
 		            let normalizedCode = normalizeCriterionCode(field.code);
 		            // Hospital and some other programmes have a few data elements
 		            // where the DHIS2 dataElement.code is missing or not aligned
@@ -1001,6 +1009,21 @@ const FormArea = ({
 		                    normalizedCode = labelMatch[0];
 		                }
 		            }
+		
+		            const isCommentField =
+		                field.isComment ||
+		                field.label === 'Comment' ||
+		                !!field.questionFieldId ||
+		                // Label explicitly tagged as a comments field
+		                (typeof rawLabel === 'string' && /\bcomments?\b/i.test(rawLabel)) ||
+		                // DHIS2 code or normalised code ends with "-comments"
+		                (typeof field.code === 'string' && /-comments?$/i.test(field.code)) ||
+		                (typeof normalizedCode === 'string' && /-comments?$/i.test(normalizedCode)) ||
+		                field.id?.endsWith('-comments') ||
+		                field.id?.endsWith('-comment');
+		
+		            const associatedCommentId = field.commentFieldId;
+		            const currentCommentValue = associatedCommentId ? (formData[associatedCommentId] || '') : '';
 		            // Standards (x.x.x) should be display-only in the UI: no
 		            // input controls, just bolded text. We detect them by a
 		            // three-level numeric code (e.g. "1.2.3").
@@ -1034,6 +1057,23 @@ const FormArea = ({
 	            // Check if comment field is disabled (parent question not answered)
 	            const parentQuestionId = field.questionFieldId;
 	            const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
+
+	            // Compute the parent criterion's score so we can surface it
+	            // next to the Comment label instead of inside the textarea.
+	            // This does not change any scoring logic; it only reuses the
+	            // already computed scores from scoringResults.
+	            let commentScoreForDisplay = null;
+	            if (isCommentField && scoringResults?.sections && parentQuestionId) {
+	                const sectionScoresForComments = scoringResults.sections.find(s => s.id === activeSection.id);
+	                if (sectionScoresForComments?.standards) {
+	                    for (const standard of sectionScoresForComments.standards) {
+	                        if (standard.criteriaScores && standard.criteriaScores[parentQuestionId]) {
+	                            commentScoreForDisplay = standard.criteriaScores[parentQuestionId];
+	                            break;
+	                        }
+	                    }
+	                }
+	            }
 
 	            // If this is a comment attached to a Standard (x.x.x), hide the
 	            // comment row entirely in the UI.
@@ -1090,18 +1130,30 @@ const FormArea = ({
 		                const shouldShowCode = !!cleanedCode && /\d/.test(cleanedCode) && !cleanedCode.includes('_');
 		                const isLabelComment = typeof rawLabel === 'string' && /-comments\b/i.test(rawLabel);
 		
+		                // DEBUG: log what the app thinks for the specific Hospital
+		                // SE7 comment label so we can see why it isn't collapsing.
+		                if (
+		                    typeof rawLabel === 'string' &&
+		                    rawLabel.includes('HOSP There are documented risk management processes for the identification of all risks')
+		                ) {
+		                    console.log('FormArea DEBUG comment label', {
+		                        fieldId: field.id,
+		                        rawLabel,
+		                        isCommentField,
+		                        isLabelComment,
+		                        cleanedCode,
+		                        shouldShowCode,
+		                    });
+		                }
+		
 		                if (isCommentField || isLabelComment) {
 		                    // Many DHIS2 comment data elements repeat the full
 		                    // criterion statement in the label, e.g.
 		                    // "7.1.1.1-comments HOSP There are documented risk ...".
 		                    // For the assessor this just looks like a duplicate
-		                    // question, so in the UI we collapse it to a simple
-		                    // "Comment" label, optionally prefixed with the
-		                    // criterion code for context.
-		                    const codeMatch = rawLabel && rawLabel.match(/\b\d+(?:\.\d+){2,3}\b/);
-		                    if (codeMatch) {
-		                        return `${codeMatch[0]} Comment`;
-		                    }
+		                    // question. In the UI we always collapse these to a
+		                    // simple "Comment" label, without repeating the code
+		                    // or description.
 		                    return 'Comment';
 		                }
 
@@ -1129,6 +1181,33 @@ const FormArea = ({
 	                return rawLabel || 'Unnamed Field';
 	            })();
 
+	            // For comment rows, prepare a short score label to display next
+	            // to the Comment caption (separate from the textarea contents).
+	            // This string is derived from the existing scoringResults and
+	            // does not affect how scores are computed or stored.
+	            const commentScorePillText = (() => {
+	                if (!commentScoreForDisplay) return null;
+	
+	                const isRootScore = commentScoreForDisplay.isRoot || false;
+	                const isDraftScore = commentScoreForDisplay.isDraft || false;
+	
+	                const pts = (commentScoreForDisplay.points !== null && commentScoreForDisplay.points !== undefined)
+	                    ? (Number.isInteger(commentScoreForDisplay.points)
+	                        ? `${commentScoreForDisplay.points}`
+	                        : commentScoreForDisplay.points.toFixed(1))
+	                    : null;
+	                const status = commentScoreForDisplay.normalizedValue || commentScoreForDisplay.response || '';
+	
+	                if (!pts && !status) return null;
+	
+	                if (isRootScore) {
+	                    const prefix = isDraftScore ? 'Incomplete Root Score' : 'Root Score';
+	                    return `${prefix}: ${pts ? `${pts} pts ` : ''}${status}`.trim();
+	                }
+	
+	                return `Score: ${pts ? `${pts} pts ` : ''}${status}`.trim();
+	            })();
+
 	            return (
 	                <div
 	                    key={field.id}
@@ -1138,17 +1217,36 @@ const FormArea = ({
 	                    <div className="field-label-container">
                         <div className="field-label-main">
                             <label>
-                                {isStandardCriterion ? (
-                                    <strong style={{ fontSize: '1.6em' }}>{displayLabel}</strong>
-                                ) : (
-                                    displayLabel
-                                )}
+	                                {isStandardCriterion ? (
+	                                    <strong style={{ fontSize: '1.6em' }}>
+	                                        {renderCriterionLabel(displayLabel, { isStandardCriterion, isCriterionQuestion })}
+	                                    </strong>
+	                                ) : (
+	                                    renderCriterionLabel(displayLabel, { isStandardCriterion, isCriterionQuestion })
+	                                )}
                             </label>
                             {!isCommentField && configSeverity !== undefined && configSeverity !== null && (
                                 <span className="severity-pill">
                                     {formatSeverityLabel(configSeverity)}
                                 </span>
                             )}
+	                            {isCommentField && commentScorePillText && (
+	                                <span
+	                                    className="comment-score-pill"
+	                                    style={{
+	                                        marginLeft: '10px',
+	                                        fontSize: '0.8em',
+	                                        fontWeight: 600,
+	                                        padding: '2px 8px',
+	                                        borderRadius: '12px',
+	                                        backgroundColor: 'rgba(43, 58, 142, 0.06)',
+	                                        color: '#2b3a8e',
+	                                        border: '1px solid rgba(43, 58, 142, 0.35)'
+	                                    }}
+	                                >
+	                                    {commentScorePillText}
+	                                </span>
+	                            )}
 		                            {isStandardCriterion && subsectionStandardScore && (
 		                                <span
 		                                    className="standard-score-pill"
@@ -1330,32 +1428,58 @@ const FormArea = ({
 		                            type={isCommentField ? 'textarea' : field.type}
 		                            className={`form-control ${formData[`is_critical_${field.id}`] && (!questionValue || questionValue === '') ? 'mandatory-warning' : ''}`}
 		                            value={(() => {
-		                                const rawValue = formData[field.id] || '';
-		                                // Some DHIS2 comment data elements were
-		                                // initialised with the full criterion label
-		                                // as their value (e.g. "7.1.1.1-comments
-		                                // HOSP There are documented risk ...").
-		                                // This makes the comment box look like a
-		                                // duplicate question. If the stored value
-		                                // is just that label (optionally with only
-		                                // whitespace/newlines around it), treat it
-		                                // as placeholder/legacy noise and show an
-		                                // empty textarea instead.
-		                                const isCommentLike =
-		                                    isCommentField ||
-		                                    (typeof rawLabel === 'string' && /-comments\b/i.test(rawLabel));
-		                                if (isCommentLike && typeof rawLabel === 'string' && rawLabel) {
-		                                    const trimmedValue = rawValue.trim();
-		                                    const trimmedLabel = rawLabel.trim();
-		                                    if (
-		                                        trimmedValue === trimmedLabel ||
-		                                        (trimmedValue.startsWith(trimmedLabel) &&
-		                                            trimmedValue.length <= trimmedLabel.length + 5)
-		                                    ) {
-		                                        return '';
-		                                    }
-		                                }
-		                                return rawValue;
+	                                const rawValue = formData[field.id] || '';
+	                                const isCommentLike =
+	                                    isCommentField ||
+	                                    (typeof rawLabel === 'string' && /-comments\b/i.test(rawLabel));
+
+	                                let displayValue = rawValue;
+
+	                                if (isCommentLike && typeof rawLabel === 'string' && rawLabel && typeof rawValue === 'string') {
+	                                    const trimmedValue = rawValue.trim();
+	                                    const trimmedLabel = rawLabel.trim();
+
+	                                    // Case 1: stored value is just the label (with maybe a bit
+	                                    // of whitespace). Treat as empty comment.
+	                                    if (
+	                                        trimmedValue === trimmedLabel ||
+	                                        (trimmedValue.startsWith(trimmedLabel) &&
+	                                            trimmedValue.length <= trimmedLabel.length + 5)
+	                                    ) {
+	                                        displayValue = '';
+	                                    } else if (rawValue.includes(rawLabel)) {
+	                                        // Case 2: value contains the label followed by assessor
+	                                        // text. Strip the label portion from the front so the
+	                                        // assessor only sees their own narrative.
+	                                        displayValue = rawValue.replace(rawLabel, '').trimStart();
+	                                    } else {
+	                                        // Case 3: specific Hospital placeholder where the
+	                                        // full criterion statement has been copied into the
+	                                        // comment value (e.g. "7.1.1.1-comments HOSP There are
+	                                        // documented risk management processes for the
+	                                        // identification of all risks ..."). Remove that
+	                                        // boilerplate sentence and keep only any assessor
+	                                        // narrative that comes after it.
+	                                        const placeholderCore =
+	                                            'HOSP There are documented risk management processes for the identification of all risks';
+	                                        const idx = rawValue.indexOf(placeholderCore);
+	                                        if (idx !== -1) {
+	                                            displayValue = rawValue.substring(idx + placeholderCore.length).trimStart();
+	                                        }
+	                                    }
+	                                }
+
+	            // For all comment fields, hide any injected score/severity tags
+	            // from the textarea. The tags remain in the stored value (via
+	            // handleCommentBlur / the scoring sync effect) but are not
+	            // shown to the assessor.
+	            if (isCommentLike && typeof displayValue === 'string' && displayValue) {
+	                                    displayValue = displayValue
+	                                        .replace(/\s*\[(INCOMPLETE )?((ROOT )?SCORE|SEVERITY)[^\]]*\]/g, '')
+	                                        .trim();
+	                                }
+
+	                                return displayValue;
 		                            })()}
 		                            onChange={(e) => handleInputChange(e, field.id)}
 		                            onBlur={isCommentField ? () => handleCommentBlur(field.id) : undefined}
@@ -1386,82 +1510,94 @@ const FormArea = ({
 	        saveField(fieldId, value);
 	    };
 
-    React.useEffect(() => {
-        if (!scoringResults?.sections || !activeSection?.fields) return;
+	    React.useEffect(() => {
+	        if (!scoringResults?.sections || !activeSection?.fields) return;
+	
+	        const currentSectionScores = scoringResults.sections.find(s => s.id === activeSection.id);
+	        if (!currentSectionScores?.standards) return;
+	
+	        let hasUpdates = false;
+	        const updates = {};
+	
+	        // Keep comment score tags in sync with the latest scoring results,
+	        // but avoid touching a comment field while the user is actively
+	        // typing in it.
+	        for (const field of activeSection.fields) {
+	            if (field.type !== 'select' || !field.commentFieldId) continue;
+	
+	            // Find calculated score for this criterion
+	            let calculatedScore = null;
+	            for (const standard of currentSectionScores.standards) {
+	                if (standard.criteriaScores && standard.criteriaScores[field.id]) {
+	                    calculatedScore = standard.criteriaScores[field.id];
+	                    break;
+	                }
+	            }
+	
+	            if (!calculatedScore) continue;
+	
+	            const commentFieldId = field.commentFieldId;
+	            const currentComment = formData[commentFieldId] || '';
+	
+	            // If the assessor currently has focus in this comment field,
+	            // don't auto-rewrite the value underneath them.
+	            if (typeof document !== 'undefined') {
+	                const activeEl = document.activeElement;
+	                if (activeEl && activeEl.id === `field-${commentFieldId}`) {
+	                    continue;
+	                }
+	            }
+	
+	            const isRoot = calculatedScore.isRoot || false;
+	            const isDraft = calculatedScore.isDraft || false;
+	
+	            // Use normalized value if available for consistent tagging
+	            const statusText = calculatedScore.normalizedValue || calculatedScore.response || 'NA';
+	            const pointsText = calculatedScore.points !== null ? `${parseFloat(calculatedScore.points).toFixed(0)} pts` : '0 pts';
+	
+	            const rootSources = (calculatedScore.rootSources || []).map(s => typeof s === 'string' ? s : s.code);
+	            const rootSuffix = rootSources.length > 0 ? ` -root(${rootSources.join(',')})` : '';
+	
+	            let scoreTag = `[SCORE: ${pointsText} - ${statusText}${rootSuffix}]`;
+	            if (isRoot) {
+	                scoreTag = isDraft
+	                    ? `[INCOMPLETE ROOT SCORE: ${pointsText} - ${statusText}${rootSuffix}]`
+	                    : `[ROOT SCORE: ${pointsText} - ${statusText}${rootSuffix}]`;
+	            }
+	
+	            // Only update if there's an actual response value (not empty)
+	            // or if it's an auto-calculated Root score
+	            const hasResponse = isRoot || (formData[field.id] && formData[field.id] !== '' && formData[field.id] !== 'NA');
+	
+	            if (hasResponse) {
+	                // Remove any old score/severity tags and also common junk like [object Object]
+	                let newComment = currentComment
+	                    .replace(/\s*\[(INCOMPLETE )?((ROOT )?SCORE|SEVERITY)[^\]]*\]/g, '')
+	                    .replace(/\[object Object\](\)]*)?/g, '')
+	                    .trim();
+	                // Append the new one
+	                newComment = newComment ? `${newComment} ${scoreTag}` : scoreTag;
 
-        const currentSectionScores = scoringResults.sections.find(s => s.id === activeSection.id);
-        if (!currentSectionScores?.standards) return;
-
-        let hasUpdates = false;
-        const updates = {};
-
-        activeSection.fields.forEach(field => {
-            if (field.type === 'select' && field.commentFieldId) {
-                // Find calculated score for this criterion
-                let calculatedScore = null;
-                for (const standard of currentSectionScores.standards) {
-                    if (standard.criteriaScores && standard.criteriaScores[field.id]) {
-                        calculatedScore = standard.criteriaScores[field.id];
-                        break;
-                    }
-                }
-
-                if (calculatedScore && (calculatedScore.points !== null || calculatedScore.normalizedValue)) {
-                    const commentFieldId = field.commentFieldId;
-                    const currentComment = formData[commentFieldId] || '';
-                    const isRoot = calculatedScore.isRoot || false;
-                    const isDraft = calculatedScore.isDraft || false;
-
-                    // Use normalized value if available for consistent tagging
-                    const statusText = calculatedScore.normalizedValue || calculatedScore.response || 'NA';
-                    const pointsText = calculatedScore.points !== null ? `${parseFloat(calculatedScore.points).toFixed(0)} pts` : '0 pts';
-
-                    const rootSources = (calculatedScore.rootSources || []).map(s => typeof s === 'string' ? s : s.code);
-                    const rootSuffix = rootSources.length > 0 ? ` -root(${rootSources.join(',')})` : '';
-
-                    let scoreTag = `[SCORE: ${pointsText} - ${statusText}${rootSuffix}]`;
-                    if (isRoot) {
-                        if (isDraft) {
-                            scoreTag = `[INCOMPLETE ROOT SCORE: ${pointsText} - ${statusText}${rootSuffix}]`;
-                        } else {
-                            scoreTag = `[ROOT SCORE: ${pointsText} - ${statusText}${rootSuffix}]`;
-                        }
-                    }
-
-                    // Only update if there's an actual response value (not empty) or if it's an auto-calculated Root score
-                    const hasResponse = isRoot || (formData[field.id] && formData[field.id] !== '' && formData[field.id] !== 'NA');
-
-                    if (hasResponse) {
-                        // Remove any old score/severity tags and also common junk like [object Object]
-                        let newComment = currentComment
-                            .replace(/\s*\[(INCOMPLETE )?((ROOT )?SCORE|SEVERITY)[^\]]*\]/g, '')
-                            .replace(/\[object Object\](\)]*)?/g, '')
-                            .trim();
-                        // Append the new one
-                        newComment = newComment ? `${newComment} ${scoreTag}` : scoreTag;
-
-                        if (newComment !== currentComment) {
-                            updates[commentFieldId] = newComment;
-                            hasUpdates = true;
-                        }
-                    } else if (currentComment.match(/\[((ROOT )?SCORE|SEVERITY)[^\]]*\]/)) {
-                        // Clear score tag if answer removed
-                        let newComment = currentComment.replace(/\s*\[((ROOT )?SCORE|SEVERITY)[^\]]*\]/g, '').trim();
-                        if (newComment !== currentComment) {
-                            updates[commentFieldId] = newComment;
-                            hasUpdates = true;
-                        }
-                    }
-                }
-            }
-        });
-
-        if (hasUpdates) {
-            Object.entries(updates).forEach(([key, val]) => {
-                saveField(key, val);
-            });
-        }
-    }, [scoringResults, formData, activeSection, saveField]);
+	                if (newComment !== currentComment) {
+	                    updates[commentFieldId] = newComment;
+	                    hasUpdates = true;
+	                }
+	            } else if (currentComment.match(/\[((ROOT )?SCORE|SEVERITY)[^\]]*\]/)) {
+	                // Clear score tag if answer removed
+	                let newComment = currentComment.replace(/\s*\[((ROOT )?SCORE|SEVERITY)[^\]]*\]/g, '').trim();
+	                if (newComment !== currentComment) {
+	                    updates[commentFieldId] = newComment;
+	                    hasUpdates = true;
+	                }
+	            }
+	        }
+	
+	        if (hasUpdates) {
+	            Object.entries(updates).forEach(([key, val]) => {
+	                saveField(key, val);
+	            });
+	        }
+	    }, [scoringResults, activeSection, saveField]);
 
 
 
@@ -1831,69 +1967,102 @@ const FormArea = ({
 	                            )}
 	                        </div>
 
-	                        {/* 2. PI (x.x) aggregate summary for this section */}
-	                        <div className="standard-summary-panel">
-	                            <button
-	                                type="button"
-	                                className="standard-summary-toggle"
-	                                onClick={() => setShowPiSummary(prev => !prev)}
-	                            >
-	                                <span>
-	                                    PI summary
-	                                    {sectionPiDraftScore !== null && !Number.isNaN(sectionPiDraftScore) && (
-	                                        <span className="standard-summary-pi-inline">
-	                                            {' Score: '}
-	                                            {sectionPiDraftScore.toFixed(1)}%
-	                                        </span>
-	                                    )}
-	                                </span>
-	                                <span>{showPiSummary ? '▾' : '▸'}</span>
-	                            </button>
-	                        {showPiSummary && (
-	                            <div className="standard-summary-body">
-	                                {sectionPiDraftScore !== null && (currentPiOverview || seOverview)?.sectionPiId && (
-	                                    <div
-	                                        className="standard-summary-row standard-summary-row-clickable"
-	                                        role="button"
-	                                        tabIndex={0}
-	                                        onClick={() => {
-	                                            window.scrollTo({ top: 0, behavior: 'smooth' });
-	                                        }}
-	                                        onKeyDown={(e) => {
-	                                            if (e.key === 'Enter' || e.key === ' ') {
-	                                                e.preventDefault();
-	                                                window.scrollTo({ top: 0, behavior: 'smooth' });
-	                                            }
-	                                        }}
-	                                    >
-	                                        <div className="standard-summary-code">
-	                                            {(currentPiOverview || seOverview).sectionPiId}
-	                                        </div>
-	                                        <div className="standard-summary-title">
-	                                            {(currentPiOverview || seOverview).sectionTitle || 'Performance Indicator'}
-	                                        </div>
-	                                        <div className="standard-summary-score">
-	                                            <span
-	                                                className={
-	                                                    'standard-summary-score-value' +
-	                                                    (sectionPiHasCriticalFail
-	                                                        ? ' standard-summary-score-critical'
-	                                                        : '')
-	                                                }
-	                                            >
-	                                                {sectionPiDraftScore.toFixed(1)}%
-	                                            </span>
-	                                            {sectionPiHasCriticalFail && (
-	                                                <span className="standard-summary-critical-flag">
-	                                                    CF
-	                                                </span>
-	                                            )}
-	                                        </div>
-	                                    </div>
-	                                )}
-	                            </div>
-	                        )}
-	                        </div>
+		                        {/* 2. PI (x.x) aggregate summary for this section */}
+		                        <div className="standard-summary-panel">
+		                            <button
+		                                type="button"
+		                                className="standard-summary-toggle"
+		                                onClick={() => setShowPiSummary(prev => !prev)}
+		                            >
+		                                <span>
+		                                    PI summary
+		                                    {sectionPiDraftScore !== null && !Number.isNaN(sectionPiDraftScore) && (
+		                                        <span className="standard-summary-pi-inline">
+		                                            {' Score: '}
+		                                            {sectionPiDraftScore.toFixed(1)}%
+		                                        </span>
+		                                    )}
+		                                </span>
+		                                <span>{showPiSummary ? '▾' : '▸'}</span>
+		                            </button>
+		                            {showPiSummary && (
+		                                <div className="standard-summary-body">
+		                                    {sectionPiDraftScore !== null && (currentPiOverview || seOverview)?.sectionPiId && (
+		                                        <div
+		                                            className="standard-summary-row standard-summary-row-clickable"
+		                                            role="button"
+		                                            tabIndex={0}
+		                                            onClick={() => {
+		                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+		                                            }}
+		                                            onKeyDown={(e) => {
+		                                                if (e.key === 'Enter' || e.key === ' ') {
+		                                                    e.preventDefault();
+		                                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+		                                                }
+		                                            }}
+		                                        >
+		                                            <div className="standard-summary-code">
+		                                                {(currentPiOverview || seOverview).sectionPiId}
+		                                            </div>
+		                                            <div className="standard-summary-title">
+		                                                {(currentPiOverview || seOverview).sectionTitle || 'Performance Indicator'}
+		                                            </div>
+		                                            <div className="standard-summary-score">
+		                                                <span
+		                                                    className={
+		                                                        'standard-summary-score-value' +
+		                                                        (sectionPiHasCriticalFail
+		                                                            ? ' standard-summary-score-critical'
+		                                                            : '')
+		                                                    }
+		                                                >
+		                                                    {sectionPiDraftScore.toFixed(1)}%
+		                                                </span>
+		                                                {sectionPiHasCriticalFail && (
+		                                                    <span className="standard-summary-critical-flag">
+		                                                        CF
+		                                                    </span>
+		                                                )}
+		                                            </div>
+		                                        </div>
+		                                    )}
+		                                </div>
+		                            )}
+		                        </div>
+
+		                        {/* 3. SE narrative summary (free-text) */}
+		                        <div className="standard-summary-panel">
+		                            <button
+		                                type="button"
+		                                className="standard-summary-toggle"
+		                                onClick={() => setIsSeSummaryOpen(prev => !prev)}
+		                            >
+		                                <span>SE Summary</span>
+		                                <span>{isSeSummaryOpen ? '▾' : '▸'}</span>
+		                            </button>
+		                            {isSeSummaryOpen && (
+		                                <div className="standard-summary-body">
+		                                    <label
+		                                        htmlFor={`se-summary-${activeSection?.id || 'unknown'}`}
+		                                        className="standard-summary-label"
+		                                    >
+		                                        Overall SE findings summary
+		                                    </label>
+		                                    <textarea
+		                                        id={`se-summary-${activeSection?.id || 'unknown'}`}
+		                                        className="form-control se-summary-textarea"
+		                                        rows={4}
+		                                        value={formData[`se_summary_${activeSection?.id}`] || ''}
+		                                        onChange={(e) => {
+		                                            const key = `se_summary_${activeSection?.id}`;
+		                                            saveField(key, e.target.value);
+		                                        }}
+		                                        placeholder="Type a concise narrative of the SE findings for this section..."
+		                                    />
+		                                </div>
+		                            )}
+		                        </div>
 	                    </>
 	                )}
 	                {renderFields()}

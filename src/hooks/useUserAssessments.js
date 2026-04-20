@@ -43,14 +43,24 @@ export const useUserAssessments = (options = {}) => {
     useEffect(() => {
         const initServices = async () => {
             try {
-                console.log('[useUserAssessments] Initializing services...');
-                const metadata = await getMetadata();
-                await AssessmentSchedulingService.init({ metadata });
-                await AssessmentTeamAssignmentService.init({ metadata });
-                setInitialized(true);
-                console.log('[useUserAssessments] Services initialized');
+	                console.log('[useUserAssessments] Initializing services...');
+	                let metadata = null;
+	                try {
+	                    metadata = await getMetadata();
+	                } catch (metaErr) {
+	                    // Metadata is useful but *not required* just to fetch
+	                    // assignments. If it fails (e.g. network hiccup), fall
+	                    // back to an empty object so the rest of the
+	                    // assignments pipeline can still run.
+	                    console.warn('[useUserAssessments] getMetadata failed during init (non-fatal for assignments)', metaErr);
+	                    metadata = {};
+	                }
+	                await AssessmentSchedulingService.init({ metadata });
+	                await AssessmentTeamAssignmentService.init({ metadata });
+	                setInitialized(true);
+	                console.log('[useUserAssessments] Services initialized (metadata loaded:', !!metadata && Object.keys(metadata).length > 0, ')');
             } catch (err) {
-                console.error('Failed to initialize services:', err);
+	                console.error('[useUserAssessments] Failed to initialize services', err);
                 setError(err);
             }
         };

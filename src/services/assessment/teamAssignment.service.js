@@ -1,9 +1,14 @@
 import { api } from '../api';
 
-// Known DHIS2 data element UIDs for assignment status.
+// Known DHIS2 data element UIDs used in the assignment/scheduling flows.
 // If your program uses a specific data element to store the status code,
 // set its UID here. Otherwise status is derived from enrollment status.
 const STATUS_DATA_ELEMENT_UID = null; // e.g. 'abc123XYZ' — set if applicable
+
+// Attribute UID for "Inspection Final List" (list of inspector user IDs) in
+// the main survey program (G2gULe4jsfs). Duplicated here from api.js so we
+// can perform a client-side fallback filter without changing the API shape.
+const INSPECTOR_LIST_ATTR = 'Rh87cVTZ8b6';
 
 /**
  * Maps a DHIS2 enrollment status (and optional stored status value) to
@@ -56,11 +61,58 @@ class AssessmentTeamAssignmentService {
 	     */
 		    async getUserAssignmentsDomain({ userId, username, year }) {
 	        try {
-		            // NEW: Use scheduling workflow assignments derived from program K9O5fdoBmKf
-		            // via api.getSchedulingAssignments. Pass both userId and username
-		            // so the API can match whichever identifier is stored in the
-		            // Assigned User ID data element.
-		            const enrollments = await api.getSchedulingAssignments(userId, username);
+		            console.log('[AssessmentTeamAssignmentService] getUserAssignmentsDomain called', {
+		                userId,
+		                username,
+		                year
+		            });
+		            // Primary path: Use scheduling workflow assignments derived from
+		            // program K9O5fdoBmKf via api.getSchedulingAssignments. Pass both
+		            // userId and username so the API can match whichever identifier
+		            // is stored in the Assigned User ID data element.
+		            let enrollments = [];
+		            try {
+		                enrollments = await api.getSchedulingAssignments(userId, username);
+		            } catch (err) {
+		                console.warn('[AssessmentTeamAssignmentService] Scheduling assignments call failed, will fall back to legacy getAssignments if possible.', err);
+		            }
+		            console.log('[AssessmentTeamAssignmentService] Scheduling assignments result', {
+		                userId,
+		                username,
+		                count: enrollments?.length || 0
+		            });
+
+		            // Fallback path: if no scheduling assignments are found (or the
+		            // call failed) but we have a userId, fall back to the legacy
+		            // enrollments-based approach used by the main survey program
+		            // (G2gULe4jsfs). We fetch all enrollments for that program and
+		            // then filter client-side using the "Inspection Final List"
+		            // attribute so that we can match on both userId and username.
+		            if ((!enrollments || enrollments.length === 0) && userId) {
+		                console.warn('[AssessmentTeamAssignmentService] No scheduling assignments found; falling back to api.getAssignments("G2gULe4jsfs") with client-side filter.');
+		                const legacyEnrollments = await api.getAssignments('G2gULe4jsfs', null);
+		                console.log('[AssessmentTeamAssignmentService] Legacy enrollments (unfiltered) count', legacyEnrollments.length);
+		                const legacySample = legacyEnrollments.slice(0, 5).map(enr => ({
+		                    enrollment: enr.enrollment,
+		                    inspectorAttr: (enr.attributes || []).find(a => a.attribute === INSPECTOR_LIST_ATTR) || null
+		                }));
+		                console.log('[AssessmentTeamAssignmentService] Legacy enrollments sample Inspection Final List', legacySample);
+		                enrollments = legacyEnrollments.filter(enr => {
+		                    const listAttr = (enr.attributes || []).find(a => a.attribute === INSPECTOR_LIST_ATTR);
+		                    if (!listAttr || !listAttr.value) return false;
+		                    const val = String(listAttr.value);
+		                    const idMatch = userId && val.includes(String(userId));
+		                    const usernameMatch = username && val.toLowerCase().includes(String(username).toLowerCase());
+		                    return idMatch || usernameMatch;
+		                });
+		                console.log('[AssessmentTeamAssignmentService] Legacy fallback assignments for user', { userId, username, count: enrollments.length });
+		            }
+
+	            console.log('[AssessmentTeamAssignmentService] Total enrollments to map into domain assignments', {
+	                userId,
+	                username,
+	                count: enrollments?.length || 0
+	            });
 
 	            return enrollments.map(item => {
 	                // Try to infer a stored status code from team events (preferred),
