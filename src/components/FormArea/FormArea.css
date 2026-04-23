@@ -76,13 +76,13 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Floating, collapsible summary of all x.x.x Standards in the section */
+/* Collapsible summary of all x.x.x Standards / PI / SE for the section.
+   Previously this was sticky at the top of the scroll container; to improve
+   readability on long sections we now let it scroll naturally with the
+   content. */
 .standard-summary-panel {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    margin-bottom: 1.25rem;
-}
+	    margin-bottom: 1.25rem;
+	}
 
 .standard-summary-toggle {
     width: 100%;

@@ -1,29 +1,41 @@
-		import React from 'react';
-		import './Sidebar.css';
-		
-		const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSection, isADComplete }) => {
-		  return (
-		    <div className="sidebar">
-		      <div className="sidebar-header">
-		        <h3>Group</h3>
-		        <select
-		          className="category-select"
-		          value={activeGroup?.id || ''}
-		          onChange={(e) => {
-		            const selected = groups.find(g => g.id === e.target.value);
-		            onSelectGroup(selected);
-		          }}
-		        >
-		          {groups.map(group => (
-		            <option key={group.id} value={group.id}>{group.name}</option>
-		          ))}
-		        </select>
+			import React from 'react';
+			import './Sidebar.css';
+			
+			const Sidebar = ({ groups, activeGroup, onSelectGroup, activeSection, onSelectSection, isADComplete, collapsed, onToggleCollapsed }) => {
+			  return (
+			    <div className={`sidebar ${collapsed ? 'sidebar-collapsed' : ''}`}>
+			      <div className="sidebar-header">
+			        <h3>Group</h3>
+			        <button
+			          type="button"
+			          className="sidebar-toggle"
+			          onClick={onToggleCollapsed}
+			          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+			        >
+			          {collapsed ? '«' : '»'}
+			        </button>
+			      </div>
+			      {!collapsed && (
+			        <>
+			          <div className="sidebar-header-controls">
+			            <select
+			              className="category-select"
+			              value={activeGroup?.id || ''}
+			              onChange={(e) => {
+			                const selected = groups.find(g => g.id === e.target.value);
+			                onSelectGroup(selected);
+			              }}
+			            >
+			              {groups.map(group => (
+			                <option key={group.id} value={group.id}>{group.name}</option>
+			              ))}
+			            </select>
+			          </div>
+		      <div className="sidebar-subheader">
+		        <h4>Sections</h4>
 		      </div>
-      <div className="sidebar-subheader">
-        <h4>Sections</h4>
-      </div>
-		      <ul className="section-list">
-		        {activeGroup?.sections?.map((sec, index) => {
+			      <ul className="section-list">
+			        {activeGroup?.sections?.map((sec, index) => {
 		          const nameLower = (sec.name || '').toLowerCase().trim();
 		          const isADSection = nameLower === "assessment details" || nameLower === "assessment_details";
 		          // When Assessment Details is incomplete, all other sections are
@@ -67,9 +79,11 @@
 		            </li>
 		          );
         })}
-      </ul>
-    </div>
-  );
-};
+		      </ul>
+		        </>
+		      )}
+		    </div>
+		  );
+		};
 
 export default Sidebar;

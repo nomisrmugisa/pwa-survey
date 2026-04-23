@@ -20,6 +20,47 @@ import clinicsLinks from './assets/clinics_links.json';
 import hospitalLinks from './assets/hospital_links.json';
 import './App.css';
 
+// Precompute scoring metadata (links + severity) for each programme type
+// once at module load time. This avoids rebuilding large lookup tables on
+// every render or group change, which was causing noticeable pauses when
+// switching groups/SEs.
+const buildScoringMeta = (config, configKey, links) => {
+  const linksDataLookup = {};
+  (links || []).forEach(linkObj => {
+    if (!linkObj || !linkObj.criteria) return;
+    linksDataLookup[linkObj.criteria] = {
+      roots: linkObj.root || [],
+      linked_criteria: linkObj.linked_criteria || []
+    };
+  });
+
+  const severityLookup = {};
+  try {
+    (config?.[configKey] || []).forEach(se => {
+      (se.sections || []).forEach(section => {
+        (section.standards || []).forEach(standard => {
+          (standard.criteria || []).forEach(crit => {
+            if (crit && crit.id) {
+              severityLookup[crit.id] = crit.severity || 1;
+            }
+          });
+        });
+      });
+    });
+  } catch (e) {
+    console.error('App: Error building severity lookup for', configKey, e);
+  }
+
+  return { linksDataLookup, severityLookup };
+};
+
+const programmeScoringMeta = {
+  ems: buildScoringMeta(emsConfig, 'ems_full_configuration', emsLinks),
+  mortuary: buildScoringMeta(mortuaryConfig, 'mortuary_full_configuration', mortuaryLinks),
+  clinics: buildScoringMeta(clinicsConfig, 'clinics_full_configuration', clinicsLinks),
+  hospital: buildScoringMeta(hospitalConfig, 'hospital_full_configuration', hospitalLinks)
+};
+
 const PrivateRoute = ({ children }) => {
 	  const { user, authInitializing } = useApp();
 	  const location = useLocation();
@@ -355,52 +396,16 @@ const AppContent = () => {
       ? 'hospital'
       : 'ems';
 
-    const configMap = {
-      ems: { config: emsConfig, key: 'ems_full_configuration' },
-      mortuary: { config: mortuaryConfig, key: 'mortuary_full_configuration' },
-      clinics: { config: clinicsConfig, key: 'clinics_full_configuration' },
-      hospital: { config: hospitalConfig, key: 'hospital_full_configuration' },
-    };
+	    // Use precomputed lookups for this programme type (built once at module
+	    // load) instead of rebuilding them on each render.
+	    const { linksDataLookup, severityLookup } =
+	      programmeScoringMeta[programmeType] || programmeScoringMeta.ems;
 
-    const { config: activeConfig, key: configKey } = configMap[programmeType];
-
-    // Get active links
-    const linksMap = {
-      ems: emsLinks,
-      mortuary: mortuaryLinks,
-      clinics: clinicsLinks,
-      hospital: hospitalLinks,
-    };
-    const activeLinks = linksMap[programmeType] || [];
-
-    // Quick lookup for links data
-    const linksDataLookup = {};
-    activeLinks.forEach(linkObj => {
-      linksDataLookup[linkObj.criteria] = {
-        roots: linkObj.root || [],
-        linked_criteria: linkObj.linked_criteria || []
-      };
-    });
-
-    // Quick lookup for severity from full config
-    const severityLookup = {};
-    try {
-      (activeConfig[configKey] || []).forEach(se => {
-        (se.sections || []).forEach(section => {
-          (section.standards || []).forEach(standard => {
-            (standard.criteria || []).forEach(crit => {
-              if (crit && crit.id) {
-                severityLookup[crit.id] = crit.severity || 1;
-              }
-            });
-          });
-        });
-      });
-    } catch (e) {
-      console.error("App: Error building severity lookup", e);
-    }
-
-	    const allSections = groups.flatMap(g => g.sections || []);
+	    // Only include sections for the *active* group in scoring so that
+	    // switching groups does not require recomputing scores for every other
+	    // group, which improves responsiveness of the group dropdown.
+	    const targetGroups = activeGroup ? [activeGroup] : groups;
+	    const allSections = targetGroups.flatMap(g => g.sections || []);
 
 	    return {
 	      sections: allSections.map(section => ({

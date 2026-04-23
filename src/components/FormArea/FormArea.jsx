@@ -393,15 +393,15 @@ const FormArea = ({
     isScoringPending,
     onCriterionChange
 }) => {
-    const [customLinks, setCustomLinks] = useState(null);
+	    const [customLinks, setCustomLinks] = useState(null);
 	    const [customConfig, setCustomConfig] = useState(null);
 	    const [isScoringModalOpen, setIsScoringModalOpen] = useState(false);
 	    const [viewingRootCalc, setViewingRootCalc] = useState(null); // { code, result }
-		    const [currentSubsectionIndex, setCurrentSubsectionIndex] = useState(0);
-		    const [showStandardSummary, setShowStandardSummary] = useState(true); // x.x.x list
-		    const [showPiSummary, setShowPiSummary] = useState(true); // x.x PI row
-			    const [isSeSummaryOpen, setIsSeSummaryOpen] = useState(false); // collapsible SE summary textarea
-			    const [openStandardSummaries, setOpenStandardSummaries] = useState({}); // keyed by x.x.x field id
+	    const [currentSubsectionIndex, setCurrentSubsectionIndex] = useState(0);
+	    const [showStandardSummary, setShowStandardSummary] = useState(false); // x.x.x list (collapsed by default)
+	    const [showPiSummary, setShowPiSummary] = useState(false); // x.x PI row (collapsed by default)
+	    const [isSeSummaryOpen, setIsSeSummaryOpen] = useState(false); // collapsible SE summary textarea
+	    const [openStandardSummaries, setOpenStandardSummaries] = useState({}); // keyed by x.x.x field id
 
     // Reset pagination when activeSection changes
     React.useEffect(() => {
@@ -1943,7 +1943,40 @@ const FormArea = ({
 	            <div className="form-content">
 	                {Object.keys(standardDraftScores).length > 0 && (
 	                    <>
-	                        {/* 1. Standards (x.x.x) summary per subsection */}
+	                        {/* 1. SE narrative summary (free-text) – now labelled Comments */}
+	                        <div className="standard-summary-panel">
+	                            <button
+	                                type="button"
+	                                className="standard-summary-toggle"
+	                                onClick={() => setIsSeSummaryOpen(prev => !prev)}
+	                            >
+	                                <span>Comments</span>
+	                                <span>{isSeSummaryOpen ? '▾' : '▸'}</span>
+	                            </button>
+	                            {isSeSummaryOpen && (
+	                                <div className="standard-summary-body">
+	                                    <label
+	                                        htmlFor={`se-summary-${activeSection?.id || 'unknown'}`}
+	                                        className="standard-summary-label"
+	                                    >
+	                                        Comments for this SE
+	                                    </label>
+	                                    <textarea
+	                                        id={`se-summary-${activeSection?.id || 'unknown'}`}
+	                                        className="form-control se-summary-textarea"
+	                                        rows={4}
+	                                        value={formData[`se_summary_${activeSection?.id}`] || ''}
+	                                        onChange={(e) => {
+	                                            const key = `se_summary_${activeSection?.id}`;
+	                                            saveField(key, e.target.value);
+	                                        }}
+	                                        placeholder="Type comments or a concise narrative for this SE..."
+	                                    />
+	                                </div>
+	                            )}
+	                        </div>
+
+	                        {/* 2. Standards (x.x.x) summary per subsection */}
 	                        <div className="standard-summary-panel">
 	                            <button
 	                                type="button"
@@ -2015,101 +2048,68 @@ const FormArea = ({
 	                            )}
 	                        </div>
 
-		                        {/* 2. PI (x.x) aggregate summary for this section */}
-		                        <div className="standard-summary-panel">
-		                            <button
-		                                type="button"
-		                                className="standard-summary-toggle"
-		                                onClick={() => setShowPiSummary(prev => !prev)}
-		                            >
-		                                <span>
-		                                    PI summary
-		                                    <span className="standard-summary-pi-inline">
-		                                        {' Overall: '}
-		                                        {Number(sectionPiDraftScore || 0).toFixed(1)}%
-		                                    </span>
-		                                </span>
-		                                <span>{showPiSummary ? '▾' : '▸'}</span>
-		                            </button>
-		                            {showPiSummary && (
-		                                <div className="standard-summary-body">
-		                                    {piSummaryEntries.map((entry) => (
-		                                        <div
-		                                            key={entry.code}
-		                                            className="standard-summary-row standard-summary-row-clickable"
-		                                            role="button"
-		                                            tabIndex={0}
-		                                            onClick={() => {
-		                                                window.scrollTo({ top: 0, behavior: 'smooth' });
-		                                            }}
-		                                            onKeyDown={(e) => {
-		                                                if (e.key === 'Enter' || e.key === ' ') {
-		                                                    e.preventDefault();
-		                                                    window.scrollTo({ top: 0, behavior: 'smooth' });
-		                                                }
-		                                            }}
-		                                        >
-		                                            <div className="standard-summary-code">
-		                                                {entry.code}
-		                                            </div>
-		                                            <div className="standard-summary-title">
-		                                                {entry.title}
-		                                            </div>
-		                                            <div className="standard-summary-score">
-		                                                <span
-		                                                    className={
-		                                                        'standard-summary-score-value' +
-		                                                        (entry.criticalFail
-		                                                            ? ' standard-summary-score-critical'
-		                                                            : '')
-		                                                    }
-		                                                >
-		                                                    {Number(entry.percent || 0).toFixed(1)}%
-		                                                </span>
-		                                                {entry.criticalFail && (
-		                                                    <span className="standard-summary-critical-flag">
-		                                                        CF
-		                                                    </span>
-		                                                )}
-		                                            </div>
-		                                        </div>
-		                                    ))}
-		                                </div>
-		                            )}
-		                        </div>
-
-		                        {/* 3. SE narrative summary (free-text) */}
-		                        <div className="standard-summary-panel">
-		                            <button
-		                                type="button"
-		                                className="standard-summary-toggle"
-		                                onClick={() => setIsSeSummaryOpen(prev => !prev)}
-		                            >
-		                                <span>SE Summary</span>
-		                                <span>{isSeSummaryOpen ? '▾' : '▸'}</span>
-		                            </button>
-		                            {isSeSummaryOpen && (
-		                                <div className="standard-summary-body">
-		                                    <label
-		                                        htmlFor={`se-summary-${activeSection?.id || 'unknown'}`}
-		                                        className="standard-summary-label"
-		                                    >
-		                                        Overall SE findings summary
-		                                    </label>
-		                                    <textarea
-		                                        id={`se-summary-${activeSection?.id || 'unknown'}`}
-		                                        className="form-control se-summary-textarea"
-		                                        rows={4}
-		                                        value={formData[`se_summary_${activeSection?.id}`] || ''}
-		                                        onChange={(e) => {
-		                                            const key = `se_summary_${activeSection?.id}`;
-		                                            saveField(key, e.target.value);
-		                                        }}
-		                                        placeholder="Type a concise narrative of the SE findings for this section..."
-		                                    />
-		                                </div>
-		                            )}
-		                        </div>
+	                        {/* 3. PI (x.x) aggregate summary for this section */}
+	                        <div className="standard-summary-panel">
+	                            <button
+	                                type="button"
+	                                className="standard-summary-toggle"
+	                                onClick={() => setShowPiSummary(prev => !prev)}
+	                            >
+	                                <span>
+	                                    PI summary
+	                                    <span className="standard-summary-pi-inline">
+	                                        {' Overall: '}
+	                                        {Number(sectionPiDraftScore || 0).toFixed(1)}%
+	                                    </span>
+	                                </span>
+	                                <span>{showPiSummary ? '▾' : '▸'}</span>
+	                            </button>
+	                            {showPiSummary && (
+	                                <div className="standard-summary-body">
+	                                    {piSummaryEntries.map((entry) => (
+	                                        <div
+	                                            key={entry.code}
+	                                            className="standard-summary-row standard-summary-row-clickable"
+	                                            role="button"
+	                                            tabIndex={0}
+	                                            onClick={() => {
+	                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+	                                            }}
+	                                            onKeyDown={(e) => {
+	                                                if (e.key === 'Enter' || e.key === ' ') {
+	                                                    e.preventDefault();
+	                                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+	                                                }
+	                                            }}
+	                                        >
+	                                            <div className="standard-summary-code">
+	                                                {entry.code}
+	                                            </div>
+	                                            <div className="standard-summary-title">
+	                                                {entry.title}
+	                                            </div>
+	                                            <div className="standard-summary-score">
+	                                                <span
+	                                                    className={
+	                                                        'standard-summary-score-value' +
+	                                                        (entry.criticalFail
+	                                                            ? ' standard-summary-score-critical'
+	                                                            : '')
+	                                                    }
+	                                                >
+	                                                    {Number(entry.percent || 0).toFixed(1)}%
+	                                                </span>
+	                                                {entry.criticalFail && (
+	                                                    <span className="standard-summary-critical-flag">
+	                                                        CF
+	                                                    </span>
+	                                                )}
+	                                            </div>
+	                                        </div>
+	                                    ))}
+	                                </div>
+	                            )}
+	                        </div>
 	                    </>
 	                )}
 	                {renderFields()}
