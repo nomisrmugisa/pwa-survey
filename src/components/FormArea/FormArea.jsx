@@ -214,36 +214,36 @@ const ScoringGuideModal = ({ isOpen, onClose }) => {
                                 <th>Expected Behavior</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td style={{ textAlign: 'center' }}><strong>3</strong></td>
-	                                <td><strong><em>1.1.2.1</em></strong></td>
-                                <td>Mega-Root</td>
-                                <td style={{ textAlign: 'center' }}>3</td>
-                                <td><strong>Disabled.</strong> Calc: Avg of Level 2 results + other links.</td>
-                            </tr>
-                            <tr>
-                                <td style={{ textAlign: 'center' }}><strong>2</strong></td>
-	                                <td><strong><em>1.2.2.1</em></strong></td>
-                                <td>Intermediate Root</td>
-                                <td style={{ textAlign: 'center' }}>3</td>
-                                <td><strong>Disabled.</strong> Calc: Avg of Level 1 results.</td>
-                            </tr>
-                            <tr>
-                                <td style={{ textAlign: 'center' }}><strong>1</strong></td>
-	                                <td><strong><em>1.4.1.2</em></strong></td>
-                                <td>Data Point</td>
-                                <td style={{ textAlign: 'center' }}>3</td>
-                                <td><strong>Enabled.</strong> Manual Input (C, PC, NC).</td>
-                            </tr>
-                            <tr>
-                                <td style={{ textAlign: 'center' }}><strong>1</strong></td>
-	                                <td><strong><em>1.4.1.3</em></strong></td>
-                                <td>Data Point</td>
-                                <td style={{ textAlign: 'center' }}>4</td>
-                                <td><strong>Enabled.</strong> Manual Input (C, PC, NC).</td>
-                            </tr>
-                        </tbody>
+	                        <tbody>
+	                            <tr>
+	                                <td style={{ textAlign: 'center' }}><strong>3</strong></td>
+		                                <td><em>1.1.2.1</em></td>
+	                                <td>Mega-Root</td>
+	                                <td style={{ textAlign: 'center' }}>3</td>
+	                                <td><strong>Disabled.</strong> Calc: Avg of Level 2 results + other links.</td>
+	                            </tr>
+	                            <tr>
+	                                <td style={{ textAlign: 'center' }}><strong>2</strong></td>
+		                                <td><em>1.2.2.1</em></td>
+	                                <td>Intermediate Root</td>
+	                                <td style={{ textAlign: 'center' }}>3</td>
+	                                <td><strong>Disabled.</strong> Calc: Avg of Level 1 results.</td>
+	                            </tr>
+	                            <tr>
+	                                <td style={{ textAlign: 'center' }}><strong>1</strong></td>
+		                                <td><em>1.4.1.2</em></td>
+	                                <td>Data Point</td>
+	                                <td style={{ textAlign: 'center' }}>3</td>
+	                                <td><strong>Enabled.</strong> Manual Input (C, PC, NC).</td>
+	                            </tr>
+	                            <tr>
+	                                <td style={{ textAlign: 'center' }}><strong>1</strong></td>
+		                                <td><em>1.4.1.3</em></td>
+	                                <td>Data Point</td>
+	                                <td style={{ textAlign: 'center' }}>4</td>
+	                                <td><strong>Enabled.</strong> Manual Input (C, PC, NC).</td>
+	                            </tr>
+	                        </tbody>
                     </table>
                     <div className="scoring-guide-footer" style={{ marginTop: '1.5rem', borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
                         <p style={{ fontSize: '0.9rem', color: '#718096', fontStyle: 'italic' }}>
@@ -296,11 +296,11 @@ const RootCalculationModal = ({ isOpen, onClose, rootCode, scoreResult }) => {
                                 <th>Points</th>
                             </tr>
                         </thead>
-                        <tbody>
+                    <tbody>
                             {sources.map((src, idx) => (
                                 <tr key={idx}>
                                     <td>
-                                        <strong><em>{src.code}</em></strong> {src.isCritical && <span style={{ color: '#c53030', fontWeight: 'bold' }} title="Critical Criterion">þ</span>}
+                                        <em>{src.code}</em> {src.isCritical && <span style={{ color: '#c53030', fontWeight: 'bold' }} title="Critical Criterion">þ</span>}
                                     </td>
                                     <td><span className={`status-pill status-${src.response?.toLowerCase()}`}>{src.response || 'Pending'}</span></td>
                                     <td style={{ textAlign: 'right' }}>
@@ -1266,9 +1266,9 @@ const FormArea = ({
                         <div className="field-label-main">
                             <label>
 	                                {isStandardCriterion ? (
-	                                    <strong style={{ fontSize: '1.6em' }}>
+	                                    <span style={{ fontSize: '1.6em', fontWeight: 400 }}>
 	                                        {renderCriterionLabel(displayLabel, { isStandardCriterion, isCriterionQuestion })}
-	                                    </strong>
+	                                    </span>
 	                                ) : (
 	                                    renderCriterionLabel(displayLabel, { isStandardCriterion, isCriterionQuestion })
 	                                )}
