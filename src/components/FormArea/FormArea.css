@@ -140,6 +140,12 @@
     background-color: #e2e8f0;
 }
 
+/* Indented standards listed underneath their PI row in the combined
+   PI/Standards summary panel */
+.standard-summary-row-standard {
+    padding-left: 1.5rem;
+}
+
 .standard-summary-code {
     font-weight: 700;
     color: #2b3a8e;
@@ -184,6 +190,18 @@
     border-radius: 9999px;
     background-color: #ebf8ff;
     color: #2b6cb0;
+}
+
+/* Small arrow icon shown in the PI row to indicate expand/collapse */
+.standard-summary-pi-toggle-icon {
+    margin-left: 0.35rem;
+    font-size: 0.9rem;
+}
+
+/* Indented standards listed underneath their PI row in the combined
+   PI/Standards summary panel */
+.standard-summary-row-standard {
+    padding-left: 1.5rem;
 }
 
 /* SE Overview (Standard + Intent) panel shown above the fields */

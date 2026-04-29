@@ -11,6 +11,7 @@ import emsLinks from '../../assets/ems_links.json';
 import mortuaryLinks from '../../assets/mortuary_links.json';
 import clinicsLinks from '../../assets/clinics_links.json';
 import hospitalLinks from '../../assets/hospital_links.json';
+import hospitalComputeCriteria from '../../assets/hospital_compute_criteria.json';
 import ScoreBadge from '../ScoreBadge';
 import { classifyAssessment } from '../../utils/classification';
 import { normalizeCriterionCode } from '../../utils/normalization';
@@ -19,7 +20,7 @@ import { calculatePointsForLink } from '../../utils/scoring';
 
 // Build a fast lookup from criterion ID (e.g. "1.2.1.3") to its
 // standard statement, intent text, critical flag, and severity.
-	const buildCriterionIndex = (configData) => {
+		const buildCriterionIndex = (configData) => {
 		    const index = {};
 		    try {
 		        // Support EMS, Mortuary, Clinics, and Hospital configs.
@@ -75,8 +76,36 @@ import { calculatePointsForLink } from '../../utils/scoring';
 		    return index;
 		};
 
-// Default index for helper functions that don't have access to component state
-const DEFAULT_CRITERION_INDEX = buildCriterionIndex(emsConfig);
+	// Default index for helper functions that don't have access to component state
+	const DEFAULT_CRITERION_INDEX = buildCriterionIndex(emsConfig);
+
+// Pre-compute a map of root criterion -> sub-criteria for Hospital,
+// based on the "Criteria and Sub Criteria for computation" settings.
+// Shape: { "7.1.1.1": ["7.1.1.2", "7.1.1.3", ...], ... }
+const HOSPITAL_SUBCRITERIA_MAP = (() => {
+    const map = {};
+    try {
+        const seList = hospitalComputeCriteria?.hospital_standards_config?.service_elements || [];
+        seList.forEach(se => {
+            (se.root_criteria || []).forEach(root => {
+                if (!root || !root.id) return;
+                const rootCode = normalizeCriterionCode(root.id);
+                if (!rootCode) return;
+                const subs = Array.isArray(root.sub_criteria)
+                    ? root.sub_criteria.map(code => normalizeCriterionCode(code)).filter(Boolean)
+                    : [];
+                if (subs.length > 0) {
+                    map[rootCode] = subs;
+                }
+            });
+        });
+    } catch (e) {
+        // Fail quietly; tooltips will just omit sub-criteria if config is invalid
+        // eslint-disable-next-line no-console
+        console.error('FormArea: Failed to build hospital sub-criteria map', e);
+    }
+    return map;
+})();
 
 // Shared utility normalizeCriterionCode is now imported
 
@@ -119,16 +148,28 @@ const splitIntentText = (fullIntent) => {
 	        : { primaryIntent: '', overviewText: '' };
 	};
 
-	const getCriterionTooltip = (code, links, index, scoreResult) => {
-		    const normalized = normalizeCriterionCode(code);
-		    if (!normalized) return '';
-		    const info = index[normalized];
-		    if (!info) return '';
-		
-		    const isStandardCode = /^\d+(\.\d+){2}$/.test(normalized); // x.x.x display-only rows
-		    const isCriterionCode = /^\d+(\.\d+){3}$/.test(normalized); // x.x.x.x question rows
-		
-			    const parts = [];
+			const getCriterionTooltip = (code, links, index, scoreResult) => {
+			    const normalized = normalizeCriterionCode(code);
+			    if (!normalized) return '';
+			    const info = index[normalized];
+			    if (!info) return '';
+			
+			    const isStandardCode = /^\d+(\.\d+){2}$/.test(normalized); // x.x.x display-only rows
+			    const isCriterionCode = /^\d+(\.\d+){3}$/.test(normalized); // x.x.x.x question rows
+			
+			    const compareCodes = (aCode, bCode) => {
+			        const aParts = normalizeCriterionCode(aCode).split('.').map(n => parseInt(n, 10));
+			        const bParts = normalizeCriterionCode(bCode).split('.').map(n => parseInt(n, 10));
+			        const len = Math.max(aParts.length, bParts.length);
+			        for (let i = 0; i < len; i += 1) {
+			            const av = Number.isNaN(aParts[i]) ? 0 : (aParts[i] || 0);
+			            const bv = Number.isNaN(bParts[i]) ? 0 : (bParts[i] || 0);
+			            if (av !== bv) return av - bv;
+			        }
+			        return 0;
+			    };
+			
+				    const parts = [];
 			    // For criterion (x.x.x.x) rows we no longer include the textual
 			    // Standard / Intent / Overview blocks in the tooltip. Those remain
 			    // only for higher-level rows (e.g. x.x.x display-only standards).
@@ -168,27 +209,46 @@ const splitIntentText = (fullIntent) => {
                 );
             }
         }
-    }
+		    }
 
-    // Add Linked Criteria if available
-    if (links && Array.isArray(links)) {
-        const linkInfo = links.find(l => normalizeCriterionCode(l.criteria) === normalized);
-        if (linkInfo) {
-            if (linkInfo.linked_criteria && linkInfo.linked_criteria.length > 0) {
-                parts.push(`Linked Criteria:\n${linkInfo.linked_criteria.join(', ')}`);
-            }
-        }
-    }
+		    // Add Hospital computation sub-criteria for root criteria (if configured)
+		    if (scoreResult && scoreResult.isRoot) {
+		        const configuredSubs = HOSPITAL_SUBCRITERIA_MAP[normalized];
+		        if (configuredSubs && configuredSubs.length > 0) {
+		            const sortedSubs = [...configuredSubs].sort(compareCodes);
+		            const enumeratedSubs = sortedSubs
+		                .map((subCode, idx) => `${idx + 1}. ${subCode}`)
+		                .join('\n');
+		            parts.push(`Sub-criteria for computation:\n${enumeratedSubs}`);
+		        }
+		    }
 
-    // Add Score Traceability
-    if (scoreResult && scoreResult.isRoot && scoreResult.rootSources && scoreResult.rootSources.length > 0) {
-        const sourceDetails = scoreResult.rootSources.map(src => {
-            const pts = (src.points !== null && src.isScored) ? (Number.isInteger(src.points) ? src.points : src.points.toFixed(1)) : '---';
-            const res = src.response || 'Pending';
-            return `• ${src.code}: ${pts} pts [${res}]`;
-        }).join('\n');
-        parts.push(`Score Traceability:\n${sourceDetails}`);
-    }
+		    // Add Linked Criteria if available
+		    if (links && Array.isArray(links)) {
+		        const linkInfo = links.find(l => normalizeCriterionCode(l.criteria) === normalized);
+		        if (linkInfo) {
+		            if (linkInfo.linked_criteria && linkInfo.linked_criteria.length > 0) {
+			                // Sort linked criteria codes in natural numeric order and
+			                // render them as an enumerated list for easier reading.
+			                const sortedLinked = [...linkInfo.linked_criteria].sort(compareCodes);
+			                const enumerated = sortedLinked.map((linkedCode, idx) => `${idx + 1}. ${linkedCode}`).join('\n');
+			                parts.push(`Linked Criteria:\n${enumerated}`);
+		            }
+		        }
+		    }
+		
+		    // Add Score Traceability (sorted by criterion code for consistency)
+		    if (scoreResult && scoreResult.isRoot && scoreResult.rootSources && scoreResult.rootSources.length > 0) {
+		        const sortedSources = [...scoreResult.rootSources].sort((a, b) => compareCodes(a.code, b.code));
+		        const sourceDetails = sortedSources.map(src => {
+		            const pts = (src.points !== null && src.isScored)
+		                ? (Number.isInteger(src.points) ? src.points : src.points.toFixed(1))
+		                : '---';
+		            const res = src.response || 'Pending';
+		            return `• ${src.code}: ${pts} pts [${res}]`;
+		        }).join('\n');
+		        parts.push(`Score Traceability:\n${sourceDetails}`);
+		    }
 
     return parts.join('\n\n');
 };
@@ -256,10 +316,21 @@ const ScoringGuideModal = ({ isOpen, onClose }) => {
     );
 };
 
-const RootCalculationModal = ({ isOpen, onClose, rootCode, scoreResult }) => {
-    if (!isOpen || !scoreResult) return null;
-
-    const sources = scoreResult.rootSources || [];
+	    const RootCalculationModal = ({ isOpen, onClose, rootCode, scoreResult }) => {
+	        if (!isOpen || !scoreResult) return null;
+	
+	        const sources = (scoreResult.rootSources || []).slice().sort((a, b) => {
+	            const norm = (code) => normalizeCriterionCode(code).split('.').map(n => parseInt(n, 10));
+	            const aParts = norm(a.code);
+	            const bParts = norm(b.code);
+	            const len = Math.max(aParts.length, bParts.length);
+	            for (let i = 0; i < len; i += 1) {
+	                const av = Number.isNaN(aParts[i]) ? 0 : (aParts[i] || 0);
+	                const bv = Number.isNaN(bParts[i]) ? 0 : (bParts[i] || 0);
+	                if (av !== bv) return av - bv;
+	            }
+	            return 0;
+	        });
     const points = scoreResult.points;
     const isDraft = scoreResult.isDraft;
 
@@ -393,15 +464,16 @@ const FormArea = ({
     isScoringPending,
     onCriterionChange
 }) => {
-	    const [customLinks, setCustomLinks] = useState(null);
-	    const [customConfig, setCustomConfig] = useState(null);
-	    const [isScoringModalOpen, setIsScoringModalOpen] = useState(false);
-	    const [viewingRootCalc, setViewingRootCalc] = useState(null); // { code, result }
-	    const [currentSubsectionIndex, setCurrentSubsectionIndex] = useState(0);
-	    const [showStandardSummary, setShowStandardSummary] = useState(false); // x.x.x list (collapsed by default)
-	    const [showPiSummary, setShowPiSummary] = useState(false); // x.x PI row (collapsed by default)
-	    const [isSeSummaryOpen, setIsSeSummaryOpen] = useState(false); // collapsible SE summary textarea
-	    const [openStandardSummaries, setOpenStandardSummaries] = useState({}); // keyed by x.x.x field id
+    const [customLinks, setCustomLinks] = useState(null);
+    const [customConfig, setCustomConfig] = useState(null);
+    const [isScoringModalOpen, setIsScoringModalOpen] = useState(false);
+    const [viewingRootCalc, setViewingRootCalc] = useState(null); // { code, result }
+    const [currentSubsectionIndex, setCurrentSubsectionIndex] = useState(0);
+    const [showStandardSummary, setShowStandardSummary] = useState(false); // x.x.x list (collapsed by default)
+    const [showPiSummary, setShowPiSummary] = useState(false); // x.x PI row (collapsed by default)
+    const [isSeSummaryOpen, setIsSeSummaryOpen] = useState(false); // collapsible SE summary textarea
+    const [openStandardSummaries, setOpenStandardSummaries] = useState({}); // keyed by x.x.x field id
+    const [openPiGroups, setOpenPiGroups] = useState({}); // keyed by PI code (e.g. 7.1)
 
     // Reset pagination when activeSection changes
     React.useEffect(() => {
@@ -870,50 +942,62 @@ const FormArea = ({
 		        	    return entries.some((entry) => entry.criticalFail);
 		        	}, [standardDraftScores]);
 			
-		        	// Aggregate PI (x.x) summary rows across all subsections so that the
-		        	// PI summary panel lists every PI present in the SE (e.g. 7.1–7.7 for
-		        	// Hospital SE7), even when no criteria have been answered yet.
-		        	const piSummaryEntries = useMemo(() => {
-		        	    if (!Array.isArray(subsections) || subsections.length === 0) return [];
-		        	
-		        	    const buckets = {};
-		        	
-		        	    subsections.forEach((subFields, idx) => {
-		        	        const overview = subsectionPiOverviews[idx] || seOverview;
-		        	        const piCode = overview?.sectionPiId;
-		        	        if (!piCode) return;
-		        	
-		        	        if (!buckets[piCode]) {
-		        	            buckets[piCode] = {
-		        	                code: piCode,
-		        	                title: overview.sectionTitle || 'Performance Indicator',
-		        	                total: 0,
-		        	                count: 0,
-		        	                criticalFail: false,
-		        	            };
-		        	        }
-		        	
-		        	        const stdEntry = standardDraftScores[idx];
-		        	        let value = 0;
-		        	        if (stdEntry) {
-		        	            const raw = typeof stdEntry.percent === 'number'
-		        	                ? stdEntry.percent
-		        	                : parseFloat(stdEntry.percent);
-		        	            if (Number.isFinite(raw)) value = raw;
-		        	            if (stdEntry.criticalFail) buckets[piCode].criticalFail = true;
-		        	        }
-		        	
-		        	        buckets[piCode].total += value;
-		        	        buckets[piCode].count += 1;
-		        	    });
-		        	
-		        	    return Object.values(buckets).map((b) => ({
-		        	        code: b.code,
-		        	        title: b.title,
-		        	        percent: b.count ? b.total / b.count : 0,
-		        	        criticalFail: b.criticalFail,
-		        	    })).sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true }));
-		        	}, [subsections, subsectionPiOverviews, standardDraftScores, seOverview]);
+			// Build a nested PI → Standards structure so the PI summary can show
+			// each Performance Indicator (e.g. 7.1) with its contributing
+			// standards (7.1.1, 7.1.2, ...) listed underneath.
+			const piSummaryEntries = useMemo(() => {
+			    if (!Array.isArray(subsections) || subsections.length === 0) return [];
+			
+			    const buckets = {};
+			
+			    subsections.forEach((subFields, idx) => {
+			        const overview = subsectionPiOverviews[idx] || seOverview;
+			        const piCode = overview?.sectionPiId;
+			        if (!piCode) return;
+			
+			        if (!buckets[piCode]) {
+			            buckets[piCode] = {
+			                code: piCode,
+			                title: overview.sectionTitle || 'Performance Indicator',
+			                total: 0,
+			                count: 0,
+			                criticalFail: false,
+			                standards: [],
+			            };
+			        }
+			
+			        const stdEntry = standardDraftScores[idx];
+			        let value = 0;
+			        if (stdEntry) {
+			            const raw = typeof stdEntry.percent === 'number'
+			                ? stdEntry.percent
+			                : parseFloat(stdEntry.percent);
+			            if (Number.isFinite(raw)) value = raw;
+			            if (stdEntry.criticalFail) buckets[piCode].criticalFail = true;
+			
+			            buckets[piCode].standards.push({
+			                code: stdEntry.code,
+			                title: stdEntry.title,
+			                percent: value,
+			                criticalFail: stdEntry.criticalFail,
+			                subsectionIndex: idx,
+			            });
+			        }
+			
+			        buckets[piCode].total += value;
+			        buckets[piCode].count += 1;
+			    });
+			
+			    return Object.values(buckets).map((b) => ({
+			        code: b.code,
+			        title: b.title,
+			        percent: b.count ? b.total / b.count : 0,
+			        criticalFail: b.criticalFail,
+			        standards: (b.standards || []).sort((a, b) =>
+			            a.code.localeCompare(b.code, undefined, { numeric: true })
+			        ),
+			    })).sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true }));
+			}, [subsections, subsectionPiOverviews, standardDraftScores, seOverview]);
 		
 		    const activeSubsectionFields = subsections[currentSubsectionIndex] || [];
 		    const currentPiOverview = subsectionPiOverviews[currentSubsectionIndex] || seOverview;
@@ -1105,6 +1189,65 @@ const FormArea = ({
 	            // Check if comment field is disabled (parent question not answered)
 	            const parentQuestionId = field.questionFieldId;
 	            const isParentAnswered = parentQuestionId ? (formData[parentQuestionId] !== undefined && formData[parentQuestionId] !== null && formData[parentQuestionId] !== '') : true;
+
+		            // For Hospital root criteria that are part of the "Criteria and
+		            // Sub Criteria for computation" settings, pre-compute:
+		            //  - The average score of the configured sub-criteria
+		            //  - The average score of all linked criteria in the scoring
+		            //    graph (using rootSources from the scoring engine)
+		            // These are *display only* helpers and do NOT affect the
+		            // official scoring logic.
+		            let subCriteriaAvgPoints = null;
+		            let subCriteriaAvgCount = 0;
+		            let subCriteriaExpectedCount = 0;
+		            let linkedAvgPoints = null;
+		            let linkedAvgCount = 0;
+		            let linkedExpectedCount = 0;
+		            if (
+		                isRoot &&
+		                normalizedCode &&
+		                programmeType === 'hospital' &&
+		                scoringResults?.globalScores &&
+		                HOSPITAL_SUBCRITERIA_MAP[normalizedCode]
+		            ) {
+		                const subCodes = HOSPITAL_SUBCRITERIA_MAP[normalizedCode];
+		                subCriteriaExpectedCount = Array.isArray(subCodes) ? subCodes.length : 0;
+		                let sum = 0;
+		                subCodes.forEach(subCode => {
+		                    const normSub = normalizeCriterionCode(subCode) || subCode;
+		                    const subScore = scoringResults.globalScores[normSub];
+		                    if (subScore && subScore.isScored && subScore.points !== null) {
+		                        sum += subScore.points;
+		                        subCriteriaAvgCount += 1;
+		                    }
+		                });
+		                if (subCriteriaAvgCount > 0) {
+		                    subCriteriaAvgPoints = sum / subCriteriaAvgCount;
+		                }
+		            }
+		
+		            // Compute a simple average over all linked criteria in the
+		            // scoring graph for this root, using the rootSources array
+		            // provided by the scoring engine. This reflects how the
+		            // scoring graph is wired, independent of the App Settings
+		            // computation map above. We always track counts so that we
+		            // can show "0/X" even when none of the linked criteria have
+		            // been scored yet.
+		            if (isRoot && calculatedFieldScore?.rootSources && Array.isArray(calculatedFieldScore.rootSources)) {
+		                const sources = calculatedFieldScore.rootSources;
+		                linkedExpectedCount = sources.length;
+		                let sum = 0;
+		                sources.forEach(src => {
+		                    if (!src) return;
+		                    if (src.isScored && src.points !== null && typeof src.points === 'number') {
+		                        sum += src.points;
+		                        linkedAvgCount += 1;
+		                    }
+		                });
+		                if (linkedAvgCount > 0) {
+		                    linkedAvgPoints = sum / linkedAvgCount;
+		                }
+		            }
 
 	            // Compute the parent criterion's score so we can surface it
 	            // next to the Comment label instead of inside the textarea.
@@ -1404,6 +1547,34 @@ const FormArea = ({
                                             </button>
                                         )}
                                     </div>
+		                            {isRoot && subCriteriaAvgPoints !== null && (
+		                                <div style={{ marginTop: '4px', fontSize: '0.8em', color: '#4a5568' }}>
+		                                    Sub-criteria average (configured):{' '}
+		                                    {Number.isInteger(subCriteriaAvgPoints)
+		                                        ? subCriteriaAvgPoints
+		                                        : subCriteriaAvgPoints.toFixed(1)}{' '}
+		                                    pts
+		                                    {subCriteriaExpectedCount > 0 && (
+		                                        <>
+		                                            {' '}
+		                                            ({subCriteriaAvgCount}/{subCriteriaExpectedCount})
+		                                        </>
+		                                    )}
+		                                </div>
+		                            )}
+		                            {isRoot && linkedExpectedCount > 0 && (
+		                                <div style={{ marginTop: '2px', fontSize: '0.8em', color: '#4a5568' }}>
+		                                    Linked-criteria average (graph):{' '}
+		                                    {linkedAvgPoints !== null
+		                                        ? (Number.isInteger(linkedAvgPoints)
+		                                            ? linkedAvgPoints
+		                                            : linkedAvgPoints.toFixed(1))
+		                                        : '---'}{' '}
+		                                    pts
+		                                    {' '}
+		                                    ({linkedAvgCount}/{linkedExpectedCount})
+		                                </div>
+		                            )}
                                 </div>
                             )}
                             <select
@@ -1722,25 +1893,31 @@ const FormArea = ({
         }
     };
 
-    const handleSubmit = async () => {
-        if (!configuration) {
-            setSubmitResult({ success: false, message: 'Form configuration not loaded yet.' });
-            return;
-        }
-	        // Use the program-level orgUnit attached to the scheduling enrollment
-	        // when submitting the main survey program. This is typically a
-	        // district/administrative OU (e.g. Gaborone) that is actually
-	        // assigned to the survey program in DHIS2. We still display the
-	        // facility name from the team-assignment orgUnit.
-	        const orgUnit =
-	            selectedFacility?.programOrgUnitId ||
-	            selectedFacility?.orgUnitId ||
-	            (typeof selectedFacility?.orgUnit === 'string' ? selectedFacility.orgUnit : selectedFacility?.orgUnit?.id) ||
-	            selectedFacility?.facilityId;
-        if (!orgUnit) {
-            setSubmitResult({ success: false, message: 'No facility selected.' });
-            return;
-        }
+	    const handleSubmit = async () => {
+	        if (!configuration) {
+	            setSubmitResult({ success: false, message: 'Form configuration not loaded yet.' });
+	            return;
+	        }
+			    // Use the same orgUnit as the facility shown in the header when
+			    // submitting to the survey program. That orgUnit comes from the
+			    // team-assignment / facility orgUnit (e.g. the hospital/clinic the
+			    // assessor sees at the top of the form). We still fall back to the
+			    // program-level orgUnit only if no facility orgUnit is available.
+			    const orgUnit =
+			        // 1) Facility orgUnit ID used for the header label
+			        selectedFacility?.orgUnitId ||
+			        // 2) Raw orgUnit from the assignment object (string ID or object)
+			        (typeof selectedFacility?.orgUnit === 'string'
+			          ? selectedFacility.orgUnit
+			          : selectedFacility?.orgUnit?.id) ||
+			        // 3) Any explicit facility identifier if present
+			        selectedFacility?.facilityId ||
+			        // 4) Fallback: program-level orgUnit from the scheduling enrollment
+			        selectedFacility?.programOrgUnitId;
+	        if (!orgUnit) {
+	            setSubmitResult({ success: false, message: 'No facility selected.' });
+	            return;
+	        }
 
         setIsSubmitting(true);
         setSubmitResult(null);
@@ -1759,10 +1936,10 @@ const FormArea = ({
             return;
         }
 
-        try {
-            // Priority 1: Official Assignment IDs (The Source of Truth)
-            // Priority 2: Locally saved internal IDs (From previous successes)
-	            const enrichedData = {
+	        try {
+	            // Priority 1: Official Assignment IDs (The Source of Truth)
+	            // Priority 2: Locally saved internal IDs (From previous successes)
+		            const enrichedData = {
 	                ...formData,
 	                // Reuse the facility TEI from the scheduling workflow if
 	                // available, but NEVER reuse its enrollment ID for the
@@ -1776,9 +1953,14 @@ const FormArea = ({
 	                enrollmentId_internal: formData.enrollmentId_internal,
 	                // Add point-in-time scoring snapshot for auditing
 	                scoringSnapshot: createAssessmentSnapshot(scoringResults)
-	            };
-
-            console.log('🚀 Starting Tracker Enrollment Workflow...');
+		            };
+		
+		            console.log('🚀 Starting Tracker Enrollment Workflow...', {
+		                submitOrgUnit: orgUnit,
+		                assignmentOrgUnitId: selectedFacility?.orgUnitId,
+		                assignmentOrgUnitName: selectedFacility?.orgUnitName,
+		                programOrgUnitId: selectedFacility?.programOrgUnitId,
+		            });
             // Capture generated IDs to prevent duplicates on retry
             const result = await api.submitTrackerAssessment(
                 enrichedData,
@@ -1940,180 +2122,175 @@ const FormArea = ({
 		                    </button>
 		                </div>
 		            )}
-	            <div className="form-content">
-	                {Object.keys(standardDraftScores).length > 0 && (
-	                    <>
-	                        {/* 1. SE narrative summary (free-text) – now labelled Comments */}
-	                        <div className="standard-summary-panel">
-	                            <button
-	                                type="button"
-	                                className="standard-summary-toggle"
-	                                onClick={() => setIsSeSummaryOpen(prev => !prev)}
-	                            >
-	                                <span>Comments</span>
-	                                <span>{isSeSummaryOpen ? '▾' : '▸'}</span>
-	                            </button>
-	                            {isSeSummaryOpen && (
-	                                <div className="standard-summary-body">
-	                                    <label
-	                                        htmlFor={`se-summary-${activeSection?.id || 'unknown'}`}
-	                                        className="standard-summary-label"
-	                                    >
-	                                        Comments for this SE
-	                                    </label>
-	                                    <textarea
-	                                        id={`se-summary-${activeSection?.id || 'unknown'}`}
-	                                        className="form-control se-summary-textarea"
-	                                        rows={4}
-	                                        value={formData[`se_summary_${activeSection?.id}`] || ''}
-	                                        onChange={(e) => {
-	                                            const key = `se_summary_${activeSection?.id}`;
-	                                            saveField(key, e.target.value);
-	                                        }}
-	                                        placeholder="Type comments or a concise narrative for this SE..."
-	                                    />
-	                                </div>
-	                            )}
-	                        </div>
+		            <div className="form-content">
+		                {Object.keys(standardDraftScores).length > 0 && (
+		                    <>
+		                        {/* 1. SE narrative summary (free-text) – now labelled Overview */}
+		                        <div className="standard-summary-panel">
+		                            <button
+		                                type="button"
+		                                className="standard-summary-toggle"
+		                                onClick={() => setIsSeSummaryOpen(prev => !prev)}
+		                            >
+		                                <span>Overview</span>
+		                                <span>{isSeSummaryOpen ? '▾' : '▸'}</span>
+		                            </button>
+		                            {isSeSummaryOpen && (
+		                                <div className="standard-summary-body">
+		                                    <label
+		                                        htmlFor={`se-summary-${activeSection?.id || 'unknown'}`}
+		                                        className="standard-summary-label"
+		                                    >
+		                                        Overview for this SE
+		                                    </label>
+		                                    <textarea
+		                                        id={`se-summary-${activeSection?.id || 'unknown'}`}
+		                                        className="form-control se-summary-textarea"
+		                                        rows={4}
+		                                        value={formData[`se_summary_${activeSection?.id}`] || ''}
+		                                        onChange={(e) => {
+		                                            const key = `se_summary_${activeSection?.id}`;
+		                                            saveField(key, e.target.value);
+		                                        }}
+		                                        placeholder="Type an overview or concise narrative for this SE..."
+		                                    />
+		                                </div>
+		                            )}
+		                        </div>
+		
+		                        {/* 2. PI (x.x) aggregate summary for this section */}
+		                        <div className="standard-summary-panel">
+		                            <button
+		                                type="button"
+		                                className="standard-summary-toggle"
+		                                onClick={() => setShowPiSummary(prev => !prev)}
+		                            >
+		                                <span>
+		                                    PI summary
+		                                    <span className="standard-summary-pi-inline">
+		                                        {' Overall: '}
+		                                        {Number(sectionPiDraftScore || 0).toFixed(1)}%
+		                                    </span>
+		                                </span>
+		                                <span>{showPiSummary ? '▾' : '▸'}</span>
+		                            </button>
+                            {showPiSummary && (
+                                <div className="standard-summary-body">
+                                    {piSummaryEntries.map((entry) => {
+                                        const isOpen = !!openPiGroups[entry.code];
+                                        const togglePi = () => {
+                                            setOpenPiGroups((prev) => ({
+                                                ...prev,
+                                                [entry.code]: !prev[entry.code],
+                                            }));
+                                        };
 
-	                        {/* 2. Standards (x.x.x) summary per subsection */}
-	                        <div className="standard-summary-panel">
-	                            <button
-	                                type="button"
-	                                className="standard-summary-toggle"
-	                                onClick={() => setShowStandardSummary(prev => !prev)}
-	                            >
-	                                <span>
-	                                    Standards summary ({Object.keys(standardDraftScores).length})
-	                                </span>
-	                                <span>{showStandardSummary ? '▾' : '▸'}</span>
-	                            </button>
-	                            {showStandardSummary && (
-	                                <div className="standard-summary-body">
-	                                    {subsections.map((subFields, idx) => {
-	                                        const entry = standardDraftScores[idx];
-	                                        if (!entry) return null;
-	                                        const isCurrent = idx === currentSubsectionIndex;
-	                                        const handleJumpToSubsection = () => {
-	                                            setCurrentSubsectionIndex(idx);
-	                                            window.scrollTo(0, 0);
-	                                        };
-	                                        return (
-	                                            <div
-	                                                key={`${entry.code}-${idx}`}
-	                                                className={
-	                                                    'standard-summary-row standard-summary-row-clickable' +
-	                                                    (isCurrent ? ' standard-summary-row-active' : '')
-	                                                }
-	                                                role="button"
-	                                                tabIndex={0}
-	                                                onClick={handleJumpToSubsection}
-	                                                onKeyDown={(e) => {
-	                                                    if (e.key === 'Enter' || e.key === ' ') {
-	                                                        e.preventDefault();
-	                                                        handleJumpToSubsection();
-	                                                    }
-	                                                }}
-	                                            >
-	                                                <div className="standard-summary-code">{entry.code}</div>
-	                                                <div className="standard-summary-title">
-	                                                    {entry.title}
-	                                                </div>
-	                                                <div className="standard-summary-score">
-	                                                    <span
-	                                                        className={
-	                                                            'standard-summary-score-value' +
-	                                                            (entry.criticalFail
-	                                                                ? ' standard-summary-score-critical'
-	                                                                : '')
-	                                                        }
-	                                                    >
-	                                                        {entry.percent.toFixed(1)}%
-	                                                    </span>
-	                                                    {entry.criticalFail && (
-	                                                        <span className="standard-summary-critical-flag">
-	                                                            CF
-	                                                        </span>
-	                                                    )}
-	                                                    {isCurrent && (
-	                                                        <span className="standard-summary-current-pill">
-	                                                            Current
-	                                                        </span>
-	                                                    )}
-	                                                </div>
-	                                            </div>
-	                                        );
-	                                    })}
-	                                </div>
-	                            )}
-	                        </div>
+                                        return (
+                                            <div key={entry.code} className="pi-summary-group">
+                                                {/* PI row (click to expand/collapse standards) */}
+                                                <div
+                                                    className="standard-summary-row standard-summary-row-clickable"
+                                                    role="button"
+                                                    tabIndex={0}
+                                                    onClick={togglePi}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter' || e.key === ' ') {
+                                                            e.preventDefault();
+                                                            togglePi();
+                                                        }
+                                                    }}
+                                                >
+                                                    <div className="standard-summary-code">
+                                                        {entry.code}
+                                                    </div>
+                                                    <div className="standard-summary-title">
+                                                        {entry.title}
+                                                    </div>
+                                                    <div className="standard-summary-score">
+                                                        <span
+                                                            className={
+                                                                'standard-summary-score-value' +
+                                                                (entry.criticalFail
+                                                                    ? ' standard-summary-score-critical'
+                                                                    : '')
+                                                            }
+                                                        >
+                                                            {Number(entry.percent || 0).toFixed(1)}%
+                                                        </span>
+                                                        {entry.criticalFail && (
+                                                            <span className="standard-summary-critical-flag">
+                                                                CF
+                                                            </span>
+                                                        )}
+                                                        <span className="standard-summary-pi-toggle-icon">
+                                                            {isOpen ? '▾' : '▸'}
+                                                        </span>
+                                                    </div>
+                                                </div>
 
-	                        {/* 3. PI (x.x) aggregate summary for this section */}
-	                        <div className="standard-summary-panel">
-	                            <button
-	                                type="button"
-	                                className="standard-summary-toggle"
-	                                onClick={() => setShowPiSummary(prev => !prev)}
-	                            >
-	                                <span>
-	                                    PI summary
-	                                    <span className="standard-summary-pi-inline">
-	                                        {' Overall: '}
-	                                        {Number(sectionPiDraftScore || 0).toFixed(1)}%
-	                                    </span>
-	                                </span>
-	                                <span>{showPiSummary ? '▾' : '▸'}</span>
-	                            </button>
-	                            {showPiSummary && (
-	                                <div className="standard-summary-body">
-	                                    {piSummaryEntries.map((entry) => (
-	                                        <div
-	                                            key={entry.code}
-	                                            className="standard-summary-row standard-summary-row-clickable"
-	                                            role="button"
-	                                            tabIndex={0}
-	                                            onClick={() => {
-	                                                window.scrollTo({ top: 0, behavior: 'smooth' });
-	                                            }}
-	                                            onKeyDown={(e) => {
-	                                                if (e.key === 'Enter' || e.key === ' ') {
-	                                                    e.preventDefault();
-	                                                    window.scrollTo({ top: 0, behavior: 'smooth' });
-	                                                }
-	                                            }}
-	                                        >
-	                                            <div className="standard-summary-code">
-	                                                {entry.code}
-	                                            </div>
-	                                            <div className="standard-summary-title">
-	                                                {entry.title}
-	                                            </div>
-	                                            <div className="standard-summary-score">
-	                                                <span
-	                                                    className={
-	                                                        'standard-summary-score-value' +
-	                                                        (entry.criticalFail
-	                                                            ? ' standard-summary-score-critical'
-	                                                            : '')
-	                                                    }
-	                                                >
-	                                                    {Number(entry.percent || 0).toFixed(1)}%
-	                                                </span>
-	                                                {entry.criticalFail && (
-	                                                    <span className="standard-summary-critical-flag">
-	                                                        CF
-	                                                    </span>
-	                                                )}
-	                                            </div>
-	                                        </div>
-	                                    ))}
-	                                </div>
-	                            )}
-	                        </div>
-	                    </>
-	                )}
-	                {renderFields()}
-	            </div>
+                                                {/* Standards under this PI */}
+                                                {isOpen && entry.standards && entry.standards.map((std) => {
+                                                    const isCurrent = std.subsectionIndex === currentSubsectionIndex;
+                                                    const handleJumpToSubsection = () => {
+                                                        setCurrentSubsectionIndex(std.subsectionIndex);
+                                                        window.scrollTo(0, 0);
+                                                    };
+                                                    return (
+                                                        <div
+                                                            key={`${entry.code}-${std.code}-${std.subsectionIndex}`}
+                                                            className={
+                                                                'standard-summary-row standard-summary-row-clickable standard-summary-row-standard' +
+                                                                (isCurrent ? ' standard-summary-row-active' : '')
+                                                            }
+                                                            role="button"
+                                                            tabIndex={0}
+                                                            onClick={handleJumpToSubsection}
+                                                            onKeyDown={(e) => {
+                                                                if (e.key === 'Enter' || e.key === ' ') {
+                                                                    e.preventDefault();
+                                                                    handleJumpToSubsection();
+                                                                }
+                                                            }}
+                                                        >
+                                                            <div className="standard-summary-code">{std.code}</div>
+                                                            <div className="standard-summary-title">
+                                                                {std.title}
+                                                            </div>
+                                                            <div className="standard-summary-score">
+                                                                <span
+                                                                    className={
+                                                                        'standard-summary-score-value' +
+                                                                        (std.criticalFail
+                                                                            ? ' standard-summary-score-critical'
+                                                                            : '')
+                                                                    }
+                                                                >
+                                                                    {Number(std.percent || 0).toFixed(1)}%
+                                                                </span>
+                                                                {std.criticalFail && (
+                                                                    <span className="standard-summary-critical-flag">
+                                                                        CF
+                                                                    </span>
+                                                                )}
+                                                                {isCurrent && (
+                                                                    <span className="standard-summary-current-pill">
+                                                                        Current
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+		                        </div>
+		                    </>
+		                )}
+		                {renderFields()}
+		            </div>
             <div className="form-footer">
                 {submitResult && (
                     <div style={{

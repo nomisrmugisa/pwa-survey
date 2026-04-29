@@ -1,4 +1,5 @@
 import { normalizeCriterionCode, compareCriterionCodes } from './normalization.js';
+import hospitalComputeCriteria from '../assets/hospital_compute_criteria.json';
 
 /**
  * Healthcare Accreditation Scoring Module
@@ -12,6 +13,34 @@ import { normalizeCriterionCode, compareCriterionCodes } from './normalization.j
  * NON = 0
  * NA = Excluded from maxScore
  */
+
+// Pre-compute a map of root criterion -> configured sub-criteria codes for Hospital.
+// Shape: { "7.1.1.1": ["7.1.1.2", "7.1.1.3", ...], ... }
+const HOSPITAL_SUBCRITERIA_MAP = (() => {
+    const map = {};
+    try {
+        const seList = hospitalComputeCriteria?.hospital_standards_config?.service_elements || [];
+        seList.forEach(se => {
+            (se.root_criteria || []).forEach(root => {
+                if (!root || !root.id) return;
+                const rootCode = normalizeCriterionCode(root.id);
+                if (!rootCode) return;
+                const subs = Array.isArray(root.sub_criteria)
+                    ? root.sub_criteria.map(code => normalizeCriterionCode(code)).filter(Boolean)
+                    : [];
+                if (subs.length > 0) {
+                    map[rootCode] = subs;
+                }
+            });
+        });
+    } catch (e) {
+        // Fail quietly; scoring will simply ignore configured sub-criteria
+        // if the configuration JSON is missing or malformed.
+        // eslint-disable-next-line no-console
+        console.error('scoring: failed to build hospital sub-criteria map', e);
+    }
+    return map;
+})();
 
 /**
  * Helper to calculate points for a single Linked criterion based on severity and response
@@ -146,6 +175,11 @@ export const computeGraphScores = (criteriaMap) => {
             if (countScoredLinks > 0) {
                 const draftAvg = sumLinkedPoints / countScoredLinks;
 
+                // Base linked-criteria average used for display and, when
+                // no special configuration applies, for the root's numeric
+                // score.
+                const linkedAvgForCombination = draftAvg;
+
                 // --- Majority Rule Override (Dynamic live evaluation based on scored links) ---
                 let finalPoints = draftAvg;
                 if (countScoredLinks > 1 && ncPcCount > (countScoredLinks / 2)) {
@@ -158,6 +192,38 @@ export const computeGraphScores = (criteriaMap) => {
                     } else {
                         // If >50% are failing, force score into PC range (at most)
                         finalPoints = Math.min(finalPoints, cThreshold - 1);
+                    }
+                }
+                // --- Hospital computation rule: for configured roots, set the
+                // root's numeric score to the average of:
+                //   (a) linked-criteria average (graph), and
+                //   (b) average of configured sub-criteria (from
+                //       hospital_compute_criteria.json), when both are
+                //       available. If only one side has data, fall back to it.
+                const normalizedCode = normalizeCriterionCode(code);
+                const configuredSubs = HOSPITAL_SUBCRITERIA_MAP[normalizedCode];
+                if (configuredSubs && configuredSubs.length > 0) {
+                    let cfgSum = 0;
+                    let cfgCount = 0;
+                    configuredSubs.forEach(subRaw => {
+                        const subCode = normalizeCriterionCode(subRaw);
+                        if (!subCode) return;
+                        const subRes = computeCriterion(subCode);
+                        if (subRes && subRes.isScored && subRes.points !== null) {
+                            cfgSum += subRes.points;
+                            cfgCount += 1;
+                        }
+                    });
+
+                    const subAvg = cfgCount > 0 ? (cfgSum / cfgCount) : null;
+                    const linkedAvg = linkedAvgForCombination;
+
+                    if (subAvg !== null && linkedAvg !== null) {
+                        finalPoints = (subAvg + linkedAvg) / 2;
+                    } else if (subAvg !== null) {
+                        finalPoints = subAvg;
+                    } else if (linkedAvg !== null) {
+                        finalPoints = linkedAvg;
                     }
                 }
 

@@ -2,17 +2,18 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useApp } from '../contexts/AppContext';
 import { useStorage } from '../hooks/useStorage';
-import { useUserAssessments } from '../hooks/useUserAssessments';
-import { SurveyPreview } from '../components/SurveyPreview.jsx';
-import indexedDBService from '../services/indexedDBService';
-	import emsConfig from '../assets/ems_config.json';
-	import mortuaryConfig from '../assets/mortuary_config.json';
-	import clinicsConfig from '../assets/clinics_config.json';
-	import hospitalConfig from '../assets/hospital_config.json';
-	import emsLinks from '../assets/ems_links.json';
-	import mortuaryLinks from '../assets/mortuary_links.json';
-	import clinicsLinks from '../assets/clinics_links.json';
-	import hospitalLinks from '../assets/hospital_links.json';
+	import { useUserAssessments } from '../hooks/useUserAssessments';
+	import { SurveyPreview } from '../components/SurveyPreview.jsx';
+	import indexedDBService from '../services/indexedDBService';
+		import emsConfig from '../assets/ems_config.json';
+		import mortuaryConfig from '../assets/mortuary_config.json';
+		import clinicsConfig from '../assets/clinics_config.json';
+		import hospitalConfig from '../assets/hospital_config.json';
+		import emsLinks from '../assets/ems_links.json';
+		import mortuaryLinks from '../assets/mortuary_links.json';
+		import clinicsLinks from '../assets/clinics_links.json';
+		import hospitalLinks from '../assets/hospital_links.json';
+		import hospitalComputeCriteria from '../assets/hospital_compute_criteria.json';
 import {
 	    Dialog,
 	    DialogTitle,
@@ -67,6 +68,7 @@ export function Dashboard() {
     const [isEditingLinks, setIsEditingLinks] = useState(false);
     const [editedLinksJson, setEditedLinksJson] = useState('');
     const [showLinksEditor, setShowLinksEditor] = useState(false);
+	    const hospitalComputeServiceElements = (hospitalComputeCriteria?.hospital_standards_config?.service_elements) || [];
 
     // Integrated Hook for new scheduling-based assignments. When this hook
     // is unavailable or fails, we gracefully fall back to the legacy
@@ -650,7 +652,36 @@ export function Dashboard() {
                                         <span className="se-name-text">View/Edit Clinics Linked Criteria Map</span>
                                         <span className="chevron-right">›</span>
                                     </div>
-                                </div>
+		                                </div>
+		                                <div className="settings-section">
+		                                    <h4>Criteria and Sub Criteria for Computation</h4>
+		                                    <p className="settings-subtitle">Hospital root criteria and their sub-criteria used for computation helpers.</p>
+		                                    <div className="se-config-list">
+		                                        {hospitalComputeServiceElements.map(se => (
+		                                            <div key={se.se_id} className="se-config-item">
+		                                                <span className="se-id-badge">{se.se_id}</span>
+		                                                <span className="se-name-text">{se.name}</span>
+		                                            </div>
+		                                        ))}
+		                                    </div>
+		                                    <div className="raw-json-container" style={{ marginTop: '10px', maxHeight: '240px', overflowY: 'auto' }}>
+		                                        {hospitalComputeServiceElements.map(se => (
+		                                            <div key={`${se.se_id}-detail`} style={{ marginBottom: '12px' }}>
+		                                                <strong>{se.se_id} – {se.name}</strong>
+		                                                <ul style={{ marginTop: '4px', paddingLeft: '18px' }}>
+		                                                    {se.root_criteria.map(rc => (
+		                                                        <li key={rc.id}>
+		                                                            <div><strong>{rc.id}</strong>: {rc.description}</div>
+		                                                            <div style={{ fontSize: '0.85em', marginLeft: '4px' }}>
+		                                                                Sub-criteria: {rc.sub_criteria.join(', ')}
+		                                                            </div>
+		                                                        </li>
+		                                                    ))}
+		                                                </ul>
+		                                            </div>
+		                                        ))}
+		                                    </div>
+		                                </div>
                                 <div className="settings-section">
                                     <h4>User Info</h4>
                                     <p>Logged in as: <strong>{user?.username || 'Guest'}</strong></p>
