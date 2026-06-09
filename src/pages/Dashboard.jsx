@@ -101,6 +101,24 @@ const normalizeSelectedIds = (selectedIds) => (
         : []
 );
 
+const parseLinkedCriterion = (value) => {
+    const normalized = String(value || '').trim();
+    const match = normalized.match(/^(.*?)-([GB])$/i);
+    return {
+        id: match ? match[1] : normalized,
+        color: match ? match[2].toUpperCase() : '',
+    };
+};
+
+const normalizeLinkedCriteria = (linkedCriteria) => {
+    const uniqueById = new Map();
+    normalizeSelectedIds(linkedCriteria).forEach(value => {
+        const parsed = parseLinkedCriterion(value);
+        if (parsed.id) uniqueById.set(parsed.id, parsed.color ? `${parsed.id}-${parsed.color}` : parsed.id);
+    });
+    return [...uniqueById.values()];
+};
+
 const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, placeholder, autoOpen, onClose, showClearAll = false }) => {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
@@ -204,6 +222,171 @@ const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, 
                 </MenuItem>
             )}
         </Select>
+    );
+});
+
+const LinkedCriteriaMultiSelect = React.memo(({ value, options, onChange, disabled, placeholder, autoOpen, onClose }) => {
+    const [open, setOpen] = useState(Boolean(autoOpen));
+    const [search, setSearch] = useState('');
+    const [hoveredId, setHoveredId] = useState(null);
+    const linkedCriteria = useMemo(() => normalizeLinkedCriteria(value), [value]);
+    const parsedCriteria = useMemo(() => linkedCriteria.map(parseLinkedCriterion), [linkedCriteria]);
+    const selectedIds = useMemo(() => parsedCriteria.map(item => item.id), [parsedCriteria]);
+
+    const filteredOptions = useMemo(() => {
+        const query = search.trim().toLowerCase();
+        if (!query) {
+            const selectedSet = new Set(selectedIds);
+            return [
+                ...options.filter(option => selectedSet.has(option.id)),
+                ...options.filter(option => !selectedSet.has(option.id)).slice(0, 100),
+            ];
+        }
+        return options.filter(option => (
+            option.id.toLowerCase().includes(query)
+            || (option.name && option.name.toLowerCase().includes(query))
+        )).slice(0, 100);
+    }, [options, search, selectedIds]);
+
+    const handleSelectionChange = (nextSelectedIds) => {
+        const colorsById = new Map(parsedCriteria.map(item => [item.id, item.color]));
+        onChange(normalizeSelectedIds(nextSelectedIds).map(id => {
+            const color = colorsById.get(id);
+            return color ? `${id}-${color}` : id;
+        }));
+    };
+
+    const handleColorChange = (criterionId, color) => {
+        onChange(parsedCriteria.map(item => {
+            if (item.id !== criterionId) return item.color ? `${item.id}-${item.color}` : item.id;
+            return color ? `${item.id}-${color}` : item.id;
+        }));
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        setSearch('');
+        setHoveredId(null);
+        onClose?.();
+    };
+
+    return (
+        <div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 4, marginBottom: parsedCriteria.length ? 6 : 0 }}>
+                {parsedCriteria.map(item => (
+                    <span
+                        key={item.id}
+                        onMouseEnter={() => setHoveredId(item.id)}
+                        onMouseLeave={() => setHoveredId(null)}
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: 4,
+                            padding: '2px 6px',
+                            borderRadius: 4,
+                            background: item.color === 'G' ? '#dcfce7' : item.color === 'B' ? '#dbeafe' : '#f1f5f9',
+                            color: item.color === 'G' ? '#166534' : item.color === 'B' ? '#1d4ed8' : '#334155',
+                            fontFamily: 'monospace',
+                        }}
+                    >
+                        {item.id}
+                        {hoveredId === item.id && (
+                            <select
+                                value={item.color}
+                                onMouseDown={(event) => event.stopPropagation()}
+                                onClick={(event) => event.stopPropagation()}
+                                onChange={(event) => handleColorChange(item.id, event.target.value)}
+                                aria-label={`Color for linked criterion ${item.id}`}
+                                style={{ fontSize: '0.8em' }}
+                            >
+                                <option value="">Uncolored</option>
+                                <option value="G">Green</option>
+                                <option value="B">Blue</option>
+                            </select>
+                        )}
+                    </span>
+                ))}
+            </div>
+            <Select
+                multiple
+                value={selectedIds}
+                open={open}
+                onOpen={() => setOpen(true)}
+                onClose={handleClose}
+                disabled={disabled}
+                onChange={(event) => handleSelectionChange(event.target.value)}
+                renderValue={() => (
+                    <span style={{ color: '#64748b', fontSize: '0.9em' }}>
+                        {parsedCriteria.length ? 'Add or remove criteria' : (placeholder || 'None')}
+                    </span>
+                )}
+                variant="standard"
+                disableUnderline
+                fullWidth
+                MenuProps={{
+                    autoFocus: false,
+                    PaperProps: { style: { maxHeight: 350, width: 320 } },
+                }}
+            >
+                <div style={{ padding: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 3, borderBottom: '1px solid #e2e8f0', display: 'flex', gap: 8 }} onClick={(event) => event.stopPropagation()}>
+                    <TextField
+                        size="small"
+                        placeholder="Search..."
+                        value={search}
+                        onChange={(event) => setSearch(event.target.value)}
+                        onKeyDown={(event) => event.stopPropagation()}
+                        style={{ flex: 1 }}
+                        autoFocus
+                    />
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        disabled={selectedIds.length === 0}
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            onChange([]);
+                        }}
+                        style={{ whiteSpace: 'nowrap' }}
+                    >
+                        Clear all
+                    </Button>
+                </div>
+                {filteredOptions.map(option => {
+                    const selectedCriterion = parsedCriteria.find(item => item.id === option.id);
+                    return (
+                    <MenuItem
+                        key={option.id}
+                        value={option.id}
+                        onMouseEnter={() => setHoveredId(option.id)}
+                        onMouseLeave={() => setHoveredId(null)}
+                    >
+                        <Checkbox checked={selectedIds.includes(option.id)} size="small" />
+                        <ListItemText
+                            primary={option.id}
+                            secondary={option.name || ''}
+                            primaryTypographyProps={{ style: { fontFamily: 'monospace', fontSize: '0.9em' } }}
+                            secondaryTypographyProps={{ style: { fontSize: '0.75em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }}
+                        />
+                        {selectedCriterion && hoveredId === option.id && (
+                            <select
+                                value={selectedCriterion.color}
+                                onMouseDown={(event) => event.stopPropagation()}
+                                onClick={(event) => event.stopPropagation()}
+                                onKeyDown={(event) => event.stopPropagation()}
+                                onChange={(event) => handleColorChange(option.id, event.target.value)}
+                                aria-label={`Color for linked criterion ${option.id}`}
+                                style={{ fontSize: '0.8em' }}
+                            >
+                                <option value="">Uncolored</option>
+                                <option value="G">Green</option>
+                                <option value="B">Blue</option>
+                            </select>
+                        )}
+                    </MenuItem>
+                    );
+                })}
+            </Select>
+        </div>
     );
 });
 
@@ -360,6 +543,7 @@ export function Dashboard() {
 	        configBundles,
 	        setConfigBundles,
             configSource,
+            setConfigSource,
             remoteConfigLoading,
             loadRemoteConfig,
 	    } = useApp();
@@ -3666,7 +3850,7 @@ export function Dashboard() {
     };
 
     const handleUpdateLinkedCriteria = (configKey, seId, standardId, criterionId, linkedCriteria) => {
-        const normalizedLinkedCriteria = normalizeSelectedIds(linkedCriteria);
+        const normalizedLinkedCriteria = normalizeLinkedCriteria(linkedCriteria);
         updateActiveConfigBundle((bundle) => {
             const nextConfig = { ...(bundle.config || {}) };
             const list = Array.isArray(nextConfig[configKey]) ? JSON.parse(JSON.stringify(nextConfig[configKey])) : [];
@@ -4921,14 +5105,31 @@ export function Dashboard() {
 									<div className="settings-section">
 										<h4>Facility Type — SE Criteria Overview</h4>
 										<div style={{ fontSize: '0.85rem', color: '#475569', marginTop: '4px', marginBottom: '12px', padding: '8px 12px', backgroundColor: '#f1f5f9', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
-											<strong>Active App Source Strategy:</strong> Remote DHIS2 DataStore
+											<strong>Active App Source Strategy:</strong> {configSource === 'local' ? 'Local bundled JSON files' : 'Remote DHIS2 DataStore'}
 											<br />
 											<span style={{ fontSize: '0.8rem', color: '#64748b' }}>
-												Note: To compare edits or perform a reset, use the <em>View Configuration Mode</em> selector below.
+												This controls the configuration used by the assessment form, tooltips, and scoring.
 											</span>
 										</div>
 
 										<div style={{ display: 'flex', gap: '15px', alignItems: 'center', marginBottom: '15px', flexWrap: 'wrap' }}>
+											<FormControl size="small" style={{ minWidth: '240px' }}>
+												<InputLabel>Actual App Configuration Source</InputLabel>
+												<Select
+													value={configSource}
+													label="Actual App Configuration Source"
+													onChange={(e) => {
+														const nextSource = e.target.value;
+														setConfigSource(nextSource);
+														setOverviewSource(nextSource === 'local' ? 'local' : 'active');
+														setExpandedFacs({});
+														setActiveCellKey(null);
+													}}
+												>
+													<MenuItem value="datastore">Remote DHIS2 DataStore</MenuItem>
+													<MenuItem value="local">Local Bundled JSON</MenuItem>
+												</Select>
+											</FormControl>
 											<FormControl size="small" style={{ minWidth: '240px' }}>
 												<InputLabel>View Configuration Mode</InputLabel>
 												<Select
@@ -5352,7 +5553,7 @@ export function Dashboard() {
 																							}}
 																						>
 																							{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-linked` ? (
-																								<SearchableMultiSelect
+																								<LinkedCriteriaMultiSelect
 																									value={row.linkedCriteria}
 																									options={row.allCriteriaInFacilityType}
 																									onChange={(val) => {
@@ -5361,15 +5562,25 @@ export function Dashboard() {
 																									onClose={() => setActiveCellKey(null)}
 																									placeholder="—"
 																									autoOpen
-																									showClearAll
 																								/>
 																							) : (
-																								<div style={{ maxHeight: '60px', overflowY: 'auto', fontSize: '0.9em', fontFamily: 'monospace', textAlign: 'center', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}>
-																									{row.linkedCriteria.length > 0 ? row.linkedCriteria.map((id, i) => (
-																										<span key={id} style={{ color: id === row.criterionId ? '#c53030' : '#276749' }}>
-																											{id}{i < row.linkedCriteria.length - 1 ? ', ' : ''}
-																										</span>
-																									)) : '—'}
+																								<div style={{ maxHeight: '60px', overflowY: 'auto', fontSize: '0.9em', fontFamily: 'monospace', textAlign: 'center', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 4 }}>
+																									{normalizeLinkedCriteria(row.linkedCriteria).length > 0 ? normalizeLinkedCriteria(row.linkedCriteria).map(value => {
+																										const linked = parseLinkedCriterion(value);
+																										return (
+																											<span
+																												key={value}
+																												style={{
+																													color: linked.color === 'G' ? '#166534' : linked.color === 'B' ? '#1d4ed8' : (linked.id === row.criterionId ? '#c53030' : '#276749'),
+																													background: linked.color === 'G' ? '#dcfce7' : linked.color === 'B' ? '#dbeafe' : 'transparent',
+																													padding: linked.color ? '1px 4px' : 0,
+																													borderRadius: 4,
+																												}}
+																											>
+																												{value}
+																											</span>
+																										);
+																									}) : '—'}
 																								</div>
 																							)}
 																						</td>

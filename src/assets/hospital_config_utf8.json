@@ -5,7 +5,7 @@
       "se_name": "Management and Leadership",
       "sections": [
         {
-          "title": "Governance of the Organisation",
+          "title": "(test)Governance of the Organisation",
           "standards": [
             {
               "criteria": [
@@ -14,7 +14,7 @@
                   "is_root": false,
                   "category": "Basic Process + Patient Care",
                   "severity": 4,
-                  "guideline": "This governance structure refers to the authority(ies) above the level of the Hospital Manager and may include National/Regional/District levels in the public sector together with the Hospital Board, or corporate structures in the private sector including structures such as Head Office, Regional Office, Hospital Board/Board of Directors/ Governance Committees/any other structures that may exist. \nPlease note that full compliance can only be achieved if there is formal evidence of sharing this information with the staff of the organisation. A mere organogram does not render this criterion compliant unless there is a concise description/listing of the key functions of the relevant structures as reflected in this criterion. \nAlso take note that some of this information may be contained in Acts, regulations or directives. In the private sector this information may also be published as a corporate document or on the organisation’s website.\nDocumented evidence is required of a process through which the personnel of the organisation are informed of these responsibilities of the governance structure, e.g. during orientation and induction programmes, staff meetings, information leaflets, memos.",
+                  "guideline": "test This governance structure refers to the authority(ies) above the level of the Hospital Manager and may include National/Regional/District levels in the public sector together with the Hospital Board, or corporate structures in the private sector including structures such as Head Office, Regional Office, Hospital Board/Board of Directors/ Governance Committees/any other structures that may exist. \nPlease note that full compliance can only be achieved if there is formal evidence of sharing this information with the staff of the organisation. A mere organogram does not render this criterion compliant unless there is a concise description/listing of the key functions of the relevant structures as reflected in this criterion. \nAlso take note that some of this information may be contained in Acts, regulations or directives. In the private sector this information may also be published as a corporate document or on the organisation’s website.\nDocumented evidence is required of a process through which the personnel of the organisation are informed of these responsibilities of the governance structure, e.g. during orientation and induction programmes, staff meetings, information leaflets, memos.",
                   "description": "The organisation’s governance structure is described in written documents and is known to the staff of the organisation.",
                   "is_critical": false,
                   "linked_criteria": []
@@ -105,7 +105,8 @@
                   "severity": 4,
                   "guideline": "",
                   "description": "Those responsible for governance receive and act upon reports of the quality programme, at least quarterly.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": []
                 },
                 {
                   "id": "1.1.1.9",
@@ -1892,7 +1893,10 @@
                   "severity": 4,
                   "guidelines": "This indicates some form of publicity and advertising by means of the notice-boards, media, brochures, open days, websites, helpdesk etc.",
                   "description": "Information on services, hours of operation and processes to obtain care are provided to agencies and referral sources in the community, and to the population served.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "1.2.4.2-G"
+                  ]
                 },
                 {
                   "id": "4.1.1.2",
@@ -3473,7 +3477,14 @@
                   "severity": 4,
                   "guidelines": "This is a root criterion for all quality-related criteria in the standards and refers to the existence of organisational structure which support QM&I (quality management and improvement) throughout the entire organisation.This include aspects such as governance responsibilities, documented systems that refer to QM&I aspects, such as strategic plans, QM&I plans, policy framework, coordinating committee structures, training process, etc. Such processes may exist in different formats e.g. a detailed single document, or different documented systems, or electronic modules. Whatever format exists, the intention of the standard is that the “processes” should be comprehensive and reflect all components of quality management and improvement in the organisation.",
                   "description": "There is a system for the implementation of quality management and improvement processes.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "8.1.1.1",
+                    "8.1.1.2",
+                    "8.1.1.3",
+                    "8.1.1.4",
+                    "8.1.1.6"
+                  ]
                 },
                 {
                   "id": "8.1.1.2",
@@ -3934,7 +3945,20 @@
                   "severity": 4,
                   "guidelines": "A formal process should be followed to identify and assess risks in the organisation, analyse the risks, formulate a risk management plan and continually evaluate the effectiveness of the plan. Evidence of implementation (policies, guidelines, training, protective devices and monitoring of the implementation) must be available.",
                   "description": "The organisation has identified those processes associated with infection risk and implemented strategies to reduce such risk.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "7.1.1.7",
+                    "10.12.1.1",
+                    "11.12.1.1",
+                    "12.12.1.1",
+                    "13.12.1.1",
+                    "14.12.1.1",
+                    "15.12.1.1",
+                    "16.12.1.1",
+                    "17.8.1.1",
+                    "18.7.1.1",
+                    "19.5.1.1"
+                  ]
                 },
                 {
                   "id": "9.2.1.2",
@@ -5321,7 +5345,15 @@
                   "severity": 4,
                   "guidelines": "The organisation begins to plan for the patients’ continuing needs as early in the care process as possible. Instructions for discharge and follow-up visits must be clear and provided in writing. The discharge summary is one of the most important documents to ensure continuity of care and facilitate correct management at subsequent visits. Information provided by the organisation may include when to resume daily activities, preventive practices relevant to the patient’s condition and, when appropriate, information on coping with disease or disability. The summary contains at least a) the reason for admission b) the diagnosis of main and significant illnesses c) the results of investigations that will influence further management d) all procedures performed e) the patient’s condition at discharge f) discharge medications and g) follow-up arrangements. There is a documented process to appropriately discharge patients. The organisation works with the family, health practitioners and agencies outside the organisation to ensure timely and appropriate discharge. Compliance for this criterion and the following will be verified through patient record audits families are given Patients and, as appropriate, understandable follow-up instructions and this is noted in the patient’s record. their The follow-up instructions may be provided to the patient by the doctor or by the nurse, following instructions from the doctor. The instructions should include medications, wound care, possible complications, return for follow-up care, when and where to obtain urgent care, etc. A discharge summary, which includes at least items a) to g) in the intent statement, is written, by the medical practitioner when each patient is discharged. This criterion and the next apply to the discharge summary completed by the medical practitioner and not to the nurses' discharge note. Where a discharge summary has only been partially completed i.e. does not include all items a) to g) it will be scored PC. A nurse's discharge note is not acceptable and is scored NC. Each record contains a copy of the discharge summary.",
                   "description": "The health organisation agreeing to receive the patient, is noted in the patient’s record.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "10.9.3.1",
+                    "10.9.3.2",
+                    "10.9.3.3",
+                    "10.9.3.4",
+                    "10.9.3.5",
+                    "10.9.3.7"
+                  ]
                 },
                 {
                   "id": "10.9.3.2",
@@ -6739,7 +6771,15 @@
                   "severity": 4,
                   "guidelines": "Standard Intent The organisation begins to plan for the patients’ continuing needs as early in the care process as possible. Instructions for discharge and follow-up visits must be clear and provided in writing. The discharge summary is one of the most important documents to ensure continuity of care and facilitate correct management at subsequent visits. Information provided by the organisation may include when to resume daily activities, preventive practices relevant to the patient’s condition and, when appropriate, information on coping with disease or disability. The summary contains at least: a) the reason for admission b) the diagnosis of main and significant illnesses c) the results of investigations that will influence further management d) all procedures performed e) the patient’s condition at discharge f) discharge medications g) follow-up arrangements. There is a documented process to appropriately discharge patients. The organisation works with the family, health practitioners and agencies outside the organisation to ensure timely and appropriate discharge. Compliance for this criterion and the following will be verified through patient record audits families are given Patients and, as appropriate, understandable follow-up instructions and this is noted in the patient’s record. their The follow-up instructions may be provided to the patient by the doctor or by the nurse, following instructions from the doctor. The instructions should include medications, wound care, possible complications, return for follow-up care, when and where to obtain urgent care, etc. A discharge summary, which includes at least items a) to g) in the intent statement, is written by the medical practitioner when each patient is discharged. This criterion and the next apply to the discharge summary completed by the medical practitioner and not to the nurses' discharge note. Where a discharge summary has only been partially completed i.e. does not include all items a) to g) it will be scored PC. A nurse's discharge note is not acceptable and is scored NC. Each record contains a copy of the discharge summary",
                   "description": "The health organisation agreeing to receive the patient is noted in the patient’s record.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "11.9.3.1",
+                    "11.9.3.2",
+                    "11.9.3.3",
+                    "11.9.3.4",
+                    "11.9.3.5",
+                    "11.9.3.7"
+                  ]
                 },
                 {
                   "id": "11.9.3.2",
@@ -8149,7 +8189,15 @@
                   "severity": 4,
                   "guidelines": "Standard Intent The organisation begins to plan for the patients’ continuing needs as early in the care process. Instructions for discharge and follow-up visits must be clear and provided in writing. The discharge summary is one of the most important documents to ensure continuity of care and facilitate correct management at subsequent visits. Information provided by the organisation may include when to resume daily activities, preventive practices relevant to the patient’s condition and, when appropriate, information on coping with disease or disability. The summary contains at least: a) the reason for admission b) the diagnosis of main and significant illnesses c) the results of investigations that will influence further management d) all procedures performed e) the patient’s condition at discharge f) discharge medications g) follow-up arrangements. There is a documented process to appropriately discharge patients. The organisation works with the family, health practitioners and agencies outside the organisation to ensure timely and appropriate discharge. Compliance for this criterion and the following will be verified through patient record audits Patients and, as appropriate, families are given understandable follow-up instructions and this is noted in the patient’s record. their The follow-up instructions may be provided to the patient by the doctor or by the nurse, following instructions from the doctor. The instructions should include medications, wound care, possible complications, return for follow-up care, when and where to obtain urgent care, etc. A discharge summary, which includes at least items a) to g) in the intent statement, is written, by the medical practitioner when each patient is discharged. This criterion and the next apply to the discharge summary completed by the medical practitioner and not to the nurses' discharge notes. Where a discharge summary has only been partially completed, i.e. does not include all items a) to g) it will be scored PC. A nurse's discharge notes are not acceptable and is scored NC. Each record contains a copy of the discharge summary.",
                   "description": "The health organisation agreeing to receive the patient is noted in the patient’s record.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "12.9.3.1",
+                    "12.9.3.2",
+                    "12.9.3.3",
+                    "12.9.3.4",
+                    "12.9.3.5",
+                    "12.9.3.7"
+                  ]
                 },
                 {
                   "id": "12.9.3.2",
@@ -11059,7 +11107,15 @@
                   "severity": 4,
                   "guidelines": "Standard Intent The organisation begins to plan for the patients’ continuing needs as early in the care process as possible. Instructions for discharge and follow-up visits must be clear and provided in writing. The discharge summary is one of the most important documents to ensure continuity of care and facilitate correct management at subsequent visits. Information provided by the organisation may include when to resume daily activities, preventive practices relevant to the patient’s condition and, when appropriate, information on coping with disease or disability. The summary contains at least; a) the reason for admission b) the diagnosis of main and significant illnesses c) the results of investigations that will influence further management d) all procedures performed e) the patient’s condition at discharge f) discharge medications g) follow-up arrangements. There is a documented process to appropriately discharge patients. The organisation works with the family, health practitioners and agencies outside the organisation to ensure timely and appropriate discharge. Compliance for this criterion and the following will be verified through patient record audits, Patients and, as appropriate, families are given understandable follow-up instructions and this is noted in the patient’s record. their The follow-up instructions may be provided to the patient by the doctor or by the nurse, following instructions from the doctor. The instructions should include medications, wound care, possible complications, return for follow-up care, when and where to obtain urgent care, etc. A discharge summary, which includes at least items a) to g) in the intent statement, is written, by the medical practitioner when each patient is discharged. This criterion and the next apply to the discharge summary completed by the medical practitioner and not to the nurses' discharge note. Where a discharge summary has only been partially completed i.e. does not include all items a) to g) it will be scored PC. A nurse's discharge note is not acceptable and is scored NC. Each record contains a copy of the discharge summary.",
                   "description": "The health organisation agreeing to receive the patient is noted in the patient’s record.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "14.9.3.1",
+                    "14.9.3.2",
+                    "14.9.3.3",
+                    "14.9.3.4",
+                    "14.9.3.5",
+                    "14.9.3.7"
+                  ]
                 },
                 {
                   "id": "14.9.3.2",
@@ -12513,7 +12569,15 @@
                   "severity": 4,
                   "guidelines": "Standard Intent The organisation begins to plan for the patients’ continuing needs as early in the care process as possible. Instructions for discharge and follow-up visits must be clear and provided in writing. The discharge summary is one of the most important documents to ensure continuity of care and facilitate correct management at subsequent visits. Information provided by the organisation may include when to resume daily activities, preventive practices relevant to the patient’s condition and, when appropriate, information on coping with disease or disability. The summary contains at least a) the reason for admission b) the diagnosis of main and significant illnesses c) the results of investigations that will influence further management d) all procedures performed e) the patient’s condition at discharge f) discharge medications g) follow-up arrangements. There is a documented process to appropriately discharge patients. The organisation works with the family, health practitioners and agencies outside the organisation to ensure timely and appropriate discharge. Compliance for this criterion and the following will be verified through patient record audits. families are given Patients and, as appropriate, understandable follow-up instructions and this is noted in the patient’s record. their The follow-up instructions may be provided to the patient by the medical practitioner or by the nurse, following instructions from the doctor. The instructions should include medications, possible complications, return for follow- up care, when and where to obtain urgent care, etc. A discharge summary, which includes at least items a) to g) in the intent statement, is written, by the medical practitioner, at discharge of each patient. This criterion and the next apply to the discharge summary completed by the medical practitioner and not to the nurses' discharge note. Where a discharge summary has only been partially completed i.e. does not include all items a) to g) it will be scored PC. A nurse's discharge note is not acceptable and is scored NC.",
                   "description": "The health organisation agreeing to receive the patient, is noted in the patient’s record.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "15.9.3.1",
+                    "15.9.3.2",
+                    "15.9.3.3",
+                    "15.9.3.4",
+                    "15.9.3.5",
+                    "15.9.3.7"
+                  ]
                 },
                 {
                   "id": "15.9.3.2",
@@ -14048,7 +14112,15 @@
                   "severity": 4,
                   "guidelines": "Standard Intent The organisation begins to plan for the patients' continuing needs as early in the care process as possible. Instructions for discharge and follow-up visits must be clear and provided in writing. The discharge summary is one of the most important documents to ensure continuity of care and facilitate correct management at subsequent visits. Information provided by the organisation may include when to resume daily activities, preventive practices relevant to the patient's condition and, when appropriate, information on coping with disease or disability. The summary contains at least: a) the reason for admission b) the diagnosis of main and significant illnesses c) the results of investigations that will influence further management d) all procedures performed e) the patient's condition at discharge f) discharge medications and g) follow-up arrangements. patients. The organisation works with the family, health practitioners and agencies outside the organisation to ensure timely and appropriate discharge. Compliance for this criterion and the following will be verified through patient record audits Patients and, as appropriate, families are given understandable follow-up instructions and this is noted in the patient's record. their The follow-up instructions may be provided to the patient by the doctor or by the nurse, following instructions from the doctor. The instructions should include medications, wound care, possible complications, return for follow-up care, when and where to obtain urgent care, etc. A discharge summary, which includes at least items a) to g) in the intent statement, is written, by the medical practitioner when each patient is discharged. This criterion and the next apply to the discharge summary completed by the medical practitioner and not to the nurses' discharge note. Where a discharge summary has only been partially completed i.e. does not include all items a) to g) it will be scored PC. A nurse's discharge note is not acceptable and is scored NC. Each record contains a copy of the discharge summary.",
                   "description": "The health organisation or other internal unit agreeing to receive the patient, is noted in the patient's record.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "16.9.3.1",
+                    "16.9.3.2",
+                    "16.9.3.3",
+                    "16.9.3.4",
+                    "16.9.3.5",
+                    "16.9.3.7"
+                  ]
                 },
                 {
                   "id": "16.9.3.2",
@@ -14640,7 +14712,15 @@
                   "severity": 3,
                   "guidelines": "The glossary defines biohazards as infectious agents or hazardous biological materials that present a risk or potential risk to the health of humans, animals or the environment. The risk can be direct (through infection) or indirect (through damage to environment). Biohazardous materials include certain types of recombinant DNA; organisms and viruses infectious to humans, animals or plants (e.g. parasites, viruses, bacteria, fungi, prions, rickettsiae) and biologically active agents (i.e. toxins, allergens, venoms) that may cause disease in other living organisms or cause significant damage to the environment or community. Biological materials not generally considered to be biohazardous may be designated as biohazardous materials by regulations and guidelines, e.g., the Centre for Disease Control classifies tuberculosis as a level 3 biohazard. Assessment of compliance will depend upon the type of institution and the types of procedures undertaken. Generally, the assessor should check whether the policy covers all potential hazards, particularly as they relate to the handling of specimens, the disposal of medical waste and the preventive measures to be taken by personnel in respect of hand washing and protective clothing. How are potentially hazardous substances marked? Is the international biological hazard symbol displayed? Linked criterion: 7.1.1.1 Policies and procedures that relate to medications identified for special control by law or organisational policy are implemented. Relevant laws and regulations will determine the nature of these medications. Linked criterion: 21.5.1.11 Policies and procedures that relate to patient positioning are implemented. Policies and procedures are developed relating to the preparation of patients for surgery. Standard Intent Policies and procedures are available to ensure that informed consent is documented and the patient is correctly identified; they also make sure that the nature of surgery and the site are correctly documented. Processes during the surgery, such as the instruments and counting procedures, are documented to ensure use of Coordination and safety. The availability of relevant policies and procedures, as well as their implementation, will be assessed. Policies and procedures relating to the scheduling of patients for listed and emergency surgical procedures are implemented. Policies and procedures relating to the patient identification are implemented. Linked criterion: 7.2.1.1 Policies and procedures relating to the verification of the nature and site of the operation are implemented. Linked criterion: 7.2.4.1 17.9.1.1 Policies and procedures relating to the verification of the last oral intake are implemented. Policies and procedures relating to the checking of consent documents are implemented. Policies and procedures relating to specifying the instruments required for specific operations are implemented. Policies and procedures relating to aseptic techniques are implemented. Policies and procedures relating to intra-operative recording required are implemented. Linked criterion: 17.6.1.4 Policies and procedures relating to the recording of tissue(s) and specimen(s) collected are implemented. Linked criterion: 17.6.1.4 Policies and procedures are developed relating to the anaesthetic service. Standard Intent Guidelines of professional societies and associations are available and followed whenever anaesthesia is administered. Implementing these guidelines is particularly important with regard to the qualifications, training and experience needed by personnel in the service. This includes the nurses who assist the anaesthetist and who monitor the recovery of patients. Implementing these guidelines is also particularly important with regard to the provision, maintenance and use of medical equipment and drugs. Controlling bodies also develop guidelines and regulations relating to professional practice. Where national guidelines exist, these will be taken into account. The availability of relevant policies and procedures, as well as their implementation, will be assessed. Policies and procedures relating to the required qualifications of persons who administer anaesthetics and of persons who assist the anaesthetist are implemented. Policies and procedures relating to the pre-operative assessment and pre-medication are implemented. Policies and procedures relating to the administration of anaesthesia are implemented. Policies and procedures relating to assessing the fitness of patients to leave the recovery area are implemented. This must be assessed together with the criteria related to standard 17.5.3 which states “there is a system to monitor and document each patient’s post-anaesthetic status and to discharge the patient from the recovery area according to accepted guidelines.” The policy must state clearly who assesses the fitness of the patient to leave the recovery area and what criteria are applied. Policies and procedures comply with current guidelines of relevant professional bodies. Is a copy of the guidelines of the professional body available or is there a copy of another reputable guideline, which is used as the basis for the organisation’s policies and procedures? Policies and procedures guide the care of patients undergoing moderate and deep sedation. Standard Intent Sedation in particular moderate and deep sedation poses risks to patients and thus needs to be provided using clear definitions, policies and procedures. The degrees of sedation occur on a continuum, and a patient may progress from one degree to another, based on the medications administered, route and dosages. Important considerations include the patient’s ability to maintain protective reflexes, an independent, continuous patent airway; and to respond to physical stimulation or verbal commands. Sedation policies and procedures indicate: a) how planning will occur, and will include the identification of differences between adult and paediatric populations, or other special considerations b) documentation required for the care team to work and communicate effectively c) special content considerations, if appropriate d) patient monitoring requirements e) special qualifications or skills of staff involved in sedation processes f) the availability and use of specialised equipment. Policies and procedures that address at least, elements a) to f) of the intent statement regarding the care of patients undergoing moderate and deep sedation are implemented. This refers to the policies, procedures and arrangements that need to be in place when performing procedures under conscious sedation. This type of sedation may be performed in theatre, or in a procedure room e.g. in emergency room (ER), therefore also refer to standard 22.8.2.",
                   "description": "Policies and procedures that relate to theatre cleaning are implemented.",
-                  "is_critical": true
+                  "is_critical": true,
+                  "linked_criteria": [
+                    "17.4.1.1",
+                    "17.4.1.2",
+                    "17.4.1.4",
+                    "17.4.1.5",
+                    "17.4.1.6",
+                    "17.4.1.7"
+                  ]
                 },
                 {
                   "id": "17.4.1.2",
@@ -15451,7 +15531,16 @@
                   "severity": 4,
                   "guidelines": "There is a shower available in the event of contamination. Separate toilets for staff and patients are available. Signs warning of the dangers of radiation to pregnant and breast- feeding women are prominently displayed. Radio-pharmaceuticals intended for administration to patients are prepared in a manner which satisfies both radiation safety and pharmaceutical quality requirements. Standard Intent Sound quality control systems are essential to providing excellent nuclear medicine services. Quality control procedures include:  validation of the procedures used  daily surveillance of results by a nuclear medicine physician  rapid corrective action, when a deficiency is identified  documentation of results and corrective actions. Appropriate aseptic precautions are taken. Regular and frequent gamma camera quality control procedures (e.g. flood uniformities, centre-of-rotation) are attended to or supervised by the medical physicist. The radio-pharmacy is designed to ensure that the history of each radio-pharmaceutical dose can be traced. Linked criterion: 1.2.1.4 18.3.5.9, 18.8.1.1. Radio-pharmaceuticals are only dispensed on written request. All details of each Tc-99m generator are recorded, including full details of each elution. Facilities are available for the quality control of all kits, reconstituted on the premises. There are separate facilities for the radio labelling of blood products. Blood products are labelled in a workstation with filtered air (at least a vertical laminar flow unit of biohazard type) to protect the product and designed the operator against to protect contamination. All containers with radioactivity are labelled according to specifications, stating that the contents are radioactive and indicating the activity and the date. : Linked criterion: 18.3.5.3 The management of organ disease using open radio-nuclides is practised taking into account the safety and well-being of patients and staff, as a consequence of the high radiation levels. Standard Intent Where open radio-nuclides are used, all staff and patients in the organisation are protected from exposure to radiation by following established guidelines, which are formulated by experts in the field. Supervision ensures that the guidelines are adhered to. Where radioactive material administered to the patient exceeds a level of 370 MBq (10mCi), it is administered by the nuclear physician or radiation oncologist only. Where radioactive material administered to the patient exceeds a level of 370 MBq (10mCi), there is an en-suite ward approved by the medical physicist for the isolation of the patient. In the event that the approved ward is not available, any alternative ward for the isolation of the therapy patients is also approved by the medical physicist. A radiation survey of the ward, used for the isolation of the patient and adjacent areas, is conducted according to the requirements of the physicist immediately after the administration of the radioactive material. The isolated patient is monitored regularly during the isolation period. On discharge of the patient, who has been isolated, the ward, the bedding and the bathroom are monitored, according to the requirements of the physicist. Orally administered radio-iodine is always in capsule form. Radio-iodine by injection (e.g. MIGB) is administered only by the nuclear physician or radiation oncologist. A fume hood is used if liquid radio-iodine is being prepared, and the staff preparing the radio-iodine is adequately protected.",
                   "description": "Requirements laid down by the Department of Radiation regarding a controlled area are complied with.",
-                  "is_critical": true
+                  "is_critical": true,
+                  "linked_criteria": [
+                    "18.3.1.1",
+                    "18.3.1.2",
+                    "18.3.1.4",
+                    "18.3.1.5",
+                    "18.3.1.6",
+                    "18.3.1.7",
+                    "18.3.1.8"
+                  ]
                 },
                 {
                   "id": "18.3.1.2",
@@ -16848,7 +16937,16 @@
                   "severity": 3,
                   "guidelines": "Linked criterion:",
                   "description": "There is a quality control process for the clinical laboratory.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "19.3.2.1",
+                    "19.3.2.2",
+                    "19.3.2.3",
+                    "19.3.2.4",
+                    "19.3.2.5",
+                    "19.3.2.6",
+                    "19.3.2.7"
+                  ]
                 },
                 {
                   "id": "19.3.2.2",
@@ -19267,7 +19365,13 @@
                   "severity": 4,
                   "guidelines": "Root criterion for all criteria in standards 22.9.1, 22.9.2 and 22.9.3 These policies need to  be developed by all  the role players  i.e. medical practitioners, nurses and pharmacists. National regulations will apply. Compliance will be verified during the patient record audit. Linked criteria:",
                   "description": "Policies  and  procedures  that  guide  the  safe  prescribing,  ordering, storage,  dispensing  and  administration  of  medications  are implemented.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "22.9.1.1",
+                    "22.9.1.2",
+                    "22.9.1.3",
+                    "22.9.1.5"
+                  ]
                 },
                 {
                   "id": "22.9.1.2",
@@ -19575,7 +19679,14 @@
                   "severity": 3,
                   "guidelines": "Root criterion Linked criterion:",
                   "description": "Policies and procedures that address the holding of patients for observation are implemented.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "22.11.2.1",
+                    "22.11.2.2",
+                    "22.11.2.4",
+                    "22.11.2.5",
+                    "22.11.2.6"
+                  ]
                 },
                 {
                   "id": "22.11.2.2",
@@ -19695,7 +19806,16 @@
                   "severity": 4,
                   "guidelines": "Root criterion",
                   "description": "There is a documented process for transferring patients to other organisations for specialised and support services.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "22.11.5.1",
+                    "22.11.5.2",
+                    "22.11.5.3",
+                    "22.11.5.4",
+                    "22.11.5.5",
+                    "22.11.5.6",
+                    "22.11.5.8"
+                  ]
                 },
                 {
                   "id": "22.11.5.2",
@@ -20480,7 +20600,12 @@
                   "severity": 4,
                   "guidelines": "This section refers to all instances where patients give informed consent and compliance will be verified during the patient record audit. If consent was not required for the patient records audited, this whole standard becomes NA. An assessment is made of the provision of an organisational consent form and the completion of this form when indicated. This section will be scored NC if written consent is indicated but suitable forms are not used. When 23.6.1.4 is scored PC or NC because the available consent form has not been completed correctly, this criterion will be scored PC because the process has not been implemented.",
                   "description": "There is a documented process for the obtaining of informed consent. .",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "23.6.1.1",
+                    "23.6.1.2",
+                    "23.6.1.3"
+                  ]
                 },
                 {
                   "id": "23.6.1.2",
@@ -20991,7 +21116,15 @@
                   "severity": 4,
                   "guidelines": "Standard Intent The organisation begins to plan for the patients’ continuing needs as early in the care process as possible. Instructions for discharge and follow up care at another facility e.g. primary health clinic must be clear and provided in writing. The discharge note is one of the most important documents to ensure continuity of care and facilitate correct management at subsequent visits. Information provided by the organisation may include when to resume daily activities, preventive practices relevant to the patient’s condition and, when appropriate, information on coping with disease or disability. The note contains at least the diagnosis of main and significant illnesses. the results of investigations that will influence further management    all procedures performed   discharge medications and follow-up arrangements. the patient’s condition at discharge There is a documented process to appropriately discharge patients. Linked criterion: 1.2.5.4 The organisation works with the family, health practitioners and agencies outside the organisation to ensure timely and appropriate discharge. Compliance for this criterion and the following will be verified through patient record audits. Patients and, as appropriate, families are given understandable follow-up instructions and this is noted in the patient’s record. their The follow up instructions may be provided to the patient by the doctor or by the nurse, following instructions from the doctor. The instructions should include medications, wound care, possible complications, return for follow-up care, when and where to obtain urgent care, etc. A discharge note which includes at least items a) to e) in the intent statement, is written by the medical practitioner when each patient is discharged. Each record contains a copy of the discharge summary.",
                   "description": "The health organisation agreeing to receive the patient is noted in the patient’s record.",
-                  "is_critical": true
+                  "is_critical": true,
+                  "linked_criteria": [
+                    "23.9.4.1",
+                    "23.9.4.2",
+                    "23.9.4.3",
+                    "23.9.4.4",
+                    "23.9.4.5",
+                    "23.9.4.7"
+                  ]
                 },
                 {
                   "id": "23.9.4.2",
@@ -22793,7 +22926,16 @@
                   "severity": 4,
                   "guidelines": "Root criterion",
                   "description": "There is a documented process for transferring patients to other organisations.",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "24.11.5.1",
+                    "24.11.5.2",
+                    "24.11.5.3",
+                    "24.11.5.4",
+                    "24.11.5.5",
+                    "24.11.5.6",
+                    "24.11.5.8"
+                  ]
                 },
                 {
                   "id": "24.11.5.2",
@@ -23544,7 +23686,14 @@
                   "severity": 4,
                   "guidelines": "",
                   "description": ", 26.2.2.1, 26.2.2.2",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "26.2.1.1",
+                    "26.2.1.2",
+                    "26.2.1.3",
+                    "26.2.1.4",
+                    "26.2.1.5"
+                  ]
                 },
                 {
                   "id": "26.2.1.2",
@@ -26487,7 +26636,13 @@
                   "category": "Basic Process + Patient Care",
                   "severity": 2,
                   "description": "Critical: ¨",
-                  "is_critical": false
+                  "is_critical": false,
+                  "linked_criteria": [
+                    "32.5.1.1",
+                    "32.5.1.2",
+                    "32.5.1.3",
+                    "32.5.1.5"
+                  ]
                 },
                 {
                   "id": "32.5.1.2",
