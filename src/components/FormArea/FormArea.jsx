@@ -192,6 +192,25 @@
         return SEVERITY_LABELS[sevNumber] || `Severity ${sevNumber}`;
     };
 
+    const buildConfiguredDisplayLabel = (rawLabel, normalizedCode, configuredText) => {
+        const text = String(configuredText || '').trim();
+        if (!text) return rawLabel || 'Unnamed Field';
+
+        const code = String(normalizedCode || '').trim();
+        const label = String(rawLabel || '').trim();
+        if (!code) return text;
+
+        if (label.startsWith(code)) {
+            const remainder = label.slice(code.length);
+            const separatorIndex = remainder.indexOf('-');
+            if (separatorIndex >= 0 && separatorIndex <= 40) {
+                return `${code}${remainder.slice(0, separatorIndex + 1)}${text}`;
+            }
+        }
+
+        return `${code} ${text}`;
+    };
+
         // Renders a label in italics when it represents a numeric
         // **standard** (x.x.x). Criterion questions (x.x.x.x) stay normal.
         // Other labels are returned unchanged.
@@ -2365,6 +2384,14 @@
                                 // simple "Comment" label, without repeating the code
                                 // or description.
                                 return 'Comment';
+                            }
+
+                            if (isStandardCriterion && configEntry.statement) {
+                                return buildConfiguredDisplayLabel(rawLabel, normalizedCode, configEntry.statement);
+                            }
+
+                            if (isCriterionQuestion && configEntry.description) {
+                                return buildConfiguredDisplayLabel(rawLabel, normalizedCode, configEntry.description);
                             }
 
                         // For Assessment Details, show only the human-friendly

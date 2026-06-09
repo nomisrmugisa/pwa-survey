@@ -431,7 +431,7 @@ const buildRootMap = (computeCriteria) => {
     return rootMap;
 };
 
-const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, rootMap) => (
+const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, rootMap, linksByCriterion = {}) => (
     serviceElements.flatMap(se => {
         const allStandards = (se.sections || []).flatMap(section =>
             (section.standards || []).map(standard => ({ id: standard.standard_id, name: standard.standard_id }))
@@ -439,7 +439,6 @@ const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, 
         const allCriteriaInSE = criterionOptionsFor([se]);
         const standardGroups = (se.sections || []).flatMap(section =>
             (section.standards || []).map(standard => {
-                const standardCriteriaIds = (standard.criteria || []).map(c => c.id).filter(Boolean);
                 const rows = (standard.criteria || []).map(criterion => ({
                     seId: se.se_id,
                     seDescription: se.se_description || se.description || se.se_name || se.name || '',
@@ -450,7 +449,7 @@ const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, 
                     criterionDescription: criterion.description || '',
                     guidelines: criterion.guidelines || criterion.guideline || '',
                     isCritical: criterion.is_critical,
-                    linkedCriteria: criterion.linked_criteria || standardCriteriaIds,
+                    linkedCriteria: linksByCriterion[criterion.id] || criterion.linked_criteria || [],
                     isRoot: typeof criterion.is_root === 'boolean'
                         ? criterion.is_root
                         : !!rootMap[criterion.id],
@@ -3853,6 +3852,7 @@ export function Dashboard() {
         const normalizedLinkedCriteria = normalizeLinkedCriteria(linkedCriteria);
         updateActiveConfigBundle((bundle) => {
             const nextConfig = { ...(bundle.config || {}) };
+            const nextLinks = { ...(bundle.links || {}) };
             const list = Array.isArray(nextConfig[configKey]) ? JSON.parse(JSON.stringify(nextConfig[configKey])) : [];
             const se = list.find(s => s.se_id === seId);
             if (se) {
@@ -3866,7 +3866,24 @@ export function Dashboard() {
                 });
             }
             nextConfig[configKey] = list;
-            return { ...bundle, config: nextConfig };
+
+            const linksKey = configKey.replace('_full_configuration', '');
+            const facilityLinks = Array.isArray(nextLinks[linksKey])
+                ? JSON.parse(JSON.stringify(nextLinks[linksKey]))
+                : [];
+            const existingLink = facilityLinks.find(item => item?.criteria === criterionId);
+            if (existingLink) {
+                existingLink.linked_criteria = normalizedLinkedCriteria;
+            } else {
+                facilityLinks.push({
+                    criteria: criterionId,
+                    root: [],
+                    linked_criteria: normalizedLinkedCriteria,
+                });
+            }
+            nextLinks[linksKey] = facilityLinks;
+
+            return { ...bundle, config: nextConfig, links: nextLinks };
         });
         setConfigRevision(r => r + 1);
     };
@@ -4066,6 +4083,12 @@ export function Dashboard() {
 		            ems_full_configuration: emsConfig.ems_full_configuration,
 		            mortuary_full_configuration: mortuaryConfig.mortuary_full_configuration,
 		        };
+                const activeLinks = overviewSource === 'active' ? currentLinks : {
+                    hospital: decorateHospitalLinksWithMatrixTags(hospitalLinks),
+                    clinics: clinicsLinks,
+                    ems: emsLinks,
+                    mortuary: mortuaryLinks,
+                };
 		        const rootMap = buildRootMap(currentComputeCriteria);
 		        return [
 		            { type: 'Hospital', config: activeConfig, key: 'hospital_full_configuration' },
@@ -4074,6 +4097,12 @@ export function Dashboard() {
 		            { type: 'Mortuary', config: activeConfig, key: 'mortuary_full_configuration' },
 		        ].map(({ type, config, key }) => {
 		            const seList = Array.isArray(config?.[key]) ? config[key] : [];
+                    const facilityLinks = activeLinks[String(type || '').toLowerCase()] || [];
+                    const linksByCriterion = Object.fromEntries(
+                        facilityLinks
+                            .filter(item => item?.criteria)
+                            .map(item => [item.criteria, Array.isArray(item.linked_criteria) ? item.linked_criteria : []])
+                    );
                     const searchQuery = String(settingsFacilitySearches[type] || '').trim().toLowerCase();
                     const filteredSeList = searchQuery
                         ? seList.map(se => ({
@@ -4100,7 +4129,7 @@ export function Dashboard() {
                         : [];
 		            const allCriteriaInFacilityType = isExpanded ? criterionOptionsFor(seList) : [];
 		            const rows = isExpanded
-                        ? rowsForFacility(visibleSeList, key, allCriteriaInFacilityType, rootMap)
+                        ? rowsForFacility(visibleSeList, key, allCriteriaInFacilityType, rootMap, linksByCriterion)
                         : [];
 		            return {
 		                type,
@@ -4116,7 +4145,7 @@ export function Dashboard() {
                         totalPages,
 		            };
 		        });
-		    }, [overviewSource, currentConfig, currentComputeCriteria, expandedFacs, settingsFacilityPages, settingsFacilitySearches]);
+		    }, [overviewSource, currentConfig, currentLinks, currentComputeCriteria, expandedFacs, settingsFacilityPages, settingsFacilitySearches]);
 
     // Filter events
     const filteredEvents = useMemo(() => {
