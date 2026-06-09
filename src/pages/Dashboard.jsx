@@ -95,9 +95,16 @@ const SURVEY_PROGRAM_STAGE_BY_GROUP = {
     PAEDIATRIC: 'paeStageU11'
 };
 
+const normalizeSelectedIds = (selectedIds) => (
+    Array.isArray(selectedIds)
+        ? [...new Set(selectedIds.filter(id => typeof id === 'string' && id.trim() !== ''))]
+        : []
+);
+
 const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, placeholder, autoOpen, onClose, showClearAll = false }) => {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
+    const selectedIds = useMemo(() => normalizeSelectedIds(value), [value]);
 
     useEffect(() => {
         if (autoOpen) {
@@ -114,7 +121,7 @@ const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, 
     const filteredOptions = useMemo(() => {
         const query = search.trim().toLowerCase();
         if (!query) {
-            const selectedSet = new Set(value || []);
+            const selectedSet = new Set(selectedIds);
             const selectedList = options.filter(opt => selectedSet.has(opt.id));
             const remainingList = options.filter(opt => !selectedSet.has(opt.id)).slice(0, 100);
             return [...selectedList, ...remainingList];
@@ -123,17 +130,17 @@ const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, 
             opt.id.toLowerCase().includes(query) || 
             (opt.name && opt.name.toLowerCase().includes(query))
         ).slice(0, 100);
-    }, [search, options, value]);
+    }, [search, options, selectedIds]);
 
     return (
         <Select
             multiple
-            value={value || []}
+            value={selectedIds}
             open={open}
             onOpen={() => setOpen(true)}
             onClose={handleClose}
             disabled={disabled}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => onChange(normalizeSelectedIds(e.target.value))}
             renderValue={(selected) => (
                 <span style={{ fontFamily: 'monospace', fontSize: '0.95em' }}>
                     {selected.length > 0 ? selected.join(', ') : (placeholder || 'None')}
@@ -168,7 +175,7 @@ const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, 
                     <Button
                         size="small"
                         variant="outlined"
-                        disabled={(value || []).length === 0}
+                        disabled={selectedIds.length === 0}
                         onClick={(e) => {
                             e.stopPropagation();
                             onChange([]);
@@ -182,7 +189,7 @@ const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, 
             </div>
             {filteredOptions.map((opt) => (
                 <MenuItem key={opt.id} value={opt.id}>
-                    <Checkbox checked={(value || []).includes(opt.id)} size="small" />
+                    <Checkbox checked={selectedIds.includes(opt.id)} size="small" />
                     <ListItemText 
                         primary={opt.id} 
                         secondary={opt.name || ''} 
@@ -205,6 +212,7 @@ const SETTINGS_TABLE_HEADERS = [
     { label: 'SE Description', minWidth: 220, align: 'center' },
     { label: 'Standard', minWidth: 70, align: 'center' },
     { label: 'Statement', minWidth: 300, align: 'center' },
+    { label: 'Intent', minWidth: 300, align: 'center' },
     { label: 'Criterion', minWidth: 80, align: 'center' },
     { label: 'Criterion Description', minWidth: 280, align: 'center' },
     { label: 'Root', minWidth: 50, align: 'center' },
@@ -253,7 +261,8 @@ const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, 
                     seId: se.se_id,
                     seDescription: se.se_description || se.description || se.se_name || se.name || '',
                     standardId: standard.standard_id,
-                    statement: standard.statement || standard.intent || standard.intent_tooltip || '',
+                    statement: standard.statement || '',
+                    intent: standard.intent_tooltip || standard.intent || '',
                     criterionId: criterion.id,
                     criterionDescription: criterion.description || '',
                     guidelines: criterion.guidelines || criterion.guideline || '',
@@ -1096,6 +1105,7 @@ export function Dashboard() {
 				    const [expandedFacs, setExpandedFacs] = useState({});
 				    const [loadingFacType, setLoadingFacType] = useState(null);
                     const [settingsFacilityPages, setSettingsFacilityPages] = useState({});
+                    const [settingsFacilitySearches, setSettingsFacilitySearches] = useState({});
 				    const [configRevision, setConfigRevision] = useState(0);
 				    const [activeCellKey, setActiveCellKey] = useState(null);
 		    const [selectedSE, setSelectedSE] = useState(null);
@@ -3641,6 +3651,7 @@ export function Dashboard() {
     };
 
     const handleUpdateLinkedCriteria = (configKey, seId, standardId, criterionId, linkedCriteria) => {
+        const normalizedLinkedCriteria = normalizeSelectedIds(linkedCriteria);
         updateActiveConfigBundle((bundle) => {
             const nextConfig = { ...(bundle.config || {}) };
             const list = Array.isArray(nextConfig[configKey]) ? JSON.parse(JSON.stringify(nextConfig[configKey])) : [];
@@ -3650,7 +3661,7 @@ export function Dashboard() {
                     section.standards.forEach(std => {
                         const crit = (std.criteria || []).find(c => c.id === criterionId);
                         if (crit) {
-                            crit.linked_criteria = linkedCriteria;
+                            crit.linked_criteria = normalizedLinkedCriteria;
                         }
                     });
                 });
@@ -3864,12 +3875,29 @@ export function Dashboard() {
 		            { type: 'Mortuary', config: activeConfig, key: 'mortuary_full_configuration' },
 		        ].map(({ type, config, key }) => {
 		            const seList = Array.isArray(config?.[key]) ? config[key] : [];
-                    const totalPages = Math.max(1, Math.ceil(seList.length / pageSize));
+                    const searchQuery = String(settingsFacilitySearches[type] || '').trim().toLowerCase();
+                    const filteredSeList = searchQuery
+                        ? seList.map(se => ({
+                            ...se,
+                            sections: (se.sections || []).map(section => ({
+                                ...section,
+                                standards: (section.standards || []).map(standard => ({
+                                    ...standard,
+                                    criteria: (standard.criteria || []).filter(criterion => (
+                                        String(criterion.id || '').toLowerCase().includes(searchQuery)
+                                        || String(criterion.description || '').toLowerCase().includes(searchQuery)
+                                    )),
+                                })).filter(standard => standard.criteria.length > 0),
+                            })).filter(section => section.standards.length > 0),
+                        })).filter(se => se.sections.length > 0)
+                        : seList;
+                    const matchingCriteria = countCriteriaFor(filteredSeList);
+                    const totalPages = Math.max(1, Math.ceil(filteredSeList.length / pageSize));
                     const requestedPage = settingsFacilityPages[type] || 0;
                     const page = Math.min(requestedPage, totalPages - 1);
                     const isExpanded = !!expandedFacs[type];
                     const visibleSeList = isExpanded
-                        ? seList.slice(page * pageSize, (page + 1) * pageSize)
+                        ? filteredSeList.slice(page * pageSize, (page + 1) * pageSize)
                         : [];
 		            const allCriteriaInFacilityType = isExpanded ? criterionOptionsFor(seList) : [];
 		            const rows = isExpanded
@@ -3879,14 +3907,17 @@ export function Dashboard() {
 		                type,
 		                key,
 		                seList,
+                        filteredSeList,
 		                rows,
 		                totalCriteria: countCriteriaFor(seList),
+                        matchingCriteria,
+                        searchQuery,
                         page,
                         pageSize,
                         totalPages,
 		            };
 		        });
-		    }, [overviewSource, currentConfig, currentComputeCriteria, expandedFacs, settingsFacilityPages]);
+		    }, [overviewSource, currentConfig, currentComputeCriteria, expandedFacs, settingsFacilityPages, settingsFacilitySearches]);
 
     // Filter events
     const filteredEvents = useMemo(() => {
@@ -4938,7 +4969,7 @@ export function Dashboard() {
 											        setLoadingFacType(null);
                                                 }
 											};
-											return settingsFacilityTables.map(({ type, seList, rows, totalCriteria, page, pageSize, totalPages }) => {
+											return settingsFacilityTables.map(({ type, seList, filteredSeList, rows, totalCriteria, matchingCriteria, searchQuery, page, pageSize, totalPages }) => {
 												const isExpanded = !!expandedFacs[type];
 												return (
 													<div key={type} style={{ marginBottom: '12px', border: '1px solid #e2e8f0', borderRadius: '6px', overflow: 'hidden' }}>
@@ -4956,41 +4987,64 @@ export function Dashboard() {
 																userSelect: 'none',
 															}}
 															>
-																<span>{type} <span style={{ color: '#718096', fontWeight: 400, fontSize: '0.85em' }}>({seList.length} SEs, {totalCriteria} criteria)</span></span>
+																<div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+																	<span>{type} <span style={{ color: '#718096', fontWeight: 400, fontSize: '0.85em' }}>({seList.length} SEs, {totalCriteria} criteria)</span></span>
+																	{isExpanded && (
+																		<div
+																			onClick={(event) => event.stopPropagation()}
+																			style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 400 }}
+																		>
+																			<TextField
+																				size="small"
+																				value={settingsFacilitySearches[type] || ''}
+																				onChange={(event) => {
+																					const value = event.target.value;
+																					setSettingsFacilitySearches(prev => ({ ...prev, [type]: value }));
+																					setSettingsFacilityPages(prev => ({ ...prev, [type]: 0 }));
+																					setActiveCellKey(null);
+																				}}
+																				placeholder="Search criterion"
+																				inputProps={{ 'aria-label': `Search ${type} criteria` }}
+																				style={{ width: 190, background: '#fff' }}
+																			/>
+																			{searchQuery && (
+																				<span style={{ color: '#64748b', fontSize: '0.82em' }}>
+																					{matchingCriteria} match{matchingCriteria === 1 ? '' : 'es'}
+																				</span>
+																			)}
+																			<span style={{ color: '#64748b', fontSize: '0.82em' }}>
+																				Showing SEs {filteredSeList.length ? page * pageSize + 1 : 0}-{Math.min((page + 1) * pageSize, filteredSeList.length)} of {filteredSeList.length}
+																			</span>
+																			<Button
+																				size="small"
+																				variant="outlined"
+																				disabled={page === 0}
+																				onClick={() => {
+																					setActiveCellKey(null);
+																					setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.max(0, page - 1) }));
+																				}}
+																			>
+																				Previous
+																			</Button>
+																			<span style={{ fontSize: '0.82em' }}>Page {page + 1} of {totalPages}</span>
+																			<Button
+																				size="small"
+																				variant="outlined"
+																				disabled={page >= totalPages - 1}
+																				onClick={() => {
+																					setActiveCellKey(null);
+																					setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.min(totalPages - 1, page + 1) }));
+																				}}
+																			>
+																				Next
+																			</Button>
+																		</div>
+																	)}
+																</div>
 																<span style={{ fontSize: '0.8em', color: '#718096', display: 'flex', alignItems: 'center', gap: 6 }}>{loadingFacType === type ? <CircularProgress size={14} /> : (isExpanded ? '▲ Collapse' : '▼ Expand')}</span>
 															</div>
 															{isExpanded && (
 																<div style={{ padding: '8px', maxHeight: '55vh', overflowY: 'auto', overflowX: 'auto' }}>
-                                                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                                                                        <span style={{ color: '#64748b', fontSize: '0.82em' }}>
-                                                                            Showing SEs {seList.length ? page * pageSize + 1 : 0}-{Math.min((page + 1) * pageSize, seList.length)} of {seList.length}
-                                                                        </span>
-                                                                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                                                            <Button
-                                                                                size="small"
-                                                                                variant="outlined"
-                                                                                disabled={page === 0}
-                                                                                onClick={() => {
-                                                                                    setActiveCellKey(null);
-                                                                                    setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.max(0, page - 1) }));
-                                                                                }}
-                                                                            >
-                                                                                Previous
-                                                                            </Button>
-                                                                            <span style={{ fontSize: '0.82em' }}>Page {page + 1} of {totalPages}</span>
-                                                                            <Button
-                                                                                size="small"
-                                                                                variant="outlined"
-                                                                                disabled={page >= totalPages - 1}
-                                                                                onClick={() => {
-                                                                                    setActiveCellKey(null);
-                                                                                    setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.min(totalPages - 1, page + 1) }));
-                                                                                }}
-                                                                            >
-                                                                                Next
-                                                                            </Button>
-                                                                        </div>
-                                                                    </div>
 																	<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82em' }}>
 																		<thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
 																			<tr style={{ background: '#edf2f7', textAlign: 'left' }}>
@@ -5125,6 +5179,35 @@ export function Dashboard() {
 																									style={{ maxHeight: '110px', overflowY: 'auto', cursor: overviewSource === 'local' ? 'default' : 'pointer', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}
 																								>
 																									{row.statement || '—'}
+																								</div>
+																								)}
+																							</td>
+																						)}
+																						{row.isFirstStandardRow && (
+																							<td
+																								rowSpan={row.standardRowSpan}
+																								style={{
+																									padding: '8px',
+																									border: '1px solid #e2e8f0',
+																									textAlign: 'center',
+																									verticalAlign: 'middle',
+																								}}
+																							>
+																								{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-intent` ? (
+																									<EditableTextCell
+																										value={row.intent}
+																										active
+																										editable
+																										maxHeight={110}
+																										onOpen={() => setActiveCellKey(null)}
+																										onSave={(value) => handleUpdateStandardText(row.configKey, row.seId, row.standardId, 'intent_tooltip', value)}
+																									/>
+																								) : (
+																								<div
+																									onClick={overviewSource !== 'local' ? () => setActiveCellKey(`${row.criterionId}-intent`) : undefined}
+																									style={{ maxHeight: '110px', overflowY: 'auto', cursor: overviewSource === 'local' ? 'default' : 'pointer', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}
+																								>
+																									{row.intent || '—'}
 																								</div>
 																								)}
 																							</td>
