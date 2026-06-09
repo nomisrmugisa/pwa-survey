@@ -3,15 +3,15 @@
     import { useApp } from '../../contexts/AppContext';
     import { api } from '../../services/api';
     import indexedDBService from '../../services/indexedDBService';
-    import emsConfig from '../../assets/ems_config.json';
-    import mortuaryConfig from '../../assets/mortuary_config.json';
-    import clinicsConfig from '../../assets/clinics_config.json';
-    import hospitalConfig from '../../assets/hospital_config.json';
-    import emsLinks from '../../assets/ems_links.json';
-    import mortuaryLinks from '../../assets/mortuary_links.json';
-    import clinicsLinks from '../../assets/clinics_links.json';
-    import hospitalLinks from '../../assets/hospital_links.json';
-    import hospitalComputeCriteria from '../../assets/hospital_compute_criteria.json';
+    import emsConfig from '../../assets/ems/ems_config.json';
+    import mortuaryConfig from '../../assets/mortuary/mortuary_config.json';
+    import clinicsConfig from '../../assets/clinics/clinics_config.json';
+    import hospitalConfig from '../../assets/hospital/hospital_config.json';
+    import emsLinks from '../../assets/ems/ems_links.json';
+    import mortuaryLinks from '../../assets/mortuary/mortuary_links.json';
+    import clinicsLinks from '../../assets/clinics/clinics_links.json';
+    import hospitalLinks from '../../assets/hospital/hospital_links.json';
+    import hospitalComputeCriteria from '../../assets/hospital/hospital_compute_criteria.json';
     import ScoreBadge from '../ScoreBadge';
     import { classifyAssessment } from '../../utils/classification';
     import { normalizeCriterionCode } from '../../utils/normalization';
@@ -2261,26 +2261,30 @@
                     const labelLower = rawLabel.toLowerCase();
                     const labelUpper = rawLabel.toUpperCase();
                     const isEnrollmentField = labelLower.includes('enrollment');
-                    const isTeiField = labelLower.includes('tei id');
-	                    const isProgramStageIdField =
-	                        labelLower.includes('program stage id') ||
-	                        labelUpper.includes('PROGRAM_STAGE');
+                    const isTeiField = labelLower.includes('tei id') || labelLower.includes('tei_id') || labelLower.includes('tei');
+                    const isProgramStageIdField =
+                        labelLower.includes('program stage id') ||
+                        labelUpper.includes('PROGRAM_STAGE');
                     const isAssessorUserField =
                         labelUpper.includes('FAC_ASS_ASSESSOR_USER_ID') ||
-                        labelUpper.includes('ASSESSOR USER ID');
+                        labelUpper.includes('ASSESSOR USER ID') ||
+                        labelLower.includes('assessor');
                 const isFacilityGroupField =
                     field.id === 'pzenrgsSny3' ||
                         /facility assessment (group|type)/.test(labelLower);
-	                const isHospitalAssessmentTypeField = Boolean(
-	                    isADSection && /hospital assessment type/.test(labelLower)
-	                );
-	                const isSysTagField = Boolean(
-	                    isADSection && (
-	                        field.id === SYS_TAG_DE_ID ||
-	                        /^tag$/.test(labelLower) ||
-	                        /\bsys[ _-]?tag\b/i.test(rawLabel)
-	                    )
-	                );
+                    const isHospitalAssessmentTypeField = Boolean(
+                        isADSection && /hospital assessment type/.test(labelLower)
+                    );
+                    const isSysTagField = Boolean(
+                        isADSection && (
+                            field.id === SYS_TAG_DE_ID ||
+                            labelLower === 'tag' ||
+                            labelLower.includes('sys_tag') ||
+                            labelLower.includes('sys-tag') ||
+                            labelLower.includes('systag') ||
+                            /\b(sys[ _-]?tag|tag)\b/i.test(rawLabel)
+                        )
+                    );
 	                const isTypeOfAssessmentField = Boolean(
 	                    isADSection &&
 	                    (
@@ -2421,7 +2425,7 @@
                         return `Score: ${pts ? `${pts} pts ` : ''}${status}`.trim();
                     })();
 
-                    return (
+                    const fieldContent = (
                         <div
                             key={field.id}
                             className={`form-field ${isCritical ? 'is-critical' : ''} ${(!isParentAnswered && isCommentField) ? 'field-disabled' : ''}`}
@@ -2858,6 +2862,31 @@
                                 ))}
                     </div>
                 );
+
+                if (isADSection && (isAssessorUserField || isTeiField || isSysTagField)) {
+                    return (
+                        <details
+                            key={field.id}
+                            className="technical-details-collapse"
+                            style={{
+                                marginTop: '12px',
+                                border: '1px solid rgba(148, 163, 184, 0.25)',
+                                borderRadius: '6px',
+                                padding: '10px',
+                                backgroundColor: 'rgba(15, 23, 42, 0.02)'
+                            }}
+                        >
+                            <summary style={{ cursor: 'pointer', fontWeight: 600, color: '#475569', fontSize: '0.9rem', outline: 'none' }}>
+                                🔧 {displayLabel}
+                            </summary>
+                            <div style={{ marginTop: '10px' }}>
+                                {fieldContent}
+                            </div>
+                        </details>
+                    );
+                }
+
+                return fieldContent;
             });
         };
 
@@ -3654,7 +3683,7 @@
                             </button>
                         </div>
                     </div>
-                    <div style={{
+                    <details style={{
                         marginTop: '12px',
                         padding: '12px 14px',
                         borderRadius: '8px',
@@ -3662,7 +3691,10 @@
                         border: '1px solid rgba(148, 163, 184, 0.45)',
                         color: '#e2e8f0'
                     }}>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center', fontSize: '0.92rem' }}>
+                        <summary style={{ cursor: 'pointer', fontWeight: 600, color: '#94a3b8', fontSize: '0.9rem', outline: 'none' }}>
+                            🔧 Technical Event Mapping Metadata
+                        </summary>
+                        <div style={{ marginTop: '12px', display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center', fontSize: '0.92rem' }}>
                             <div><strong>Expected SYS_TAG:</strong> <code>{activeExpectedSysTag || 'N/A'}</code></div>
                             <div><strong>Mapped Event ID:</strong> <code>{activeSectionEventId || 'Not mapped'}</code></div>
                         </div>
@@ -3700,7 +3732,7 @@
                                 lineHeight: 1.45
                             }}>{JSON.stringify(activeMappedEventPayload || { message: 'No mapped event payload available for this section.' }, null, 2)}</pre>
                         </details>
-                    </div>
+                    </details>
                 </div>
                 <ScoringGuideModal
                     isOpen={isScoringModalOpen}
