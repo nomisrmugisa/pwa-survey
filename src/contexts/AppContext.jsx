@@ -11,34 +11,11 @@ import mortuaryLinks from '../assets/mortuary/mortuary_links.json';
 import clinicsLinks from '../assets/clinics/clinics_links.json';
 import hospitalLinks from '../assets/hospital/hospital_links.json';
 import hospitalComputeCriteria from '../assets/hospital/hospital_compute_criteria.json';
-import { cleanStandardStatement } from '../utils/normalization';
 import { Alert, Snackbar } from '@mui/material';
 
 const sanitizeConfig = (config) => {
     if (!config) return config;
-    const sanitized = JSON.parse(JSON.stringify(config));
-    const facilityKeys = [
-        'hospital_full_configuration',
-        'clinics_full_configuration',
-        'ems_full_configuration',
-        'mortuary_full_configuration'
-    ];
-    facilityKeys.forEach(key => {
-        if (Array.isArray(sanitized[key])) {
-            sanitized[key].forEach(se => {
-                if (Array.isArray(se.sections)) {
-                    se.sections.forEach(sec => {
-                        if (Array.isArray(sec.standards)) {
-                            sec.standards.forEach(std => {
-                                std.statement = cleanStandardStatement(std.statement);
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    });
-    return sanitized;
+    return JSON.parse(JSON.stringify(config));
 };
 
 
@@ -232,7 +209,8 @@ export const AppProvider = ({ children }) => {
                     : undefined;
             };
 
-            const loadRemoteConfig = useCallback(async (facilityType) => {
+            const loadRemoteConfig = useCallback(async (facilityType, options = {}) => {
+                const { force = false, silent = false } = options;
                 const NAMESPACE = 'qims-survey-configs';
                 const normalizedFacility = String(facilityType || '').trim().toLowerCase();
                 const facilityKeys = {
@@ -257,7 +235,7 @@ export const AppProvider = ({ children }) => {
                 const keys = facilityKeys[normalizedFacility] || Object.values(facilityKeys).flat();
                 const loadScope = normalizedFacility || 'all';
                 const loadKey = `${activeConfigVersionId || 'v1'}:${loadScope}`;
-                if (loadedRemoteFacilitiesRef.current.has(loadKey)) {
+                if (!force && loadedRemoteFacilitiesRef.current.has(loadKey)) {
                     return { loaded: true, cached: true, count: 0 };
                 }
 
@@ -310,21 +288,43 @@ export const AppProvider = ({ children }) => {
                         });
                         loadedRemoteFacilitiesRef.current.add(loadKey);
                         console.info('[AppContext] Remote configuration bundle loaded successfully.');
-                        showToast?.('Remote configuration loaded from DataStore successfully.', 'success');
+                        if (!silent) {
+                            showToast?.('Remote configuration loaded from DataStore successfully.', 'success');
+                        }
                         return { loaded: true, count: Object.keys(fetchedData).length };
                     } else {
                         console.info('[AppContext] No remote configuration found in DataStore. Using built-in baseline.');
-                        showToast?.('No remote configuration found in DHIS2 DataStore.', 'info');
+                        if (!silent) {
+                            showToast?.('No remote configuration found in DHIS2 DataStore.', 'info');
+                        }
                         return { loaded: false, count: 0 };
                     }
                 } catch (err) {
                     console.error('[AppContext] Failed to load remote configuration', err);
-                    showToast?.('Failed to load remote configuration from DataStore.', 'error');
+                    if (!silent) {
+                        showToast?.('Failed to load remote configuration from DataStore.', 'error');
+                    }
                     return { loaded: false, count: 0, error: err };
                 } finally {
                     setRemoteConfigLoading(false);
                 }
             }, [activeConfigVersionId, showToast]);
+
+            useEffect(() => {
+                const handleConfigUpdated = (event) => {
+                    if (event.key !== 'qims_config_updated' || !event.newValue) return;
+                    try {
+                        const update = JSON.parse(event.newValue);
+                        if (update?.facilityType) {
+                            loadRemoteConfig(update.facilityType, { force: true, silent: true });
+                        }
+                    } catch (error) {
+                        console.warn('[AppContext] Failed to process cross-tab config update', error);
+                    }
+                };
+                window.addEventListener('storage', handleConfigUpdated);
+                return () => window.removeEventListener('storage', handleConfigUpdated);
+            }, [loadRemoteConfig]);
 
             // Remote facility bundles are loaded when a facility is selected or
             // opened in App Settings. The local baseline remains immediately

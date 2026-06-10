@@ -39,6 +39,7 @@ import mortuaryLinks from '../assets/mortuary/mortuary_links.json';
 import clinicsLinks from '../assets/clinics/clinics_links.json';
 import hospitalLinks from '../assets/hospital/hospital_links.json';
 import { decorateHospitalLinksWithMatrixTags } from '../utils/hospitalMatrixTags';
+import { reconcileConfigWithMetadata } from '../utils/reconcileConfigWithMetadata';
 import hospitalComputeCriteria from '../assets/hospital/hospital_compute_criteria.json';
 import {
     Dialog,
@@ -3775,6 +3776,15 @@ export function AppSettings() {
         }
 
         if (failed === 0) {
+            await loadRemoteConfig(normalizedFacility, { force: true, silent: true });
+            try {
+                localStorage.setItem('qims_config_updated', JSON.stringify({
+                    facilityType: normalizedFacility,
+                    updatedAt: Date.now(),
+                }));
+            } catch (error) {
+                console.warn('Failed to notify other tabs about the configuration update', error);
+            }
             showToast?.(`${facilityType} configuration saved to DHIS2 DataStore (${saved} item(s)).`, 'success');
         } else if (saved > 0) {
             showToast?.(`Configuration partially saved to DHIS2 DataStore: ${saved} saved, ${failed} failed.`, 'warning');
@@ -4188,7 +4198,9 @@ export function AppSettings() {
                                 standards: (section.standards || []).map(standard => ({
                                     ...standard,
                                     criteria: (standard.criteria || []).filter(criterion => (
-                                        String(criterion.id || '').toLowerCase().includes(searchQuery)
+                                        String(standard.standard_id || '').toLowerCase().includes(searchQuery)
+                                        || String(standard.statement || '').toLowerCase().includes(searchQuery)
+                                        || String(criterion.id || '').toLowerCase().includes(searchQuery)
                                         || String(criterion.description || '').toLowerCase().includes(searchQuery)
                                     )),
                                 })).filter(standard => standard.criteria.length > 0),
@@ -4406,6 +4418,27 @@ export function AppSettings() {
                                                 try {
                                                     if (overviewSource === 'active' && configSource === 'datastore' && isOnline) {
                                                         await loadRemoteConfig(type);
+                                                    }
+                                                    if (overviewSource === 'active' && isOnline) {
+                                                        const normalizedType = String(type || '').trim().toUpperCase();
+                                                        const stageId = SURVEY_PROGRAM_STAGE_BY_GROUP[normalizedType];
+                                                        const configKeyByType = {
+                                                            HOSPITAL: 'hospital_full_configuration',
+                                                            CLINICS: 'clinics_full_configuration',
+                                                            EMS: 'ems_full_configuration',
+                                                            MORTUARY: 'mortuary_full_configuration',
+                                                        };
+                                                        const configKey = configKeyByType[normalizedType];
+                                                        if (stageId && configKey) {
+                                                            const metadata = await api.getFormMetadata(stageId);
+                                                            updateActiveConfigBundle(bundle => {
+                                                                const nextConfig = { ...(bundle.config || {}) };
+                                                                const reconciliation = reconcileConfigWithMetadata(nextConfig[configKey], metadata);
+                                                                if (reconciliation.addedCriteria === 0) return bundle;
+                                                                nextConfig[configKey] = reconciliation.config;
+                                                                return { ...bundle, config: nextConfig };
+                                                            });
+                                                        }
                                                     }
                                                     setExpandedFacs({ [type]: true });
                                                     setSettingsFacilityPages(prev => ({ ...prev, [type]: 0 }));

@@ -53,7 +53,7 @@
                                 if (stdId && !index[stdId]) {
                                     index[stdId] = {
                                         statement: standard.statement || '',
-                                        intent: standard.intent_tooltip || '',
+                                        intent: standard.intent_tooltip || standard.intent || '',
 	                                        guideline: standard.guideline || standard.guidelines || standard.guidline || '',
                                         is_critical: false,
                                         severity: null,
@@ -64,7 +64,7 @@
                                     if (!crit || !crit.id) return;
                                     index[crit.id] = {
                                         statement: standard.statement || '',
-                                        intent: standard.intent_tooltip || '',
+                                        intent: standard.intent_tooltip || standard.intent || '',
 	                                        description: crit.description || '',
 	                                        guideline: crit.guideline || crit.guidelines || crit.guidline || '',
                                         is_critical: crit.is_critical || false,
@@ -618,17 +618,18 @@
         }, [groups, activeGroup, assessmentGroupText, resolveAssessmentGroupId]);
 
         const programmeType = React.useMemo(() => {
-            if (activeGroup?.id === 'SURV-MORTUARY' || activeGroup?.id === 'GENERAL' || activeGroup?.name === 'Mortuary') {
+            const resolvedGroup = assessmentScopedGroup || activeGroup;
+            if (resolvedGroup?.id === 'SURV-MORTUARY' || resolvedGroup?.id === 'GENERAL' || resolvedGroup?.name === 'Mortuary') {
                 return 'mortuary';
             }
-            if (activeGroup?.id === 'CLINICS' || activeGroup?.name === 'Clinics') {
+            if (resolvedGroup?.id === 'CLINICS' || resolvedGroup?.name === 'Clinics') {
                 return 'clinics';
             }
-            if (activeGroup?.id === 'HOSPITAL' || activeGroup?.name === 'Hospital') {
+            if (resolvedGroup?.id === 'HOSPITAL' || resolvedGroup?.name === 'Hospital') {
                 return 'hospital';
             }
             return 'ems';
-        }, [activeGroup]);
+        }, [assessmentScopedGroup, activeGroup]);
 
         const { configuration, showToast, isOnline } = useApp();
 

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useSearchParams } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Layout from './components/Layout/Layout';
 import FormArea from './components/FormArea/FormArea';
-import { Dashboard } from './pages/Dashboard';
 import { AppProvider, useApp } from './contexts/AppContext';
 import { api } from './services/api';
 import { transformMetadata } from './utils/transformers';
@@ -21,9 +20,12 @@ import clinicsLinks from './assets/clinics/clinics_links.json';
 import hospitalLinks from './assets/hospital/hospital_links.json';
 import { decorateHospitalLinksWithMatrixTags } from './utils/hospitalMatrixTags';
 import './App.css';
-import Report from './pages/Report';
-import Admin from './pages/Admin';
-import DevConfigExport from './pages/DevConfigExport';
+const Dashboard = lazy(() => import('./pages/Dashboard').then(module => ({ default: module.Dashboard })));
+const Report = lazy(() => import('./pages/Report'));
+const Admin = lazy(() => import('./pages/Admin'));
+const DevConfigExport = lazy(() => import('./pages/DevConfigExport'));
+
+const RouteFallback = () => <div className="loading-screen">Loading...</div>;
 
 const SURVEY_PROGRAM_STAGE_BY_GROUP = {
   HOSPITAL: 'hup8BqEe7Mn',
@@ -145,6 +147,9 @@ const PrivateRoute = ({ children }) => {
 		    showToast,
 		    configBundles,
 		    activeConfigVersionId,
+        configSource,
+        isOnline,
+        loadRemoteConfig,
 		  } = useApp();
 	  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -344,6 +349,53 @@ const PrivateRoute = ({ children }) => {
 
 		  const location = useLocation();
 	  const assessmentIdParam = searchParams.get('assessmentId');
+    const formConfigLoadRef = React.useRef('');
+
+    useEffect(() => {
+      if (location.pathname !== '/form' || configSource !== 'datastore' || !isOnline) return;
+
+      const stateAssignment = location.state && location.state.selectedAssignment;
+      const groupText =
+        stateAssignment?.preloadDataValues?.[FACILITY_GROUP_DE_ID] ||
+        stateAssignment?.parentGroupId ||
+        stateAssignment?.facilityGroup ||
+        searchParams.get('parentGroupId') ||
+        searchParams.get('facilityGroup') ||
+        formData?.[FACILITY_GROUP_DE_ID] ||
+        activeGroup?.name ||
+        activeGroup?.id ||
+        '';
+      const facilityType = String(resolveAssessmentNamespaceFromText(groupText) || '').toLowerCase();
+      if (!['hospital', 'clinics', 'ems', 'mortuary'].includes(facilityType)) return;
+
+      const loadKey = `${location.key || location.pathname}:${facilityType}`;
+      if (formConfigLoadRef.current === loadKey) return;
+      formConfigLoadRef.current = loadKey;
+
+      (async () => {
+        enterFormLoading();
+        setFormLoadingMessage(`Loading latest ${facilityType} configuration...`);
+        try {
+          await loadRemoteConfig(facilityType, { force: true, silent: true });
+        } finally {
+          leaveFormLoading();
+        }
+      })();
+    }, [
+      location.key,
+      location.pathname,
+      location.state,
+      searchParams,
+      formData?.[FACILITY_GROUP_DE_ID],
+      activeGroup?.id,
+      activeGroup?.name,
+      configSource,
+      isOnline,
+      loadRemoteConfig,
+      resolveAssessmentNamespaceFromText,
+      enterFormLoading,
+      leaveFormLoading,
+    ]);
 
 		  // Build programme-specific scoring metadata (links + severity) based on
 		  // the currently active configuration version. Falls back to on-disk JSON
@@ -1181,7 +1233,9 @@ const PrivateRoute = ({ children }) => {
         path="/"
         element={
           <PrivateRoute>
-            <Dashboard />
+            <Suspense fallback={<RouteFallback />}>
+              <Dashboard />
+            </Suspense>
           </PrivateRoute>
         }
       />
@@ -1247,7 +1301,9 @@ const PrivateRoute = ({ children }) => {
         path="/report"
         element={
           <PrivateRoute>
-            <Report />
+            <Suspense fallback={<RouteFallback />}>
+              <Report />
+            </Suspense>
           </PrivateRoute>
         }
       />
@@ -1256,7 +1312,9 @@ const PrivateRoute = ({ children }) => {
         path="/admin"
         element={
           <PrivateRoute>
-            <Admin />
+            <Suspense fallback={<RouteFallback />}>
+              <Admin />
+            </Suspense>
           </PrivateRoute>
         }
       />
@@ -1265,7 +1323,9 @@ const PrivateRoute = ({ children }) => {
         path="/dev-config-export"
         element={
           <PrivateRoute>
-            <DevConfigExport />
+            <Suspense fallback={<RouteFallback />}>
+              <DevConfigExport />
+            </Suspense>
           </PrivateRoute>
         }
       />

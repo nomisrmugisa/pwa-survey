@@ -3895,6 +3895,15 @@ export function Dashboard() {
         }
 
         if (failed === 0) {
+            await loadRemoteConfig(normalizedFacility, { force: true, silent: true });
+            try {
+                localStorage.setItem('qims_config_updated', JSON.stringify({
+                    facilityType: normalizedFacility,
+                    updatedAt: Date.now(),
+                }));
+            } catch (error) {
+                console.warn('Failed to notify other tabs about the configuration update', error);
+            }
             showToast?.(`${facilityType} configuration saved to DHIS2 DataStore (${saved} item(s)).`, 'success');
         } else if (saved > 0) {
             showToast?.(`Configuration partially saved to DHIS2 DataStore: ${saved} saved, ${failed} failed.`, 'warning');
@@ -4283,6 +4292,7 @@ export function Dashboard() {
 		    };
 
 		    const settingsFacilityTables = useMemo(() => {
+                if (!showSettings) return [];
                 const pageSize = 5;
 		        const activeConfig = overviewSource === 'active' ? currentConfig : {
 		            hospital_full_configuration: hospitalConfig.hospital_full_configuration,
@@ -4329,7 +4339,7 @@ export function Dashboard() {
                         totalPages,
 		            };
 		        });
-		    }, [overviewSource, currentConfig, currentComputeCriteria, expandedFacs, settingsFacilityPages]);
+		    }, [showSettings, overviewSource, currentConfig, currentComputeCriteria, expandedFacs, settingsFacilityPages]);
 
     // Filter events
     const filteredEvents = useMemo(() => {

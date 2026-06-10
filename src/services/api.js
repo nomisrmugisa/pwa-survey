@@ -621,8 +621,16 @@ export const api = {
   },
 
   getDataStoreItem: async (namespace, key) => {
-    const url = `${BASE_URL}/api/dataStore/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
-    const resp = await fetch(url, { headers: getHeaders() });
+    const cacheBuster = Date.now();
+    const url = `${BASE_URL}/api/dataStore/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}?cacheBust=${cacheBuster}`;
+    const resp = await fetch(url, {
+      headers: {
+        ...getHeaders(),
+        'Cache-Control': 'no-cache',
+        Pragma: 'no-cache',
+      },
+      cache: 'no-store',
+    });
     if (!resp.ok) return null;
     return await resp.json().catch(() => null);
   },
