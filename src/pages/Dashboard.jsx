@@ -39,6 +39,8 @@ import mortuaryLinks from '../assets/mortuary/mortuary_links.json';
 import clinicsLinks from '../assets/clinics/clinics_links.json';
 import hospitalLinks from '../assets/hospital/hospital_links.json';
 import { decorateHospitalLinksWithMatrixTags } from '../utils/hospitalMatrixTags';
+import { transformMetadata } from '../utils/transformers';
+import { normalizeCriterionCode } from '../utils/normalization';
 import hospitalComputeCriteria from '../assets/hospital/hospital_compute_criteria.json';
 import {
     Dialog,
@@ -1295,6 +1297,7 @@ export function Dashboard() {
 				    const [loadingFacType, setLoadingFacType] = useState(null);
                     const [settingsFacilityPages, setSettingsFacilityPages] = useState({});
                     const [settingsFacilitySearches, setSettingsFacilitySearches] = useState({});
+                    const [settingsFacilityMetadata, setSettingsFacilityMetadata] = useState({});
 				    const [configRevision, setConfigRevision] = useState(0);
 				    const [activeCellKey, setActiveCellKey] = useState(null);
 		    const [selectedSE, setSelectedSE] = useState(null);
@@ -3555,6 +3558,132 @@ export function Dashboard() {
 		        });
 		    };
 
+            const reconcileFacilityConfigWithMetadata = (facilityType, metadata) => {
+                const configKeyMap = {
+                    hospital: 'hospital_full_configuration',
+                    clinics: 'clinics_full_configuration',
+                    ems: 'ems_full_configuration',
+                    mortuary: 'mortuary_full_configuration',
+                };
+                const metadataGroupMap = {
+                    hospital: 'HOSPITAL',
+                    clinics: 'CLINICS',
+                    ems: 'SE',
+                    mortuary: 'GENERAL',
+                };
+                const normalizedType = String(facilityType || '').toLowerCase();
+                const configKey = configKeyMap[normalizedType];
+                if (!configKey || !metadata) return;
+
+                const cleanMetadataLabel = (label, criterionId) => {
+                    let text = String(label || '').trim();
+                    if (criterionId) {
+                        text = text.replace(new RegExp(`^${criterionId.replace(/\./g, '\\.')}\\s*`, 'i'), '');
+                    }
+                    return text
+                        .replace(/^(?:HOSP(?:ITAL)?|CLINICS?|EMS|MORTUARY)(?:\s+\d+)?\s*[-:]\s*/i, '')
+                        .trim();
+                };
+
+                updateActiveConfigBundle((bundle) => {
+                    const nextConfig = { ...(bundle.config || {}) };
+                    const serviceElements = Array.isArray(nextConfig[configKey])
+                        ? JSON.parse(JSON.stringify(nextConfig[configKey]))
+                        : [];
+                    const rootMap = buildRootMap(bundle.compute || hospitalComputeCriteria);
+                    const links = Array.isArray(bundle.links?.[normalizedType]) ? bundle.links[normalizedType] : [];
+                    const linksByCriterion = Object.fromEntries(
+                        links.filter(item => item?.criteria).map(item => [item.criteria, item.linked_criteria || []])
+                    );
+
+                    // Use the same transformed metadata structure as the survey form.
+                    // A separate raw-metadata regex here caused valid survey criteria
+                    // with prefixed codes or inferred SE numbers to disappear from
+                    // App Settings.
+                    const transformedGroups = transformMetadata(metadata);
+                    const targetGroupId = metadataGroupMap[normalizedType];
+                    const metadataGroup = transformedGroups.find(group => group.id === targetGroupId);
+
+                    (metadataGroup?.sections || []).forEach(metadataSection => {
+                        const sectionName = String(metadataSection._originalName || metadataSection.name || '').toLowerCase();
+                        if (sectionName.includes('assessment details') || sectionName.includes('assessment_details')) return;
+                        const seId = metadataSection.se_id || extractStageSectionSeId(metadataSection);
+                        if (!seId) return;
+
+                        const criterionFields = (metadataSection.fields || []).map(field => {
+                            if (!field || field.type === 'header' || field.isComment) return null;
+                            let criterionId = normalizeCriterionCode(field.code);
+                            if (!/^\d+(?:\.\d+){3}$/.test(criterionId)) {
+                                const match = String(field.label || '').match(/\b\d+(?:\.\d+){3}\b/);
+                                criterionId = match?.[0] || '';
+                            }
+                            if (!criterionId) return null;
+                            return {
+                                id: criterionId,
+                                label: field.label || '',
+                            };
+                        }).filter(Boolean).filter((field, index, fields) => (
+                            fields.findIndex(candidate => candidate.id === field.id) === index
+                        ));
+                        if (!criterionFields.length) return;
+
+                        let serviceElement = serviceElements.find(item => String(item.se_id) === String(seId));
+                        if (!serviceElement) {
+                            serviceElement = {
+                                se_id: Number.isNaN(Number(seId)) ? seId : Number(seId),
+                                se_name: metadataSection.name || `SE ${seId}`,
+                                sections: [],
+                            };
+                            serviceElements.push(serviceElement);
+                        }
+                        if (!Array.isArray(serviceElement.sections)) serviceElement.sections = [];
+
+                        criterionFields.forEach(field => {
+                            const parts = field.id.split('.');
+                            const sectionPiId = parts.slice(0, 2).join('.');
+                            const standardId = parts.slice(0, 3).join('.');
+                            let section = serviceElement.sections.find(item => String(item.section_pi_id) === sectionPiId);
+                            if (!section) {
+                                section = {
+                                    section_pi_id: sectionPiId,
+                                    title: metadataSection.name || sectionPiId,
+                                    standards: [],
+                                };
+                                serviceElement.sections.push(section);
+                            }
+                            if (!Array.isArray(section.standards)) section.standards = [];
+
+                            let standard = section.standards.find(item => item.standard_id === standardId);
+                            if (!standard) {
+                                standard = {
+                                    standard_id: standardId,
+                                    statement: '',
+                                    intent_tooltip: '',
+                                    criteria: [],
+                                };
+                                section.standards.push(standard);
+                            }
+                            if (!Array.isArray(standard.criteria)) standard.criteria = [];
+                            if (standard.criteria.some(item => item.id === field.id)) return;
+
+                            standard.criteria.push({
+                                id: field.id,
+                                description: cleanMetadataLabel(field.label, field.id),
+                                guideline: '',
+                                severity: 1,
+                                is_critical: false,
+                                is_root: Object.prototype.hasOwnProperty.call(rootMap, field.id),
+                                linked_criteria: linksByCriterion[field.id] || [],
+                            });
+                        });
+                    });
+
+                    serviceElements.sort((a, b) => Number(a.se_id) - Number(b.se_id));
+                    nextConfig[configKey] = serviceElements;
+                    return { ...bundle, config: nextConfig };
+                });
+            };
+
 		    const handleOpenComputeEditor = () => {
 		        if (!currentComputeCriteria || !hospitalComputeServiceElements.length) {
 		            showToast('No Hospital computation mapping is available to configure.', 'warning');
@@ -5150,7 +5279,7 @@ export function Dashboard() {
 													onChange={(e) => {
 														const nextSource = e.target.value;
 														setConfigSource(nextSource);
-														setOverviewSource(nextSource === 'local' ? 'local' : 'active');
+														setOverviewSource('active');
 														setExpandedFacs({});
 														setActiveCellKey(null);
 													}}
@@ -5217,6 +5346,14 @@ export function Dashboard() {
                                                 try {
                                                     if (overviewSource === 'active' && configSource === 'datastore' && isOnline) {
                                                         await loadRemoteConfig(type);
+                                                    }
+                                                    const metadata = settingsFacilityMetadata[type]
+                                                        || await ensureSurveyMetadataForGroup(type);
+                                                    if (metadata) {
+                                                        setSettingsFacilityMetadata(prev => ({ ...prev, [type]: metadata }));
+                                                        if (overviewSource === 'active') {
+                                                            reconcileFacilityConfigWithMetadata(type, metadata);
+                                                        }
                                                     }
                                                     setExpandedFacs({ [type]: true });
                                                     setSettingsFacilityPages(prev => ({ ...prev, [type]: 0 }));
