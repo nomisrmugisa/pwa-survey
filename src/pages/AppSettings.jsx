@@ -170,6 +170,8 @@ const LinkedCriteriaMultiSelect = React.memo(({ value, options, onChange, disabl
                 {parsedCriteria.map(item => (
                     <span
                         key={item.id}
+                        onMouseEnter={() => setHoveredId(item.id)}
+                        onMouseLeave={() => setHoveredId(null)}
                         style={{
                             background: item.color === 'G' ? '#dcfce7' : item.color === 'B' ? '#dbeafe' : '#edf2f7',
                             color: item.color === 'G' ? '#166534' : item.color === 'B' ? '#1d4ed8' : '#2d3748',
@@ -183,16 +185,31 @@ const LinkedCriteriaMultiSelect = React.memo(({ value, options, onChange, disabl
                         }}
                     >
                         {item.id}
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleColorChange(item.id, item.color === 'G' ? 'B' : item.color === 'B' ? '' : 'G');
-                            }}
-                            style={{ border: 'none', background: 'transparent', cursor: 'pointer', padding: '0 2px', opacity: 0.6 }}
-                            title="Toggle color tag (Green/Blue)"
-                        >
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                        </button>
+                        {hoveredId === item.id && (
+                            <select
+                                value={item.color}
+                                onClick={(e) => e.stopPropagation()}
+                                onChange={(e) => {
+                                    e.stopPropagation();
+                                    handleColorChange(item.id, e.target.value);
+                                }}
+                                aria-label={`Select color for linked criterion ${item.id}`}
+                                title="Select linked criterion color"
+                                style={{
+                                    border: '1px solid #94a3b8',
+                                    borderRadius: 3,
+                                    background: '#fff',
+                                    color: '#334155',
+                                    cursor: 'pointer',
+                                    fontSize: '0.85em',
+                                    padding: '1px 2px',
+                                }}
+                            >
+                                <option value="">Color</option>
+                                <option value="G">Green</option>
+                                <option value="B">Blue</option>
+                            </select>
+                        )}
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
@@ -342,6 +359,7 @@ const SETTINGS_TABLE_HEADERS = [
     { label: 'SE Description', minWidth: 220, align: 'center' },
     { label: 'Standard', minWidth: 70, align: 'center' },
     { label: 'Statement', minWidth: 300, align: 'center' },
+    { label: 'Statement Intent', minWidth: 320, align: 'center' },
     { label: 'Criterion', minWidth: 80, align: 'center' },
     { label: 'Criterion Description', minWidth: 280, align: 'center' },
     { label: 'Root', minWidth: 50, align: 'center' },
@@ -408,7 +426,11 @@ const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, 
                         seId: se.se_id,
                         seDescription: se.se_description || se.description || se.se_name || se.name || '',
                         standardId: standard.standard_id,
-                        statement: standard.statement || standard.intent || standard.intent_tooltip || '',
+                        statement: standard.statement || '',
+                        statementIntent: standard.intent_tooltip || standard.intent || '',
+                        statementIntentField: Object.prototype.hasOwnProperty.call(standard, 'intent_tooltip')
+                            ? 'intent_tooltip'
+                            : 'intent',
                         criterionId: criterion.id,
                         criterionDescription: criterion.description || '',
                         guidelines: criterion.guidelines || criterion.guideline || '',
@@ -4336,13 +4358,13 @@ export function AppSettings() {
 																userSelect: 'none',
 															}}
 															>
-																<span>{type} <span style={{ color: '#718096', fontWeight: 400, fontSize: '0.85em' }}>({seList.length} SEs, {totalCriteria} criteria)</span></span>
-																<span style={{ fontSize: '0.8em', color: '#718096', display: 'flex', alignItems: 'center', gap: 6 }}>{loadingFacType === type ? <CircularProgress size={14} /> : (isExpanded ? '  Collapse' : '  Expand')}</span>
-															</div>
-															{isExpanded && (
-																<div style={{ padding: '8px', maxHeight: '55vh', overflowY: 'auto', overflowX: 'auto' }}>
-                                                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                                                                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+																<div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', minWidth: 0 }}>
+																	<span>{type} <span style={{ color: '#718096', fontWeight: 400, fontSize: '0.85em' }}>({seList.length} SEs, {totalCriteria} criteria)</span></span>
+																	{isExpanded && (
+																		<div
+																			onClick={(event) => event.stopPropagation()}
+																			style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', fontWeight: 400 }}
+																		>
 																			<TextField
 																				size="small"
 																				value={settingsFacilitySearches[type] || ''}
@@ -4362,35 +4384,38 @@ export function AppSettings() {
 																				</span>
 																			)}
 																			<span style={{ color: '#64748b', fontSize: '0.82em' }}>
-																				Showing SEs {filteredSeList.length ? page * pageSize + 1 : 0}-{Math.min((page + 1) * pageSize, filteredSeList.length)} of {filteredSeList.length}
+																				SEs {filteredSeList.length ? page * pageSize + 1 : 0}-{Math.min((page + 1) * pageSize, filteredSeList.length)} of {filteredSeList.length}
 																			</span>
+																			<Button
+																				size="small"
+																				variant="outlined"
+																				disabled={page === 0}
+																				onClick={() => {
+																					setActiveCellKey(null);
+																					setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.max(0, page - 1) }));
+																				}}
+																			>
+																				Previous
+																			</Button>
+																			<span style={{ fontSize: '0.82em' }}>Page {page + 1} of {totalPages}</span>
+																			<Button
+																				size="small"
+																				variant="outlined"
+																				disabled={page >= totalPages - 1}
+																				onClick={() => {
+																					setActiveCellKey(null);
+																					setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.min(totalPages - 1, page + 1) }));
+																				}}
+																			>
+																				Next
+																			</Button>
 																		</div>
-                                                                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                                                            <Button
-                                                                                size="small"
-                                                                                variant="outlined"
-                                                                                disabled={page === 0}
-                                                                                onClick={() => {
-                                                                                    setActiveCellKey(null);
-                                                                                    setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.max(0, page - 1) }));
-                                                                                }}
-                                                                            >
-                                                                                Previous
-                                                                            </Button>
-                                                                            <span style={{ fontSize: '0.82em' }}>Page {page + 1} of {totalPages}</span>
-                                                                            <Button
-                                                                                size="small"
-                                                                                variant="outlined"
-                                                                                disabled={page >= totalPages - 1}
-                                                                                onClick={() => {
-                                                                                    setActiveCellKey(null);
-                                                                                    setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.min(totalPages - 1, page + 1) }));
-                                                                                }}
-                                                                            >
-                                                                                Next
-                                                                            </Button>
-                                                                        </div>
-                                                                    </div>
+																	)}
+																</div>
+																<span style={{ fontSize: '0.8em', color: '#718096', display: 'flex', alignItems: 'center', gap: 6 }}>{loadingFacType === type ? <CircularProgress size={14} /> : (isExpanded ? '  Collapse' : '  Expand')}</span>
+															</div>
+															{isExpanded && (
+																<div style={{ padding: '8px', maxHeight: '75vh', overflowY: 'auto', overflowX: 'auto' }}>
 																	<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82em' }}>
 																		<thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
 																			<tr style={{ background: '#edf2f7', textAlign: 'left' }}>
@@ -4527,6 +4552,35 @@ export function AppSettings() {
 																								>
 																									{row.statement || '—'}
 																								</div>
+																								)}
+																							</td>
+																						)}
+																						{row.isFirstStandardRow && (
+																							<td
+																								rowSpan={row.standardRowSpan}
+																								style={{
+																									padding: '8px',
+																									border: '1px solid #e2e8f0',
+																									textAlign: 'center',
+																									verticalAlign: 'middle',
+																								}}
+																							>
+																								{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-statement-intent` ? (
+																									<EditableTextCell
+																										value={row.statementIntent}
+																										active
+																										editable
+																										maxHeight={110}
+																										onOpen={() => setActiveCellKey(null)}
+																										onSave={(value) => handleUpdateStandardText(row.configKey, row.seId, row.standardId, row.statementIntentField, value)}
+																									/>
+																								) : (
+																									<div
+																										onClick={overviewSource !== 'local' ? () => setActiveCellKey(`${row.criterionId}-statement-intent`) : undefined}
+																										style={{ maxHeight: '110px', overflowY: 'auto', cursor: overviewSource === 'local' ? 'default' : 'pointer', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}
+																									>
+																										{row.statementIntent || '—'}
+																									</div>
 																								)}
 																							</td>
 																						)}
