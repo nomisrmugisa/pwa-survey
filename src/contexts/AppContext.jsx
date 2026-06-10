@@ -91,9 +91,7 @@ export const AppProvider = ({ children }) => {
 	    const [configVersions, setConfigVersions] = useState([]);
 	    const [activeConfigVersionId, setActiveConfigVersionId] = useState(null);
 	    const [configBundles, setConfigBundles] = useState({});
-        const [configSource, setConfigSourceState] = useState(() => (
-            localStorage.getItem('qims_config_source') === 'local' ? 'local' : 'datastore'
-        ));
+        const [configSource, setConfigSource] = useState('datastore'); // 'datastore'
         const [remoteConfigLoading, setRemoteConfigLoading] = useState(false);
         const [appMetadata, setAppMetadata] = useState(null);
         const remoteLoadKeyRef = useRef(null);
@@ -370,14 +368,17 @@ export const AppProvider = ({ children }) => {
 
 	                // Fetch/validate session in the background
                 const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Auth timeout')), 5000));
-                const currentUser = await Promise.race([api.getCurrentUser(), timeoutPromise]);
-                setUser(currentUser);
-                localStorage.setItem('dhis2_user', JSON.stringify(currentUser));
+                try {
+                    const currentUser = await Promise.race([api.getCurrentUser(), timeoutPromise]);
+                    setUser(currentUser);
+                    localStorage.setItem('dhis2_user', JSON.stringify(currentUser));
+                } catch (error) {
 	                console.warn('[AppContext] Session validation failed / user is offline:', error);
 	                // If we don't have a cached user session, reset to null
 	                if (!localStorage.getItem('dhis2_user')) {
 	                    setUser(null);
 	                }
+                }
 	            } finally {
 	                setAuthInitializing(false);
 	            }
@@ -400,41 +401,6 @@ export const AppProvider = ({ children }) => {
             console.warn('AppContext.logout: localStorage cleanup failed (non-fatal)', e);
         }
 
-        // Also clear any IndexedDB data related to saved form drafts and cached app data
-        try {
-            // Clear InspectionFormDB/formData via our service
-            await indexedDBService.clearStore();
-        } catch (e) {
-            console.warn('AppContext.logout: clearing InspectionFormDB failed (non-fatal)', e);
-        }
-
-        try {
-            // Best-effort clear of other app stores in DHIS2PWA (events, metadata, configuration, stats)
-            await new Promise((resolve) => {
-                const request = indexedDB.open('DHIS2PWA');
-                request.onsuccess = () => {
-                    const db = request.result;
-                    const stores = ['events', 'metadata', 'configuration', 'stats'].filter((name) =>
-                        db.objectStoreNames && db.objectStoreNames.contains(name)
-                    );
-                    if (stores.length === 0) {
-                        db.close();
-                        resolve();
-                        return;
-                    }
-                    const tx = db.transaction(stores, 'readwrite');
-                    stores.forEach((name) => {
-                        try { tx.objectStore(name).clear(); } catch (_) { /* ignore */ }
-                    });
-                    tx.oncomplete = () => { db.close(); resolve(); };
-                    tx.onerror = () => { db.close(); resolve(); };
-                };
-                request.onerror = () => resolve();
-                request.onblocked = () => resolve();
-            });
-        } catch (e) {
-            console.warn('AppContext.logout: clearing DHIS2PWA stores failed (non-fatal)', e);
-        }
 
         // Clear Service Worker caches to remove any offline data/assets
         try {
