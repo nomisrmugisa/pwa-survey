@@ -91,11 +91,37 @@ export const AppProvider = ({ children }) => {
 	    const [configVersions, setConfigVersions] = useState([]);
 	    const [activeConfigVersionId, setActiveConfigVersionId] = useState(null);
 	    const [configBundles, setConfigBundles] = useState({});
-        const [configSource, setConfigSource] = useState('datastore'); // 'datastore' | 'local'
+        const [configSource, setConfigSource] = useState('datastore'); // 'datastore'
         const [remoteConfigLoading, setRemoteConfigLoading] = useState(false);
         const [appMetadata, setAppMetadata] = useState(null);
         const remoteLoadKeyRef = useRef(null);
         const loadedRemoteFacilitiesRef = useRef(new Set());
+
+        const setConfigSource = useCallback((source) => {
+            const nextSource = source === 'local' ? 'local' : 'datastore';
+            setConfigSourceState(nextSource);
+
+            if (nextSource === 'local') {
+                const baselineBundle = {
+                    config: sanitizeConfig({ ...emsConfig, ...mortuaryConfig, ...clinicsConfig, ...hospitalConfig }),
+                    links: {
+                        ems: emsLinks,
+                        mortuary: mortuaryLinks,
+                        clinics: clinicsLinks,
+                        hospital: hospitalLinks,
+                    },
+                    compute: hospitalComputeCriteria,
+                };
+                setConfigBundles(prev => {
+                    const activeId = activeConfigVersionId || 'v1';
+                    return {
+                        ...prev,
+                        [activeId]: JSON.parse(JSON.stringify(baselineBundle)),
+                    };
+                });
+                loadedRemoteFacilitiesRef.current.clear();
+            }
+        }, [activeConfigVersionId]);
 
 	    useEffect(() => {
             localStorage.setItem('qims_config_source', configSource);

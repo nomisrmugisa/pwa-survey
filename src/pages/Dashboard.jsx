@@ -39,6 +39,8 @@ import mortuaryLinks from '../assets/mortuary/mortuary_links.json';
 import clinicsLinks from '../assets/clinics/clinics_links.json';
 import hospitalLinks from '../assets/hospital/hospital_links.json';
 import { decorateHospitalLinksWithMatrixTags } from '../utils/hospitalMatrixTags';
+import { transformMetadata } from '../utils/transformers';
+import { normalizeCriterionCode } from '../utils/normalization';
 import hospitalComputeCriteria from '../assets/hospital/hospital_compute_criteria.json';
 import {
     Dialog,
@@ -95,29 +97,111 @@ const SURVEY_PROGRAM_STAGE_BY_GROUP = {
     PAEDIATRIC: 'paeStageU11'
 };
 
-const normalizeSelectedIds = (selectedIds) => (
-    Array.isArray(selectedIds)
-        ? [...new Set(selectedIds.filter(id => typeof id === 'string' && id.trim() !== ''))]
-        : []
-);
+const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, placeholder, autoOpen, onClose, showClearAll = false }) => {
+    const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState('');
+    const selectedIds = useMemo(() => normalizeSelectedIds(value), [value]);
 
-const parseLinkedCriterion = (value) => {
-    const normalized = String(value || '').trim();
-    const match = normalized.match(/^(.*?)-([GB])$/i);
-    return {
-        id: match ? match[1] : normalized,
-        color: match ? match[2].toUpperCase() : '',
+    useEffect(() => {
+        if (autoOpen) {
+            setOpen(true);
+        }
+    }, [autoOpen]);
+
+    const handleClose = () => {
+        setOpen(false);
+        setSearch('');
+        if (onClose) onClose();
     };
-};
 
-const normalizeLinkedCriteria = (linkedCriteria) => {
-    const uniqueById = new Map();
-    normalizeSelectedIds(linkedCriteria).forEach(value => {
-        const parsed = parseLinkedCriterion(value);
-        if (parsed.id) uniqueById.set(parsed.id, parsed.color ? `${parsed.id}-${parsed.color}` : parsed.id);
-    });
-    return [...uniqueById.values()];
-};
+    const filteredOptions = useMemo(() => {
+        const query = search.trim().toLowerCase();
+        if (!query) {
+            const selectedSet = new Set(selectedIds);
+            const selectedList = options.filter(opt => selectedSet.has(opt.id));
+            const remainingList = options.filter(opt => !selectedSet.has(opt.id)).slice(0, 100);
+            return [...selectedList, ...remainingList];
+        }
+        return options.filter(opt => 
+            opt.id.toLowerCase().includes(query) || 
+            (opt.name && opt.name.toLowerCase().includes(query))
+        ).slice(0, 100);
+    }, [search, options, selectedIds]);
+
+    return (
+        <Select
+            multiple
+            value={selectedIds}
+            open={open}
+            onOpen={() => setOpen(true)}
+            onClose={handleClose}
+            disabled={disabled}
+            onChange={(e) => onChange(normalizeSelectedIds(e.target.value))}
+            renderValue={(selected) => (
+                <span style={{ fontFamily: 'monospace', fontSize: '0.95em' }}>
+                    {selected.length > 0 ? selected.join(', ') : (placeholder || 'None')}
+                </span>
+            )}
+            variant="standard"
+            disableUnderline
+            fullWidth
+            MenuProps={{
+                autoFocus: false,
+                PaperProps: {
+                    style: {
+                        maxHeight: 350,
+                        width: 320,
+                    }
+                }
+            }}
+        >
+            <div style={{ padding: '8px', position: 'sticky', top: 0, background: '#fff', zIndex: 3, borderBottom: '1px solid #e2e8f0', display: 'flex', gap: 8, alignItems: 'center' }} onClick={(e) => e.stopPropagation()}>
+                <TextField
+                    size="small"
+                    placeholder="Search..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    onKeyDown={(e) => {
+                        e.stopPropagation();
+                    }}
+                    style={{ flex: 1 }}
+                    autoFocus
+                />
+                {showClearAll && (
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        disabled={selectedIds.length === 0}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onChange([]);
+                        }}
+                        onKeyDown={(e) => e.stopPropagation()}
+                        style={{ whiteSpace: 'nowrap' }}
+                    >
+                        Clear all
+                    </Button>
+                )}
+            </div>
+            {filteredOptions.map((opt) => (
+                <MenuItem key={opt.id} value={opt.id}>
+                    <Checkbox checked={selectedIds.includes(opt.id)} size="small" />
+                    <ListItemText 
+                        primary={opt.id} 
+                        secondary={opt.name || ''} 
+                        primaryTypographyProps={{ style: { fontFamily: 'monospace', fontSize: '0.9em' } }}
+                        secondaryTypographyProps={{ style: { fontSize: '0.75em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }}
+                    />
+                </MenuItem>
+            ))}
+            {filteredOptions.length === 0 && (
+                <MenuItem disabled>
+                    <ListItemText primary="No matches found" />
+                </MenuItem>
+            )}
+        </Select>
+    );
+});
 
 const LinkedCriteriaMultiSelect = React.memo(({ value, options, onChange, disabled, placeholder, autoOpen, onClose }) => {
     const [open, setOpen] = useState(Boolean(autoOpen));
@@ -170,157 +254,117 @@ const LinkedCriteriaMultiSelect = React.memo(({ value, options, onChange, disabl
                 {parsedCriteria.map(item => (
                     <span
                         key={item.id}
+                        onMouseEnter={() => setHoveredId(item.id)}
+                        onMouseLeave={() => setHoveredId(null)}
                         style={{
-                            background: item.color === 'G' ? '#dcfce7' : item.color === 'B' ? '#dbeafe' : '#edf2f7',
-                            color: item.color === 'G' ? '#166534' : item.color === 'B' ? '#1d4ed8' : '#2d3748',
-                            padding: '2px 6px',
-                            borderRadius: '4px',
-                            fontSize: '0.9em',
-                            fontFamily: 'monospace',
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '4px'
+                            gap: 4,
+                            padding: '2px 6px',
+                            borderRadius: 4,
+                            background: item.color === 'G' ? '#dcfce7' : item.color === 'B' ? '#dbeafe' : '#f1f5f9',
+                            color: item.color === 'G' ? '#166534' : item.color === 'B' ? '#1d4ed8' : '#334155',
+                            fontFamily: 'monospace',
                         }}
                     >
                         {item.id}
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleColorChange(item.id, item.color === 'G' ? 'B' : item.color === 'B' ? '' : 'G');
-                            }}
-                            style={{ border: 'none', background: 'transparent', cursor: 'pointer', padding: '0 2px', opacity: 0.6 }}
-                            title="Toggle color tag (Green/Blue)"
-                        >
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                        </button>
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleSelectionChange(selectedIds.filter(id => id !== item.id));
-                            }}
-                            style={{ border: 'none', background: 'transparent', cursor: 'pointer', padding: '0 2px', color: '#e53e3e' }}
-                        >
-                            &times;
-                        </button>
+                        {hoveredId === item.id && (
+                            <select
+                                value={item.color}
+                                onMouseDown={(event) => event.stopPropagation()}
+                                onClick={(event) => event.stopPropagation()}
+                                onChange={(event) => handleColorChange(item.id, event.target.value)}
+                                aria-label={`Color for linked criterion ${item.id}`}
+                                style={{ fontSize: '0.8em' }}
+                            >
+                                <option value="">Uncolored</option>
+                                <option value="G">Green</option>
+                                <option value="B">Blue</option>
+                            </select>
+                        )}
                     </span>
                 ))}
             </div>
-            
-            <SearchableMultiSelect
+            <Select
+                multiple
                 value={selectedIds}
-                options={options}
-                onChange={handleSelectionChange}
-                disabled={disabled}
-                placeholder={placeholder || "Select linked criteria..."}
-                autoOpen={open}
+                open={open}
+                onOpen={() => setOpen(true)}
                 onClose={handleClose}
-            />
-        </div>
-    );
-});
-
-const SearchableMultiSelect = React.memo(({ value, options, onChange, disabled, placeholder, autoOpen, onClose, showClearAll = false }) => {
-    const [open, setOpen] = useState(false);
-    const [search, setSearch] = useState('');
-
-    useEffect(() => {
-        if (autoOpen) {
-            setOpen(true);
-        }
-    }, [autoOpen]);
-
-    const handleClose = () => {
-        setOpen(false);
-        setSearch('');
-        if (onClose) onClose();
-    };
-
-    const filteredOptions = useMemo(() => {
-        const query = search.trim().toLowerCase();
-        if (!query) {
-            const selectedSet = new Set(value || []);
-            const selectedList = options.filter(opt => selectedSet.has(opt.id));
-            const remainingList = options.filter(opt => !selectedSet.has(opt.id)).slice(0, 100);
-            return [...selectedList, ...remainingList];
-        }
-        return options.filter(opt => 
-            opt.id.toLowerCase().includes(query) || 
-            (opt.name && opt.name.toLowerCase().includes(query))
-        ).slice(0, 100);
-    }, [search, options, value]);
-
-    return (
-        <Select
-            multiple
-            value={value || []}
-            open={open}
-            onOpen={() => setOpen(true)}
-            onClose={handleClose}
-            disabled={disabled}
-            onChange={(e) => onChange(e.target.value)}
-            renderValue={(selected) => (
-                <span style={{ fontFamily: 'monospace', fontSize: '0.95em' }}>
-                    {selected.length > 0 ? selected.join(', ') : (placeholder || 'None')}
-                </span>
-            )}
-            variant="standard"
-            disableUnderline
-            fullWidth
-            MenuProps={{
-                autoFocus: false,
-                PaperProps: {
-                    style: {
-                        maxHeight: 350,
-                        width: 320,
-                    }
-                }
-            }}
-        >
-            <div style={{ padding: '8px', position: 'sticky', top: 0, background: '#fff', zIndex: 3, borderBottom: '1px solid #e2e8f0', display: 'flex', gap: 8, alignItems: 'center' }} onClick={(e) => e.stopPropagation()}>
-                <TextField
-                    size="small"
-                    placeholder="Search..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    onKeyDown={(e) => {
-                        e.stopPropagation();
-                    }}
-                    style={{ flex: 1 }}
-                    autoFocus
-                />
-                {showClearAll && (
+                disabled={disabled}
+                onChange={(event) => handleSelectionChange(event.target.value)}
+                renderValue={() => (
+                    <span style={{ color: '#64748b', fontSize: '0.9em' }}>
+                        {parsedCriteria.length ? 'Add or remove criteria' : (placeholder || 'None')}
+                    </span>
+                )}
+                variant="standard"
+                disableUnderline
+                fullWidth
+                MenuProps={{
+                    autoFocus: false,
+                    PaperProps: { style: { maxHeight: 350, width: 320 } },
+                }}
+            >
+                <div style={{ padding: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 3, borderBottom: '1px solid #e2e8f0', display: 'flex', gap: 8 }} onClick={(event) => event.stopPropagation()}>
+                    <TextField
+                        size="small"
+                        placeholder="Search..."
+                        value={search}
+                        onChange={(event) => setSearch(event.target.value)}
+                        onKeyDown={(event) => event.stopPropagation()}
+                        style={{ flex: 1 }}
+                        autoFocus
+                    />
                     <Button
                         size="small"
                         variant="outlined"
-                        disabled={(value || []).length === 0}
-                        onClick={(e) => {
-                            e.stopPropagation();
+                        disabled={selectedIds.length === 0}
+                        onClick={(event) => {
+                            event.stopPropagation();
                             onChange([]);
                         }}
-                        onKeyDown={(e) => e.stopPropagation()}
                         style={{ whiteSpace: 'nowrap' }}
                     >
                         Clear all
                     </Button>
-                )}
-            </div>
-            {filteredOptions.map((opt) => (
-                <MenuItem key={opt.id} value={opt.id}>
-                    <Checkbox checked={(value || []).includes(opt.id)} size="small" />
-                    <ListItemText 
-                        primary={opt.id} 
-                        secondary={opt.name || ''} 
-                        primaryTypographyProps={{ style: { fontFamily: 'monospace', fontSize: '0.9em' } }}
-                        secondaryTypographyProps={{ style: { fontSize: '0.75em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }}
-                    />
-                </MenuItem>
-            ))}
-            {filteredOptions.length === 0 && (
-                <MenuItem disabled>
-                    <ListItemText primary="No matches found" />
-                </MenuItem>
-            )}
-        </Select>
+                </div>
+                {filteredOptions.map(option => {
+                    const selectedCriterion = parsedCriteria.find(item => item.id === option.id);
+                    return (
+                    <MenuItem
+                        key={option.id}
+                        value={option.id}
+                        onMouseEnter={() => setHoveredId(option.id)}
+                        onMouseLeave={() => setHoveredId(null)}
+                    >
+                        <Checkbox checked={selectedIds.includes(option.id)} size="small" />
+                        <ListItemText
+                            primary={option.id}
+                            secondary={option.name || ''}
+                            primaryTypographyProps={{ style: { fontFamily: 'monospace', fontSize: '0.9em' } }}
+                            secondaryTypographyProps={{ style: { fontSize: '0.75em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }}
+                        />
+                        {selectedCriterion && hoveredId === option.id && (
+                            <select
+                                value={selectedCriterion.color}
+                                onMouseDown={(event) => event.stopPropagation()}
+                                onClick={(event) => event.stopPropagation()}
+                                onKeyDown={(event) => event.stopPropagation()}
+                                onChange={(event) => handleColorChange(option.id, event.target.value)}
+                                aria-label={`Color for linked criterion ${option.id}`}
+                                style={{ fontSize: '0.8em' }}
+                            >
+                                <option value="">Uncolored</option>
+                                <option value="G">Green</option>
+                                <option value="B">Blue</option>
+                            </select>
+                        )}
+                    </MenuItem>
+                    );
+                })}
+            </Select>
+        </div>
     );
 });
 
@@ -329,6 +373,7 @@ const SETTINGS_TABLE_HEADERS = [
     { label: 'SE Description', minWidth: 220, align: 'center' },
     { label: 'Standard', minWidth: 70, align: 'center' },
     { label: 'Statement', minWidth: 300, align: 'center' },
+    { label: 'Intent', minWidth: 300, align: 'center' },
     { label: 'Criterion', minWidth: 80, align: 'center' },
     { label: 'Criterion Description', minWidth: 280, align: 'center' },
     { label: 'Root', minWidth: 50, align: 'center' },
@@ -364,7 +409,7 @@ const buildRootMap = (computeCriteria) => {
     return rootMap;
 };
 
-const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, rootMap) => (
+const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, rootMap, linksByCriterion = {}) => (
     serviceElements.flatMap(se => {
         const allStandards = (se.sections || []).flatMap(section =>
             (section.standards || []).map(standard => ({ id: standard.standard_id, name: standard.standard_id }))
@@ -372,17 +417,17 @@ const rowsForFacility = (serviceElements, configKey, allCriteriaInFacilityType, 
         const allCriteriaInSE = criterionOptionsFor([se]);
         const standardGroups = (se.sections || []).flatMap(section =>
             (section.standards || []).map(standard => {
-                const standardCriteriaIds = (standard.criteria || []).map(c => c.id).filter(Boolean);
                 const rows = (standard.criteria || []).map(criterion => ({
                     seId: se.se_id,
                     seDescription: se.se_description || se.description || se.se_name || se.name || '',
                     standardId: standard.standard_id,
-                    statement: standard.statement || standard.intent || standard.intent_tooltip || '',
+                    statement: standard.statement || '',
+                    intent: standard.intent_tooltip || standard.intent || '',
                     criterionId: criterion.id,
                     criterionDescription: criterion.description || '',
                     guidelines: criterion.guidelines || criterion.guideline || '',
                     isCritical: criterion.is_critical,
-                    linkedCriteria: criterion.linked_criteria || standardCriteriaIds,
+                    linkedCriteria: linksByCriterion[criterion.id] || criterion.linked_criteria || [],
                     isRoot: typeof criterion.is_root === 'boolean'
                         ? criterion.is_root
                         : !!rootMap[criterion.id],
@@ -475,6 +520,7 @@ export function Dashboard() {
 	        configBundles,
 	        setConfigBundles,
             configSource,
+            setConfigSource,
             remoteConfigLoading,
             loadRemoteConfig,
 	    } = useApp();
@@ -1228,6 +1274,8 @@ export function Dashboard() {
 				    const [expandedFacs, setExpandedFacs] = useState({});
 				    const [loadingFacType, setLoadingFacType] = useState(null);
                     const [settingsFacilityPages, setSettingsFacilityPages] = useState({});
+                    const [settingsFacilitySearches, setSettingsFacilitySearches] = useState({});
+                    const [settingsFacilityMetadata, setSettingsFacilityMetadata] = useState({});
 				    const [configRevision, setConfigRevision] = useState(0);
 				    const [activeCellKey, setActiveCellKey] = useState(null);
 		    const [selectedSE, setSelectedSE] = useState(null);
@@ -3589,6 +3637,132 @@ export function Dashboard() {
 		        });
 		    };
 
+            const reconcileFacilityConfigWithMetadata = (facilityType, metadata) => {
+                const configKeyMap = {
+                    hospital: 'hospital_full_configuration',
+                    clinics: 'clinics_full_configuration',
+                    ems: 'ems_full_configuration',
+                    mortuary: 'mortuary_full_configuration',
+                };
+                const metadataGroupMap = {
+                    hospital: 'HOSPITAL',
+                    clinics: 'CLINICS',
+                    ems: 'SE',
+                    mortuary: 'GENERAL',
+                };
+                const normalizedType = String(facilityType || '').toLowerCase();
+                const configKey = configKeyMap[normalizedType];
+                if (!configKey || !metadata) return;
+
+                const cleanMetadataLabel = (label, criterionId) => {
+                    let text = String(label || '').trim();
+                    if (criterionId) {
+                        text = text.replace(new RegExp(`^${criterionId.replace(/\./g, '\\.')}\\s*`, 'i'), '');
+                    }
+                    return text
+                        .replace(/^(?:HOSP(?:ITAL)?|CLINICS?|EMS|MORTUARY)(?:\s+\d+)?\s*[-:]\s*/i, '')
+                        .trim();
+                };
+
+                updateActiveConfigBundle((bundle) => {
+                    const nextConfig = { ...(bundle.config || {}) };
+                    const serviceElements = Array.isArray(nextConfig[configKey])
+                        ? JSON.parse(JSON.stringify(nextConfig[configKey]))
+                        : [];
+                    const rootMap = buildRootMap(bundle.compute || hospitalComputeCriteria);
+                    const links = Array.isArray(bundle.links?.[normalizedType]) ? bundle.links[normalizedType] : [];
+                    const linksByCriterion = Object.fromEntries(
+                        links.filter(item => item?.criteria).map(item => [item.criteria, item.linked_criteria || []])
+                    );
+
+                    // Use the same transformed metadata structure as the survey form.
+                    // A separate raw-metadata regex here caused valid survey criteria
+                    // with prefixed codes or inferred SE numbers to disappear from
+                    // App Settings.
+                    const transformedGroups = transformMetadata(metadata);
+                    const targetGroupId = metadataGroupMap[normalizedType];
+                    const metadataGroup = transformedGroups.find(group => group.id === targetGroupId);
+
+                    (metadataGroup?.sections || []).forEach(metadataSection => {
+                        const sectionName = String(metadataSection._originalName || metadataSection.name || '').toLowerCase();
+                        if (sectionName.includes('assessment details') || sectionName.includes('assessment_details')) return;
+                        const seId = metadataSection.se_id || extractStageSectionSeId(metadataSection);
+                        if (!seId) return;
+
+                        const criterionFields = (metadataSection.fields || []).map(field => {
+                            if (!field || field.type === 'header' || field.isComment) return null;
+                            let criterionId = normalizeCriterionCode(field.code);
+                            if (!/^\d+(?:\.\d+){3}$/.test(criterionId)) {
+                                const match = String(field.label || '').match(/\b\d+(?:\.\d+){3}\b/);
+                                criterionId = match?.[0] || '';
+                            }
+                            if (!criterionId) return null;
+                            return {
+                                id: criterionId,
+                                label: field.label || '',
+                            };
+                        }).filter(Boolean).filter((field, index, fields) => (
+                            fields.findIndex(candidate => candidate.id === field.id) === index
+                        ));
+                        if (!criterionFields.length) return;
+
+                        let serviceElement = serviceElements.find(item => String(item.se_id) === String(seId));
+                        if (!serviceElement) {
+                            serviceElement = {
+                                se_id: Number.isNaN(Number(seId)) ? seId : Number(seId),
+                                se_name: metadataSection.name || `SE ${seId}`,
+                                sections: [],
+                            };
+                            serviceElements.push(serviceElement);
+                        }
+                        if (!Array.isArray(serviceElement.sections)) serviceElement.sections = [];
+
+                        criterionFields.forEach(field => {
+                            const parts = field.id.split('.');
+                            const sectionPiId = parts.slice(0, 2).join('.');
+                            const standardId = parts.slice(0, 3).join('.');
+                            let section = serviceElement.sections.find(item => String(item.section_pi_id) === sectionPiId);
+                            if (!section) {
+                                section = {
+                                    section_pi_id: sectionPiId,
+                                    title: metadataSection.name || sectionPiId,
+                                    standards: [],
+                                };
+                                serviceElement.sections.push(section);
+                            }
+                            if (!Array.isArray(section.standards)) section.standards = [];
+
+                            let standard = section.standards.find(item => item.standard_id === standardId);
+                            if (!standard) {
+                                standard = {
+                                    standard_id: standardId,
+                                    statement: '',
+                                    intent_tooltip: '',
+                                    criteria: [],
+                                };
+                                section.standards.push(standard);
+                            }
+                            if (!Array.isArray(standard.criteria)) standard.criteria = [];
+                            if (standard.criteria.some(item => item.id === field.id)) return;
+
+                            standard.criteria.push({
+                                id: field.id,
+                                description: cleanMetadataLabel(field.label, field.id),
+                                guideline: '',
+                                severity: 1,
+                                is_critical: false,
+                                is_root: Object.prototype.hasOwnProperty.call(rootMap, field.id),
+                                linked_criteria: linksByCriterion[field.id] || [],
+                            });
+                        });
+                    });
+
+                    serviceElements.sort((a, b) => Number(a.se_id) - Number(b.se_id));
+                    nextConfig[configKey] = serviceElements;
+                    return { ...bundle, config: nextConfig };
+                });
+            };
+
 		    const handleOpenComputeEditor = () => {
 		        if (!currentComputeCriteria || !hospitalComputeServiceElements.length) {
 		            showToast('No Hospital computation mapping is available to configure.', 'warning');
@@ -3883,8 +4057,10 @@ export function Dashboard() {
     };
 
     const handleUpdateLinkedCriteria = (configKey, seId, standardId, criterionId, linkedCriteria) => {
+        const normalizedLinkedCriteria = normalizeLinkedCriteria(linkedCriteria);
         updateActiveConfigBundle((bundle) => {
             const nextConfig = { ...(bundle.config || {}) };
+            const nextLinks = { ...(bundle.links || {}) };
             const list = Array.isArray(nextConfig[configKey]) ? JSON.parse(JSON.stringify(nextConfig[configKey])) : [];
             const se = list.find(s => s.se_id === seId);
             if (se) {
@@ -3892,13 +4068,30 @@ export function Dashboard() {
                     section.standards.forEach(std => {
                         const crit = (std.criteria || []).find(c => c.id === criterionId);
                         if (crit) {
-                            crit.linked_criteria = linkedCriteria;
+                            crit.linked_criteria = normalizedLinkedCriteria;
                         }
                     });
                 });
             }
             nextConfig[configKey] = list;
-            return { ...bundle, config: nextConfig };
+
+            const linksKey = configKey.replace('_full_configuration', '');
+            const facilityLinks = Array.isArray(nextLinks[linksKey])
+                ? JSON.parse(JSON.stringify(nextLinks[linksKey]))
+                : [];
+            const existingLink = facilityLinks.find(item => item?.criteria === criterionId);
+            if (existingLink) {
+                existingLink.linked_criteria = normalizedLinkedCriteria;
+            } else {
+                facilityLinks.push({
+                    criteria: criterionId,
+                    root: [],
+                    linked_criteria: normalizedLinkedCriteria,
+                });
+            }
+            nextLinks[linksKey] = facilityLinks;
+
+            return { ...bundle, config: nextConfig, links: nextLinks };
         });
         setConfigRevision(r => r + 1);
     };
@@ -4098,6 +4291,12 @@ export function Dashboard() {
 		            ems_full_configuration: emsConfig.ems_full_configuration,
 		            mortuary_full_configuration: mortuaryConfig.mortuary_full_configuration,
 		        };
+                const activeLinks = overviewSource === 'active' ? currentLinks : {
+                    hospital: decorateHospitalLinksWithMatrixTags(hospitalLinks),
+                    clinics: clinicsLinks,
+                    ems: emsLinks,
+                    mortuary: mortuaryLinks,
+                };
 		        const rootMap = buildRootMap(currentComputeCriteria);
 		        return [
 		            { type: 'Hospital', config: activeConfig, key: 'hospital_full_configuration' },
@@ -4106,24 +4305,7 @@ export function Dashboard() {
 		            { type: 'Mortuary', config: activeConfig, key: 'mortuary_full_configuration' },
 		        ].map(({ type, config, key }) => {
 		            const seList = Array.isArray(config?.[key]) ? config[key] : [];
-                    const searchQuery = String(settingsFacilitySearches[type] || '').trim().toLowerCase();
-                    const filteredSeList = searchQuery
-                        ? seList.map(se => ({
-                            ...se,
-                            sections: (se.sections || []).map(section => ({
-                                ...section,
-                                standards: (section.standards || []).map(standard => ({
-                                    ...standard,
-                                    criteria: (standard.criteria || []).filter(criterion => (
-                                        String(criterion.id || '').toLowerCase().includes(searchQuery)
-                                        || String(criterion.description || '').toLowerCase().includes(searchQuery)
-                                    )),
-                                })).filter(standard => standard.criteria.length > 0),
-                            })).filter(section => section.standards.length > 0),
-                        })).filter(se => se.sections.length > 0)
-                        : seList;
-                    const matchingCriteria = countCriteriaFor(filteredSeList);
-                    const totalPages = Math.max(1, Math.ceil(filteredSeList.length / pageSize));
+                    const totalPages = Math.max(1, Math.ceil(seList.length / pageSize));
                     const requestedPage = settingsFacilityPages[type] || 0;
                     const page = Math.min(requestedPage, totalPages - 1);
                     const isExpanded = !!expandedFacs[type];
@@ -4132,7 +4314,7 @@ export function Dashboard() {
                         : [];
 		            const allCriteriaInFacilityType = isExpanded ? criterionOptionsFor(seList) : [];
 		            const rows = isExpanded
-                        ? rowsForFacility(visibleSeList, key, allCriteriaInFacilityType, rootMap)
+                        ? rowsForFacility(visibleSeList, key, allCriteriaInFacilityType, rootMap, linksByCriterion)
                         : [];
 		            return {
 		                type,
@@ -4148,7 +4330,7 @@ export function Dashboard() {
                         totalPages,
 		            };
 		        });
-		    }, [overviewSource, currentConfig, currentComputeCriteria, expandedFacs, settingsFacilityPages, settingsFacilitySearches]);
+		    }, [overviewSource, currentConfig, currentComputeCriteria, expandedFacs, settingsFacilityPages]);
 
     // Filter events
     const filteredEvents = useMemo(() => {
@@ -5093,7 +5275,781 @@ export function Dashboard() {
                 </DialogActions>
             </Dialog>
 
-            
+            {/* Settings Dialog */}
+            <Dialog
+                open={showSettings}
+                onClose={() => { setShowSettings(false); setSelectedSE(null); }}
+                maxWidth="xl"
+                fullWidth
+                PaperProps={{
+                    style: {
+                        width: '96vw',
+                        height: '92vh',
+                        maxWidth: 'none',
+                        maxHeight: 'none',
+                        margin: 0,
+                    }
+                }}
+            >
+                <DialogTitle>
+                    {selectedSE ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <Button onClick={() => setSelectedSE(null)} size="small">← Back</Button>
+                            <span>SE {selectedSE.se_id}: {selectedSE.se_name}</span>
+                        </div>
+                    ) : showLinksEditor ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <Button onClick={() => setShowLinksEditor(false)} size="small">← Back</Button>
+                            <span>Criteria Linking Configuration</span>
+                        </div>
+                    ) : 'App Settings'}
+                </DialogTitle>
+                <DialogContent dividers style={{ position: 'relative' }}>
+                    {remoteConfigLoading && (
+                        <div
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                zIndex: 5,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: 12,
+                                background: 'rgba(255, 255, 255, 0.86)',
+                                color: '#0f172a',
+                            }}
+                        >
+                            <CircularProgress />
+                            <div style={{ fontSize: '1rem', fontWeight: 600 }}>
+                                Loading configurations...
+                            </div>
+                        </div>
+                    )}
+                    <div className="settings-content">
+	                        {!selectedSE && !showLinksEditor ? (
+	                            <>
+									<div className="settings-section">
+										<h4>Facility Type — SE Criteria Overview</h4>
+										<div style={{ fontSize: '0.85rem', color: '#475569', marginTop: '4px', marginBottom: '12px', padding: '8px 12px', backgroundColor: '#f1f5f9', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+											<strong>Active App Source Strategy:</strong> Remote DHIS2 DataStore
+											<br />
+											<span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+												Note: To compare edits or perform a reset, use the <em>View Configuration Mode</em> selector below.
+											</span>
+										</div>
+
+										<div style={{ display: 'flex', gap: '15px', alignItems: 'center', marginBottom: '15px', flexWrap: 'wrap' }}>
+											<FormControl size="small" style={{ minWidth: '240px' }}>
+												<InputLabel>View Configuration Mode</InputLabel>
+												<Select
+													value={overviewSource}
+													label="View Configuration Mode"
+													onChange={(e) => setOverviewSource(e.target.value)}
+												>
+													<MenuItem value="active">Active/Remote Config</MenuItem>
+													<MenuItem value="local">Local Baseline (In-App JSONs)</MenuItem>
+												</Select>
+											</FormControl>
+										</div>
+
+										<p className="settings-subtitle">Expand a facility type to view its criteria.</p>
+										<div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+											{overviewSource === 'active' ? (
+												<Button
+													variant='outlined'
+													size='small'
+                                                    disabled={!Object.keys(expandedFacs).find(type => expandedFacs[type])}
+													onClick={() => {
+                                                        const openFacility = Object.keys(expandedFacs).find(type => expandedFacs[type]);
+                                                        handleSaveConfigsToDataStore(openFacility);
+                                                    }}
+												>
+													Save Open Config to DataStore
+												</Button>
+											) : (
+												<Button
+													variant='outlined'
+													size='small'
+													color='error'
+													onClick={() => setShowResetConfirmDialog(true)}
+												>
+													Reset DataStore to Local Baseline
+												</Button>
+											)}
+											<Button
+												variant='outlined'
+												size='small'
+												onClick={() => navigate('/dev-config-export')}
+											>
+												Export Configs
+											</Button>
+										</div>
+										{(() => {
+											const toggleFac = async (type) => {
+                                                const isClosing = !!expandedFacs[type];
+                                                if (isClosing) {
+                                                    setExpandedFacs({});
+                                                    setActiveCellKey(null);
+                                                    return;
+                                                }
+											    setLoadingFacType(type);
+                                                setActiveCellKey(null);
+                                                try {
+                                                    if (overviewSource === 'active' && configSource === 'datastore' && isOnline) {
+                                                        await loadRemoteConfig(type);
+                                                    }
+                                                    setExpandedFacs({ [type]: true });
+                                                    setSettingsFacilityPages(prev => ({ ...prev, [type]: 0 }));
+                                                } finally {
+											        setLoadingFacType(null);
+                                                }
+											};
+											return settingsFacilityTables.map(({ type, seList, rows, totalCriteria, page, pageSize, totalPages }) => {
+												const isExpanded = !!expandedFacs[type];
+												return (
+													<div key={type} style={{ marginBottom: '12px', border: '1px solid #e2e8f0', borderRadius: '6px', overflow: 'hidden' }}>
+														<div
+															onClick={() => toggleFac(type)}
+															style={{
+																padding: '10px 16px',
+																background: isExpanded ? '#ebf8ff' : '#f7fafc',
+																cursor: 'pointer',
+																display: 'flex',
+																justifyContent: 'space-between',
+																alignItems: 'center',
+																fontWeight: 600,
+																fontSize: '0.95em',
+																userSelect: 'none',
+															}}
+															>
+																<span>{type} <span style={{ color: '#718096', fontWeight: 400, fontSize: '0.85em' }}>({seList.length} SEs, {totalCriteria} criteria)</span></span>
+																<span style={{ fontSize: '0.8em', color: '#718096', display: 'flex', alignItems: 'center', gap: 6 }}>{loadingFacType === type ? <CircularProgress size={14} /> : (isExpanded ? '▲ Collapse' : '▼ Expand')}</span>
+															</div>
+															{isExpanded && (
+																<div style={{ padding: '8px', maxHeight: '55vh', overflowY: 'auto', overflowX: 'auto' }}>
+                                                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                                                                        <span style={{ color: '#64748b', fontSize: '0.82em' }}>
+                                                                            Showing SEs {seList.length ? page * pageSize + 1 : 0}-{Math.min((page + 1) * pageSize, seList.length)} of {seList.length}
+                                                                        </span>
+                                                                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                                                            <Button
+                                                                                size="small"
+                                                                                variant="outlined"
+                                                                                disabled={page === 0}
+                                                                                onClick={() => {
+                                                                                    setActiveCellKey(null);
+                                                                                    setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.max(0, page - 1) }));
+                                                                                }}
+                                                                            >
+                                                                                Previous
+                                                                            </Button>
+                                                                            <span style={{ fontSize: '0.82em' }}>Page {page + 1} of {totalPages}</span>
+                                                                            <Button
+                                                                                size="small"
+                                                                                variant="outlined"
+                                                                                disabled={page >= totalPages - 1}
+                                                                                onClick={() => {
+                                                                                    setActiveCellKey(null);
+                                                                                    setSettingsFacilityPages(prev => ({ ...prev, [type]: Math.min(totalPages - 1, page + 1) }));
+                                                                                }}
+                                                                            >
+                                                                                Next
+                                                                            </Button>
+                                                                        </div>
+                                                                    </div>
+																	<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82em' }}>
+																		<thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
+																			<tr style={{ background: '#edf2f7', textAlign: 'left' }}>
+																				{SETTINGS_TABLE_HEADERS.map(header => (
+																					<th
+																						key={header.label}
+																						style={{
+																							padding: '8px',
+																							border: '1px solid #cbd5e0',
+																							minWidth: `${header.minWidth}px`,
+																							position: 'sticky',
+																							top: 0,
+																							background: '#edf2f7',
+																							textAlign: header.align || 'center',
+																						}}
+																					>
+																						{header.label}
+																					</th>
+																				))}
+																			</tr>
+																		</thead>
+																		<tbody>
+																			{rows.map((row, idx) => (
+																					<tr key={`${type}-se-${row.seId}-st-${row.standardId}-c-${row.criterionId}-${idx}`}>
+																						{row.isFirstSeRow && (
+																							<td
+																								rowSpan={row.seRowSpan}
+																								style={{
+																									padding: '8px',
+																									border: '1px solid #e2e8f0',
+																									textAlign: 'center',
+																									verticalAlign: 'middle',
+																									fontWeight: 700,
+																									background: '#f8fafc',
+																								}}
+																							>
+																								{row.seId}
+																							</td>
+																						)}
+																						{row.isFirstSeRow && (
+																							<td
+																								rowSpan={row.seRowSpan}
+																								style={{
+																									padding: '8px',
+																									border: '1px solid #e2e8f0',
+																									textAlign: 'center',
+																									verticalAlign: 'middle',
+																									background: '#f8fafc',
+																								}}
+																							>
+																								{overviewSource !== 'local' && activeCellKey === `${row.seId}-se-description` ? (
+																									<EditableTextCell
+																										value={row.seDescription}
+																										active
+																										editable
+																										onOpen={() => setActiveCellKey(null)}
+																										onSave={(value) => handleUpdateSeDescription(row.configKey, row.seId, value)}
+																									/>
+																								) : (
+																								<div
+																									onClick={overviewSource !== 'local' ? () => setActiveCellKey(`${row.seId}-se-description`) : undefined}
+																									style={{ maxHeight: '90px', overflowY: 'auto', cursor: overviewSource === 'local' ? 'default' : 'pointer', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}
+																								>
+																									{row.seDescription || '—'}
+																								</div>
+																								)}
+																							</td>
+																						)}
+																						{row.isFirstStandardRow && (
+																							<td
+																								rowSpan={row.standardRowSpan}
+																								style={{
+																									padding: '8px',
+																									border: '1px solid #e2e8f0',
+																									textAlign: 'center',
+																									verticalAlign: 'middle',
+																									cursor: overviewSource === 'local' ? 'default' : 'pointer',
+																									background: '#ffffff',
+																								}}
+																								onClick={() => {
+																									if (overviewSource !== 'local') {
+																										setActiveCellKey(`${row.criterionId}-standard`);
+																									}
+																								}}
+																							>
+																								{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-standard` ? (
+																									<Select
+																										value={row.standardId}
+																										onChange={(e) => {
+																											handleMoveStandard(row.configKey, row.seId, row.standardId, e.target.value, row.criterionId);
+																											setActiveCellKey(null);
+																										}}
+																										onClose={() => setActiveCellKey(null)}
+																										size="small"
+																										variant="standard"
+																										disableUnderline
+																										style={{ fontFamily: 'monospace', fontSize: '1em' }}
+																										autoFocus
+																										defaultOpen
+																									>
+																										{row.allStandards.map((std) => (
+																											<MenuItem key={std.id} value={std.id}>{std.name}</MenuItem>
+																										))}
+																									</Select>
+																								) : (
+																									<span style={{ fontFamily: 'monospace', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}>{row.standardId}</span>
+																								)}
+																							</td>
+																						)}
+																						{row.isFirstStandardRow && (
+																							<td
+																								rowSpan={row.standardRowSpan}
+																								style={{
+																									padding: '8px',
+																									border: '1px solid #e2e8f0',
+																									textAlign: 'center',
+																									verticalAlign: 'middle',
+																								}}
+																							>
+																								{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-statement` ? (
+																									<EditableTextCell
+																										value={row.statement}
+																										active
+																										editable
+																										maxHeight={110}
+																										onOpen={() => setActiveCellKey(null)}
+																										onSave={(value) => handleUpdateStandardText(row.configKey, row.seId, row.standardId, 'statement', value)}
+																									/>
+																								) : (
+																								<div
+																									onClick={overviewSource !== 'local' ? () => setActiveCellKey(`${row.criterionId}-statement`) : undefined}
+																									style={{ maxHeight: '110px', overflowY: 'auto', cursor: overviewSource === 'local' ? 'default' : 'pointer', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}
+																								>
+																									{row.statement || '—'}
+																								</div>
+																								)}
+																							</td>
+																						)}
+																						<td style={{ padding: '8px', border: '1px solid #e2e8f0', textAlign: 'center', verticalAlign: 'middle', fontFamily: 'monospace' }}>{row.criterionId}</td>
+																						<td style={{ padding: '8px', border: '1px solid #e2e8f0', textAlign: 'center', verticalAlign: 'middle' }}>
+																							{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-description` ? (
+																								<EditableTextCell
+																									value={row.criterionDescription}
+																									active
+																									editable
+																									onOpen={() => setActiveCellKey(null)}
+																									onSave={(value) => handleUpdateCriterionText(row.configKey, row.seId, row.standardId, row.criterionId, 'description', value)}
+																								/>
+																							) : (
+																							<div
+																								onClick={overviewSource !== 'local' ? () => setActiveCellKey(`${row.criterionId}-description`) : undefined}
+																								style={{ maxHeight: '90px', overflowY: 'auto', cursor: overviewSource === 'local' ? 'default' : 'pointer', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}
+																							>
+																								{row.criterionDescription || '—'}
+																							</div>
+																							)}
+																						</td>
+																						<td 
+																							style={{ padding: '8px', border: '1px solid #e2e8f0', textAlign: 'center', verticalAlign: 'middle', cursor: overviewSource === 'local' ? 'default' : 'pointer' }}
+																							onClick={() => {
+																								if (overviewSource !== 'local') {
+																									setActiveCellKey(`${row.criterionId}-root`);
+																								}
+																							}}
+																						>
+																							{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-root` ? (
+																								<Select
+																									value={row.isRoot ? 'yes' : 'no'}
+																									onChange={(e) => {
+																										handleToggleRoot(row.configKey, row.seId, row.standardId, row.criterionId, e.target.value === 'yes');
+																										setActiveCellKey(null);
+																									}}
+																									onClose={() => setActiveCellKey(null)}
+																									size="small"
+																									variant="standard"
+																									disableUnderline
+																									style={{ fontWeight: 600, color: row.isRoot ? '#2b6cb0' : '#718096' }}
+																									autoFocus
+																									defaultOpen
+																								>
+																									<MenuItem value="yes" style={{ color: '#2b6cb0', fontWeight: 600 }}>Yes</MenuItem>
+																									<MenuItem value="no" style={{ color: '#718096', fontWeight: 600 }}>No</MenuItem>
+																								</Select>
+																							) : (
+																								<span 
+																									style={{ 
+																										fontWeight: 600, 
+																										color: row.isRoot ? '#2b6cb0' : '#718096',
+																										borderBottom: overviewSource === 'local' ? 'none' : '1px dashed currentColor'
+																									}}
+																								>
+																									{row.isRoot ? 'Yes' : 'No'}
+																								</span>
+																							)}
+																						</td>
+																						<td 
+																							style={{ padding: '8px', border: '1px solid #e2e8f0', textAlign: 'center', verticalAlign: 'middle', cursor: overviewSource === 'local' ? 'default' : 'pointer' }}
+																							onClick={() => {
+																								if (overviewSource !== 'local') {
+																									setActiveCellKey(`${row.criterionId}-critical`);
+																								}
+																							}}
+																						>
+																							{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-critical` ? (
+																								<Select
+																									value={row.isCritical ? 'critical' : 'non-critical'}
+																									onChange={() => {
+																										handleToggleCritical(row.configKey, row.seId, row.standardId, row.criterionId);
+																										setActiveCellKey(null);
+																									}}
+																									onClose={() => setActiveCellKey(null)}
+																									size="small"
+																									variant="standard"
+																									disableUnderline
+																									style={{
+																										color: row.isCritical ? '#c53030' : '#2f855a',
+																										fontWeight: 600,
+																										backgroundColor: row.isCritical ? '#fff5f5' : '#f0fff4',
+																										padding: '2px 8px',
+																										borderRadius: '4px',
+																										fontSize: '0.9em',
+																									}}
+																									autoFocus
+																									defaultOpen
+																								>
+																									<MenuItem value="critical" style={{ color: '#c53030', fontWeight: 600 }}>Critical</MenuItem>
+																									<MenuItem value="non-critical" style={{ color: '#2f855a', fontWeight: 600 }}>Non-Critical</MenuItem>
+																								</Select>
+																							) : (
+																								<span
+																									style={{
+																										color: row.isCritical ? '#c53030' : '#2f855a',
+																										fontWeight: 600,
+																										background: row.isCritical ? '#fff5f5' : '#f0fff4',
+																										padding: '2px 8px',
+																										borderRadius: '4px',
+																										fontSize: '0.85em',
+																										borderBottom: overviewSource === 'local' ? 'none' : '1px dashed currentColor',
+																									}}
+																								>
+																									{row.isCritical ? 'Critical' : 'Non-Critical'}
+																								</span>
+																							)}
+																						</td>
+																						<td 
+																							style={{ padding: '8px', border: '1px solid #e2e8f0', textAlign: 'center', verticalAlign: 'middle', cursor: overviewSource === 'local' ? 'default' : 'pointer' }}
+																							onClick={() => {
+																								if (overviewSource !== 'local' && activeCellKey !== `${row.criterionId}-linked`) {
+																									setActiveCellKey(`${row.criterionId}-linked`);
+																								}
+																							}}
+																						>
+																							{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-linked` ? (
+																								<SearchableMultiSelect
+																									value={row.linkedCriteria}
+																									options={row.allCriteriaInFacilityType}
+																									onChange={(val) => {
+																										handleUpdateLinkedCriteria(row.configKey, row.seId, row.standardId, row.criterionId, val);
+																									}}
+																									onClose={() => setActiveCellKey(null)}
+																									placeholder="—"
+																									autoOpen
+																									showClearAll
+																								/>
+																							) : (
+																								<div style={{ maxHeight: '60px', overflowY: 'auto', fontSize: '0.9em', fontFamily: 'monospace', textAlign: 'center', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}>
+																									{row.linkedCriteria.length > 0 ? row.linkedCriteria.map((id, i) => (
+																										<span key={id} style={{ color: id === row.criterionId ? '#c53030' : '#276749' }}>
+																											{id}{i < row.linkedCriteria.length - 1 ? ', ' : ''}
+																										</span>
+																									)) : '—'}
+																								</div>
+																							)}
+																						</td>
+																						<td 
+																							style={{ padding: '8px', border: '1px solid #e2e8f0', textAlign: 'center', verticalAlign: 'middle', cursor: (!row.isRoot || overviewSource === 'local') ? 'default' : 'pointer' }}
+																							onClick={() => {
+																								if (row.isRoot && overviewSource !== 'local' && activeCellKey !== `${row.criterionId}-sub`) {
+																									setActiveCellKey(`${row.criterionId}-sub`);
+																								}
+																							}}
+																						>
+																							{!row.isRoot ? (
+																								<span style={{ color: '#a0aec0' }}>—</span>
+																							) : overviewSource !== 'local' && activeCellKey === `${row.criterionId}-sub` ? (
+																								<SearchableMultiSelect
+																									value={row.subCriteria}
+																									options={row.allCriteriaInSE}
+																									onChange={(val) => {
+																										handleUpdateSubCriteria(row.seId, row.criterionId, val);
+																									}}
+																									onClose={() => setActiveCellKey(null)}
+																									placeholder="None"
+																									autoOpen
+																								/>
+																							) : (
+																								<div style={{ maxHeight: '60px', overflowY: 'auto', fontSize: '0.9em', fontFamily: 'monospace', textAlign: 'center', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}>
+																									{row.subCriteria.length > 0 ? row.subCriteria.join(', ') : 'None'}
+																								</div>
+																							)}
+																						</td>
+																						<td style={{ padding: '8px', border: '1px solid #e2e8f0', textAlign: 'center', verticalAlign: 'middle' }}>
+																							{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-guidelines` ? (
+																								<EditableTextCell
+																									value={row.guidelines}
+																									active
+																									editable
+																									maxHeight={110}
+																									onOpen={() => setActiveCellKey(null)}
+																									onSave={(value) => handleUpdateCriterionText(row.configKey, row.seId, row.standardId, row.criterionId, 'guidelines', value)}
+																								/>
+																							) : (
+																							<div
+																								onClick={overviewSource !== 'local' ? () => setActiveCellKey(`${row.criterionId}-guidelines`) : undefined}
+																								style={{ maxHeight: '110px', overflowY: 'auto', cursor: overviewSource === 'local' ? 'default' : 'pointer', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}
+																							>
+																								{row.guidelines || '—'}
+																							</div>
+																							)}
+																						</td>
+																					</tr>
+																				))}
+																		</tbody>
+																	</table>
+																</div>
+															)}
+														</div>
+													);
+												});
+											})()}
+											</div>
+
+                            </>
+                        ) : selectedSE ? (
+                            <div className="se-details-view raw-json-container">
+                                <div className="json-header-actions">
+                                    {isEditingJson ? (
+                                        <>
+                                            {jsonError && <span className="error-text json-error-msg">{jsonError}</span>}
+                                            <Button
+                                                size="small"
+                                                variant="contained"
+                                                color="success"
+                                                onClick={() => {
+		                                                    try {
+		                                                        const parsed = JSON.parse(editedJson);
+		                                                        const typeToKeyMap = {
+		                                                            ems: 'ems_full_configuration',
+		                                                            mortuary: 'mortuary_full_configuration',
+		                                                            clinics: 'clinics_full_configuration',
+		                                                            hospital: 'hospital_full_configuration',
+		                                                        };
+		                                                        const key = typeToKeyMap[selectedSE._type] || 'ems_full_configuration';
+
+		                                                        updateActiveConfigBundle((bundle) => {
+		                                                            const newConfig = { ...(bundle.config || {}) };
+		                                                            const list = Array.isArray(newConfig[key]) ? [...newConfig[key]] : [];
+		                                                            const index = list.findIndex(se => se.se_id === selectedSE.se_id);
+		                                                            if (index === -1) {
+		                                                                return bundle;
+		                                                            }
+		                                                            list[index] = parsed;
+		                                                            newConfig[key] = list;
+		                                                            return { ...bundle, config: newConfig };
+		                                                        });
+
+		                                                        setSelectedSE({ ...parsed, _type: selectedSE._type });
+		                                                        setIsEditingJson(false);
+		                                                        setJsonError(null);
+		                                                        showToast('Configuration saved successfully!', 'success');
+		                                                    } catch (e) {
+		                                                        setJsonError('Invalid JSON format');
+		                                                    }
+                                                }}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Save Changes
+                                            </Button>
+	                                            <Button
+	                                                size="small"
+	                                                variant="outlined"
+	                                                onClick={() => {
+	                                                    setIsEditingJson(false);
+	                                                    setEditedJson(JSON.stringify(selectedSE, null, 2));
+	                                                    setJsonError(null);
+	                                                }}
+	                                            >
+	                                                Cancel
+	                                            </Button>
+                                        </>
+                                    ) : (
+                                        <>
+	                                            <Button
+	                                                size="small"
+	                                                variant="outlined"
+	                                                onClick={() => setIsEditingJson(true)}
+	                                                style={{ marginRight: '10px' }}
+	                                            >
+	                                                Edit Mode
+	                                            </Button>
+	                                            <Button
+	                                                size="small"
+	                                                variant="outlined"
+	                                                onClick={() => {
+	                                                    navigator.clipboard.writeText(JSON.stringify(selectedSE, null, 2));
+	                                                    showToast('JSON copied to clipboard!', 'success');
+	                                                }}
+	                                                style={{ marginRight: '10px' }}
+	                                            >
+	                                                Copy JSON
+	                                            </Button>
+	                                            <Button
+	                                                size="small"
+	                                                variant="outlined"
+	                                                color="error"
+	                                                onClick={() => {
+	                                                    if (window.confirm('Are you sure you want to reset this SE to default?')) {
+	                                                        const typeToKeyMap = {
+	                                                            ems: 'ems_full_configuration',
+	                                                            mortuary: 'mortuary_full_configuration',
+	                                                            clinics: 'clinics_full_configuration',
+	                                                            hospital: 'hospital_full_configuration',
+	                                                        };
+	                                                        const key = typeToKeyMap[selectedSE._type] || 'ems_full_configuration';
+	                                                        const defaultSourceMap = {
+	                                                            ems: emsConfig,
+	                                                            mortuary: mortuaryConfig,
+	                                                            clinics: clinicsConfig,
+	                                                            hospital: hospitalConfig,
+	                                                        };
+	                                                        const defaultSource = defaultSourceMap[selectedSE._type] || emsConfig;
+	                                                        const defaultListKey = key;
+	                                                        const defaultConfig = (defaultSource[defaultListKey] || []).find(se => se.se_id === selectedSE.se_id);
+
+	                                                        if (!defaultConfig) {
+	                                                            showToast('Default configuration not found for this SE.', 'error');
+	                                                            return;
+	                                                        }
+
+	                                                        updateActiveConfigBundle((bundle) => {
+	                                                            const newConfig = { ...(bundle.config || {}) };
+	                                                            const list = Array.isArray(newConfig[key]) ? [...newConfig[key]] : [];
+	                                                            const index = list.findIndex(se => se.se_id === selectedSE.se_id);
+	                                                            if (index === -1) {
+	                                                                return bundle;
+	                                                            }
+	                                                            list[index] = defaultConfig;
+	                                                            newConfig[key] = list;
+	                                                            return { ...bundle, config: newConfig };
+	                                                        });
+
+	                                                        setSelectedSE({ ...defaultConfig, _type: selectedSE._type });
+	                                                        setEditedJson(JSON.stringify(defaultConfig, null, 2));
+	                                                        showToast('Reset to default', 'info');
+	                                                    }
+	                                                }}
+	                                            >
+	                                                Reset
+	                                            </Button>
+                                        </>
+                                    )}
+                                </div>
+                                {isEditingJson ? (
+                                    <textarea
+                                        className="raw-json-editor"
+                                        value={editedJson}
+                                        onChange={(e) => setEditedJson(e.target.value)}
+                                        spellCheck="false"
+                                    />
+                                ) : (
+                                    <pre className="raw-json-viewer">
+                                        {JSON.stringify(selectedSE, null, 2)}
+                                    </pre>
+                                )}
+                            </div>
+                        ) : showLinksEditor ? (
+                            <div className="se-details-view raw-json-container">
+                                <div className="json-header-actions">
+                                    {isEditingLinks ? (
+                                        <>
+                                            {jsonError && <span className="error-text json-error-msg">{jsonError}</span>}
+                                            <Button
+                                                size="small"
+                                                variant="contained"
+                                                color="success"
+                                                onClick={() => {
+		                                                    try {
+		                                                        const parsed = JSON.parse(editedLinksJson);
+		                                                        updateActiveConfigBundle((bundle) => {
+		                                                            const newLinks = { ...(bundle.links || {}) };
+		                                                            newLinks[showLinksEditor] = parsed;
+		                                                            return { ...bundle, links: newLinks };
+		                                                        });
+		                                                        setIsEditingLinks(false);
+		                                                        setJsonError(null);
+		                                                        showToast(`${showLinksEditor.toUpperCase()} linking configuration saved!`, 'success');
+		                                                    } catch (e) {
+		                                                        setJsonError('Invalid JSON format');
+		                                                    }
+                                                }}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Save Changes
+                                            </Button>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => {
+                                                    setIsEditingLinks(false);
+	                                                    setEditedLinksJson(JSON.stringify(currentLinks, null, 2));
+                                                    setJsonError(null);
+                                                }}
+                                            >
+                                                Cancel
+                                            </Button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                onClick={() => setIsEditingLinks(true)}
+                                                style={{ marginRight: '10px' }}
+                                            >
+                                                Edit Mode
+                                            </Button>
+	                                            <Button
+	                                                size="small"
+	                                                variant="outlined"
+	                                                onClick={() => {
+	                                                    navigator.clipboard.writeText(JSON.stringify(currentLinks, null, 2));
+	                                                    showToast('Links JSON copied!', 'success');
+	                                                }}
+	                                                style={{ marginRight: '10px' }}
+	                                            >
+	                                                Copy JSON
+	                                            </Button>
+	                                            <Button
+	                                                size="small"
+	                                                variant="outlined"
+	                                                color="error"
+	                                                onClick={() => {
+	                                                    if (window.confirm('Reset linking configuration to default?')) {
+	                                                        const defaultLinksMap = {
+	                                                            ems: emsLinks,
+	                                                            hospital: hospitalLinks,
+	                                                            mortuary: mortuaryLinks,
+	                                                            clinics: clinicsLinks,
+	                                                        };
+	                                                        const defaultForType = defaultLinksMap[showLinksEditor] || emsLinks;
+
+	                                                        updateActiveConfigBundle((bundle) => {
+	                                                            const newLinks = { ...(bundle.links || {}) };
+	                                                            newLinks[showLinksEditor] = defaultForType;
+	                                                            return { ...bundle, links: newLinks };
+	                                                        });
+
+	                                                        setEditedLinksJson(JSON.stringify(defaultForType, null, 2));
+	                                                        showToast('Reset to default', 'info');
+	                                                    }
+	                                                }}
+	                                            >
+	                                                Reset
+	                                            </Button>
+                                        </>
+                                    )}
+                                </div>
+                                {isEditingLinks ? (
+                                    <textarea
+                                        className="raw-json-editor"
+                                        value={editedLinksJson}
+                                        onChange={(e) => setEditedLinksJson(e.target.value)}
+                                        spellCheck="false"
+                                        style={{ minHeight: '400px' }}
+                                    />
+                                ) : (
+                                    <pre className="raw-json-viewer" style={{ minHeight: '400px' }}>
+                                        {JSON.stringify(currentLinks, null, 2)}
+                                    </pre>
+                                )}
+                            </div>
+                        ) : null}
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => {
+                        setShowSettings(false);
+                        setSelectedSE(null);
+                        setShowLinksEditor(false);
+                    }}>Close</Button>
+                </DialogActions>
+            </Dialog>
 
             {/* Initiate Survey Dialog */}
             <Dialog open={showCreateBaselineDialog} onClose={cancelCreateBaseline} fullWidth maxWidth="md">
