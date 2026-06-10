@@ -222,16 +222,89 @@ const LinkedCriteriaMultiSelect = React.memo(({ value, options, onChange, disabl
                     </span>
                 ))}
             </div>
-            
-            <SearchableMultiSelect
+            <Select
+                multiple
                 value={selectedIds}
-                options={options}
-                onChange={handleSelectionChange}
-                disabled={disabled}
-                placeholder={placeholder || "Select linked criteria..."}
-                autoOpen={open}
+                open={open}
+                onOpen={() => setOpen(true)}
                 onClose={handleClose}
-            />
+                disabled={disabled}
+                onChange={(event) => handleSelectionChange(event.target.value)}
+                renderValue={() => (
+                    <span style={{ color: '#64748b', fontSize: '0.9em' }}>
+                        {parsedCriteria.length ? 'Add or remove criteria' : (placeholder || 'None')}
+                    </span>
+                )}
+                variant="standard"
+                disableUnderline
+                fullWidth
+                MenuProps={{
+                    autoFocus: false,
+                    PaperProps: { style: { maxHeight: 350, width: 360 } },
+                }}
+            >
+                <div
+                    style={{ padding: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 3, borderBottom: '1px solid #e2e8f0', display: 'flex', gap: 8 }}
+                    onClick={(event) => event.stopPropagation()}
+                >
+                    <TextField
+                        size="small"
+                        placeholder="Search..."
+                        value={search}
+                        onChange={(event) => setSearch(event.target.value)}
+                        onKeyDown={(event) => event.stopPropagation()}
+                        style={{ flex: 1 }}
+                        autoFocus
+                    />
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        disabled={selectedIds.length === 0}
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            onChange([]);
+                        }}
+                        style={{ whiteSpace: 'nowrap' }}
+                    >
+                        Clear all
+                    </Button>
+                </div>
+                {filteredOptions.map(option => {
+                    const selectedCriterion = parsedCriteria.find(item => item.id === option.id);
+                    return (
+                        <MenuItem
+                            key={option.id}
+                            value={option.id}
+                            onMouseEnter={() => setHoveredId(option.id)}
+                            onMouseLeave={() => setHoveredId(null)}
+                        >
+                            <Checkbox checked={selectedIds.includes(option.id)} size="small" />
+                            <ListItemText
+                                primary={option.id}
+                                secondary={option.name || ''}
+                                primaryTypographyProps={{ style: { fontFamily: 'monospace', fontSize: '0.9em' } }}
+                                secondaryTypographyProps={{ style: { fontSize: '0.75em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }}
+                            />
+                            {selectedCriterion && hoveredId === option.id && (
+                                <select
+                                    value={selectedCriterion.color}
+                                    onMouseDown={(event) => event.stopPropagation()}
+                                    onClick={(event) => event.stopPropagation()}
+                                    onKeyDown={(event) => event.stopPropagation()}
+                                    onChange={(event) => handleColorChange(option.id, event.target.value)}
+                                    aria-label={`Select color for linked criterion ${option.id}`}
+                                    title="Select linked criterion color"
+                                    style={{ fontSize: '0.8em', marginLeft: 8 }}
+                                >
+                                    <option value="">Color</option>
+                                    <option value="G">Green</option>
+                                    <option value="B">Blue</option>
+                                </select>
+                            )}
+                        </MenuItem>
+                    );
+                })}
+            </Select>
         </div>
     );
 });

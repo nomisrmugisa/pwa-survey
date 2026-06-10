@@ -1274,7 +1274,6 @@ export function Dashboard() {
 				    const [expandedFacs, setExpandedFacs] = useState({});
 				    const [loadingFacType, setLoadingFacType] = useState(null);
                     const [settingsFacilityPages, setSettingsFacilityPages] = useState({});
-                    const [settingsFacilitySearches, setSettingsFacilitySearches] = useState({});
                     const [settingsFacilityMetadata, setSettingsFacilityMetadata] = useState({});
 				    const [configRevision, setConfigRevision] = useState(0);
 				    const [activeCellKey, setActiveCellKey] = useState(null);
@@ -5711,7 +5710,7 @@ export function Dashboard() {
 																							}}
 																						>
 																							{overviewSource !== 'local' && activeCellKey === `${row.criterionId}-linked` ? (
-																								<SearchableMultiSelect
+																								<LinkedCriteriaMultiSelect
 																									value={row.linkedCriteria}
 																									options={row.allCriteriaInFacilityType}
 																									onChange={(val) => {
@@ -5720,7 +5719,6 @@ export function Dashboard() {
 																									onClose={() => setActiveCellKey(null)}
 																									placeholder="—"
 																									autoOpen
-																									showClearAll
 																								/>
 																							) : (
 																								<div style={{ maxHeight: '60px', overflowY: 'auto', fontSize: '0.9em', fontFamily: 'monospace', textAlign: 'center', borderBottom: overviewSource === 'local' ? 'none' : '1px dashed #cbd5e0' }}>
